@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "ChainX.org123",
+    "database": "chainx",
+    "host": "47.93.16.189",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

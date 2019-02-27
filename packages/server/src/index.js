@@ -3,6 +3,7 @@ const bodyParser = require("koa-bodyparser");
 const logger = require("koa-logger");
 const helmet = require("koa-helmet");
 const http = require("http");
+const db = require(__dirname + "/../models");
 
 const app = new Koa();
 
@@ -11,5 +12,10 @@ app
   .use(bodyParser())
   .use(helmet());
 
+require("./routes")(app);
+
 const server = http.createServer(app.callback());
-server.listen(3000);
+db.sequelize.authenticate().then(() => {
+  app.context.db = db;
+  server.listen(3000);
+});
