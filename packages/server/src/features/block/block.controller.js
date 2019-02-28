@@ -1,21 +1,8 @@
+const { extractPage, trimFields } = require("../utils");
+
 class BlockController {
   async getBlocks(ctx) {
-    const { page_size: queryPageSize, page: queryPage } = ctx.query;
-
-    let pageSize;
-    try {
-      pageSize = parseInt(queryPageSize);
-      pageSize = isNaN(pageSize) ? 10 : pageSize;
-    } catch (e) {
-      pageSize = 10;
-    }
-    let page;
-    try {
-      page = parseInt(queryPage);
-      page = isNaN(page) ? 0 : page;
-    } catch (e) {
-      page = 0;
-    }
+    const { page, pageSize } = extractPage(ctx);
 
     if (pageSize === 0) {
       ctx.status = 400;
@@ -31,13 +18,16 @@ class BlockController {
       raw: true
     });
 
+    const fieldsNeedTrim = [
+      "hash",
+      "parent_hash",
+      "state_root",
+      "extrinsics_root"
+    ];
     const items = blocks.map(block => {
       return {
         ...block,
-        hash: block.hash.trim(),
-        parent_hash: block.parent_hash.trim(),
-        state_root: block.state_root.trim(),
-        extrinsics_root: block.extrinsics_root.trim(),
+        ...trimFields(block, fieldsNeedTrim),
         digest: JSON.parse(block.digest),
         data: JSON.parse(block.data)
       };
