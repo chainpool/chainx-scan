@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import latestTransactions from "./latestTransactions";
+import latestBlocks from "./latestBlocks";
 
 export default combineReducers({
-  latestTransactions
+  latestBlocks
 });
