@@ -19,15 +19,7 @@ class EventController {
       options
     );
 
-    const fieldsNeedTrim = [
-      // "signed",
-      // "signature",
-      // "era",
-      "module",
-      "name"
-      // "call",
-      // "help"
-    ];
+    const fieldsNeedTrim = ["module", "name"];
     const items = transactions.map(tx => {
       return {
         ...tx,
