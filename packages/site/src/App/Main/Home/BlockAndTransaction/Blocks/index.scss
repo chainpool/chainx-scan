@@ -1,0 +1,21 @@
+.blocks {
+  background-color: #FFFFFF;
+  border: 1px solid #DEDEDE;
+  border-radius: 2px;
+  width: calc(50% - 6px);
+
+  header {
+    font-size: 16px;
+    color: #3F3F3F;
+    line-height: 48px;
+    border-bottom: 1px solid #DEDEDE;
+  }
+
+  footer {
+    font-size: 14px;
+    color: #3F3F3F;
+    text-align: center;
+    line-height: 54px;
+    border-top: 1px solid #DEDEDE;
+  }
+}
