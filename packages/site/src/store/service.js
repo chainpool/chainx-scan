@@ -5,3 +5,9 @@ export async function fetchLatestBlocks() {
     return response.json();
   });
 }
+
+export async function fetchLatestTransactions() {
+  return window.fetch(endpoint + "/txs").then(response => {
+    return response.json();
+  });
+}

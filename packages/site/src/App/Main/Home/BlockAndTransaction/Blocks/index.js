@@ -9,7 +9,6 @@ class Blocks extends Component {
   }
 
   render() {
-    console.log(this.props.blocks);
     return (
       <div className="blocks">
         <header>最新区块列表</header>
