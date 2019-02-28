@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchAndSetLatestBlocks } from "../../../store/action";
+import { fetchAndSetLatestBlocks } from "@store/action";
 
 class Home extends Component {
   componentDidMount() {
