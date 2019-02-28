@@ -1,0 +1,13 @@
+.main {
+  display: flex;
+  justify-content: center;
+
+  flex: 1;
+  overflow-y: auto;
+
+  padding-top: 20px;
+
+  .body {
+    width: 1232px;
+  }
+}

@@ -9,4 +9,9 @@ html {
   'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  min-width: 1260px;
+
+  #root {
+    height: 100%;
+  }
 }
