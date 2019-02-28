@@ -3,23 +3,22 @@ const { extractPage, trimFields } = require("../utils");
 class TransactionController {
   async getTransactions(ctx) {
     const { page, pageSize } = extractPage(ctx);
-
-    if (pageSize === 0) {
-      ctx.status = 400;
-      return;
-    }
+    const { block } = ctx.query;
 
     const order = [["number", "DESC"], ["index", "DESC"]];
-
-    const {
-      rows: transactions,
-      count
-    } = await ctx.db.Transaction.findAndCountAll({
+    const options = {
       order,
       limit: pageSize,
       offset: page * pageSize,
       raw: true
-    });
+    };
+    if (block && /^\d+$/.test(block)) {
+      Object.assign(options, { where: { number: block } });
+    }
+    const {
+      rows: transactions,
+      count
+    } = await ctx.db.Transaction.findAndCountAll(options);
 
     const fieldsNeedTrim = [
       "signed",
@@ -30,7 +29,11 @@ class TransactionController {
       "help"
     ];
     const items = transactions.map(tx => {
-      return trimFields(tx, fieldsNeedTrim);
+      return {
+        ...tx,
+        ...trimFields(tx, fieldsNeedTrim),
+        args: JSON.parse(tx.args)
+      };
     });
 
     ctx.body = {
