@@ -1,0 +1,30 @@
+.header {
+  height: 60px;
+  background-color: #3f3f3f;
+
+  ol {
+    list-style: none;
+    height: 100%;
+    margin: 0;
+
+    li {
+      display: inline-block;
+      height: 100%;
+      margin-left: 32px;
+
+      a {
+        line-height: 60px;
+        font-size: 16px;
+        color: #FFFFFF;
+        opacity: 0.7;
+        text-decoration: none;
+        &.selected {
+          opacity: 1;
+          border-bottom: 3px solid #F6C94A;
+          box-sizing: border-box;
+          padding-bottom: 18px;
+        }
+      }
+    }
+  }
+}
