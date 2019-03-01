@@ -2,10 +2,17 @@ import React, { Component } from "react";
 import "./index.scss";
 import { fetchAndSetLatestBlocks } from "@store/action";
 import { connect } from "react-redux";
+import socket from "@src/io";
 
 class Blocks extends Component {
   componentDidMount() {
     this.props.updateBlocks();
+
+    socket.emit("subscribe", "LATEST_BLOCKS_ROOM");
+  }
+
+  componentWillUnmount() {
+    socket.emit("unsubscribe", "LATEST_BLOCKS_ROOM");
   }
 
   render() {
