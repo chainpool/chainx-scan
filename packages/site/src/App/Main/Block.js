@@ -1,11 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const Block = function Block() {
-  return (
-    <div className="box">
-
-    </div>
-  );
+  return <div className="box" />;
 };
 
 export default Block;

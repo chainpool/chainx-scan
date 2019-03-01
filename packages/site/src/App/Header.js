@@ -1,15 +1,15 @@
-import React from 'react';
-import classnames from 'classnames';
-import { NavLink } from 'react-router-dom';
+import React from "react";
+import classnames from "classnames";
+import { NavLink } from "react-router-dom";
 
-import ChainxLogo from '../assets/chainx-logo.png';
+import ChainxLogo from "../assets/chainx-logo.png";
 
 class Header extends React.PureComponent {
   constructor() {
     super();
 
     this.state = {
-      showMenu: false,
+      showMenu: false
     };
   }
 
@@ -48,7 +48,7 @@ class Header extends React.PureComponent {
     );
 
     const isActiveClass = {
-      'is-active': this.state.showMenu,
+      "is-active": this.state.showMenu
     };
 
     return (
@@ -60,7 +60,7 @@ class Header extends React.PureComponent {
             </NavLink>
             <a
               role="button"
-              className={classnames('navbar-burger burger', isActiveClass)}
+              className={classnames("navbar-burger burger", isActiveClass)}
               onClick={() => this.setState({ showMenu: !this.state.showMenu })}
             >
               <span aria-hidden="true" />
@@ -69,7 +69,7 @@ class Header extends React.PureComponent {
             </a>
           </div>
 
-          <div className={classnames('navbar-menu', isActiveClass)}>
+          <div className={classnames("navbar-menu", isActiveClass)}>
             {navBarStart}
             {navBarEnd}
           </div>

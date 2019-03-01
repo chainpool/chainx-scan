@@ -34,7 +34,24 @@ function trimFields(obj, fields) {
   };
 }
 
+function normalizeBlock(block) {
+  const fieldsNeedTrim = [
+    "hash",
+    "parent_hash",
+    "state_root",
+    "extrinsics_root"
+  ];
+
+  return {
+    ...block,
+    ...trimFields(block, fieldsNeedTrim),
+    digest: JSON.parse(block.digest),
+    data: JSON.parse(block.data)
+  };
+}
+
 module.exports = {
   extractPage,
-  trimFields
+  trimFields,
+  normalizeBlock
 };
