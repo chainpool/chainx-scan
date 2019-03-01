@@ -7,8 +7,8 @@ import './index.scss';
 class Main extends Component {
   render() {
     return (
-      <div className="main">
-        <section className="body">
+      <div className="content main">
+        <section className="container">
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/block" component={Block} />

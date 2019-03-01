@@ -46,6 +46,11 @@ class Header extends React.PureComponent {
         </div>
       </div>
     );
+
+    const isActiveClass = {
+      'is-active': this.state.showMenu,
+    };
+
     return (
       <nav className="navbar is-black" role="navigation">
         <div className="container ">
@@ -55,7 +60,7 @@ class Header extends React.PureComponent {
             </NavLink>
             <a
               role="button"
-              className={classnames('navbar-burger burger', { 'is-active': this.state.showMenu })}
+              className={classnames('navbar-burger burger', isActiveClass)}
               onClick={() => this.setState({ showMenu: !this.state.showMenu })}
             >
               <span aria-hidden="true" />
@@ -64,7 +69,7 @@ class Header extends React.PureComponent {
             </a>
           </div>
 
-          <div className={classnames('navbar-menu', { 'is-active': this.state.showMenu })}>
+          <div className={classnames('navbar-menu', isActiveClass)}>
             {navBarStart}
             {navBarEnd}
           </div>
