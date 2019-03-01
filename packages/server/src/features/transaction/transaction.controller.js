@@ -43,6 +43,9 @@ class TransactionController {
       pageMax: Math.floor(count / pageSize)
     };
   }
+
+  // TODO: transaction表里没有交易hash，暂时搁置获取交易api
+  async getTransaction(ctx) {}
 }
 
 module.exports = new TransactionController();
