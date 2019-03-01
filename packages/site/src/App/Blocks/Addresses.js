@@ -3,9 +3,13 @@ import { connect } from "react-redux";
 import { fetchAndSetPageBlocks } from "@store/action";
 class Addresses extends PureComponent {
   componentDidMount() {
-    this.props.fetchAndSetPageBlocks(1, 20);
+    this.props.fetchAndSetPageBlocks(1, 20).then(res => {
+      console.log(this.props.state);
+      console.log(res, "============");
+    });
   }
   render() {
+    const { pageBlocks: { blocks = [] } = {} } = this.props;
     return (
       <div>
         <table className="table is-striped is-narrow is-hoverable is-fullwidth">
@@ -17,7 +21,7 @@ class Addresses extends PureComponent {
             </tr>
           </thead>
           <tbody>
-            {this.props.pageBlocks.map((item, index) => {
+            {blocks.map((item, index) => {
               return (
                 <tr key={index}>
                   <td>1</td>
@@ -34,6 +38,7 @@ class Addresses extends PureComponent {
 }
 
 const mapStateToProps = state => ({
+  state,
   pageBlocks: state.pageBlocks
 });
 

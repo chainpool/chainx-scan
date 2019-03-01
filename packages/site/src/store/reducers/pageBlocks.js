@@ -1,6 +1,11 @@
-const pageBlocks = (state = [], action) => {
+const pageBlocks = (state = {}, action) => {
   if (action.type === "SET_PAGE_BLOCKS") {
-    return action.blocks;
+    const { blocks, page, pageMax } = action;
+    return {
+      blocks,
+      page,
+      pageMax
+    };
   }
 
   return state;

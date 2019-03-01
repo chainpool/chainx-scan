@@ -30,15 +30,23 @@ export const fetchAndSetLatestTransactions = () => {
   };
 };
 
-export const setPageBlocks = blocks => ({
+export const setPageBlocks = ({ blocks, page, pageMax }) => ({
   type: "SET_PAGE_BLOCKS",
-  blocks
+  blocks,
+  page,
+  pageMax
 });
 
 export const fetchAndSetPageBlocks = (page = 0, pageSize = 10) => {
-  return function(dispatch) {
-    fetchPageBlocks(page, pageSize).then(resp => {
-      dispatch(setPageBlocks(resp.items));
+  return dispatch =>
+    fetchPageBlocks(page, pageSize).then((resp = {}) => {
+      const { items, page, pageMax } = resp;
+      return dispatch(
+        setPageBlocks({
+          blocks: items,
+          page,
+          pageMax
+        })
+      );
     });
-  };
 };
