@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { fetchAndSetLatestBlocks } from '@store/action';
 import { connect } from 'react-redux';
 
+import { BlockLink, AddressLink } from '../../components';
 import socket from '../../io';
 
 class Blocks extends PureComponent {
@@ -31,8 +32,12 @@ class Blocks extends PureComponent {
             <tbody>
               {this.props.blocks.map(({ number, data, extrinsics }) => (
                 <tr key={number}>
-                  <td>{number}</td>
-                  <td>{data.block.extrinsics[1]}</td>
+                  <td>
+                    <BlockLink value={number} />
+                  </td>
+                  <td>
+                    <AddressLink value={data.block.extrinsics[1]} />
+                  </td>
                   <td>{extrinsics}</td>
                 </tr>
               ))}

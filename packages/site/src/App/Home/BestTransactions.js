@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import { fetchAndSetLatestTransactions } from '@store/action';
 import { connect } from 'react-redux';
 
+import { TxLink, AddressLink } from '../../components';
+
 class Blocks extends PureComponent {
   componentDidMount() {
     this.props.updateTransactions();
@@ -23,8 +25,12 @@ class Blocks extends PureComponent {
             <tbody>
               {this.props.transactions.map((tx, index) => (
                 <tr key={index}>
-                  <td>{tx.number}</td>
-                  <td>{tx.module}</td>
+                  <td>
+                    <TxLink value={tx.number} />
+                  </td>
+                  <td>
+                    <AddressLink value={tx.number} />
+                  </td>
                   <td>{tx.index}</td>
                 </tr>
               ))}
