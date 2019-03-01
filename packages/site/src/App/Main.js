@@ -1,8 +1,8 @@
-import React from 'react';
-import { Redirect, Route, Switch } from 'react-router';
+import React from "react";
+import { Redirect, Route, Switch } from "react-router";
 
-import Home from './Home';
-import Blocks from './Blocks';
+import Home from "./Home";
+import Blocks from "./Blocks";
 
 const Main = function Main() {
   return (

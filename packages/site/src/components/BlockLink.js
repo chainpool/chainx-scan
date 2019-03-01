@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 const BlockLink = function BlockLink(props) {
   const { value } = props;

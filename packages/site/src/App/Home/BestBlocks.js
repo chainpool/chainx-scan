@@ -1,19 +1,19 @@
-import React, { PureComponent } from 'react';
-import { fetchAndSetLatestBlocks } from '@store/action';
-import { connect } from 'react-redux';
+import React, { PureComponent } from "react";
+import { fetchAndSetLatestBlocks } from "@store/action";
+import { connect } from "react-redux";
 
-import { BlockLink, AddressLink } from '../../components';
-import socket from '../../io';
+import { BlockLink, AddressLink } from "../../components";
+import socket from "../../io";
 
 class Blocks extends PureComponent {
   componentDidMount() {
     this.props.updateBlocks();
 
-    socket.emit('subscribe', 'LATEST_BLOCKS_ROOM');
+    socket.emit("subscribe", "LATEST_BLOCKS_ROOM");
   }
 
   componentWillUnmount() {
-    socket.emit('unsubscribe', 'LATEST_BLOCKS_ROOM');
+    socket.emit("unsubscribe", "LATEST_BLOCKS_ROOM");
   }
 
   render() {
@@ -53,11 +53,11 @@ class Blocks extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  blocks: state.latestBlocks,
+  blocks: state.latestBlocks
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateBlocks: () => dispatch(fetchAndSetLatestBlocks()),
+  updateBlocks: () => dispatch(fetchAndSetLatestBlocks())
 });
 
 export default connect(

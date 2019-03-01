@@ -1,8 +1,8 @@
-import React, { PureComponent } from 'react';
-import { fetchAndSetLatestTransactions } from '@store/action';
-import { connect } from 'react-redux';
+import React, { PureComponent } from "react";
+import { fetchAndSetLatestTransactions } from "@store/action";
+import { connect } from "react-redux";
 
-import { TxLink, AddressLink } from '../../components';
+import { TxLink, AddressLink } from "../../components";
 
 class Blocks extends PureComponent {
   componentDidMount() {
@@ -46,11 +46,11 @@ class Blocks extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  transactions: state.latestTransactions,
+  transactions: state.latestTransactions
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateTransactions: () => dispatch(fetchAndSetLatestTransactions()),
+  updateTransactions: () => dispatch(fetchAndSetLatestTransactions())
 });
 
 export default connect(
