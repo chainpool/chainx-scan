@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 
 import { BlockLink, AddressLink } from "../../components";
 import socket from "../../io";
+import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 
 class Blocks extends PureComponent {
   componentDidMount() {
@@ -21,7 +22,7 @@ class Blocks extends PureComponent {
       <section className="panel">
         <div className="panel-heading">最新区块列表</div>
         <div className="panel-block">
-          <table className="table is-striped is-narrow is-hoverable is-fullwidth">
+          <table className="table is-striped is-fullwidth data-table">
             <thead>
               <tr>
                 <th>高度</th>
@@ -44,8 +45,14 @@ class Blocks extends PureComponent {
             </tbody>
           </table>
         </div>
-        <div className="panel-block">
-          <a className="is-link">查看全部</a>
+        <div
+          className="panel-block panel-footer-link"
+          style={{ justifyContent: "center" }}
+        >
+          <a class="view-more">
+            查看全部
+            <IconChevronRight />
+          </a>
         </div>
       </section>
     );
