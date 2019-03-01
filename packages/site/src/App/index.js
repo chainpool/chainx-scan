@@ -1,20 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
-import "./index.scss";
 
-class App extends Component {
-  render() {
-    return (
-      <Router>
-        <div className="App">
-          <Header />
-          <Main />
-        </div>
-      </Router>
-    );
-  }
-}
+const App = function App() {
+  return (
+    <Router>
+      <React.Fragment>
+        <Header />
+        <Main />
+      </React.Fragment>
+    </Router>
+  );
+};
 
 export default App;
