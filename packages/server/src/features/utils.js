@@ -50,8 +50,26 @@ function normalizeBlock(block) {
   };
 }
 
+function normalizeTransaction(tx) {
+  const fieldsNeedTrim = [
+    "signed",
+    "signature",
+    "era",
+    "module",
+    "call",
+    "help"
+  ];
+
+  return {
+    ...tx,
+    ...trimFields(tx, fieldsNeedTrim),
+    args: JSON.parse(tx.args)
+  };
+}
+
 module.exports = {
   extractPage,
   trimFields,
-  normalizeBlock
+  normalizeBlock,
+  normalizeTransaction
 };
