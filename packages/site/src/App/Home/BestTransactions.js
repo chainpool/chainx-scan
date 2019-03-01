@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { fetchAndSetLatestTransactions } from '@store/action';
 import { connect } from 'react-redux';
 
-class Blocks extends Component {
+class Blocks extends PureComponent {
   componentDidMount() {
     this.props.updateTransactions();
   }

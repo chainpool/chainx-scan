@@ -29,11 +29,11 @@ class Blocks extends PureComponent {
               </tr>
             </thead>
             <tbody>
-              {this.props.blocks.map((block, index) => (
-                <tr key={index}>
-                  <td>{block.number}</td>
-                  <td>{block.data.block.extrinsics[1]}</td>
-                  <td>{block.extrinsics}</td>
+              {this.props.blocks.map(({ number, data, extrinsics }) => (
+                <tr key={number}>
+                  <td>{number}</td>
+                  <td>{data.block.extrinsics[1]}</td>
+                  <td>{extrinsics}</td>
                 </tr>
               ))}
             </tbody>
