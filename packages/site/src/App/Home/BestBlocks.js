@@ -44,8 +44,8 @@ class Blocks extends PureComponent {
             </tbody>
           </table>
         </div>
-        <div class="panel-block">
-          <a class="is-link">查看全部</a>
+        <div className="panel-block">
+          <a className="is-link">查看全部</a>
         </div>
       </section>
     );
