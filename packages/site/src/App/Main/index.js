@@ -1,8 +1,8 @@
-import React, { Component } from "react";
-import { Redirect, Route, Switch } from "react-router";
-import Home from "./Home";
-import Block from "./Block";
-import "./index.scss";
+import React, { Component } from 'react';
+import { Redirect, Route, Switch } from 'react-router';
+import Home from './Home';
+import Block from './Block';
+import './index.scss';
 
 class Main extends Component {
   render() {
