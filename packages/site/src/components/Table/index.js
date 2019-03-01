@@ -177,12 +177,10 @@ export default class TableComponent extends Component {
                 )
               : 0) + sum
           );
-          // return (expand.length ? expand.length * expandBodyTr + expandHeadTr : 0) + sum;
         }, dataSource.length * bodyTr + (HeadTr + borderBottom));
   };
 
   render() {
-    const { getPageData } = this;
     const {
       className = {},
       style = {},
@@ -190,7 +188,6 @@ export default class TableComponent extends Component {
       expandedRowRender,
       onClickRow,
       noDataTip,
-      pagination: { total: totalPage } = {},
       showHead = true,
       activeTrIndex,
       children
@@ -237,7 +234,7 @@ export default class TableComponent extends Component {
       scroll
     };
 
-    const { dataSource = [], currentPage } = this.state;
+    const { dataSource = [] } = this.state;
     return (
       <div
         style={{
@@ -355,29 +352,7 @@ export default class TableComponent extends Component {
                       );
                     })}
                   </Tbody>
-                  {/*{*/}
-                  {/*loading ? (*/}
-                  {/*<Loading.Circle loading={loading} isGlobal color={'#c1c1c1'} backgroundOpacity={0.01} />*/}
-                  {/*) : null*/}
-                  {/*}*/}
-                  {/*{*/}
-                  {/*loadingMore ? (<div className={styles.loadingmore} >加载更多......</div >) : null*/}
-                  {/*}*/}
                 </Scroller>
-                {/*{totalPage && dataSource.length ? (*/}
-                {/*<Pagination*/}
-                {/*total={totalPage}*/}
-                {/*currentPage={currentPage}*/}
-                {/*onPageChange={value => {*/}
-                {/*this.setState(*/}
-                {/*{*/}
-                {/*currentPage: value,*/}
-                {/*},*/}
-                {/*getPageData*/}
-                {/*);*/}
-                {/*}}*/}
-                {/*/>*/}
-                {/*) : null}*/}
               </div>
             </div>
           </Table>
