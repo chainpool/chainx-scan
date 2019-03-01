@@ -11,3 +11,12 @@ export async function fetchLatestTransactions() {
     return response.json();
   });
 }
+
+export async function fetchPageBlocks(...args) {
+  const [page, pageSize] = args;
+  return window
+    .fetch(endpoint + `/blocks?page=${page}&page_size=${pageSize}`)
+    .then(response => {
+      return response.json();
+    });
+}
