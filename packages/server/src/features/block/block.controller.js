@@ -3,20 +3,36 @@ const { extractPage, normalizeBlock } = require("../utils");
 class BlockController {
   async getBlocks(ctx) {
     const { page, pageSize } = extractPage(ctx);
-
     if (pageSize === 0) {
       ctx.status = 400;
       return;
     }
 
-    const order = [["number", "DESC"]];
+    const { from, to } = ctx.query;
+    if ((from && !to) || (!from && to)) {
+      ctx.status = 400;
+      return;
+    }
 
-    const { rows: blocks, count } = await ctx.db.Block.findAndCountAll({
-      order,
-      limit: pageSize,
-      offset: page * pageSize,
+    const option = {
+      order: [["number", "DESC"]],
       raw: true
-    });
+    };
+
+    if (from && /^\d+$/.test(from) && to && /^\d+$/.test(to)) {
+      Object.assign(option, {
+        where: {
+          $and: [{ number: { $lt: to } }, { number: { $gte: from } }]
+        }
+      });
+    } else {
+      Object.assign(option, {
+        limit: pageSize,
+        offset: page * pageSize
+      });
+    }
+
+    const { rows: blocks, count } = await ctx.db.Block.findAndCountAll(option);
 
     const items = blocks.map(normalizeBlock);
 
