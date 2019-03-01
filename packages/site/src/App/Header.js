@@ -56,7 +56,7 @@ class Header extends React.PureComponent {
         <div className="container ">
           <div className="navbar-brand">
             <NavLink to="/" className="navbar-item" activeClassName="selected">
-              <img src={ChainxLogo} width="112" height="28" />
+              <img src={ChainxLogo} alt="chainx" width="112" height="28" />
             </NavLink>
             <a
               role="button"

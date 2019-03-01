@@ -68,7 +68,10 @@
     "test": "node scripts/test.js"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "jsx-a11y/anchor-is-valid": [ "ignore" ]
+    }
   },
   "browserslist": [
     ">0.2%",
