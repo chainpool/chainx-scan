@@ -1,4 +1,4 @@
-const { extractPage, trimFields } = require("../utils");
+const { extractPage, normalizeTransaction } = require("../utils");
 
 class TransactionController {
   async getTransactions(ctx) {
@@ -20,21 +20,7 @@ class TransactionController {
       count
     } = await ctx.db.Transaction.findAndCountAll(options);
 
-    const fieldsNeedTrim = [
-      "signed",
-      "signature",
-      "era",
-      "module",
-      "call",
-      "help"
-    ];
-    const items = transactions.map(tx => {
-      return {
-        ...tx,
-        ...trimFields(tx, fieldsNeedTrim),
-        args: JSON.parse(tx.args)
-      };
-    });
+    const items = transactions.map(normalizeTransaction);
 
     ctx.body = {
       items,
