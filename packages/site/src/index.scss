@@ -3,13 +3,53 @@
 @import '~bulma/sass/utilities/_all.sass';
 @import '~bulma/sass/base/_all.sass';
 
-$body-size: 14px;
 $primary: #f6c94a;
 
 // 导航栏断点：
 $navbar-breakpoint: $tablet + (2 * $gap);
 
+// panel
+$panel-heading-background-color: $white;
+$panel-heading-weight: $weight-medium;
+$panel-heading-size: 16px;
+$panel-heading-padding: 1em 1.25em;
+
+// table
+
+$table-cell-border: none;
+$table-striped-row-even-background-color: hsl(0, 0%, 100%);
+$table-striped-row-even-hover-background-color: #f5f5f5;
+$table-cell-padding: 0.75em 0.75em;
+
 @import '~bulma/bulma';
+
+.panel-footer-link {
+  padding: 1em 1.25em;
+  a {
+    font-size: 14px;
+    color: #3f3f3f;
+  }
+}
+
+.view-more {
+  display: flex;
+  align-items: center;
+
+  svg {
+    width: 18px;
+    height: 18px;
+    color: #c2c2c2;
+  }
+}
+
+.data-table {
+  font-size: 12px;
+
+  tbody > tr {
+    padding: 1.35em;
+    background-color: hsl(0, 0%, 96%);
+  }
+}
 
 .main {
   padding: 3rem 0;

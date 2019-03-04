@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import { NavLink } from "react-router-dom";
 
-import ChainxLogo from "../assets/chainx-logo.png";
+import ChainxLogo from "../assets/chainxLogo.png";
 
 class Header extends React.PureComponent {
   constructor() {
