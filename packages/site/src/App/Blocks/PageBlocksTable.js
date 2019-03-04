@@ -53,7 +53,6 @@ class PageBlocksTable extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  state,
   pageBlocks: state.pageBlocks
 });
 
