@@ -1,4 +1,8 @@
-import { fetchLatestBlocks, fetchLatestTransactions } from "./service";
+import {
+  fetchLatestBlocks,
+  fetchLatestTransactions,
+  fetchPageBlocks
+} from "./service";
 
 export const setLatestBlocks = blocks => ({
   type: "SET_LATEST_BLOCKS",
@@ -24,4 +28,25 @@ export const fetchAndSetLatestTransactions = () => {
       dispatch(setLatestTransactions(resp.items));
     });
   };
+};
+
+export const setPageBlocks = ({ blocks, page, pageMax }) => ({
+  type: "SET_PAGE_BLOCKS",
+  blocks,
+  page,
+  pageMax
+});
+
+export const fetchAndSetPageBlocks = (page = 0, pageSize = 10) => {
+  return dispatch =>
+    fetchPageBlocks(page, pageSize).then((resp = {}) => {
+      const { items, page, pageMax } = resp;
+      return dispatch(
+        setPageBlocks({
+          blocks: items,
+          page,
+          pageMax
+        })
+      );
+    });
 };

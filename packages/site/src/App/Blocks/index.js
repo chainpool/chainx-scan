@@ -1,7 +1,12 @@
-import React from "react";
-
-const Block = function Block() {
-  return <div className="box" />;
-};
-
-export default Block;
+import React, { PureComponent } from "react";
+import PageBlocksTable from "./PageBlocksTable";
+class Blocks extends PureComponent {
+  render() {
+    return (
+      <div>
+        <PageBlocksTable />
+      </div>
+    );
+  }
+}
+export default Blocks;

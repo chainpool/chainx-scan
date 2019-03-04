@@ -62,7 +62,7 @@
 .mixin_tableContainer{
 @mixin mixin_table {
   .tr {
-    padding: 0 2px;
+    padding: 0 8px;
     .th {
       color: #555555;
     }
@@ -119,6 +119,9 @@
   }
   .tbody {
     .tr {
+      &:nth-child(2n+1){
+        background: #F5F5F5;
+      }
       &:hover {
         background: rgba(238, 238, 238, 0.3);
         color: #555555;
