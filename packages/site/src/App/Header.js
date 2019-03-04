@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import ChainxLogo from "../assets/chainxLogo.png";
 
-class Header extends React.PureComponent {
+class Header extends React.Component {
   constructor() {
     super();
 
@@ -16,20 +16,21 @@ class Header extends React.PureComponent {
   render() {
     const navBarStart = (
       <div className="navbar-start">
-        <NavLink className="navbar-item" to="/">
+        <NavLink
+          exact
+          className="navbar-item is-tab"
+          activeClassName="is-active"
+          to="/"
+        >
           首页
         </NavLink>
-        <NavLink className="navbar-item" to="/block">
+        <NavLink
+          exact
+          className="navbar-item is-tab"
+          activeClassName="is-active"
+          to="/block"
+        >
           区块链
-        </NavLink>
-        <NavLink className="navbar-item" to="/">
-          验证人
-        </NavLink>
-        <NavLink className="navbar-item" to="/">
-          跨链轻节点
-        </NavLink>
-        <NavLink className="navbar-item" to="/">
-          DAPP
         </NavLink>
       </div>
     );
@@ -53,7 +54,7 @@ class Header extends React.PureComponent {
 
     return (
       <nav className="navbar is-black" role="navigation">
-        <div className="container ">
+        <div className="container">
           <div className="navbar-brand">
             <NavLink to="/" className="navbar-item" activeClassName="selected">
               <img src={ChainxLogo} alt="chainx" width="112" height="28" />
