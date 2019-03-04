@@ -49,7 +49,7 @@ class Blocks extends PureComponent {
           className="panel-block panel-footer-link"
           style={{ justifyContent: "center" }}
         >
-          <a class="view-more">
+          <a className="view-more">
             查看全部
             <IconChevronRight />
           </a>
