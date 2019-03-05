@@ -15,10 +15,8 @@ class TransactionController {
     if (block && /^\d+$/.test(block)) {
       Object.assign(options, { where: { number: block } });
     }
-    const {
-      rows: transactions,
-      count
-    } = await ctx.db.Transaction.findAndCountAll(options);
+    const transactions = await ctx.db.Transaction.findAll(options);
+    const count = await ctx.db.Block.count();
 
     const items = transactions.map(normalizeTransaction);
 
@@ -26,7 +24,7 @@ class TransactionController {
       items,
       pageSize,
       page,
-      pageMax: Math.floor(count / pageSize)
+      total: count
     };
   }
 
