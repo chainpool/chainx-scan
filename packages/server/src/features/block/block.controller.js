@@ -32,7 +32,8 @@ class BlockController {
       });
     }
 
-    const { rows: blocks, count } = await ctx.db.Block.findAndCountAll(option);
+    const blocks = await ctx.db.Block.findAll(option);
+    const count = await ctx.db.Block.count();
 
     const items = blocks.map(normalizeBlock);
 
@@ -40,7 +41,7 @@ class BlockController {
       items,
       pageSize,
       page,
-      pageMax: Math.floor(count / pageSize)
+      total: count
     };
   }
 
