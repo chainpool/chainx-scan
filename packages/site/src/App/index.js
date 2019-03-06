@@ -3,7 +3,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
 
-const App = function App() {
+export default function App() {
   return (
     <Router>
       <React.Fragment>
@@ -12,6 +12,4 @@ const App = function App() {
       </React.Fragment>
     </Router>
   );
-};
-
-export default App;
+}

@@ -4,7 +4,7 @@ import { BlockLink, AddressLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useSubcribe } from "../../common";
 
-const Blocks = function Blocks() {
+export default function Blocks() {
   const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM");
 
   return (
@@ -43,6 +43,4 @@ const Blocks = function Blocks() {
       </div>
     </section>
   );
-};
-
-export default Blocks;
+}

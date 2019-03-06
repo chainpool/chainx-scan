@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 
 import ChainxLogo from "../assets/chainxLogo.png";
 
-const Header = function Header() {
+export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
   const navBarStart = (
@@ -60,6 +60,4 @@ const Header = function Header() {
       </div>
     </nav>
   );
-};
-
-export default Header;
+}

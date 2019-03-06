@@ -4,7 +4,7 @@ import { TxLink, AddressLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useSubcribe } from "../../common";
 
-const BestTransactions = function BestTransactions() {
+export default function BestTransactions() {
   const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM");
 
   return (
@@ -34,10 +34,7 @@ const BestTransactions = function BestTransactions() {
           </tbody>
         </table>
       </div>
-      <div
-        className="panel-block panel-footer-link"
-        style={{ justifyContent: "center" }}
-      >
+      <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <a className="view-more">
           查看全部
           <IconChevronRight />
@@ -45,6 +42,4 @@ const BestTransactions = function BestTransactions() {
       </div>
     </section>
   );
-};
-
-export default BestTransactions;
+}
