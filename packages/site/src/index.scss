@@ -1,7 +1,7 @@
 @charset "utf-8";
 
-@import '~bulma/sass/utilities/_all.sass';
-@import '~bulma/sass/base/_all.sass';
+@import "~bulma/sass/utilities/_all.sass";
+@import "~bulma/sass/base/_all.sass";
 
 $primary: #f6c94a;
 
@@ -22,7 +22,11 @@ $table-striped-row-even-hover-background-color: #8f6161;
 $table-cell-padding: 0.75em 0.75em;
 $navbar-tab-active-border-bottom-color: $primary;
 
-@import '~bulma/bulma';
+@import "~bulma/bulma";
+
+a:focus {
+  text-decoration: none;
+}
 
 .panel-footer-link {
   padding: 1em 1.25em;
