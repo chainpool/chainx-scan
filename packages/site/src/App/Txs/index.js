@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router";
 
-import BlockChainNav from "../BlockChainNav";
+import { BlockChainNav } from "../../components";
 import TxsList from "./TxsList";
 
 export default function Txs() {
