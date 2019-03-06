@@ -5,7 +5,7 @@ import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRigh
 import { useSubcribe } from "../../common";
 
 export default function Blocks() {
-  const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM");
+  const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM", "latestBlocks");
 
   return (
     <section className="panel">

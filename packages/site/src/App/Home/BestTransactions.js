@@ -5,7 +5,7 @@ import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRigh
 import { useSubcribe } from "../../common";
 
 export default function BestTransactions() {
-  const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM");
+  const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM", "latestTxs");
 
   return (
     <section className="panel">
