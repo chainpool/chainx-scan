@@ -2,7 +2,7 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router";
 
 import Home from "./Home";
-import Blocks from "./Blocks";
+import BlockChain from "./BlockChain";
 
 const Main = function Main() {
   return (
@@ -10,7 +10,7 @@ const Main = function Main() {
       <section className="container">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/block" component={Blocks} />
+          <Route path="/blockchain" component={BlockChain} />
           <Redirect to="/" />
         </Switch>
       </section>
