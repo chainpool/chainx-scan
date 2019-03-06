@@ -6,6 +6,7 @@ import thunk from "redux-thunk";
 import React from "react";
 
 import "./index.scss";
+import "antd/dist/antd.css";
 import App from "./App";
 import rootReducer from "./store/reducers";
 
