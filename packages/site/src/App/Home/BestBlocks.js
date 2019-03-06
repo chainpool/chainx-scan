@@ -2,7 +2,7 @@ import React from "react";
 
 import { BlockLink, AddressLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubcribe } from "../../utils";
+import { useSubcribe } from "../../common";
 
 const Blocks = function Blocks() {
   const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM");

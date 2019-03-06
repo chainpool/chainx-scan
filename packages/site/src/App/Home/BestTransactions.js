@@ -2,7 +2,7 @@ import React from "react";
 
 import { TxLink, AddressLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubcribe } from "../../utils";
+import { useSubcribe } from "../../common";
 
 const BestTransactions = function BestTransactions() {
   const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM");
