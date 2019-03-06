@@ -3,6 +3,7 @@ import { Redirect, Route, Switch } from "react-router";
 
 import Home from "./Home";
 import BlockChain from "./BlockChain";
+import BlockDetail from "./BlockChain/BlockDetail";
 
 const Main = function Main() {
   return (
@@ -10,7 +11,8 @@ const Main = function Main() {
       <section className="container">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/blockchain" component={BlockChain} />
+          <Route path="/blocks" component={BlockDetail} />
+          <Route path="/txs" component={BlockChain} />
           <Redirect to="/" />
         </Switch>
       </section>

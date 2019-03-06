@@ -3,8 +3,8 @@ import { Redirect, Route, Switch, withRouter } from "react-router";
 import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 
-import Blocks from "./Blocks";
-import Txs from "./Txs";
+import Blocks from "./BlocksList";
+import Txs from "../Txs/Txs";
 
 const BlockChain = function BlockChain(props) {
   const { location } = props;
@@ -42,9 +42,7 @@ const BlockChain = function BlockChain(props) {
       </div>
       <div>
         <Switch>
-          {navs.map(({ key, path, component }) => (
-            <Route key={key} path={path} component={component} />
-          ))}
+          <Route key={key} path={path} component={component} />
           <Redirect from="/blockchain" exact to={navs[0].path} />
         </Switch>
       </div>

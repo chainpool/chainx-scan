@@ -9,19 +9,10 @@ const Header = function Header() {
 
   const navBarStart = (
     <div className="navbar-start">
-      <NavLink
-        exact
-        className="navbar-item is-tab"
-        activeClassName="is-active"
-        to="/"
-      >
+      <NavLink exact className="navbar-item is-tab" activeClassName="is-active" to="/">
         首页
       </NavLink>
-      <NavLink
-        className="navbar-item is-tab"
-        activeClassName="is-active"
-        to="/blockchain"
-      >
+      <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/blocks">
         区块链
       </NavLink>
     </div>

@@ -35,10 +35,7 @@ const Blocks = function Blocks() {
           </tbody>
         </table>
       </div>
-      <div
-        className="panel-block panel-footer-link"
-        style={{ justifyContent: "center" }}
-      >
+      <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <a className="view-more">
           查看全部
           <IconChevronRight />
