@@ -4,6 +4,9 @@ const latestBlocksRoom = "LATEST_BLOCKS_ROOM";
 const latestTxsRoom = "LATEST_TRANSACTIONS_ROOM";
 const FEED_INTERVAL = 2000;
 
+let preBlockHeight = null;
+let preTxHeight = null;
+
 module.exports = (io, db) => {
   io.on("connection", function(socket) {
     socket.on("subscribe", socket.join);
@@ -23,7 +26,7 @@ async function feedLatestBlocks(io, db) {
   const page = 0;
   const order = [["number", "DESC"]];
 
-  const { rows: blocks, count } = await db.Block.findAndCountAll({
+  const blocks = await db.Block.findAll({
     order,
     limit: pageSize,
     offset: page * pageSize,
@@ -31,14 +34,13 @@ async function feedLatestBlocks(io, db) {
   });
 
   const items = blocks.map(normalizeBlock);
-  const result = {
-    items,
-    pageSize,
-    page,
-    pageMax: Math.floor(count / pageSize)
-  };
 
-  io.to(latestBlocksRoom).emit("latestBlocks", result);
+  if (items.length > 0) {
+    const nowMaxBlockHeight = Math.max(...items.map(item => item.number));
+    if (preBlockHeight === null || nowMaxBlockHeight > preBlockHeight) {
+      io.to(latestBlocksRoom).emit("latestBlocks", items);
+    }
+  }
 
   setTimeout(feedLatestBlocks.bind(null, io, db), FEED_INTERVAL);
 }
@@ -54,20 +56,15 @@ async function feedLatestTxs(io, db) {
     raw: true
   };
 
-  const { rows: transactions, count } = await db.Transaction.findAndCountAll(
-    options
-  );
+  const transactions = await db.Transaction.findAll(options);
 
   const items = transactions.map(normalizeTransaction);
-
-  const result = {
-    items,
-    pageSize,
-    page,
-    pageMax: Math.floor(count / pageSize)
-  };
-
-  io.to(latestTxsRoom).emit("latestTxs", result);
+  if (items.length > 0) {
+    const nowMaxTxHeight = Math.max(...items.map(item => item.number));
+    if (preTxHeight === null || nowMaxTxHeight > preTxHeight) {
+      io.to(latestTxsRoom).emit("latestTxs", items);
+    }
+  }
 
   setTimeout(feedLatestTxs.bind(null, io, db), FEED_INTERVAL);
 }
