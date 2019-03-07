@@ -15,7 +15,7 @@ export default function useSubcribe(name, eventName) {
 
   useEffect(() => {
     subcribe();
-    socket.on("latestBlocks", items => {
+    socket.on(eventName, items => {
       setData(items || []);
     });
     return () => {

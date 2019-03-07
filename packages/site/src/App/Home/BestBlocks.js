@@ -26,7 +26,6 @@ export default function Blocks() {
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  {/* Convert accountid to address */}
                   <AddressLink value={producer} />
                 </td>
                 <td>{extrinsics}</td>

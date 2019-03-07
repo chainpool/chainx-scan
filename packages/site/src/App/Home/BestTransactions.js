@@ -1,11 +1,13 @@
 import React from "react";
 
-import { TxLink, AddressLink } from "../../components";
+import { TxLink, AddressLink, TxAction } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useSubcribe } from "../../common";
 
 export default function BestTransactions() {
   const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM", "latestTxs");
+
+  console.log(txs);
 
   return (
     <section className="panel">
@@ -20,15 +22,17 @@ export default function BestTransactions() {
             </tr>
           </thead>
           <tbody>
-            {txs.map((tx, index) => (
-              <tr key={index}>
+            {txs.map(tx => (
+              <tr key={tx.hash}>
                 <td>
-                  <TxLink value={tx.number} />
+                  <TxLink value={tx.hash} />
                 </td>
                 <td>
-                  <AddressLink value={tx.number} />
+                  <AddressLink value={tx.signed} />
                 </td>
-                <td>{tx.index}</td>
+                <td>
+                  <TxAction module={tx.module} call={tx.call} />
+                </td>
               </tr>
             ))}
           </tbody>

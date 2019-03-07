@@ -1,12 +1,19 @@
-import React from "react";
-
+import React, { memo } from "react";
 import { NavLink } from "react-router-dom";
 
-export default function AddressLink(props) {
+import { encodeAddress } from "../common";
+
+export default memo(function AddressLink(props) {
   const { value } = props;
+  let address;
+  try {
+    address = encodeAddress(value);
+  } catch {
+    address = value;
+  }
   return (
     <NavLink to={`/${value}`} className="nav-link">
-      {value}
+      {address}
     </NavLink>
   );
-}
+});
