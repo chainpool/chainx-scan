@@ -24,7 +24,7 @@ function extractPage(ctx) {
 
 function trimFields(obj, fields) {
   const override = fields.reduce((result, field) => {
-    result[field] = obj[field].trim();
+    result[field] = (obj[field] || "").trim();
     return result;
   }, {});
 
@@ -39,7 +39,8 @@ function normalizeBlock(block) {
     "hash",
     "parent_hash",
     "state_root",
-    "extrinsics_root"
+    "extrinsics_root",
+    "producer"
   ];
 
   return {

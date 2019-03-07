@@ -26,7 +26,7 @@ const Blocks = function Blocks() {
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  <AddressLink value={data.block.extrinsics[1]} />
+                  <AddressLink value={data.producer} />
                 </td>
                 <td>{extrinsics}</td>
               </tr>

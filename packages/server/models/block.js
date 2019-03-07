@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       data: {
         type: DataTypes.TEXT
+      },
+      producer: {
+        type: DataTypes.STRING
       }
     },
     {
