@@ -1,4 +1,4 @@
-const { extractPage, trimFields } = require("../utils");
+const { extractPage } = require("../utils");
 
 class EventController {
   async getEvents(ctx) {
@@ -15,15 +15,12 @@ class EventController {
     if (block && /^\d+$/.test(block)) {
       Object.assign(options, { where: { number: block } });
     }
-    const { rows: transactions, count } = await ctx.db.Event.findAndCountAll(
-      options
-    );
+    const transactions = await ctx.db.Event.findAll(options);
+    const count = await ctx.db.Event.count();
 
-    const fieldsNeedTrim = ["module", "name"];
     const items = transactions.map(tx => {
       return {
         ...tx,
-        ...trimFields(tx, fieldsNeedTrim),
         args: JSON.parse(tx.args),
         phase: JSON.parse(tx.phase),
         data: JSON.parse(tx.data)
@@ -34,7 +31,7 @@ class EventController {
       items,
       pageSize,
       page,
-      pageMax: Math.floor(count / pageSize)
+      total: count
     };
   }
 }
