@@ -15,8 +15,8 @@ export default function useSubcribe(name, extra = {}) {
 
   useEffect(() => {
     subcribe();
-    socket.on("latestBlocks", data => {
-      if (data.items) setData(data.items);
+    socket.on("latestBlocks", items => {
+      setData(items || []);
     });
     return () => {
       unsubscribe();
