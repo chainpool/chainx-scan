@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       producer: {
         type: DataTypes.STRING
+      },
+      time: {
+        type: DataTypes.BIGINT
       }
     },
     {
