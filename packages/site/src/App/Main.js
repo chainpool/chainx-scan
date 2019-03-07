@@ -7,7 +7,7 @@ import Txs from "./Txs";
 
 export default function Main() {
   return (
-    <div className="main">
+    <div className="section">
       <section className="container">
         <Switch>
           <Route exact path="/" component={Home} />
