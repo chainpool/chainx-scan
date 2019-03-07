@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       acceleration: {
         type: DataTypes.BIGINT
+      },
+      time: {
+        type: DataTypes.BIGINT
       }
     },
     {

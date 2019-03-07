@@ -35,36 +35,16 @@ function trimFields(obj, fields) {
 }
 
 function normalizeBlock(block) {
-  const fieldsNeedTrim = [
-    "hash",
-    "parent_hash",
-    "state_root",
-    "extrinsics_root",
-    "producer"
-  ];
-
   return {
     ...block,
-    ...trimFields(block, fieldsNeedTrim),
     digest: JSON.parse(block.digest),
     data: JSON.parse(block.data)
   };
 }
 
 function normalizeTransaction(tx) {
-  const fieldsNeedTrim = [
-    "hash",
-    "signed",
-    "signature",
-    "era",
-    "module",
-    "call",
-    "help"
-  ];
-
   return {
     ...tx,
-    ...trimFields(tx, fieldsNeedTrim),
     args: JSON.parse(tx.args)
   };
 }
