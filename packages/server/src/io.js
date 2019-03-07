@@ -2,10 +2,13 @@ const { normalizeBlock, normalizeTransaction } = require("./features/utils");
 
 const latestBlocksRoom = "LATEST_BLOCKS_ROOM";
 const latestTxsRoom = "LATEST_TRANSACTIONS_ROOM";
+const chainStatusRoom = "CHAIN_STATUS";
+
 const FEED_INTERVAL = 2000;
 
 let preBlockHeight = null;
 let preTxHeight = null;
+let preStatusHeight = null;
 
 module.exports = (io, db) => {
   io.on("connection", function(socket) {
@@ -19,7 +22,24 @@ module.exports = (io, db) => {
   feedLatestTxs(io, db).then(() => {
     console.log("begin to feed latest transactions");
   });
+  feedChainStatus(io, db).then(() => {
+    console.log("begin to feed chain status");
+  });
 };
+
+async function feedChainStatus(io, db) {
+  const status = await db.Status.findOne({
+    order: [["best", "DESC"]],
+    limit: 1,
+    raw: true
+  });
+
+  if (status && (preStatusHeight === null || status.best > preStatusHeight)) {
+    io.to(chainStatusRoom).emit("chainStatus", status);
+  }
+
+  setTimeout(feedChainStatus.bind(null, io, db), FEED_INTERVAL);
+}
 
 async function feedLatestBlocks(io, db) {
   const pageSize = 10;
