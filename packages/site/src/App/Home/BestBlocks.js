@@ -20,13 +20,14 @@ const Blocks = function Blocks() {
             </tr>
           </thead>
           <tbody>
-            {blocks.map(({ number, data, extrinsics }) => (
+            {blocks.map(({ number, producer, extrinsics }) => (
               <tr key={number}>
                 <td>
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  <AddressLink value={data.producer} />
+                  {/* Convert accountid to address */}
+                  <AddressLink value={producer} />
                 </td>
                 <td>{extrinsics}</td>
               </tr>
