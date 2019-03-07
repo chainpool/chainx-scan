@@ -28,8 +28,23 @@ class TransactionController {
     };
   }
 
-  // TODO: transaction表里没有交易hash，暂时搁置获取交易api
-  async getTransaction(ctx) {}
+  async getTransaction(ctx) {
+    const { hash } = ctx.params;
+    if (!/^[\da-f]{64}$/.test(hash.toLowerCase())) {
+      ctx.status = 400;
+      return;
+    }
+
+    const option = { raw: true, where: { hash } };
+    const transaction = await ctx.db.Transaction.findOne(option);
+    if (!transaction) {
+      ctx.status = 404;
+      ctx.body = { error: "not found" };
+      return;
+    }
+
+    ctx.body = normalizeTransaction(transaction);
+  }
 }
 
 module.exports = new TransactionController();

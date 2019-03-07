@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT,
         primaryKey: true
       },
+      hash: {
+        type: DataTypes.STRING
+      },
       signed: {
         type: DataTypes.STRING
       },
