@@ -52,6 +52,7 @@ function normalizeBlock(block) {
 
 function normalizeTransaction(tx) {
   const fieldsNeedTrim = [
+    "hash",
     "signed",
     "signature",
     "era",
