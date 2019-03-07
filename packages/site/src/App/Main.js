@@ -2,20 +2,20 @@ import React from "react";
 import { Redirect, Route, Switch } from "react-router";
 
 import Home from "./Home";
-import BlockChain from "./BlockChain";
+import Blocks from "./Blocks";
+import Txs from "./Txs";
 
-const Main = function Main() {
+export default function Main() {
   return (
-    <div className="main">
+    <div className="section">
       <section className="container">
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/blockchain" component={BlockChain} />
+          <Route path="/blocks" component={Blocks} />
+          <Route path="/txs" component={Txs} />
           <Redirect to="/" />
         </Switch>
       </section>
     </div>
   );
-};
-
-export default Main;
+}

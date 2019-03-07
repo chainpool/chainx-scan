@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import socket from "./io";
 
-export default function useSubcribe(name, extra = {}) {
+export default function useSubcribe(name, eventName) {
   const [data, setData] = useState([]);
-  // const [loading, setLoading] = useState([]);
 
   function unsubscribe() {
+    socket.removeListener(eventName);
     socket.emit("unsubscribe", name);
   }
 
@@ -15,7 +15,7 @@ export default function useSubcribe(name, extra = {}) {
 
   useEffect(() => {
     subcribe();
-    socket.on("latestBlocks", items => {
+    socket.on(eventName, items => {
       setData(items || []);
     });
     return () => {

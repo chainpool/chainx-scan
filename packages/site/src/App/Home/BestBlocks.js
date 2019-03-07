@@ -2,10 +2,10 @@ import React from "react";
 
 import { BlockLink, AddressLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubcribe } from "../../utils";
+import { useSubcribe } from "../../common";
 
-const Blocks = function Blocks() {
-  const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM");
+export default function Blocks() {
+  const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM", "latestBlocks");
 
   return (
     <section className="panel">
@@ -26,7 +26,6 @@ const Blocks = function Blocks() {
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  {/* Convert accountid to address */}
                   <AddressLink value={producer} />
                 </td>
                 <td>{extrinsics}</td>
@@ -35,10 +34,7 @@ const Blocks = function Blocks() {
           </tbody>
         </table>
       </div>
-      <div
-        className="panel-block panel-footer-link"
-        style={{ justifyContent: "center" }}
-      >
+      <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <a className="view-more">
           查看全部
           <IconChevronRight />
@@ -46,6 +42,4 @@ const Blocks = function Blocks() {
       </div>
     </section>
   );
-};
-
-export default Blocks;
+}

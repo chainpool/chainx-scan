@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Table } from "../../components";
-import { useTableData } from "../../utils";
+import { useTableData } from "../../common";
 
-const Txs = function Txs() {
+export default function Txs() {
   const [tableData, handleChange] = useTableData("/txs");
 
   return (
@@ -67,6 +67,4 @@ const Txs = function Txs() {
       />
     </div>
   );
-};
-
-export default Txs;
+}

@@ -4,24 +4,15 @@ import { NavLink } from "react-router-dom";
 
 import ChainxLogo from "../assets/chainxLogo.png";
 
-const Header = function Header() {
+export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
 
   const navBarStart = (
     <div className="navbar-start">
-      <NavLink
-        exact
-        className="navbar-item is-tab"
-        activeClassName="is-active"
-        to="/"
-      >
+      <NavLink exact className="navbar-item is-tab" activeClassName="is-active" to="/">
         首页
       </NavLink>
-      <NavLink
-        className="navbar-item is-tab"
-        activeClassName="is-active"
-        to="/blockchain"
-      >
+      <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/blocks">
         区块链
       </NavLink>
     </div>
@@ -69,6 +60,4 @@ const Header = function Header() {
       </div>
     </nav>
   );
-};
-
-export default Header;
+}

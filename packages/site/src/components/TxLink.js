@@ -1,10 +1,14 @@
-import React from "react";
+import React, { memo } from "react";
 
+import { hexAddPrefix } from "@polkadot/util";
 import { NavLink } from "react-router-dom";
 
-const TxLink = function TxLink(props) {
+export default memo(function TxLink(props) {
   const { value } = props;
-  return <NavLink to={`/${value}`}>{value}</NavLink>;
-};
-
-export default TxLink;
+  const hash = hexAddPrefix(value);
+  return (
+    <NavLink to={`/${value}`} className="nav-link">
+      {hash}
+    </NavLink>
+  );
+});

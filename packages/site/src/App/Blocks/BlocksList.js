@@ -1,9 +1,9 @@
 import React from "react";
 
 import { Table } from "../../components";
-import { useTableData } from "../../utils";
+import { useTableData } from "../../common";
 
-const Blocks = function Blocks() {
+export default function BlocksList() {
   const [tableData, handleChange] = useTableData("/blocks");
 
   return (
@@ -58,6 +58,4 @@ const Blocks = function Blocks() {
       />
     </div>
   );
-};
-
-export default Blocks;
+}
