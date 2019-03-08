@@ -7,8 +7,6 @@ import { useSubcribe } from "../../common";
 export default function BestTransactions() {
   const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM", "latestTxs");
 
-  console.log(txs);
-
   return (
     <section className="panel">
       <div className="panel-heading">最新交易列表</div>
@@ -18,19 +16,19 @@ export default function BestTransactions() {
             <tr>
               <th>交易哈希</th>
               <th>发送人</th>
-              <th>操作</th>
+              <th className="has-text-right">操作</th>
             </tr>
           </thead>
           <tbody>
             {txs.map(tx => (
               <tr key={tx.hash}>
                 <td>
-                  <TxLink value={tx.hash} />
+                  <TxLink style={{ width: 136 }} className="text-truncate" value={tx.hash} />
                 </td>
                 <td>
                   <AddressLink value={tx.signed} />
                 </td>
-                <td>
+                <td className="has-text-right">
                   <TxAction module={tx.module} call={tx.call} />
                 </td>
               </tr>

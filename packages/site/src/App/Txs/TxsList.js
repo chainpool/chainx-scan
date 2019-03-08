@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Table } from "../../components";
+import { Table, TxLink, BlockLink, TxAction, DateShow } from "../../components";
 import { useTableData } from "../../common";
 
 export default function Txs() {
@@ -11,57 +11,35 @@ export default function Txs() {
       <Table
         onChange={handleChange}
         pagination={tableData.pagination}
-        dataSource={tableData.dataSource.map((data, index) => {
+        dataSource={tableData.dataSource.map(data => {
           return {
-            key: index,
-            data: data.data
+            key: data.hash,
+            number: <BlockLink value={data.number} />,
+            hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
+            time: <DateShow value={data.time} format="HH:mm:ss" />,
+            action: <TxAction module={data.module} call={data.call} />
           };
         })}
         columns={[
           {
+            title: "区块高度",
+            dataIndex: "number",
+            key: "number"
+          },
+          {
             title: "交易哈希",
-            dataIndex: "data",
-            key: "data"
+            dataIndex: "hash",
+            key: "hash"
           },
           {
-            title: "发起地址",
-            dataIndex: "发起地址",
-            key: "发起地址"
+            title: "时间",
+            dataIndex: "time",
+            key: "time"
           },
           {
-            title: "交易类型",
-            dataIndex: "交易类型",
-            key: "交易类型"
-          },
-          {
-            title: "金额",
-            dataIndex: "金额",
-            key: "金额"
-          },
-          {
-            title: "块哈希",
-            dataIndex: "块哈希",
-            key: "块哈希"
-          },
-          {
-            title: "交易时间",
-            dataIndex: "交易时间",
-            key: "交易时间"
-          },
-          {
-            title: "中继人",
-            dataIndex: "中继人",
-            key: "中继人"
-          },
-          {
-            title: "中继提交时间",
-            dataIndex: "中继提交时间",
-            key: "中继提交时间"
-          },
-          {
-            title: "OP_RETURN",
-            dataIndex: "OP_RETURN",
-            key: "OP_RETURN"
+            title: "操作",
+            dataIndex: "action",
+            key: "action"
           }
         ]}
       />

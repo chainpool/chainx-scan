@@ -16,7 +16,7 @@ export default function Blocks() {
             <tr>
               <th>高度</th>
               <th>验证人</th>
-              <th>交易数</th>
+              <th className="has-text-right">交易数</th>
             </tr>
           </thead>
           <tbody>
@@ -26,9 +26,9 @@ export default function Blocks() {
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  <AddressLink value={producer} />
+                  <AddressLink className="text-truncate" value={producer} />
                 </td>
-                <td>{extrinsics}</td>
+                <td className="has-text-right">{extrinsics}</td>
               </tr>
             ))}
           </tbody>

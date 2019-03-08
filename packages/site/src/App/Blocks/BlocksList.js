@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Table } from "../../components";
 import { useTableData } from "../../common";
+import { Table, BlockLink, AddressLink, DateShow } from "../../components";
 
 export default function BlocksList() {
   const [tableData, handleChange] = useTableData("/blocks");
@@ -14,8 +14,11 @@ export default function BlocksList() {
         dataSource={tableData.dataSource.map(data => {
           return {
             key: data.number,
-            number: data.number,
-            hash: data.hash
+            number: <BlockLink value={data.number} />,
+            hash: <BlockLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
+            time: <DateShow value={data.time} format="HH:mm:ss" />,
+            producer: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.producer} />,
+            extrinsics: data.extrinsics
           };
         })}
         columns={[
@@ -36,23 +39,13 @@ export default function BlocksList() {
           },
           {
             title: "出块人",
-            dataIndex: "出块人",
-            key: "出块人"
-          },
-          {
-            title: "签名数量",
-            dataIndex: "signatureNumber",
-            key: "signatureNumber"
+            dataIndex: "producer",
+            key: "producer"
           },
           {
             title: "交易数",
-            dataIndex: "txNumber",
-            key: "txNumber"
-          },
-          {
-            title: "最终性",
-            dataIndex: "finalise",
-            key: "finalise"
+            dataIndex: "extrinsics",
+            key: "extrinsics"
           }
         ]}
       />

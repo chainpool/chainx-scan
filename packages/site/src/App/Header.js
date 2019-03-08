@@ -1,18 +1,35 @@
 import React, { useState } from "react";
 import classnames from "classnames";
-import { NavLink } from "react-router-dom";
+import { NavLink, withRouter } from "react-router-dom";
+import { matchPath } from "react-router";
 
 import ChainxLogo from "../assets/chainxLogo.png";
 
-export default function Header() {
+export default withRouter(function Header(props) {
+  const { location } = props;
   const [showMenu, setShowMenu] = useState(false);
+
+  const matchesArray = ["/txs", "/events"];
+
+  let isMatchBlocks = false;
+
+  for (const path of matchesArray) {
+    if (matchPath(location.pathname, { path })) {
+      isMatchBlocks = true;
+      break;
+    }
+  }
 
   const navBarStart = (
     <div className="navbar-start">
       <NavLink exact className="navbar-item is-tab" activeClassName="is-active" to="/">
         首页
       </NavLink>
-      <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/blocks">
+      <NavLink
+        className={classnames("navbar-item is-tab", { "is-active": isMatchBlocks })}
+        activeClassName="is-active"
+        to="/blocks"
+      >
         区块链
       </NavLink>
     </div>
@@ -60,4 +77,4 @@ export default function Header() {
       </div>
     </nav>
   );
-}
+});

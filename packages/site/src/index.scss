@@ -82,12 +82,28 @@ a:focus {
   }
 }
 
+.text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ant-table {
+  td {
+    word-break: break-all;
+  }
+}
+
 .data-table {
   font-size: 13px;
 
   tbody > tr {
     padding: 1.35em;
     background-color: hsl(0, 0%, 96%);
+  }
+
+  thead th {
+    white-space: nowrap;
   }
 
   tbody td {

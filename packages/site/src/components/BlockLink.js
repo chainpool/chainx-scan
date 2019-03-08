@@ -1,11 +1,13 @@
 import React from "react";
+import classnames from "classnames";
 
 import { NavLink } from "react-router-dom";
 
 export default function BlockLink(props) {
-  const { value } = props;
+  const { value, className, style } = props;
+
   return (
-    <NavLink to={`/${value}`} className="nav-link">
+    <NavLink to={`/${value}`} style={style} className={classnames("nav-link", className)}>
       {value}
     </NavLink>
   );
