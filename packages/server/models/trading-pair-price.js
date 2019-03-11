@@ -27,9 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  TradingPairPrice.associate = function(models) {
-    TradingPairPrice.belongsTo(models.TradingPair, { foreignKey: "pairid", as: "price" });
-  };
+  TradingPairPrice.associate = function(models) {};
 
   return TradingPairPrice;
 };
