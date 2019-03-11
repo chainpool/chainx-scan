@@ -36,6 +36,26 @@ class TradeController {
 
     ctx.body = { asks, bids };
   }
+
+  async latestFills(ctx) {
+    const { pairId } = ctx.params;
+    if (typeof pairId === "undefined") {
+      ctx.status = 400;
+      ctx.body = { error: "no pairid" };
+      return;
+    }
+
+    const { count = 20 } = ctx.query;
+    const where = { pairid: pairId };
+    const orders = await ctx.db.FilledOrder.findAll({
+      raw: true,
+      where,
+      order: [["time", "DESC"]],
+      limit: count,
+      offset: 0
+    });
+    ctx.body = orders;
+  }
 }
 
 module.exports = new TradeController();
