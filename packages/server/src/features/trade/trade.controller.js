@@ -1,3 +1,5 @@
+const { extractPage } = require("../utils");
+
 class TradeController {
   async getPairs(ctx) {
     const pairs = await ctx.db.TradingPair.findAll({
@@ -54,6 +56,25 @@ class TradeController {
       limit: count,
       offset: 0
     });
+    ctx.body = orders;
+  }
+
+  async userOrders(ctx) {
+    const { accountId } = ctx.params;
+    if (typeof accountId === "undefined") {
+      ctx.status = 400;
+      ctx.body = { error: "no account id" };
+      return;
+    }
+
+    const { page, pageSize } = extractPage(ctx);
+    const orders = await ctx.db.Order.findAll({
+      where: { accountid: accountId },
+      order: [["create_time", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize
+    });
+
     ctx.body = orders;
   }
 }
