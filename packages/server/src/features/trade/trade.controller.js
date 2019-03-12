@@ -71,14 +71,19 @@ class TradeController {
     }
 
     const { page, pageSize } = extractPage(ctx);
-    const orders = await ctx.db.Order.findAll({
+    const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
       where: { accountid: accountId },
       order: [["create_time", "DESC"]],
       limit: pageSize,
       offset: page * pageSize
     });
 
-    ctx.body = orders;
+    ctx.body = {
+      items,
+      page,
+      pageSize,
+      total
+    };
   }
 }
 
