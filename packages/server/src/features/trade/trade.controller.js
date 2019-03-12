@@ -71,8 +71,15 @@ class TradeController {
     }
 
     const { page, pageSize } = extractPage(ctx);
+    const where = { accountid: accountId };
+    const { status } = ctx.query;
+    if (status === "0" || !status) {
+      Object.assign(where, { $or: [{ status: "ZeroExecuted" }, { status: "ParitialExecuted" }] });
+    } else {
+      Object.assign(where, { status: "AllExecuted" });
+    }
     const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
-      where: { accountid: accountId },
+      where,
       order: [["create_time", "DESC"]],
       limit: pageSize,
       offset: page * pageSize
