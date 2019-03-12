@@ -2,10 +2,11 @@
   "name": "chainx-scan-server",
   "version": "1.0.0",
   "scripts": {
-    "prod": "pm2 start ecosystem.config.js"
+    "prod": "cross-env NODE_ENV=production  pm2 start ecosystem.config.js"
   },
   "dependencies": {
     "@koa/cors": "2",
+    "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
     "koa": "^2.7.0",
     "koa-bodyparser": "^4.2.1",
