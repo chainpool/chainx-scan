@@ -80,9 +80,11 @@ class TradeController {
     }
     const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
       where,
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["create_time", "DESC"]],
       limit: pageSize,
-      offset: page * pageSize
+      offset: page * pageSize,
+      raw: true
     });
 
     ctx.body = {

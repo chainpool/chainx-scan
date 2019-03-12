@@ -62,7 +62,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Order.associate = function(models) {
-    // associations can be defined here
+    Order.belongsTo(models.Block, { foreignKey: "create_time", targetKey: "number", as: "block" });
   };
 
   return Order;
