@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import { TxLink, AddressLink, TxAction } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
@@ -26,7 +27,7 @@ export default function BestTransactions() {
                   <TxLink style={{ width: 136 }} className="text-truncate" value={tx.hash} />
                 </td>
                 <td>
-                  <AddressLink value={tx.signed} />
+                  <AddressLink style={{ width: 180 }} className="text-truncate" value={tx.signed} />
                 </td>
                 <td className="has-text-right">
                   <TxAction module={tx.module} call={tx.call} />
@@ -37,10 +38,10 @@ export default function BestTransactions() {
         </table>
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
-        <a className="view-more">
+        <NavLink className="view-more" to="/txs">
           查看全部
           <IconChevronRight />
-        </a>
+        </NavLink>
       </div>
     </section>
   );

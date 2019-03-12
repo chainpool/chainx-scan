@@ -7,7 +7,7 @@ export default function BlockLink(props) {
   const { value, className, style } = props;
 
   return (
-    <NavLink to={`/${value}`} style={style} className={classnames("nav-link", className)}>
+    <NavLink to={`/blocks/${value}`} style={style} className={classnames("nav-link", className)}>
       {value}
     </NavLink>
   );

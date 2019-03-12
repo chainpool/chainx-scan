@@ -111,7 +111,8 @@ a:focus {
   }
 }
 
-.nav-link {
+.nav-link,
+.panel-list .nav-link {
   display: inline-block;
   position: relative;
   overflow: hidden;
@@ -139,5 +140,41 @@ a:focus {
     transition: all 0.2s;
     backface-visibility: hidden;
     transform: scaleX(0);
+  }
+}
+
+.dashboard-cell {
+  height: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 1px 0 #dedede;
+  .dashboard-cell__title {
+    font-size: 14px;
+    color: #3f3f3f;
+    margin-bottom: 5px;
+  }
+  .dashboard-cell__content {
+    font-size: 16px;
+    color: #959595;
+  }
+}
+
+.panel-list {
+  .panel-item {
+    padding: 0.85em 1em;
+  }
+
+  .panel-item__title {
+    width: 25%;
+    font-size: 12px;
+    color: #3f3f3f;
+  }
+  .panel-item__content {
+    word-break: break-all;
+    width: 75%;
+    font-size: 12px;
+    color: #959595;
   }
 }

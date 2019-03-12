@@ -15,14 +15,14 @@ export default function useTableData(url, extra = {}) {
     const { items, page, pageSize, total } = await fetch(
       url,
       {
-        page: pagination.current,
+        page: pagination.current - 1,
         pageSize: pagination.pageSize
       },
       { signal }
     );
     setTableData(items);
     setPagination({
-      current: page,
+      current: page + 1,
       pageSize,
       total
     });
@@ -43,7 +43,7 @@ export default function useTableData(url, extra = {}) {
     return () => {
       controller.abort();
     };
-  }, [pagination.current]);
+  }, [pagination.current, url]);
 
   return [
     {

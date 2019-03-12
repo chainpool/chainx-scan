@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import { BlockLink, AddressLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
@@ -35,10 +36,10 @@ export default function Blocks() {
         </table>
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
-        <a className="view-more">
+        <NavLink className="view-more" to="/blocks">
           查看全部
           <IconChevronRight />
-        </a>
+        </NavLink>
       </div>
     </section>
   );
