@@ -2,6 +2,7 @@ const blockRouter = require("./features/block/routes");
 const txRouter = require("./features/transaction/routes");
 const eventRouter = require("./features/event/routes");
 const tradeRouter = require("./features/trade/routes");
+const accountRouter = require("./features/account/routes");
 
 module.exports = app => {
   app
@@ -11,6 +12,8 @@ module.exports = app => {
     .use(txRouter.allowedMethods({ throw: true }))
     .use(tradeRouter.routes())
     .use(tradeRouter.allowedMethods({ throw: true }))
+    .use(accountRouter.routes())
+    .use(accountRouter.allowedMethods({ throw: true }))
     .use(eventRouter.routes())
     .use(eventRouter.allowedMethods({ throw: true }));
 };
