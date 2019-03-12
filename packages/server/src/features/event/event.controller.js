@@ -5,7 +5,7 @@ class EventController {
     const { page, pageSize } = extractPage(ctx);
     const { block } = ctx.query;
 
-    const order = [["number", "DESC"], ["index", "DESC"]];
+    const order = [["number", "DESC"], ["index", "ASC"]];
     const options = {
       order,
       limit: pageSize,
