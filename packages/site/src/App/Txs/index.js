@@ -3,16 +3,21 @@ import { Route, Switch } from "react-router";
 
 import { BlockChainNav } from "../../components";
 import TxsList from "./TxsList";
+import TxDetail from "./TxDetail";
 
 export default function Txs() {
   return (
-    <div className="box">
-      <BlockChainNav activeKey="txs" />
-      <div>
-        <Switch>
-          <Route path="/txs" component={TxsList} />
-        </Switch>
-      </div>
-    </div>
+    <Switch>
+      <Route path="/txs/:txid" component={TxDetail} />
+      <Route
+        path="/txs"
+        render={props => (
+          <div className="box">
+            <BlockChainNav activeKey="txs" />
+            <TxsList {...props} />
+          </div>
+        )}
+      />
+    </Switch>
   );
 }

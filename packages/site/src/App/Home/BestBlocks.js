@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import { BlockLink, AddressLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
@@ -16,7 +17,7 @@ export default function Blocks() {
             <tr>
               <th>高度</th>
               <th>验证人</th>
-              <th>交易数</th>
+              <th className="has-text-right">交易数</th>
             </tr>
           </thead>
           <tbody>
@@ -26,19 +27,19 @@ export default function Blocks() {
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  <AddressLink value={producer} />
+                  <AddressLink className="text-truncate" value={producer} />
                 </td>
-                <td>{extrinsics}</td>
+                <td className="has-text-right">{extrinsics}</td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
-        <a className="view-more">
+        <NavLink className="view-more" to="/blocks">
           查看全部
           <IconChevronRight />
-        </a>
+        </NavLink>
       </div>
     </section>
   );

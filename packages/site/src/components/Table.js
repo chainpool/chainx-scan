@@ -1,5 +1,5 @@
 import React from "react";
-import { Table as AntdTable } from "antd";
+import AntdTable from "antd/lib/table";
 
 export default function Table(_props) {
   const props = {

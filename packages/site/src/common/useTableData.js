@@ -10,15 +10,19 @@ export default function useTableData(url, extra = {}) {
     total: 0
   });
 
-  async function fetchData() {
+  async function fetchData({ signal } = {}) {
     setLoading(true);
-    const { items, page, pageSize, total } = await fetch(url, {
-      page: pagination.current,
-      pageSize: pagination.pageSize
-    });
+    const { items, page, pageSize, total } = await fetch(
+      url,
+      {
+        page: pagination.current - 1,
+        pageSize: pagination.pageSize
+      },
+      { signal }
+    );
     setTableData(items);
     setPagination({
-      current: page,
+      current: page + 1,
       pageSize,
       total
     });
@@ -34,9 +38,12 @@ export default function useTableData(url, extra = {}) {
   }
 
   useEffect(() => {
-    fetchData();
-    return () => {};
-  }, [pagination.current]);
+    const controller = new AbortController();
+    fetchData({ signal: controller.signal });
+    return () => {
+      controller.abort();
+    };
+  }, [pagination.current, url]);
 
   return [
     {
