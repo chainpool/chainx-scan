@@ -94,6 +94,27 @@ class TradeController {
       total
     };
   }
+
+  async orderFills(ctx) {
+    const { accountId, index } = ctx.params;
+    if (typeof accountId === "undefined" || typeof index === "undefined") {
+      ctx.status = 400;
+      ctx.body = { error: "no accountId or index" };
+      return;
+    }
+
+    const fills = await ctx.db.FilledOrder.findAll({
+      where: {
+        $and: [
+          { $or: [{ maker_user: accountId }, { taker_user: accountId }] },
+          { $or: [{ maker_user_order_index: index }, { taker_user_order_index: index }] }
+        ]
+      },
+      raw: true
+    });
+
+    ctx.body = fills;
+  }
 }
 
 module.exports = new TradeController();
