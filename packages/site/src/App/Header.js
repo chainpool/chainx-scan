@@ -48,7 +48,7 @@ function SearchInput(props) {
       style={{ minWidth: 350 }}
       className="input is-rounded"
       type="text"
-      placeholder="搜索区块高度,区块哈希,交易哈希"
+      placeholder="搜索区块高度/区块哈希/交易哈希"
     />
   );
 }

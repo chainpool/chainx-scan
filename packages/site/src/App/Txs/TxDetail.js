@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { fetch } from "../../common";
-import { BlockLink, AddressLink } from "../../components";
+import { BlockLink, AddressLink, TxLink } from "../../components";
 import Events from "../Events";
 
 export default function BlockDetail(props) {
@@ -30,6 +30,10 @@ export default function BlockDetail(props) {
       data: data.index
     },
     {
+      label: "交易哈希",
+      data: <TxLink value={data.hash} />
+    },
+    {
       label: "发送人",
       data: <AddressLink value={data.signed} />
     },
@@ -53,7 +57,7 @@ export default function BlockDetail(props) {
 
   return (
     <div>
-      <h4 className="title is-size-5">区块详情</h4>
+      <h4 className="title is-size-5">交易详情</h4>
       <section className="panel panel-list">
         {list.map(item => (
           <div className="panel-block panel-item" key={item.label}>

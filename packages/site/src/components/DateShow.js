@@ -1,8 +1,8 @@
-import React from "react";
+import React, { memo } from "react";
 import classnames from "classnames";
 import dayjs from "dayjs";
 
-export default function DateShow(props) {
+export default memo(function DateShow(props) {
   const { value, className, style, format = "YYYY-MM-DD HH:mm:ss" } = props;
 
   return (
@@ -10,4 +10,4 @@ export default function DateShow(props) {
       {value ? dayjs(value).format(format) : value}
     </div>
   );
-}
+});

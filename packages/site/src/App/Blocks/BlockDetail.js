@@ -49,8 +49,8 @@ export default function BlockDetail(props) {
       data: <DateShow value={data.time} format="YYYY-MM-DD HH:mm:ss" />
     },
     {
-      label: "出块人",
-      data: <AddressLink value={data.producer} />
+      label: "验证人",
+      data: <AddressLink isValidators value={data.producer} />
     }
   ];
 

@@ -10,16 +10,21 @@ export default function Txs(props) {
 
   return (
     <Table
-      expandedRowRender={data => data.args}
+      expandedRowRender={data => (
+        <div>
+          <span>交易参数：</span>
+          <span>{data.args}</span>
+        </div>
+      )}
       onChange={handleChange}
       pagination={tableData.pagination}
       dataSource={tableData.dataSource.map(data => {
         return {
           key: `${data.number}${data.index}`,
           number: <BlockLink value={data.number} />,
-          phase: data.phase && data.phase.value,
+          event: data.phase && data.phase.option,
           index: data.index && data.index,
-          phaseOption: data.phase && data.phase.option,
+          phaseValue: data.phase && data.phase.value,
           action: <TxAction module={data.module} call={data.name} />,
           args: JSON.stringify(data.args)
         };
@@ -27,28 +32,23 @@ export default function Txs(props) {
       columns={[
         {
           title: "区块高度",
-          dataIndex: "number",
-          key: "number"
+          dataIndex: "number"
         },
         {
           title: "阶段",
-          dataIndex: "phase",
-          key: "phase"
+          dataIndex: "event"
         },
         {
-          title: "交易状态",
-          dataIndex: "phaseOption",
-          key: "phaseOption"
+          title: "交易序号",
+          dataIndex: "phaseValue"
         },
         {
           title: "事件序号",
-          dataIndex: "index",
-          key: "index"
+          dataIndex: "index"
         },
         {
           title: "操作",
-          dataIndex: "action",
-          key: "action"
+          dataIndex: "action"
         }
       ]}
       {...tableProps}

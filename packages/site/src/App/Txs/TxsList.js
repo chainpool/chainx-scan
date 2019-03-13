@@ -16,30 +16,26 @@ export default function Txs(props) {
           key: data.hash,
           number: <BlockLink value={data.number} />,
           hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
-          time: <DateShow value={data.time} format="HH:mm:ss" />,
+          time: <DateShow value={data.time} />,
           action: <TxAction module={data.module} call={data.call} />
         };
       })}
       columns={[
         {
           title: "区块高度",
-          dataIndex: "number",
-          key: "number"
+          dataIndex: "number"
         },
         {
           title: "交易哈希",
-          dataIndex: "hash",
-          key: "hash"
+          dataIndex: "hash"
         },
         {
           title: "时间",
-          dataIndex: "time",
-          key: "time"
+          dataIndex: "time"
         },
         {
           title: "操作",
-          dataIndex: "action",
-          key: "action"
+          dataIndex: "action"
         }
       ]}
       {...tableProps}
