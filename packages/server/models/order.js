@@ -17,12 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       price: {
         type: DataTypes.BIGINT
       },
-      index: {
-        type: DataTypes.BIGINT
-      },
-      account: {
-        type: DataTypes.STRING
-      },
       class: {
         type: DataTypes.STRING
       },
@@ -57,7 +51,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "XSpot_OrderInfoOf"
+      tableName: "event_xspot_AccountOrder"
     }
   );
 
