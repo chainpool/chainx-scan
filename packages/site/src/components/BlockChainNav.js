@@ -16,6 +16,9 @@ export default function BlockChain(props) {
         <li className={classnames({ "is-active": activeKey === "events" })}>
           <NavLink to="/events">事件列表</NavLink>
         </li>
+        <li className={classnames({ "is-active": activeKey === "accounts" })}>
+          <NavLink to="/accounts">账户列表</NavLink>
+        </li>
       </ul>
     </div>
   );

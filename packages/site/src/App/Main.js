@@ -5,6 +5,7 @@ import Home from "./Home";
 import Blocks from "./Blocks";
 import Txs from "./Txs";
 import Events from "./Events";
+import Accounts from "./Accounts";
 import { BlockChainNav } from "../components";
 
 export default function Main() {
@@ -21,6 +22,15 @@ export default function Main() {
               <div className="box">
                 <BlockChainNav activeKey="events" />
                 <Events {...props} />
+              </div>
+            )}
+          />
+          <Route
+            path="/accounts"
+            render={props => (
+              <div className="box">
+                <BlockChainNav activeKey="accounts" />
+                <Accounts {...props} />
               </div>
             )}
           />
