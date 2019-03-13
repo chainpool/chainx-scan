@@ -1,3 +1,5 @@
+const { extractPage } = require("../utils");
+
 class IntentionController {
   async intentions(ctx) {
     const intentions = await ctx.db.Intention.findAll({
@@ -7,6 +9,35 @@ class IntentionController {
       Object.assign(intention.dataValues.profile, { is_active: intention.dataValues.profile.is_active === "true" });
       return intention;
     });
+  }
+
+  async accounts(ctx) {
+    const { page, pageSize } = extractPage(ctx);
+
+    const totalField = `"Free" + "ReservedStaking" + "ReservedStakingRevocation" + "ReservedWithdrawal" + "ReservedDexSpot" + "ReservedDexFuture" AS total`;
+
+    const rows = await ctx.db.sequelize.query(
+      `SELECT DISTINCT(accountid), btc.total as btc, pcx.total as pcx FROM "XAssets_AssetBalance" AS x
+      LEFT JOIN (SELECT accountid as id, ${totalField} FROM "XAssets_AssetBalance" WHERE token='BTC') as btc
+      ON x.accountid=btc.id
+      LEFT JOIN (SELECT accountid as id, ${totalField} FROM "XAssets_AssetBalance" WHERE token='PCX') as pcx
+      ON x.accountid=pcx.id
+      LIMIT ${pageSize} OFFSET ${page * pageSize}`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const result = await ctx.db.sequelize.query(`SELECT COUNT(DISTINCT accountid) FROM "XAssets_AssetBalance"`, {
+      type: ctx.db.sequelize.QueryTypes.SELECT
+    });
+
+    ctx.body = {
+      items: rows,
+      page,
+      pageSize,
+      total: result[0].count
+    };
   }
 }
 
