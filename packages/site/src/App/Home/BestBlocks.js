@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-import { BlockLink, AddressLink } from "../../components";
+import { BlockLink, AddressLink, Number } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useSubcribe } from "../../common";
 
@@ -27,9 +27,11 @@ export default function Blocks() {
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  <AddressLink className="text-truncate" value={producer} />
+                  <AddressLink isValidators className="text-truncate" value={producer} />
                 </td>
-                <td className="has-text-right">{extrinsics}</td>
+                <td className="has-text-right">
+                  <Number value={extrinsics} />
+                </td>
               </tr>
             ))}
           </tbody>

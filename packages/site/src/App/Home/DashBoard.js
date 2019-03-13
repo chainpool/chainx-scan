@@ -1,6 +1,7 @@
 import React from "react";
 
 import { useSubcribe } from "../../common";
+import { Amount, Number } from "../../components";
 
 export default function DashBoard() {
   const [data] = useSubcribe("CHAIN_STATUS", "chainStatus");
@@ -8,47 +9,35 @@ export default function DashBoard() {
   const dataSource = [
     {
       label: "最新高度",
-      data: data.best
+      data: <Number value={data.best} />
     },
     {
       label: "确认高度",
-      data: data.finalized
+      data: <Number value={data.finalized} />
     },
     {
       label: "交易总数",
-      data: data.transactions
+      data: <Number value={data.transactions} />
     },
     {
       label: "PCX 挖矿发行数量",
-      data: data.pcx_issuance
-    },
-    {
-      label: "PCX 销毁数量",
-      data: data.pcx_destroy
-    },
-    {
-      label: "充值挖矿难度",
-      data: data.deposit_diff
-    },
-    {
-      label: "投票挖矿难度",
-      data: data.vote_diff
+      data: <Amount value={data.pcx_issuance} />
     },
     {
       label: "验证人数量",
-      data: data.validators
+      data: <Number value={data.validators} />
     },
     {
       label: "总投票数",
-      data: data.votes
+      data: <Amount value={data.votes} />
     },
     {
       label: "当前分红周期",
-      data: data.dividend_cycle
+      data: <Number value={data.dividend_cycle} />
     },
     {
       label: "当前选举周期",
-      data: data.vote_cycle
+      data: <Number value={data.vote_cycle} />
     }
   ];
   return (
@@ -67,15 +56,3 @@ export default function DashBoard() {
     </section>
   );
 }
-
-// best: 45444
-// deposit_diff: 0
-// dividend_cycle: 302
-// finalized: 0
-// pcx_destroy: 0
-// pcx_issuance: 1515000000000
-// transactions: 39499
-// validators: 7
-// vote_cycle: 151
-// vote_diff: 0
-// votes: 37699000000

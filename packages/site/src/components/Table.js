@@ -3,14 +3,22 @@ import AntdTable from "antd/lib/table";
 
 export default function Table(_props) {
   const props = {
-    pagination: {
-      size: "small",
-      showSizeChanger: true,
-      showQuickJumper: true,
-      ..._props.pagination
-    },
     size: "small",
     ..._props
   };
-  return <AntdTable {...props} />;
+  return (
+    <AntdTable
+      {...props}
+      pagination={{
+        size: "small",
+        showQuickJumper: true,
+        showTotal: (total, range) => (
+          <span>
+            {range[0]}-{range[1]} of {total}
+          </span>
+        ),
+        ..._props.pagination
+      }}
+    />
+  );
 }
