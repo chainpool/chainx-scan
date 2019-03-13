@@ -16,8 +16,8 @@ export default function Accounts(props) {
         return {
           key: data.accountid,
           accountid: <AddressLink value={data.accountid} />,
-          pcx: <Amount symbol="PCX" value={data.pcx} />,
-          btc: <Amount symbol="BTC" value={data.btc} />
+          pcx: <Amount symbol="PCX" value={data.pcx || 0} />,
+          btc: <Amount symbol="BTC" value={data.btc || 0} />
         };
       })}
       columns={[
