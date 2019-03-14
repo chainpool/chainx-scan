@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { fetch } from "../../common";
-import { BlockLink, AddressLink, TxLink } from "../../components";
+import { BlockLink, AddressLink, TxLink, TxAction } from "../../components";
 import Events from "../Events";
 
 export default function BlockDetail(props) {
@@ -40,6 +40,10 @@ export default function BlockDetail(props) {
     {
       label: "签名",
       data: data.signature
+    },
+    {
+      label: "操作",
+      data: <TxAction module={data.module} call={data.call} />
     },
     {
       label: "版本",
