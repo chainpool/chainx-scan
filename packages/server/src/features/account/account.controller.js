@@ -2,13 +2,25 @@ const { extractPage } = require("../utils");
 
 class IntentionController {
   async intentions(ctx) {
-    const intentions = await ctx.db.Intention.findAll({
-      include: [{ model: ctx.db.IntentionProfile, as: "profile" }]
+    const { page, pageSize } = extractPage(ctx);
+
+    const { rows: intentions, count } = await ctx.db.Intention.findAndCountAll({
+      include: [{ model: ctx.db.IntentionProfile, as: "profile" }],
+      limit: pageSize,
+      offset: page * pageSize
     });
-    ctx.body = intentions.map(intention => {
+
+    const items = intentions.map(intention => {
       Object.assign(intention.dataValues.profile, { is_active: intention.dataValues.profile.is_active === "true" });
       return intention;
     });
+
+    ctx.body = {
+      items,
+      pageSize,
+      page,
+      total: count
+    };
   }
 
   async accounts(ctx) {
