@@ -5,6 +5,7 @@ import { fetch } from "../../common";
 import { BlockLink, AddressLink, DateShow } from "../../components";
 import TxsList from "../Txs/TxsList";
 import Events from "../Events";
+import { hexAddPrefix } from "@polkadot/util";
 
 export default function BlockDetail(props) {
   const { match } = props;
@@ -12,7 +13,7 @@ export default function BlockDetail(props) {
   const [data, setData] = useState([]);
   const [activeKey, setActiveKey] = useState("txs");
 
-  const queryPath = `/block/${match.params.block}`;
+  const queryPath = `/block/${hexAddPrefix(match.params.block)}`;
 
   useEffect(() => {
     fetchData();

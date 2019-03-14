@@ -14,7 +14,7 @@ function SearchInput(props) {
 
   async function search(input) {
     input = input.trim();
-    if (!isNaN(input)) {
+    if (!isNaN(input) && /^\d*$/.test(input)) {
       history.push(`/blocks/${input}`);
       setStr("");
       return;
@@ -22,18 +22,19 @@ function SearchInput(props) {
     try {
       const txResult = await fetch(`/tx/${hexStripPrefix(input)}`);
       if (txResult && !txResult.error) {
-        history.push(`/txs/${hexStripPrefix(input)}`);
+        setStr("");
+        return history.push(`/txs/${hexAddPrefix(input)}`);
       }
       const blockResult = await fetch(`/block/${hexAddPrefix(input)}`);
       if (blockResult && !blockResult.error) {
-        history.push(`/blocks/${hexAddPrefix(input)}`);
+        setStr("");
+        return history.push(`/blocks/${hexAddPrefix(input)}`);
       }
-      setStr("");
-      return;
+      alert("找不到对应的交易或区块");
     } catch {
       alert("无效的值");
+      return;
     }
-    alert("找不到对应的交易或区块");
   }
 
   return (

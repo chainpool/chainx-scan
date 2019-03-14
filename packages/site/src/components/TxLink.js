@@ -9,7 +9,7 @@ export default memo(function TxLink(props) {
   const hash = hexAddPrefix(value);
 
   return (
-    <NavLink to={`/txs/${value}`} className={classnames("nav-link", className)} style={style}>
+    <NavLink to={`/txs/${hash}`} className={classnames("nav-link", className)} style={style}>
       {hash}
     </NavLink>
   );

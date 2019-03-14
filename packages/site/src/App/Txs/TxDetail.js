@@ -3,13 +3,14 @@ import React, { useState, useEffect } from "react";
 import { fetch } from "../../common";
 import { BlockLink, AddressLink, TxLink, TxAction } from "../../components";
 import Events from "../Events";
+import { hexStripPrefix } from "@polkadot/util";
 
 export default function BlockDetail(props) {
   const { match } = props;
 
   const [data, setData] = useState([]);
 
-  const queryPath = `/tx/${match.params.txid}`;
+  const queryPath = `/tx/${hexStripPrefix(match.params.txid)}`;
 
   useEffect(() => {
     fetchData();
