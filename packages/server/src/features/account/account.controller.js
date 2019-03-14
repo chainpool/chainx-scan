@@ -1,6 +1,6 @@
 const { extractPage } = require("../utils");
 
-class IntentionController {
+class AccountController {
   async intentions(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
@@ -51,6 +51,23 @@ class IntentionController {
       total: result[0].count
     };
   }
+
+  async accountDetail(ctx) {
+    const { accountId } = ctx.params;
+
+    const count = await ctx.db.Transaction.count({ where: { signed: accountId } });
+    const addressMap = await ctx.db.CrossChainAddressMap.findOne({
+      where: { accountid: accountId, chain: "Bitcoin" },
+      attributes: ["address"],
+      raw: true
+    });
+
+    ctx.body = {
+      accountId,
+      txCount: count,
+      btcAddress: addressMap ? addressMap.address : null
+    };
+  }
 }
 
-module.exports = new IntentionController();
+module.exports = new AccountController();
