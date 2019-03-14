@@ -6,5 +6,6 @@ const router = new Router();
 router.get("/intentions", accountController.intentions);
 router.get("/accounts", accountController.accounts);
 router.get("/account/:accountId/nominations", nominationController.accountNominations);
+router.get("/account/:accountId/detail", accountController.accountDetail);
 
 module.exports = router;
