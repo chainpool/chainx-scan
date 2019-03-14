@@ -16,7 +16,7 @@ export default function BlocksList() {
           number: <BlockLink value={data.number} />,
           hash: <BlockLink style={{ width: 138 }} className="text-truncate" value={data.hash} />,
           time: <DateShow value={data.time} />,
-          producer: <AddressLink isValidator style={{ width: 136 }} className="text-truncate" value={data.producer} />,
+          producer: <AddressLink isValidator value={data.producer} />,
           extrinsics: <Number value={data.extrinsics} />
         };
       })}

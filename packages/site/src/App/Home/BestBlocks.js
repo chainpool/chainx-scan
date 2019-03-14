@@ -27,7 +27,7 @@ export default function Blocks() {
                   <BlockLink value={number} />
                 </td>
                 <td>
-                  <AddressLink isValidator className="text-truncate" value={producer} />
+                  <AddressLink isValidator value={producer} />
                 </td>
                 <td className="has-text-right">
                   <Number value={extrinsics} />
