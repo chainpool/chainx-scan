@@ -28,17 +28,21 @@ module.exports = (io, db) => {
 };
 
 async function feedChainStatus(io, db) {
-  const status = await db.Status.findOne({
-    order: [["best", "DESC"]],
-    limit: 1,
-    raw: true
-  });
+  try {
+    const status = await db.Status.findOne({
+      order: [["best", "DESC"]],
+      limit: 1,
+      raw: true
+    });
 
-  if (status && (preStatusHeight === null || status.best > preStatusHeight)) {
-    io.to(chainStatusRoom).emit("chainStatus", status);
+    if (status && (preStatusHeight === null || status.best > preStatusHeight)) {
+      io.to(chainStatusRoom).emit("chainStatus", status);
+    }
+
+    setTimeout(feedChainStatus.bind(null, io, db), FEED_INTERVAL);
+  } catch (e) {
+    setTimeout(feedChainStatus.bind(null, io, db), FEED_INTERVAL);
   }
-
-  setTimeout(feedChainStatus.bind(null, io, db), FEED_INTERVAL);
 }
 
 async function feedLatestBlocks(io, db) {
@@ -46,23 +50,27 @@ async function feedLatestBlocks(io, db) {
   const page = 0;
   const order = [["number", "DESC"]];
 
-  const blocks = await db.Block.findAll({
-    order,
-    limit: pageSize,
-    offset: page * pageSize,
-    raw: true
-  });
+  try {
+    const blocks = await db.Block.findAll({
+      order,
+      limit: pageSize,
+      offset: page * pageSize,
+      raw: true
+    });
 
-  const items = blocks.map(normalizeBlock);
+    const items = blocks.map(normalizeBlock);
 
-  if (items.length > 0) {
-    const nowMaxBlockHeight = Math.max(...items.map(item => item.number));
-    if (preBlockHeight === null || nowMaxBlockHeight > preBlockHeight) {
-      io.to(latestBlocksRoom).emit("latestBlocks", items);
+    if (items.length > 0) {
+      const nowMaxBlockHeight = Math.max(...items.map(item => item.number));
+      if (preBlockHeight === null || nowMaxBlockHeight > preBlockHeight) {
+        io.to(latestBlocksRoom).emit("latestBlocks", items);
+      }
     }
-  }
 
-  setTimeout(feedLatestBlocks.bind(null, io, db), FEED_INTERVAL);
+    setTimeout(feedLatestBlocks.bind(null, io, db), FEED_INTERVAL);
+  } catch (e) {
+    setTimeout(feedLatestBlocks.bind(null, io, db), FEED_INTERVAL);
+  }
 }
 
 async function feedLatestTxs(io, db) {
@@ -76,15 +84,19 @@ async function feedLatestTxs(io, db) {
     raw: true
   };
 
-  const transactions = await db.Transaction.findAll(options);
+  try {
+    const transactions = await db.Transaction.findAll(options);
 
-  const items = transactions.map(normalizeTransaction);
-  if (items.length > 0) {
-    const nowMaxTxHeight = Math.max(...items.map(item => item.number));
-    if (preTxHeight === null || nowMaxTxHeight > preTxHeight) {
-      io.to(latestTxsRoom).emit("latestTxs", items);
+    const items = transactions.map(normalizeTransaction);
+    if (items.length > 0) {
+      const nowMaxTxHeight = Math.max(...items.map(item => item.number));
+      if (preTxHeight === null || nowMaxTxHeight > preTxHeight) {
+        io.to(latestTxsRoom).emit("latestTxs", items);
+      }
     }
-  }
 
-  setTimeout(feedLatestTxs.bind(null, io, db), FEED_INTERVAL);
+    setTimeout(feedLatestTxs.bind(null, io, db), FEED_INTERVAL);
+  } catch (e) {
+    setTimeout(feedLatestTxs.bind(null, io, db), FEED_INTERVAL);
+  }
 }
