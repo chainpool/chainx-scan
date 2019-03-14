@@ -8,11 +8,11 @@ export default function DashBoard() {
 
   const dataSource = [
     {
-      label: "最新高度",
+      label: "最新块高",
       data: <Number value={data.best} />
     },
     {
-      label: "确认高度",
+      label: "确认块高",
       data: <Number value={data.finalized} />
     },
     {
@@ -20,23 +20,23 @@ export default function DashBoard() {
       data: <Number value={data.transactions} />
     },
     {
-      label: "PCX 挖矿发行数量",
+      label: "发行总数",
       data: <Amount value={data.pcx_issuance} />
     },
     {
-      label: "验证人数量",
+      label: "验证人数",
       data: <Number value={data.validators} />
     },
     {
-      label: "总投票数",
+      label: "投票总数",
       data: <Amount value={data.votes} />
     },
     {
-      label: "当前分红周期",
+      label: "分红周期",
       data: <Number value={data.dividend_cycle} />
     },
     {
-      label: "当前选举周期",
+      label: "选举周期",
       data: <Number value={data.vote_cycle} />
     }
   ];

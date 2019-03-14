@@ -10,7 +10,7 @@ export default function Blocks() {
 
   return (
     <section className="panel">
-      <div className="panel-heading">最新区块列表</div>
+      <div className="panel-heading">最新区块</div>
       <div className="panel-block">
         <table className="table is-striped is-fullwidth data-table">
           <thead>
