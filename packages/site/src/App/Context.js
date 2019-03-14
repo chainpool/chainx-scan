@@ -25,8 +25,8 @@ export function AppContextProvider(props) {
   }
 
   async function fetchIntentions() {
-    const result = await fetch("/intentions");
-    dispatch({ type: "setIntentions", payload: result });
+    const result = await fetch("/intentions?page_size=100");
+    dispatch({ type: "setIntentions", payload: result && result.items ? result.items : [] });
   }
 
   useEffect(() => {

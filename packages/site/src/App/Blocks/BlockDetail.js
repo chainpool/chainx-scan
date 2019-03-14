@@ -50,7 +50,7 @@ export default function BlockDetail(props) {
     },
     {
       label: "验证人",
-      data: <AddressLink isValidators value={data.producer} />
+      data: <AddressLink isValidator value={data.producer} />
     }
   ];
 

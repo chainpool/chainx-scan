@@ -7,15 +7,15 @@ import { useAppContext } from "../App/Context";
 import { encodeAddress } from "../common";
 
 export default memo(function AddressLink(props) {
-  const { value, className, style, isValidators } = props;
+  const { value, className, style, isValidator } = props;
   const hexValue = hexAddPrefix(value);
 
-  const [{ intentions }] = useAppContext();
+  const [{ intentions = [] }] = useAppContext();
 
   let showValue = "";
 
   if (hexValue !== "0x") {
-    if (!isValidators) {
+    if (!isValidator) {
       showValue = encodeAddress(hexValue);
     } else {
       const { name = "" } = intentions.find(({ accountid }) => accountid === hexValue) || {};

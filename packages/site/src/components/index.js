@@ -8,3 +8,4 @@ export { default as Spinner } from "./Spinner";
 export { default as DateShow } from "./DateShow";
 export { default as Amount } from "./Amount";
 export { default as Number } from "./Number";
+export { default as ExternalLink } from "./ExternalLink";

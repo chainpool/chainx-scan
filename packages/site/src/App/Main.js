@@ -6,6 +6,7 @@ import Blocks from "./Blocks";
 import Txs from "./Txs";
 import Events from "./Events";
 import Accounts from "./Accounts";
+import Validators from "./Validators";
 import { BlockChainNav } from "../components";
 
 export default function Main() {
@@ -31,6 +32,14 @@ export default function Main() {
               <div className="box">
                 <BlockChainNav activeKey="accounts" />
                 <Accounts {...props} />
+              </div>
+            )}
+          />
+          <Route
+            path="/validators"
+            render={props => (
+              <div className="box">
+                <Validators {...props} />
               </div>
             )}
           />

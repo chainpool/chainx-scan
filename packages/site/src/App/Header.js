@@ -73,6 +73,9 @@ export default withRouter(function Header(props) {
       >
         区块链
       </NavLink>
+      <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/validators">
+        验证人
+      </NavLink>
     </div>
   );
 
