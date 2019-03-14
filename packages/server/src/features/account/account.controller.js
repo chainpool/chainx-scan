@@ -5,13 +5,16 @@ class AccountController {
     const { page, pageSize } = extractPage(ctx);
 
     const { rows: intentions, count } = await ctx.db.Intention.findAndCountAll({
-      include: [{ model: ctx.db.IntentionProfile, as: "profile" }],
       limit: pageSize,
       offset: page * pageSize
     });
 
     const items = intentions.map(intention => {
-      Object.assign(intention.dataValues.profile, { is_active: intention.dataValues.profile.is_active === "true" });
+      Object.assign(intention.dataValues, {
+        isActive: intention.dataValues.isActive === "true",
+        isTrustee: intention.dataValues.isTrustee === "true",
+        isValidator: intention.dataValues.isValidator === "true"
+      });
       return intention;
     });
 
