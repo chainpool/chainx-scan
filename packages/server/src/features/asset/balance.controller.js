@@ -18,8 +18,15 @@ class BalanceController {
 
   async accountBalance(ctx) {
     const { accountId } = ctx.params;
+    const { native } = ctx.query;
 
     const where = { accountid: accountId };
+    if (native === "true") {
+      Object.assign(where, { token: "PCX" });
+    } else if (native === "false") {
+      Object.assign(where, { token: { $not: "PCX" } });
+    }
+
     const balances = await ctx.db.Balance.findAll({ where });
     ctx.body = balances;
   }
