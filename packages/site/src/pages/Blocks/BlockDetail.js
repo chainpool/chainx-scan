@@ -12,8 +12,8 @@ export default function BlockDetail(props) {
 
   const [data, setData] = useState([]);
   const [activeKey, setActiveKey] = useState("txs");
-
-  const queryPath = `/block/${hexAddPrefix(match.params.block)}`;
+  const queryParam = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
+  const queryPath = `/block/${queryParam}`;
 
   useEffect(() => {
     fetchData();
