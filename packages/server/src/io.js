@@ -3,6 +3,7 @@ const { normalizeBlock, normalizeTransaction } = require("./features/utils");
 const latestBlocksRoom = "LATEST_BLOCKS_ROOM";
 const latestTxsRoom = "LATEST_TRANSACTIONS_ROOM";
 const chainStatusRoom = "CHAIN_STATUS";
+const latestBtcHeadersRoom = "LATEST_BTC_HEADERS_ROOM";
 
 const FEED_INTERVAL = 2000;
 
@@ -25,7 +26,29 @@ module.exports = (io, db) => {
   feedChainStatus(io, db).then(() => {
     console.log("begin to feed chain status");
   });
+  feedBtcHeaders(io, db).then(() => {
+    console.log("begin to feed latest btc headers");
+  });
 };
+
+async function feedBtcHeaders(io, db) {
+  const pageSize = 10;
+  const page = 0;
+
+  try {
+    const rows = await db.BtcHeader.findAll({
+      order: [["time", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize
+    });
+
+    io.to(latestBtcHeadersRoom).emit("latestBtcHeaders", rows);
+
+    setTimeout(feedBtcHeaders.bind(null, io, db), FEED_INTERVAL);
+  } catch (e) {
+    setTimeout(feedBtcHeaders.bind(null, io, db), FEED_INTERVAL);
+  }
+}
 
 async function feedChainStatus(io, db) {
   try {
