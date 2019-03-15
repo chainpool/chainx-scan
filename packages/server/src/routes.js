@@ -4,6 +4,7 @@ const eventRouter = require("./features/event/routes");
 const tradeRouter = require("./features/trade/routes");
 const accountRouter = require("./features/account/routes");
 const assetRouter = require("./features/asset/routes");
+const btcRouter = require("./features/btc/routes");
 
 module.exports = app => {
   app
@@ -17,6 +18,8 @@ module.exports = app => {
     .use(accountRouter.allowedMethods({ throw: true }))
     .use(assetRouter.routes())
     .use(assetRouter.allowedMethods({ throw: true }))
+    .use(btcRouter.routes())
+    .use(btcRouter.allowedMethods({ throw: true }))
     .use(eventRouter.routes())
     .use(eventRouter.allowedMethods({ throw: true }));
 };
