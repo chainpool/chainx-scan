@@ -32,6 +32,7 @@ module.exports = (sequelize, DataTypes) => {
 
   TradingPair.associate = function(models) {
     TradingPair.belongsTo(models.TradingPairPrice, { foreignKey: "pairid", targetKey: "pairid", as: "price" });
+    TradingPair.belongsTo(models.HandicapOf, { foreignKey: "pairid", targetKey: "pairid", as: "handicap" });
     // associations can be defined here
   };
 
