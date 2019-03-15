@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useSubcribe } from "../../common";
+import { useSubcribe } from "../../shared";
 import { Amount, Number } from "../../components";
 
 export default function DashBoard() {

@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Table, BlockLink, TxAction } from "../components";
-import { useTableData } from "../common";
+import { useTableData } from "../shared";
 
 export default function Txs(props) {
   const { path, tableProps } = props;

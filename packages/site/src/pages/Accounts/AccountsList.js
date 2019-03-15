@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Table, AddressLink, Amount } from "../components";
-import { useTableData } from "../common";
+import { Table, AddressLink, Amount } from "../../components";
+import { useTableData } from "../../shared";
 
 export default function Accounts(props) {
   const { path, tableProps } = props;

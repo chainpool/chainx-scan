@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { TxLink, AddressLink, TxAction } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubcribe } from "../../common";
+import { useSubcribe } from "../../shared";
 
 export default function BestTransactions() {
   const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM", "latestTxs");

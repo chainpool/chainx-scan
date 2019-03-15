@@ -4,7 +4,7 @@ import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
 import { useAppContext } from "./AppContext";
-import { encodeAddress } from "../common";
+import { encodeAddress } from "../shared";
 
 export default memo(function AddressLink(props) {
   const { value, className, style, isValidator } = props;
@@ -24,7 +24,7 @@ export default memo(function AddressLink(props) {
   }
 
   return (
-    <NavLink to={`/${hexValue}`} style={style} className={classnames("nav-link", className)}>
+    <NavLink to={`/accounts/${hexValue}`} style={style} className={classnames("nav-link", className)}>
       {showValue}
     </NavLink>
   );

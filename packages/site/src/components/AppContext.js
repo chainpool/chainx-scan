@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useEffect } from "react";
-import { fetch } from "../common";
+import { fetch } from "../shared";
 
 const AppContext = React.createContext();
 

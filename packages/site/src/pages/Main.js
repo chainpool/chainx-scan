@@ -26,15 +26,7 @@ export default function Main() {
               </div>
             )}
           />
-          <Route
-            path="/accounts"
-            render={props => (
-              <div className="box">
-                <BlockChainNav activeKey="accounts" />
-                <Accounts {...props} />
-              </div>
-            )}
-          />
+          <Route path="/accounts" component={Accounts} />
           <Route
             path="/validators"
             render={props => (

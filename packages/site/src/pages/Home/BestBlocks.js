@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { BlockLink, AddressLink, Number } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubcribe } from "../../common";
+import { useSubcribe } from "../../shared";
 
 export default function Blocks() {
   const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM", "latestBlocks");

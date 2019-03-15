@@ -1,7 +1,7 @@
 import React from "react";
 
 import { Table, AddressLink, ExternalLink, Amount } from "../components";
-import { useTableData } from "../common";
+import { useTableData } from "../shared";
 
 export default function Validators(props) {
   const { path, tableProps } = props;

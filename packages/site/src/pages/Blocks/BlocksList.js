@@ -1,6 +1,6 @@
 import React from "react";
 
-import { useTableData } from "../../common";
+import { useTableData } from "../../shared";
 import { Table, BlockLink, AddressLink, DateShow, Number } from "../../components";
 
 export default function BlocksList() {

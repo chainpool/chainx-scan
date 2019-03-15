@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 
-import { fetch } from "../../common";
+import { fetch } from "../../shared";
 import { BlockLink, AddressLink, DateShow } from "../../components";
 import TxsList from "../Txs/TxsList";
 import Events from "../Events";

@@ -2,57 +2,9 @@ import React, { useState } from "react";
 import classnames from "classnames";
 import { NavLink, withRouter } from "react-router-dom";
 import { matchPath } from "react-router";
-import { hexStripPrefix, hexAddPrefix } from "@polkadot/util";
 
-import { fetch } from "../common";
 import ChainxLogo from "../assets/chainxLogo.png";
-
-function SearchInput(props) {
-  const { history } = props;
-
-  const [str, setStr] = useState("");
-
-  async function search(input) {
-    input = input.trim();
-    if (!isNaN(input) && /^\d*$/.test(input)) {
-      history.push(`/blocks/${input}`);
-      setStr("");
-      return;
-    }
-    try {
-      const txResult = await fetch(`/tx/${hexStripPrefix(input)}`);
-      if (txResult && !txResult.error) {
-        setStr("");
-        return history.push(`/txs/${hexAddPrefix(input)}`);
-      }
-      const blockResult = await fetch(`/block/${hexAddPrefix(input)}`);
-      if (blockResult && !blockResult.error) {
-        setStr("");
-        return history.push(`/blocks/${hexAddPrefix(input)}`);
-      }
-      alert("找不到对应的交易或区块");
-    } catch {
-      alert("无效的值");
-      return;
-    }
-  }
-
-  return (
-    <input
-      value={str}
-      onChange={e => setStr(e.target.value)}
-      onKeyPress={event => {
-        if (event.key === "Enter") {
-          search(str);
-        }
-      }}
-      style={{ minWidth: 350 }}
-      className="input is-rounded"
-      type="text"
-      placeholder="搜索区块高度/区块哈希/交易哈希"
-    />
-  );
-}
+import { InputSearch } from "../components";
 
 export default withRouter(function Header(props) {
   const { location } = props;
@@ -83,7 +35,7 @@ export default withRouter(function Header(props) {
   const navBarEnd = (
     <div className="navbar-end">
       <div className="navbar-item">
-        <SearchInput {...props} />
+        <InputSearch {...props} />
       </div>
     </div>
   );
