@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useAppContext } from "../App/Context";
+import { useAppContext } from "../services/Context";
 
 function numberToAmount(
   number,
