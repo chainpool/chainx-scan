@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
-import { useAppContext } from "../services/Context";
+import { useAppContext } from "./AppContext";
 import { encodeAddress } from "../common";
 
 export default memo(function AddressLink(props) {
