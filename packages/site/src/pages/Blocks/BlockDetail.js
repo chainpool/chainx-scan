@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
+import { hexAddPrefix } from "@polkadot/util";
 
 import { fetch } from "../../shared";
-import { BlockLink, AddressLink, DateShow } from "../../components";
+import { BlockLink, AddressLink, DateShow, PanelList } from "../../components";
 import TxsList from "../Txs/TxsList";
 import Events from "../Events";
-import { hexAddPrefix } from "@polkadot/util";
 
 export default function BlockDetail(props) {
   const { match } = props;
@@ -24,48 +24,41 @@ export default function BlockDetail(props) {
     setData(result);
   }
 
-  const list = [
-    {
-      label: "区块高度",
-      data: <BlockLink value={data.number} />
-    },
-    {
-      label: "区块哈希",
-      data: <BlockLink value={data.hash} />
-    },
-    {
-      label: "父哈希",
-      data: <BlockLink value={data.parent_hash} />
-    },
-    {
-      label: "状态根",
-      data: data.state_root
-    },
-    {
-      label: "交易根",
-      data: data.extrinsics_root
-    },
-    {
-      label: "区块时间",
-      data: <DateShow value={data.time} format="YYYY-MM-DD HH:mm:ss" />
-    },
-    {
-      label: "验证人",
-      data: <AddressLink isValidator value={data.producer} />
-    }
-  ];
-
   return (
     <div>
       <h4 className="title is-size-5">区块详情</h4>
-      <section className="panel panel-list">
-        {list.map(item => (
-          <div className="panel-block panel-item" key={item.label}>
-            <div className="panel-item__title">{item.label}</div>
-            <div className="panel-item__content">{item.data}</div>
-          </div>
-        ))}
-      </section>
+      <PanelList
+        dataSource={[
+          {
+            label: "区块高度",
+            data: <BlockLink value={data.number} />
+          },
+          {
+            label: "区块哈希",
+            data: <BlockLink value={data.hash} />
+          },
+          {
+            label: "父哈希",
+            data: <BlockLink value={data.parent_hash} />
+          },
+          {
+            label: "状态根",
+            data: data.state_root
+          },
+          {
+            label: "交易根",
+            data: data.extrinsics_root
+          },
+          {
+            label: "区块时间",
+            data: <DateShow value={data.time} format="YYYY-MM-DD HH:mm:ss" />
+          },
+          {
+            label: "验证人",
+            data: <AddressLink isValidator value={data.producer} />
+          }
+        ]}
+      />
       <div className="box">
         <div className="tabs">
           <ul>

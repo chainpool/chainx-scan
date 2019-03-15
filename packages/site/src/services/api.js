@@ -1,4 +1,4 @@
-import { from, throwError, of } from "rxjs";
+import { from, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 
 export default {
@@ -19,7 +19,16 @@ export default {
       })
     );
   },
+  /**
+   * 获取账户详情
+   */
   fetchAccountDetail$(accountId) {
+    return this.fetch(`/account/${accountId}/detail`);
+  },
+  /**
+   * 获取账户跨链资产列表
+   */
+  fetchAccountBalance$(accountId) {
     return this.fetch(`/account/${accountId}/balance`);
   }
 };

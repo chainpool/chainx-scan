@@ -10,3 +10,4 @@ export { default as Amount } from "./Amount";
 export { default as Number } from "./Number";
 export { default as ExternalLink } from "./ExternalLink";
 export { default as InputSearch } from "./InputSearch";
+export { default as PanelList } from "./PanelList";

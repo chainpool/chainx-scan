@@ -1,16 +1,40 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
 import api from "../../services/api";
+import { PanelList, AddressLink, Number } from "../../components";
 
-export default function Account() {
+export default function Account(props) {
+  const { match } = props;
+  const { params } = match;
+
+  const [detail, setDetail] = useState({});
+
   useEffect(() => {
-    api
-      .fetchAccountDetail$("0x26ffbe3b99cbc9063f8cd04caaefc86dfe57f7cf58149d0ab50c06a3c8396b34")
-      .subscribe(
-        res => console.log("HTTP response", res),
-        err => console.log("HTTP Error", err),
-        () => console.log("HTTP request completed.")
-      );
+    const subscription = api.fetchAccountDetail$(params.accountId).subscribe(data => setDetail(data));
+    return () => {
+      subscription.unsubscribe();
+    };
   }, []);
-  return <div />;
+
+  return (
+    <div>
+      <h4 className="title is-size-5">账户详情</h4>
+      <PanelList
+        dataSource={[
+          {
+            label: "账户地址",
+            data: <AddressLink value={detail.accountId} />
+          },
+          {
+            label: "账户交易数",
+            data: <Number value={detail.txCount} />
+          },
+          {
+            label: "BTC 充值地址",
+            data: detail.btcAddress
+          }
+        ]}
+      />
+    </div>
+  );
 }
