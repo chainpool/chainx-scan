@@ -22,7 +22,8 @@ class KlineController {
     k.low
     from kline as k
     inner join block as b on k.time=b.number
-    where b.time <= ${endDate} AND b.time >= ${startDate} ORDER BY b.time DESC;`,
+    where k.type=${type} AND k.pairid=${pairid} AND b.time <= ${endDate} AND b.time >= ${startDate}
+    ORDER BY b.time DESC;`,
       {
         type: ctx.db.sequelize.QueryTypes.SELECT
       }
