@@ -1,9 +1,10 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "ChainX.org123",
+    "username": "chainx",
+    "password": "ChainXorg123",
     "database": "chainx",
-    "host": "47.93.16.189",
+    "host": "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
+    "port": 3432,
     "dialect": "postgres"
   },
   "test": {
@@ -14,10 +15,11 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "postgres",
-    "password": "ChainX.org123",
+    "username": "chainx",
+    "password": "ChainXorg123",
     "database": "chainx",
-    "host": "47.93.16.189",
+    "host": "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
+    "port": 3432,
     "dialect": "postgres",
     "logging": false
   }
