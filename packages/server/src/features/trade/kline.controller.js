@@ -19,7 +19,8 @@ class KlineController {
     k.open,
     k.high,
     k.close,
-    k.low
+    k.low,
+    k.volume
     from kline as k
     inner join block as b on k.time=b.number
     where k.type=${type} AND k.pairid=${pairid} AND b.time <= ${endDate} AND b.time >= ${startDate}
