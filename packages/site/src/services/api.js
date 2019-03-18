@@ -68,5 +68,17 @@ export default {
    */
   fetchChainStatus$() {
     return this.createObservable("CHAIN_STATUS", "chainStatus");
+  },
+  /**
+   * 获取验证人列表
+   */
+  fetchIntentions$(params, options) {
+    return this.fetch(`/intentions`, params, options);
+  },
+  /**
+   * 获取区块列表
+   */
+  fetchBlocks$(params, options) {
+    return this.fetch(`/blocks`, params, options);
   }
 };

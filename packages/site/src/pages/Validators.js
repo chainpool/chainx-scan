@@ -1,28 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { Table, AddressLink, ExternalLink, Amount } from "../components";
-import { useTableData } from "../shared";
+import { useTable, useSubject, SubjectState } from "../shared";
+import api from "../services/api";
+
+const subject = new SubjectState({ tableData: {} });
 
 export default function Validators(props) {
-  const { path, tableProps } = props;
+  const { tableProps } = props;
 
-  const [tableData, handleChange] = useTableData(path || "/intentions");
+  const [{ tableData }, setState] = useSubject(subject);
+
+  const [tableData$, handleChange] = useTable(tableData, (...args) => api.fetchIntentions$(...args));
+
+  useEffect(() => {
+    const subscription = tableData$.subscribe(data => setState({ tableData: data }));
+    return () => subscription.unsubscribe();
+  }, [tableData$]);
 
   return (
     <Table
       onChange={handleChange}
       pagination={tableData.pagination}
-      dataSource={tableData.dataSource.map(data => {
-        return {
-          key: `${data.accountid}${data.height}`,
-          name: <AddressLink isValidator value={data.accountid} />,
-          url: <ExternalLink value={data.url} />,
-          address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
-          selfVote: <Amount value={data.selfVote} />,
-          totalNomination: <Amount value={data.totalNomination} />,
-          jackpot: <Amount value={data.jackpot} />
-        };
-      })}
+      dataSource={
+        tableData.dataSource &&
+        tableData.dataSource.map(data => {
+          return {
+            key: `${data.accountid}${data.height}`,
+            name: <AddressLink isValidator value={data.accountid} />,
+            url: <ExternalLink value={data.url} />,
+            address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
+            selfVote: <Amount value={data.selfVote} />,
+            totalNomination: <Amount value={data.totalNomination} />,
+            jackpot: <Amount value={data.jackpot} />
+          };
+        })
+      }
       columns={[
         {
           title: "名称",
