@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { BlockLink, AddressLink, Number } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubcribe } from "../../shared";
+import { useSubject, SubjectState } from "../../shared";
+import api from "../../services/api";
+
+const subject = new SubjectState({ blocks: [] });
 
 export default function Blocks() {
-  const [blocks] = useSubcribe("LATEST_BLOCKS_ROOM", "latestBlocks");
+  const [{ blocks }, setState] = useSubject(subject);
+
+  useEffect(() => {
+    const subscription = api.fetchLatestBlocks$().subscribe(data => setState({ blocks: data }));
+    return () => subscription.unsubscribe();
+  }, [api]);
 
   return (
     <section className="panel">

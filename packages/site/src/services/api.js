@@ -54,5 +54,19 @@ export default {
   /**
    * 获取最新的块头列表
    */
-  fetchLatestBlocks$() {}
+  fetchLatestBlocks$() {
+    return this.createObservable("LATEST_BLOCKS_ROOM", "latestBlocks");
+  },
+  /**
+   * 获取最新的交易列表
+   */
+  fetchLatestTxs$() {
+    return this.createObservable("LATEST_TRANSACTIONS_ROOM", "latestTxs");
+  },
+  /**
+   * 获取最新的链的状态
+   */
+  fetchChainStatus$() {
+    return this.createObservable("CHAIN_STATUS", "chainStatus");
+  }
 };

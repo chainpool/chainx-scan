@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { useSubcribe } from "../../shared";
+import { useSubject, SubjectState } from "../../shared";
+import api from "../../services/api";
 import { Amount, Number } from "../../components";
 
+const subject = new SubjectState({ data: [] });
+
 export default function DashBoard() {
-  const [data] = useSubcribe("CHAIN_STATUS", "chainStatus");
+  const [{ data }, setState] = useSubject(subject);
+
+  useEffect(() => {
+    const subscription = api.fetchChainStatus$().subscribe(data => setState({ blocks: data }));
+    return () => subscription.unsubscribe();
+  }, [api]);
 
   const dataSource = [
     {
@@ -40,6 +48,7 @@ export default function DashBoard() {
       data: <Number value={data.vote_cycle} />
     }
   ];
+
   return (
     <section className="panel">
       <div className="panel-heading">链状态</div>

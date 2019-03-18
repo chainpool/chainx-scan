@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { TxLink, AddressLink, TxAction } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubcribe } from "../../shared";
+import api from "../../services/api";
+import { useSubject, SubjectState } from "../../shared";
+
+const subject = new SubjectState({ txs: [] });
 
 export default function BestTransactions() {
-  const [txs] = useSubcribe("LATEST_TRANSACTIONS_ROOM", "latestTxs");
+  const [{ txs }, setState] = useSubject(subject);
+
+  useEffect(() => {
+    const subscription = api.fetchLatestTxs$().subscribe(data => setState({ blocks: data }));
+    return () => subscription.unsubscribe();
+  }, [api]);
 
   return (
     <section className="panel">

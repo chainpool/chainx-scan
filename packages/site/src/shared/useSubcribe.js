@@ -8,9 +8,7 @@ export default function useSubcribe(name, eventName) {
     const subscription = api.createObservable(name, eventName).subscribe(result => {
       setData(result || []);
     });
-    return () => {
-      subscription.unsubscribe();
-    };
+    return () => subscription.unsubscribe();
   }, []);
 
   return [data];
