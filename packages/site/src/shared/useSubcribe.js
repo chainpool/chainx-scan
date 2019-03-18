@@ -1,27 +1,17 @@
 import { useState, useEffect } from "react";
-import socket from "./io";
+import api from "../services/api";
 
 export default function useSubcribe(name, eventName) {
   const [data, setData] = useState([]);
 
-  function unsubscribe() {
-    socket.removeListener(eventName);
-    socket.emit("unsubscribe", name);
-  }
-
-  function subcribe() {
-    socket.emit("subscribe", name);
-  }
-
   useEffect(() => {
-    subcribe();
-    socket.on(eventName, items => {
-      setData(items || []);
+    const subscription = api.createObservable(name, eventName).subscribe(result => {
+      setData(result || []);
     });
     return () => {
-      unsubscribe();
+      subscription.unsubscribe();
     };
   }, []);
 
-  return [data, unsubscribe];
+  return [data];
 }

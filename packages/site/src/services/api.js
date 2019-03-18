@@ -1,8 +1,10 @@
-import { from, throwError } from "rxjs";
+import io from "socket.io-client";
+import { from, throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 
 export default {
   endpoint: process.env.REACT_APP_SERVER,
+  socket: null,
   setApiProvider(endpoint) {
     this.endpoint = endpoint;
   },
@@ -19,6 +21,24 @@ export default {
       })
     );
   },
+  createObservable(name, eventName) {
+    if (!this.socket) {
+      this.socket = io(process.env.REACT_APP_SERVER);
+    }
+    if (!this.socket.disconnected) {
+      this.socket.connect();
+    }
+    return new Observable(observer => {
+      this.socket.emit("subscribe", name);
+      this.socket.on(eventName, data => {
+        observer.next(data);
+      });
+      return () => {
+        this.socket.removeListener(eventName);
+        this.socket.emit("unsubscribe", name);
+      };
+    });
+  },
   /**
    * 获取账户详情
    */
@@ -30,5 +50,9 @@ export default {
    */
   fetchAccountBalance$(accountId) {
     return this.fetch(`/account/${accountId}/balance`);
-  }
+  },
+  /**
+   * 获取最新的块头列表
+   */
+  fetchLatestBlocks$() {}
 };
