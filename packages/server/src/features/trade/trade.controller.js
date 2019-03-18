@@ -3,7 +3,10 @@ const { extractPage } = require("../utils");
 class TradeController {
   async getPairs(ctx) {
     const pairs = await ctx.db.TradingPair.findAll({
-      include: [{ model: ctx.db.TradingPairPrice, as: "price" }]
+      include: [
+        { model: ctx.db.TradingPairPrice, as: "price", attributes: ["last_price", "aver_price"] },
+        { model: ctx.db.HandicapOf, as: "handicap", attributes: ["buy", "sell"] }
+      ]
     });
     ctx.body = pairs.map(pair => {
       Object.assign(pair.dataValues, {
@@ -55,6 +58,7 @@ class TradeController {
     const orders = await ctx.db.FilledOrder.findAll({
       raw: true,
       where,
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["time", "DESC"]],
       limit: count,
       offset: 0
