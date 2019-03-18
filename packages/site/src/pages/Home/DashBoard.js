@@ -4,13 +4,13 @@ import { useSubject, SubjectState } from "../../shared";
 import api from "../../services/api";
 import { Amount, Number } from "../../components";
 
-const subject = new SubjectState({ data: [] });
+const subject = new SubjectState({ data: {} });
 
 export default function DashBoard() {
   const [{ data }, setState] = useSubject(subject);
 
   useEffect(() => {
-    const subscription = api.fetchChainStatus$().subscribe(data => setState({ blocks: data }));
+    const subscription = api.fetchChainStatus$().subscribe(data => setState({ data: data }));
     return () => subscription.unsubscribe();
   }, [api]);
 

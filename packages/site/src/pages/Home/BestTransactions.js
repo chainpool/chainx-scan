@@ -12,7 +12,7 @@ export default function BestTransactions() {
   const [{ txs }, setState] = useSubject(subject);
 
   useEffect(() => {
-    const subscription = api.fetchLatestTxs$().subscribe(data => setState({ blocks: data }));
+    const subscription = api.fetchLatestTxs$().subscribe(data => setState({ txs: data }));
     return () => subscription.unsubscribe();
   }, [api]);
 

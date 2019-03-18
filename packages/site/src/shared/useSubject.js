@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function useSubject(subject) {
   const [data, setData] = useState(subject.getValue());
@@ -8,5 +8,12 @@ export default function useSubject(subject) {
     return () => subscription.unsubscribe();
   }, [subject]);
 
-  return [data, subject.setState];
+  const setState = useCallback(
+    (...args) => {
+      return subject.setState(...args);
+    },
+    [subject]
+  );
+
+  return [data, setState];
 }

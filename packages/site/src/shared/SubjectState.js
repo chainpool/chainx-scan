@@ -4,6 +4,16 @@ import { scan, shareReplay, distinctUntilChanged } from "rxjs/operators";
 export default class SubjectState {
   constructor(initState) {
     this.subject = new BehaviorSubject(initState);
+    this.state$ = this.subject.asObservable().pipe(
+      scan((acc, newVal) => {
+        return { ...acc, ...newVal };
+      }, initState),
+      distinctUntilChanged(),
+      shareReplay({
+        bufferSize: 1,
+        refCount: true
+      })
+    );
   }
 
   getValue() {
@@ -15,15 +25,6 @@ export default class SubjectState {
   }
 
   getState$() {
-    return this.subject.asObservable().pipe(
-      scan((acc, newVal) => {
-        return { ...acc, ...newVal };
-      }),
-      distinctUntilChanged(),
-      shareReplay({
-        bufferSize: 1,
-        refCount: true
-      })
-    );
+    return this.state$;
   }
 }
