@@ -58,6 +58,7 @@ class TradeController {
     const orders = await ctx.db.FilledOrder.findAll({
       raw: true,
       where,
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["time", "DESC"]],
       limit: count,
       offset: 0
