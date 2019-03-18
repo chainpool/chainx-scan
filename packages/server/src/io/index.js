@@ -1,11 +1,11 @@
-const { normalizeBlock, normalizeTransaction } = require("./features/utils");
+const { normalizeBlock, normalizeTransaction } = require("../features/utils");
+const { feedLatestKline } = require("./kline-feeder");
+const { FEED_INTERVAL } = require("./setting");
 
 const latestBlocksRoom = "LATEST_BLOCKS_ROOM";
 const latestTxsRoom = "LATEST_TRANSACTIONS_ROOM";
 const chainStatusRoom = "CHAIN_STATUS";
 const latestBtcHeadersRoom = "LATEST_BTC_HEADERS_ROOM";
-
-const FEED_INTERVAL = 2000;
 
 let preBlockHeight = null;
 let preTxHeight = null;
@@ -28,6 +28,9 @@ module.exports = (io, db) => {
   });
   feedBtcHeaders(io, db).then(() => {
     console.log("begin to feed latest btc headers");
+  });
+  feedLatestKline(io, db).then(() => {
+    console.log("begin to feed latest kline");
   });
 };
 
