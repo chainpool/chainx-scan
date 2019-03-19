@@ -64,7 +64,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
         },
         {
           title: "块哈希",
-          dataIndex: "version"
+          dataIndex: "hash"
         },
         {
           title: "交易时间",
