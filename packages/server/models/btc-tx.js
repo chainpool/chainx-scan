@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   BtcTx.associate = function(models) {
-    BtcTx.belongsTo(models.Block, { foreignKey: "bitcoin_height", targetKey: "number", as: "block" });
+    BtcTx.belongsTo(models.Block, { foreignKey: "height", targetKey: "number", as: "block" });
   };
 
   return BtcTx;

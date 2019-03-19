@@ -28,20 +28,23 @@ class BtcController {
   async txs(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const { rows, count } = await ctx.db.BtcTx.findAndCountAll({
-      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
-      attributes: { exclude: ["inputs", "outputs"] },
-      order: [["height", "DESC"]],
-      limit: pageSize,
-      offset: page * pageSize,
-      raw: true
-    });
+    const items = await ctx.db.sequelize.query(
+      `SELECT tx.txid, tx.tx_type, header.header, header.time, tx.chainx_tx, tx.relay, block.time as "block.time" FROM "XBridgeOfBTC_TxFor" AS tx
+      LEFT JOIN "XBridgeOfBTC_BlockHeaderFor" AS header on tx.bitcoin_height=header.bitcoin_height
+      LEFT JOIN "block" ON block.number=tx.height
+      ORDER BY tx.height DESC
+      LIMIT ${pageSize} OFFSET ${page * pageSize}`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+    const total = await ctx.db.BtcTx.count();
 
     ctx.body = {
-      items: rows,
+      items,
       page,
       pageSize,
-      total: count
+      total
     };
   }
 
