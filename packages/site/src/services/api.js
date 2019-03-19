@@ -157,6 +157,13 @@ class Api {
   };
 
   /**
+   * 获取账户交易列表
+   */
+  fetchAccountTxs$ = (accountId, params) => {
+    return this.fetch(`/account/${hexStripPrefix(accountId)}/txs`, params);
+  };
+
+  /**
    * 跨链 BTC 列表
    */
   fetchBtcBlocks$ = params => {

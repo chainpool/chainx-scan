@@ -8,7 +8,7 @@ export default function AccountTrade(props) {
 
   useEffect(() => {
     const subscription = api
-      .fetchTxs$({ accountId: props.accountId })
+      .fetchAccountTxs$(props.accountId)
       .subscribe(({ items }) => setTableData({ dataSource: items }));
     return () => subscription.unsubscribe();
   }, [props.accountId]);

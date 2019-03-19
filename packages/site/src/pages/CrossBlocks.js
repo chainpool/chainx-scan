@@ -60,7 +60,8 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
           merkle: <Hash style={{ width: 136 }} className="text-truncate" value={data.merkle} />,
           time: <DateShow value={data.time * 1000} />,
           bits: data.bits,
-          relay: <Hash style={{ width: 136 }} className="text-truncate" value={data.relay} />
+          relay: <Hash style={{ width: 136 }} className="text-truncate" value={data.relay} />,
+          blockTime: <DateShow value={data["block.time"]} />
         };
       })}
       columns={[
@@ -98,7 +99,7 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
         },
         {
           title: "中继提交时间",
-          dataIndex: "action"
+          dataIndex: "blockTime"
         }
       ]}
       {...tableProps}
