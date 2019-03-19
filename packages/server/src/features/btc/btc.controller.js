@@ -1,4 +1,5 @@
 const { extractPage } = require("../utils");
+const { toBtcAddress } = require("./address");
 
 class BtcController {
   async headers(ctx) {
@@ -46,11 +47,15 @@ class BtcController {
       where: { chain: "Bitcoin" },
       order: [["height", "DESC"]],
       limit: pageSize,
-      offset: page * pageSize
+      offset: page * pageSize,
+      raw: true
     });
 
     ctx.body = {
-      items: rows,
+      items: rows.map(row => ({
+        ...row,
+        address: toBtcAddress(row.address)
+      })),
       page,
       pageSize,
       total: count
