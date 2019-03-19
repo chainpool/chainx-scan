@@ -2,13 +2,15 @@ import io from "socket.io-client";
 import { from, throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 
-export default {
-  endpoint: process.env.REACT_APP_SERVER,
-  socket: null,
-  setApiProvider(endpoint) {
+class Api {
+  endpoint = null;
+  socket = null;
+
+  constructor(endpoint) {
     this.endpoint = endpoint;
-  },
-  fetch(path, params = {}, options) {
+  }
+
+  fetch = (path, params = {}, options) => {
     const paramsKeyConvert = (str = "") => str.replace(/[A-Z]/g, ([s]) => `_${s.toLowerCase()}`);
     const url = new URL(path, this.endpoint);
     for (const key of Object.keys(params)) {
@@ -20,12 +22,13 @@ export default {
         return throwError(err);
       })
     );
-  },
-  createObservable(name, eventName) {
+  };
+
+  createObservable = (name, eventName) => {
     if (!this.socket) {
       this.socket = io(process.env.REACT_APP_SERVER);
     }
-    if (!this.socket.disconnected) {
+    if (this.socket.disconnected) {
       this.socket.connect();
     }
     return new Observable(observer => {
@@ -38,47 +41,56 @@ export default {
         this.socket.emit("unsubscribe", name);
       };
     });
-  },
+  };
+
   /**
    * 获取账户详情
    */
-  fetchAccountDetail$(accountId) {
+  fetchAccountDetail$ = accountId => {
     return this.fetch(`/account/${accountId}/detail`);
-  },
+  };
+
   /**
    * 获取账户跨链资产列表
    */
-  fetchAccountBalance$(accountId) {
+  fetchAccountBalance$ = accountId => {
     return this.fetch(`/account/${accountId}/balance`);
-  },
+  };
+
   /**
    * 获取最新的块头列表
    */
-  fetchLatestBlocks$() {
+  fetchLatestBlocks$ = () => {
     return this.createObservable("LATEST_BLOCKS_ROOM", "latestBlocks");
-  },
+  };
+
   /**
    * 获取最新的交易列表
    */
-  fetchLatestTxs$() {
+  fetchLatestTxs$ = () => {
     return this.createObservable("LATEST_TRANSACTIONS_ROOM", "latestTxs");
-  },
+  };
+
   /**
    * 获取最新的链的状态
    */
-  fetchChainStatus$() {
+  fetchChainStatus$ = () => {
     return this.createObservable("CHAIN_STATUS", "chainStatus");
-  },
+  };
+
   /**
    * 获取验证人列表
    */
-  fetchIntentions$(params, options) {
+  fetchIntentions$ = (params, options) => {
     return this.fetch(`/intentions`, params, options);
-  },
+  };
+
   /**
    * 获取区块列表
    */
-  fetchBlocks$(params, options) {
+  fetchBlocks$ = (params, options) => {
     return this.fetch(`/blocks`, params, options);
-  }
-};
+  };
+}
+
+export default new Api(process.env.REACT_APP_SERVER);

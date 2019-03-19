@@ -1,24 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
 import { Table, BlockLink, AddressLink, DateShow, Number } from "../../components";
-import { useTable, useSubject, SubjectState } from "../../shared";
+import { useSubject, SubjectState } from "../../shared";
 import api from "../../services/api";
+import TableService from "../../services/tableService";
 
 const subject = new SubjectState({ tableData: {} });
 
 export default function BlocksList() {
   const [{ tableData }, setState] = useSubject(subject);
 
-  const [tableData$, handleChange] = useTable(tableData, (...args) => api.fetchBlocks$(...args));
+  const tableService = useMemo(() => new TableService(tableData, api.fetchBlocks$), []);
 
   useEffect(() => {
-    const subscription = tableData$.subscribe(data => setState({ tableData: data }));
+    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
-  }, [tableData$]);
+  }, [tableService]);
 
   return (
     <Table
-      onChange={handleChange}
+      onChange={tableService.handleChange}
       pagination={tableData.pagination}
       dataSource={
         tableData.dataSource &&
