@@ -48,7 +48,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
             />
           ),
           txType: data.tx_type,
-          time: <DateShow value={data.time} />,
+          time: <DateShow value={data.time * 1000} />,
           blockTime: <DateShow value={data["block.time"]} />,
           relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />
         };
