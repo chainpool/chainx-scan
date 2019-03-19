@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BIGINT
       },
       bitcoin_height: {
-        type: DataTypes.STRING
+        type: DataTypes.BIGINT
       },
       txid: {
         type: DataTypes.STRING
