@@ -7,5 +7,6 @@ router.get("/intentions", accountController.intentions);
 router.get("/accounts", accountController.accounts);
 router.get("/account/:accountId/nominations", nominationController.accountNominations);
 router.get("/account/:accountId/detail", accountController.accountDetail);
+router.get("/account/:accountId/txs", accountController.txs);
 
 module.exports = router;

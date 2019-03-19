@@ -71,6 +71,28 @@ class AccountController {
       btcAddress: addressMap ? addressMap.address : null
     };
   }
+
+  async txs(ctx) {
+    const { accountId } = ctx.params;
+
+    const { page, pageSize } = extractPage(ctx);
+    const order = [["number", "DESC"], ["index", "DESC"]];
+    const { rows: items, count } = await ctx.db.Transaction.findAndCountAll({
+      attributes: ["number", "hash", "module", "call", "time"],
+      where: { signed: accountId },
+      order,
+      limit: pageSize,
+      offset: page * pageSize,
+      raw: true
+    });
+
+    ctx.body = {
+      items,
+      page,
+      pageSize,
+      total: count
+    };
+  }
 }
 
 module.exports = new AccountController();
