@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { BlockLink, AddressLink, Number } from "../../components";
+import { AddressLink, BlockLink, Number } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useSubject, SubjectState } from "../../shared";
+import { SubjectState, useSubject } from "../../shared";
 import api from "../../services/api";
 
 const subject = new SubjectState({ blocks: [] });
