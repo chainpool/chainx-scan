@@ -78,18 +78,17 @@ async function feedLatestBlocks(io, db) {
 
   try {
     const blocks = await db.Block.findAll({
+      attributes: ["number", "producer", "extrinsics"],
       order,
       limit: pageSize,
       offset: page * pageSize,
       raw: true
     });
 
-    const items = blocks.map(normalizeBlock);
-
-    if (items.length > 0) {
-      const nowMaxBlockHeight = Math.max(...items.map(item => item.number));
+    if (blocks.length > 0) {
+      const nowMaxBlockHeight = Math.max(...blocks.map(item => item.number));
       if (preBlockHeight === null || nowMaxBlockHeight > preBlockHeight) {
-        io.to(latestBlocksRoom).emit("latestBlocks", items);
+        io.to(latestBlocksRoom).emit("latestBlocks", blocks);
       }
     }
 
@@ -104,6 +103,7 @@ async function feedLatestTxs(io, db) {
   const page = 0;
   const order = [["number", "DESC"], ["index", "DESC"]];
   const options = {
+    attributes: ["hash", "signed", "module", "call"],
     order,
     limit: pageSize,
     offset: page * pageSize,
@@ -113,11 +113,10 @@ async function feedLatestTxs(io, db) {
   try {
     const transactions = await db.Transaction.findAll(options);
 
-    const items = transactions.map(normalizeTransaction);
-    if (items.length > 0) {
-      const nowMaxTxHeight = Math.max(...items.map(item => item.number));
+    if (transactions.length > 0) {
+      const nowMaxTxHeight = Math.max(...transactions.map(item => item.number));
       if (preTxHeight === null || nowMaxTxHeight > preTxHeight) {
-        io.to(latestTxsRoom).emit("latestTxs", items);
+        io.to(latestTxsRoom).emit("latestTxs", transactions);
       }
     }
 
