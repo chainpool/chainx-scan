@@ -10,7 +10,7 @@ const subject = new SubjectState({ tableData: {} });
 export default function BlocksList() {
   const [{ tableData }, setState] = useSubject(subject);
 
-  const tableService = useMemo(() => new TableService(tableData, api.fetchBlocks$), []);
+  const tableService = useMemo(() => new TableService(api.fetchBlocks$, tableData), []);
 
   useEffect(() => {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));

@@ -11,7 +11,7 @@ export default function Validators(props) {
   const { tableProps } = props;
 
   const [{ tableData }, setState] = useSubject(subject);
-  const tableService = useMemo(() => new TableService(tableData, api.fetchIntentions$), []);
+  const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData), []);
 
   useEffect(() => {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));

@@ -1,28 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
-import { fetch } from "../../shared";
 import { BlockLink, AddressLink, DateShow, PanelList } from "../../components";
-import TxsList from "../Txs/TxsList";
-import Events from "../Events";
+import { RenderTxsList } from "../Txs/TxsList";
+import { RenderEvents } from "../Events";
+import api from "../../services/api";
 
 export default function BlockDetail(props) {
   const { match } = props;
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [eventsData, setEventsData] = useState({});
+  const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
-  const queryParam = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
-  const queryPath = `/block/${queryParam}`;
+  const blockId = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
+  const blockNumber = data.number;
 
   useEffect(() => {
-    fetchData();
-  }, [queryPath]);
+    const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data));
+    return () => subscription.unsubscribe();
+  }, [blockId]);
 
-  async function fetchData() {
-    const result = await fetch(queryPath);
-    setData(result);
-  }
+  useEffect(() => {
+    const subscription = api
+      .fetchEvents$({ block: blockNumber })
+      .subscribe(({ items }) => setEventsData({ dataSource: items }));
+    return () => subscription.unsubscribe();
+  }, [blockNumber]);
+
+  useEffect(() => {
+    const subscription = api
+      .fetchTxs$({ block: blockNumber })
+      .subscribe(({ items }) => setTxsData({ dataSource: items }));
+    return () => subscription.unsubscribe();
+  }, [blockNumber]);
 
   return (
     <div>
@@ -71,10 +83,10 @@ export default function BlockDetail(props) {
           </ul>
         </div>
         {data && data.number && activeKey === "txs" && (
-          <TxsList path={`/txs?block=${data.number}`} tableProps={{ pagination: false }} />
+          <RenderTxsList tableData={txsData} tableProps={{ pagination: false }} />
         )}
         {data && data.number && activeKey === "events" && (
-          <Events path={`/events?block=${data.number}`} tableProps={{ pagination: false }} />
+          <RenderEvents tableData={eventsData} tableProps={{ pagination: false }} />
         )}
       </div>
     </div>

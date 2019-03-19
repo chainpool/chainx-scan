@@ -91,6 +91,41 @@ class Api {
   fetchBlocks$ = (params, options) => {
     return this.fetch(`/blocks`, params, options);
   };
+
+  /**
+   * 获取交易列表
+   */
+  fetchTxs$ = (params, options) => {
+    return this.fetch(`/txs`, params, options);
+  };
+
+  /**
+   * 获取事件列表
+   */
+  fetchEvents$ = (params, options) => {
+    return this.fetch(`/events`, params, options);
+  };
+
+  /**
+   * 获取账号列表
+   */
+  fetchAccounts$ = (params, options) => {
+    return this.fetch(`/accounts`, params, options);
+  };
+
+  /**
+   * 获取区块详情
+   */
+  fetchBlockDetail$ = blockId => {
+    return this.fetch(`/block/${blockId}`);
+  };
+
+  /**
+   * 获取交易详情
+   */
+  fetchTxDetail$ = txId => {
+    return this.fetch(`/tx/${txId}`);
+  };
 }
 
 export default new Api(process.env.REACT_APP_SERVER);

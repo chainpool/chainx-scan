@@ -3,7 +3,7 @@ import { take } from "rxjs/operators";
 import { SubjectState } from "../shared";
 
 export default class tableService extends SubjectState {
-  constructor(initData, _fetchTable) {
+  constructor(_fetchTable, initData = {}) {
     const initialize = {
       ...tableService.initData,
       ...initData

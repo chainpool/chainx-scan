@@ -1,17 +1,32 @@
-import React from "react";
+import React, { useMemo, useEffect } from "react";
 
 import { Table, TxLink, BlockLink, TxAction, DateShow } from "../../components";
-import { useTableData } from "../../shared";
+import TableService from "../../services/tableService";
+import { useSubject, SubjectState } from "../../shared";
+import api from "../../services/api";
 
-export default function Txs(props) {
-  const { path, tableProps } = props;
-  const [tableData, handleChange] = useTableData(path || "/txs");
+const subject = new SubjectState({ tableData: {} });
+
+export default function TxsList() {
+  const [{ tableData }, setState] = useSubject(subject);
+  const tableService = useMemo(() => new TableService(api.fetchTxs$, tableData), []);
+
+  useEffect(() => {
+    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    return () => subscription.unsubscribe();
+  }, [tableService]);
+
+  return <RenderTxsList {...{ tableData, handleChange: tableService.handleChange }} />;
+}
+
+export function RenderTxsList({ tableProps, tableData, handleChange }) {
+  const { pagination, dataSource = [] } = { ...tableData, ...tableProps };
 
   return (
     <Table
       onChange={handleChange}
-      pagination={tableData.pagination}
-      dataSource={tableData.dataSource.map(data => {
+      pagination={pagination}
+      dataSource={dataSource.map(data => {
         return {
           key: data.hash,
           number: <BlockLink value={data.number} />,
@@ -38,7 +53,6 @@ export default function Txs(props) {
           dataIndex: "action"
         }
       ]}
-      {...tableProps}
     />
   );
 }

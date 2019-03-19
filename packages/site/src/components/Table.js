@@ -6,10 +6,8 @@ export default function Table(_props) {
     size: "small",
     ..._props
   };
-  return (
-    <AntdTable
-      {...props}
-      pagination={{
+  const pagination = _props.pagination
+    ? {
         size: "small",
         showQuickJumper: true,
         showTotal: (total, range) => (
@@ -18,7 +16,8 @@ export default function Table(_props) {
           </span>
         ),
         ..._props.pagination
-      }}
-    />
-  );
+      }
+    : false;
+
+  return <AntdTable {...props} pagination={pagination} />;
 }

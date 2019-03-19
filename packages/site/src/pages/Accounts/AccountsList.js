@@ -1,25 +1,36 @@
-import React from "react";
+import React, { useMemo, useEffect } from "react";
 
 import { Table, AddressLink, Amount } from "../../components";
-import { useTableData } from "../../shared";
+import TableService from "../../services/tableService";
+import { useSubject, SubjectState } from "../../shared";
+import api from "../../services/api";
 
-export default function Accounts(props) {
-  const { path, tableProps } = props;
+const subject = new SubjectState({ tableData: {} });
 
-  const [tableData, handleChange] = useTableData(path || "/accounts");
+export default function AccountsList() {
+  const [{ tableData }, setState] = useSubject(subject);
+  const tableService = useMemo(() => new TableService(api.fetchAccounts$, tableData), []);
+
+  useEffect(() => {
+    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    return () => subscription.unsubscribe();
+  }, [tableService]);
 
   return (
     <Table
-      onChange={handleChange}
+      onChange={tableService.handleChange}
       pagination={tableData.pagination}
-      dataSource={tableData.dataSource.map(data => {
-        return {
-          key: data.accountid,
-          accountid: <AddressLink value={data.accountid} />,
-          pcx: <Amount symbol="PCX" value={data.pcx || 0} />,
-          btc: <Amount symbol="BTC" value={data.btc || 0} />
-        };
-      })}
+      dataSource={
+        tableData.dataSource &&
+        tableData.dataSource.map(data => {
+          return {
+            key: data.accountid,
+            accountid: <AddressLink value={data.accountid} />,
+            pcx: <Amount symbol="PCX" value={data.pcx || 0} />,
+            btc: <Amount symbol="BTC" value={data.btc || 0} />
+          };
+        })
+      }
       columns={[
         {
           title: "账户地址",
@@ -36,7 +47,6 @@ export default function Accounts(props) {
           align: "right"
         }
       ]}
-      {...tableProps}
     />
   );
 }

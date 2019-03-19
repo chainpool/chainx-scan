@@ -5,16 +5,16 @@ import { PanelList, AddressLink, Number } from "../../components";
 
 export default function Account(props) {
   const { match } = props;
-  const { params } = match;
+  const {
+    params: { accountId }
+  } = match;
 
   const [detail, setDetail] = useState({});
 
   useEffect(() => {
-    const subscription = api.fetchAccountDetail$(params.accountId).subscribe(data => setDetail(data));
-    return () => {
-      subscription.unsubscribe();
-    };
-  }, []);
+    const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data));
+    return () => subscription.unsubscribe();
+  }, [accountId]);
 
   return (
     <div>

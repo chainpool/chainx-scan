@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from "react";
+import { hexStripPrefix } from "@polkadot/util";
 
 import { fetch } from "../../shared";
 import { BlockLink, AddressLink, TxLink, TxAction, PanelList } from "../../components";
-import Events from "../Events";
-import { hexStripPrefix } from "@polkadot/util";
+import { RenderEvents } from "../Events";
+import api from "../../services/api";
 
 export default function BlockDetail(props) {
   const { match } = props;
 
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({});
+  const [eventsData, setEventsData] = useState({});
 
-  const queryPath = `/tx/${hexStripPrefix(match.params.txid)}`;
+  const blockNumber = data.number;
+  const txid = hexStripPrefix(match.params.txid);
 
   useEffect(() => {
-    fetchData();
-  }, [queryPath]);
+    const subscription = api.fetchTxDetail$(txid).subscribe(data => setData(data));
+    return () => subscription.unsubscribe();
+  }, [txid]);
 
-  async function fetchData() {
-    const result = await fetch(queryPath);
-    setData(result);
-  }
+  useEffect(() => {
+    const subscription = api
+      .fetchEvents$({ block: blockNumber })
+      .subscribe(({ items }) => setEventsData({ dataSource: items }));
+    return () => subscription.unsubscribe();
+  }, [blockNumber]);
 
   return (
     <div>
@@ -72,7 +78,7 @@ export default function BlockDetail(props) {
             </li>
           </ul>
         </div>
-        {data && data.number && <Events path={`/events?block=${data.number}`} tableProps={{ pagination: false }} />}
+        {data && data.number && <RenderEvents tableData={eventsData} tableProps={{ pagination: false }} />}
       </div>
     </div>
   );

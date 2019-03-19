@@ -1,12 +1,26 @@
-import React from "react";
+import React, { useMemo, useEffect } from "react";
 
 import { Table, BlockLink, TxAction } from "../components";
-import { useTableData } from "../shared";
+import { useSubject, SubjectState } from "../shared";
+import TableService from "../services/tableService";
+import api from "../services/api";
 
-export default function Txs(props) {
-  const { path, tableProps } = props;
+const subject = new SubjectState({ tableData: {} });
 
-  const [tableData, handleChange] = useTableData(path || "/events");
+export default function Events() {
+  const [{ tableData }, setState] = useSubject(subject);
+  const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData), []);
+
+  useEffect(() => {
+    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    return () => subscription.unsubscribe();
+  }, [tableService]);
+
+  return <RenderEvents {...{ tableData, handleChange: tableService.handleChange }} />;
+}
+
+export function RenderEvents({ tableProps, tableData, handleChange }) {
+  const { pagination, dataSource = [] } = tableData;
 
   return (
     <Table
@@ -17,8 +31,8 @@ export default function Txs(props) {
         </div>
       )}
       onChange={handleChange}
-      pagination={tableData.pagination}
-      dataSource={tableData.dataSource.map(data => {
+      pagination={pagination}
+      dataSource={dataSource.map(data => {
         return {
           key: `${data.number}${data.index}`,
           number: <BlockLink value={data.number} />,
