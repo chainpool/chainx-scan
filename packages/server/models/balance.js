@@ -41,6 +41,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Balance.associate = function(models) {
+    Balance.hasOne(models.FreeBalance, { foreignKey: "accountid", as: "freeBalance" });
     // associations can be defined here
   };
 
