@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, Number } from "../components";
+import { Table, DateShow, Hash, ExternalLink, AddressLink } from "../components";
 import { useSubject, SubjectState } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -38,9 +38,19 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
               }}
             />
           ),
+          hash: (
+            <ExternalLink
+              type="btcHash"
+              value={data.header}
+              render={() => {
+                return <Hash style={{ width: 136 }} className="text-truncate" value={data.header} />;
+              }}
+            />
+          ),
           txType: data.tx_type,
-          time: <DateShow value={data["block.time"]} />,
-          relay: <Hash style={{ width: 136 }} className="text-truncate" value={data.relay} />
+          time: <DateShow value={data.time} />,
+          blockTime: <DateShow value={data["block.time"]} />,
+          relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />
         };
       })}
       columns={[
@@ -58,7 +68,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
         },
         {
           title: "交易时间",
-          dataIndex: "parent"
+          dataIndex: "time"
         },
         {
           title: "中继人",
@@ -66,7 +76,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
         },
         {
           title: "中继提交时间",
-          dataIndex: "time"
+          dataIndex: "blockTime"
         }
       ]}
       {...tableProps}

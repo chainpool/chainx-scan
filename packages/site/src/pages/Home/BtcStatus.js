@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 
 import { useSubject, SubjectState } from "../../shared";
 import api from "../../services/api";
-import { Hash, Number, DateShow, TxLink, ExternalLink } from "../../components";
+import { Hash, Number, DateShow, TxLink, ExternalLink, AddressLink } from "../../components";
 
 const subject = new SubjectState({ data: [] });
 
@@ -59,7 +59,7 @@ export default function BtcStatus() {
                     <DateShow value={btcBlock.time * 1000} />
                   </td>
                   <td>
-                    <Hash style={{ width: 136 }} className="text-truncate" value={btcBlock.relay} />
+                    <AddressLink style={{ width: 136 }} className="text-truncate" value={btcBlock.relay} />
                   </td>
                   <td>
                     <TxLink style={{ width: 136 }} className="text-truncate" value={btcBlock.chainx_tx} />

@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, Number } from "../components";
+import { Table, DateShow, Hash, ExternalLink, Number, AddressLink } from "../components";
 import { useSubject, SubjectState } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -60,7 +60,7 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
           merkle: <Hash style={{ width: 136 }} className="text-truncate" value={data.merkle} />,
           time: <DateShow value={data.time * 1000} />,
           bits: data.bits,
-          relay: <Hash style={{ width: 136 }} className="text-truncate" value={data.relay} />,
+          relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />,
           blockTime: <DateShow value={data["block.time"]} />
         };
       })}
