@@ -2,7 +2,7 @@ import React, { useEffect, useCallback } from "react";
 
 import { useSubject, SubjectState } from "../../shared";
 import api from "../../services/api";
-import { Hash, Number, DateShow, TxLink } from "../../components";
+import { Hash, Number, DateShow, TxLink, ExternalLink } from "../../components";
 
 const subject = new SubjectState({ data: [] });
 
@@ -38,10 +38,22 @@ export default function BtcStatus() {
               data.map(btcBlock => (
                 <tr key={btcBlock.bitcoin_height}>
                   <td>
-                    <Number value={btcBlock.bitcoin_height} />
+                    <ExternalLink
+                      type="btcHash"
+                      value={btcBlock.header}
+                      render={() => {
+                        return <Number value={btcBlock.bitcoin_height} />;
+                      }}
+                    />
                   </td>
                   <td>
-                    <Hash style={{ width: 136 }} className="text-truncate" value={btcBlock.header} />
+                    <ExternalLink
+                      type="btcHash"
+                      value={btcBlock.header}
+                      render={() => {
+                        return <Hash style={{ width: 136 }} className="text-truncate" value={btcBlock.header} />;
+                      }}
+                    />
                   </td>
                   <td>
                     <DateShow value={btcBlock.time * 1000} />

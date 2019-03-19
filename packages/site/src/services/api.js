@@ -155,6 +155,27 @@ class Api {
   fetchAccountOrders$ = (accountId, params) => {
     return this.fetch(`/trade/userorders/${hexStripPrefix(accountId)}`, params);
   };
+
+  /**
+   * 跨链 BTC 列表
+   */
+  fetchBtcBlocks$ = params => {
+    return this.fetch(`/btc/headers`, params);
+  };
+
+  /**
+   * 跨链 BTC 交易
+   */
+  fetchBtcTxs$ = params => {
+    return this.fetch(`/btc/txs`, params);
+  };
+
+  /**
+   * 跨链 BTC 绑定地址
+   */
+  fetchBtcBind$ = params => {
+    return this.fetch(`/btc/addresses`, params);
+  };
 }
 
 export default new Api(process.env.REACT_APP_SERVER);

@@ -10,9 +10,10 @@ export default withRouter(function Header(props) {
   const { location } = props;
   const [showMenu, setShowMenu] = useState(false);
 
-  const matchesArray = ["/txs", "/events", "/accounts"];
-
-  const isMatchBlocks = matchesArray.some(path => !!matchPath(location.pathname, { path }));
+  const isMatchBlocks = ["/txs", "/events", "/accounts"].some(path => !!matchPath(location.pathname, { path }));
+  const isMatchCross = ["/crossblocks", "/crosstxs", "/crossbind"].some(
+    path => !!matchPath(location.pathname, { path })
+  );
 
   const navBarStart = (
     <div className="navbar-start">
@@ -29,13 +30,13 @@ export default withRouter(function Header(props) {
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/validators">
         验证人
       </NavLink>
-      {/* <NavLink
-        className={classnames("navbar-item is-tab", { "is-active": isMatchBlocks })}
+      <NavLink
+        className={classnames("navbar-item is-tab", { "is-active": isMatchCross })}
         activeClassName="is-active"
-        to="/blocks"
+        to="/crossblocks"
       >
         跨链轻节点
-      </NavLink> */}
+      </NavLink>
     </div>
   );
 

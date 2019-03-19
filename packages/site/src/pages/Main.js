@@ -7,7 +7,10 @@ import Txs from "./Txs";
 import Events from "./Events";
 import Accounts from "./Accounts";
 import Validators from "./Validators";
-import { BlockChainNav } from "../components";
+import CrossBlocks from "./CrossBlocks";
+import CrossTxs from "./CrossTxs";
+import CrossBind from "./CrossBind";
+import { BlockChainNav, CrossChainNav } from "../components";
 
 export default function Main() {
   return (
@@ -32,6 +35,33 @@ export default function Main() {
             render={props => (
               <div className="box">
                 <Validators {...props} />
+              </div>
+            )}
+          />
+          <Route
+            path="/crossblocks"
+            render={props => (
+              <div className="box">
+                <CrossChainNav activeKey="crossblocks" />
+                <CrossBlocks {...props} />
+              </div>
+            )}
+          />
+          <Route
+            path="/crosstxs"
+            render={props => (
+              <div className="box">
+                <CrossChainNav activeKey="crosstxs" />
+                <CrossTxs {...props} />
+              </div>
+            )}
+          />
+          <Route
+            path="/crossbind"
+            render={props => (
+              <div className="box">
+                <CrossChainNav activeKey="crossbind" />
+                <CrossBind {...props} />
               </div>
             )}
           />
