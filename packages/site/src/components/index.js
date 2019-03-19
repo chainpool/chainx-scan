@@ -12,3 +12,6 @@ export { default as ExternalLink } from "./ExternalLink";
 export { default as InputSearch } from "./InputSearch";
 export { default as PanelList } from "./PanelList";
 export { default as Hash } from "./Hash";
+export { default as OrderDirection } from "./OrderDirection";
+export { default as OrderStatus } from "./OrderStatus";
+export { default as OrderClass } from "./OrderClass";

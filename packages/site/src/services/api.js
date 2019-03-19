@@ -1,6 +1,7 @@
 import io from "socket.io-client";
 import { from, throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
 
 class Api {
   endpoint = null;
@@ -132,6 +133,27 @@ class Api {
    */
   fetchBtcStatus$ = () => {
     return this.createObservable("LATEST_BTC_HEADERS_ROOM", "latestBtcHeaders");
+  };
+
+  /**
+   * 获取账户资产列表
+   */
+  fetchAccountAssset$ = (accountId, params) => {
+    return this.fetch(`/account/${hexAddPrefix(accountId)}/balance`, params);
+  };
+
+  /**
+   * 获取账户投票列表
+   */
+  fetchAccountNominations$ = (accountId, params) => {
+    return this.fetch(`/account/${hexAddPrefix(accountId)}/nominations`, params);
+  };
+
+  /**
+   * 获取账户挂单列表
+   */
+  fetchAccountOrders$ = (accountId, params) => {
+    return this.fetch(`/trade/userorders/${hexStripPrefix(accountId)}`, params);
   };
 }
 

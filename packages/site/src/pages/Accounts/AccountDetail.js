@@ -1,7 +1,11 @@
 import React, { useState, useEffect } from "react";
+import classnames from "classnames";
 
 import api from "../../services/api";
 import { PanelList, AddressLink, Number } from "../../components";
+import AccountAsset from "./AccountAsset";
+import AccountNomination from "./AccountNomination";
+import AccountOrder from "./AccountOrder";
 
 export default function Account(props) {
   const { match } = props;
@@ -10,6 +14,7 @@ export default function Account(props) {
   } = match;
 
   const [detail, setDetail] = useState({});
+  const [activeKey, setActiveKey] = useState("nativeAsset");
 
   useEffect(() => {
     const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data));
@@ -35,6 +40,47 @@ export default function Account(props) {
           }
         ]}
       />
+      <div className="box">
+        <div className="tabs">
+          <ul>
+            <li
+              onClick={() => setActiveKey("nativeAsset")}
+              className={classnames({ "is-active": activeKey === "nativeAsset" })}
+            >
+              <a>ChainX 资产列表</a>
+            </li>
+            <li
+              onClick={() => setActiveKey("crossAsset")}
+              className={classnames({ "is-active": activeKey === "crossAsset" })}
+            >
+              <a>跨链资产列表</a>
+            </li>
+            <li
+              onClick={() => setActiveKey("nomination")}
+              className={classnames({ "is-active": activeKey === "nomination" })}
+            >
+              <a>投票列表</a>
+            </li>
+            <li
+              onClick={() => setActiveKey("orderList")}
+              className={classnames({ "is-active": activeKey === "orderList" })}
+            >
+              <a>挂单列表</a>
+            </li>
+            <li onClick={() => setActiveKey("events")} className={classnames({ "is-active": activeKey === "events" })}>
+              <a>交易列表</a>
+            </li>
+          </ul>
+        </div>
+        {detail && detail.accountId && activeKey === "nativeAsset" && (
+          <AccountAsset accountId={detail.accountId} isNative={true} />
+        )}
+        {detail && detail.accountId && activeKey === "crossAsset" && (
+          <AccountAsset accountId={detail.accountId} isNative={false} />
+        )}
+        {detail && detail.accountId && activeKey === "nomination" && <AccountNomination accountId={detail.accountId} />}
+        {detail && detail.accountId && activeKey === "orderList" && <AccountOrder accountId={detail.accountId} />}
+      </div>
     </div>
   );
 }
