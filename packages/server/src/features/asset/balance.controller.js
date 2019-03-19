@@ -1,5 +1,4 @@
 const { extractPage } = require("../utils");
-const omit = require("lodash.omit");
 
 class BalanceController {
   async balances(ctx) {
