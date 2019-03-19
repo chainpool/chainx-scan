@@ -29,6 +29,13 @@ export default withRouter(function Header(props) {
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/validators">
         验证人
       </NavLink>
+      {/* <NavLink
+        className={classnames("navbar-item is-tab", { "is-active": isMatchBlocks })}
+        activeClassName="is-active"
+        to="/blocks"
+      >
+        跨链轻节点
+      </NavLink> */}
     </div>
   );
 

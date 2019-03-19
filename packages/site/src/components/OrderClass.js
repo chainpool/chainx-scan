@@ -9,7 +9,7 @@ export default memo(function OrderDirection(props) {
   const { value } = props;
   if (!value || typeof value !== "string") return "";
 
-  const text = DIRECTION[value.toUpperCase()] || "";
+  const text = DIRECTION[value.toUpperCase()] || value;
 
   return <div>{text}</div>;
 });

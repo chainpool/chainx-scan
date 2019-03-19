@@ -6,6 +6,7 @@ import { PanelList, AddressLink, Number } from "../../components";
 import AccountAsset from "./AccountAsset";
 import AccountNomination from "./AccountNomination";
 import AccountOrder from "./AccountOrder";
+import AccountTrade from "./AccountTrade";
 
 export default function Account(props) {
   const { match } = props;
@@ -67,7 +68,10 @@ export default function Account(props) {
             >
               <a>挂单列表</a>
             </li>
-            <li onClick={() => setActiveKey("events")} className={classnames({ "is-active": activeKey === "events" })}>
+            <li
+              onClick={() => setActiveKey("accountTrade")}
+              className={classnames({ "is-active": activeKey === "accountTrade" })}
+            >
               <a>交易列表</a>
             </li>
           </ul>
@@ -80,6 +84,7 @@ export default function Account(props) {
         )}
         {detail && detail.accountId && activeKey === "nomination" && <AccountNomination accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "orderList" && <AccountOrder accountId={detail.accountId} />}
+        {detail && detail.accountId && activeKey === "accountTrade" && <AccountTrade accountId={detail.accountId} />}
       </div>
     </div>
   );

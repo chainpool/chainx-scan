@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Amount, DateShow, OrderDirection, OrderStatus, OrderClass } from "../../components";
+import { Table, Amount, DateShow, OrderDirection, OrderStatus, OrderClass, Number } from "../../components";
 import api from "../../services/api";
 
 export default function AccountOrder(props) {
@@ -22,13 +22,15 @@ export default function AccountOrder(props) {
           return {
             key: data.id,
             id: data.id,
-            price: data.price,
+            pair: `${data["pair.currency_pair"][0]}/${data["pair.currency_pair"][1]}`,
+            price: <Amount value={data.price} symbol={data["pair.currency_pair"][0]} hideSymbol={true} />,
             class: <OrderClass value={data.class} />,
             direction: <OrderDirection value={data.direction} />,
             status: <OrderStatus value={data.status} />,
-            createTime: <DateShow value={data["block.time"]} />
-            // nominee: <AddressLink value={data.nominee} isValidator />,
-            // nomination: <Amount value={data.nomination} />
+            createTime: <DateShow value={data["block.time"]} />,
+            updateTime: <DateShow value={data["updateBlock.time"]} />,
+            amount: <Number value={data.amount} precision={data["pair.precision"]} />,
+            hasFillAmount: <Number value={data.hasfill_amount} precision={data["pair.precision"]} />
           };
         })
       }
@@ -39,7 +41,7 @@ export default function AccountOrder(props) {
         },
         {
           title: "交易对",
-          dataIndex: "nomination"
+          dataIndex: "pair"
         },
         {
           title: "价格",
@@ -54,12 +56,24 @@ export default function AccountOrder(props) {
           dataIndex: "direction"
         },
         {
+          title: "数量",
+          dataIndex: "amount"
+        },
+        {
+          title: "已成交数量",
+          dataIndex: "hasFillAmount"
+        },
+        {
           title: "状态",
           dataIndex: "status"
         },
         {
           title: "创建时间",
           dataIndex: "createTime"
+        },
+        {
+          title: "最后更新时间",
+          dataIndex: "updateTime"
         }
       ]}
     />
