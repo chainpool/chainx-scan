@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   BtcHeader.associate = function(models) {
-    // associations can be defined here
+    BtcHeader.belongsTo(models.Block, { foreignKey: "height", targetKey: "number", as: "block" });
   };
 
   return BtcHeader;
