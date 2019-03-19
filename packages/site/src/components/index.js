@@ -11,3 +11,4 @@ export { default as Number } from "./Number";
 export { default as ExternalLink } from "./ExternalLink";
 export { default as InputSearch } from "./InputSearch";
 export { default as PanelList } from "./PanelList";
+export { default as Hash } from "./Hash";

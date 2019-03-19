@@ -126,6 +126,13 @@ class Api {
   fetchTxDetail$ = txId => {
     return this.fetch(`/tx/${txId}`);
   };
+
+  /**
+   * 获取比特币详情
+   */
+  fetchBtcStatus$ = () => {
+    return this.createObservable("LATEST_BTC_HEADERS_ROOM", "latestBtcHeaders");
+  };
 }
 
 export default new Api(process.env.REACT_APP_SERVER);
