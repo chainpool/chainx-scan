@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { hexStripPrefix } from "@polkadot/util";
 
-import { fetch } from "../../shared";
 import { BlockLink, AddressLink, TxLink, TxAction, PanelList } from "../../components";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
