@@ -1,4 +1,3 @@
-const { normalizeBlock, normalizeTransaction } = require("../features/utils");
 const { feedLatestKline } = require("./kline-feeder");
 const { FEED_INTERVAL } = require("./setting");
 
@@ -17,21 +16,41 @@ module.exports = (io, db) => {
     socket.on("unsubscribe", socket.leave);
   });
 
-  feedLatestBlocks(io, db).then(() => {
-    console.log("begin to feed latest blocks");
-  });
-  feedLatestTxs(io, db).then(() => {
-    console.log("begin to feed latest transactions");
-  });
-  feedChainStatus(io, db).then(() => {
-    console.log("begin to feed chain status");
-  });
-  feedBtcHeaders(io, db).then(() => {
-    console.log("begin to feed latest btc headers");
-  });
-  feedLatestKline(io, db).then(() => {
-    console.log("begin to feed latest kline");
-  });
+  feedLatestBlocks(io, db)
+    .then(() => {
+      console.log("begin to feed latest blocks");
+    })
+    .catch(() => {
+      console.error("fail to feed latest blocks");
+    });
+  feedLatestTxs(io, db)
+    .then(() => {
+      console.log("begin to feed latest transactions");
+    })
+    .catch(() => {
+      console.error("fail to feed latest transactions");
+    });
+  feedChainStatus(io, db)
+    .then(() => {
+      console.log("begin to feed chain status");
+    })
+    .catch(() => {
+      console.error("fail to feed latest status");
+    });
+  feedBtcHeaders(io, db)
+    .then(() => {
+      console.log("begin to feed latest btc headers");
+    })
+    .catch(() => {
+      console.error("fail to feed latest btc headers");
+    });
+  feedLatestKline(io, db)
+    .then(() => {
+      console.log("begin to feed latest kline");
+    })
+    .catch(() => {
+      console.error("fail to feed latest kline");
+    });
 };
 
 async function feedBtcHeaders(io, db) {
