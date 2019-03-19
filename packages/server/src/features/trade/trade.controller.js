@@ -77,14 +77,27 @@ class TradeController {
     const { page, pageSize } = extractPage(ctx);
     const where = { accountid: accountId };
     const { status } = ctx.query;
-    if (status === "0" || !status) {
+
+    /**
+     * 0: 零成交或部分成交
+     * 1: 部分成交或全部成交
+     * 2: 全部成交
+     * 没有指定status，则返回所有
+     */
+    if (status === "0") {
       Object.assign(where, { $or: [{ status: "ZeroExecuted" }, { status: "ParitialExecuted" }] });
-    } else {
+    } else if (status === "1") {
+      Object.assign(where, { $or: [{ status: "AllExecuted" }, { status: "ParitialExecuted" }] });
+    } else if (status === "2") {
       Object.assign(where, { status: "AllExecuted" });
     }
     const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
       where,
-      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      include: [
+        { model: ctx.db.Block, as: "block", attributes: ["time"] },
+        { model: ctx.db.TradingPair, as: "pair" },
+        { model: ctx.db.Block, as: "updateBlock", attributes: ["time"] }
+      ],
       order: [["create_time", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
@@ -92,7 +105,11 @@ class TradeController {
     });
 
     ctx.body = {
-      items,
+      items: items.map(item => ({
+        ...item,
+        ["pair.currency_pair"]: JSON.parse(item["pair.currency_pair"]),
+        ["pair.online"]: item["pair.online"] === "true"
+      })),
       page,
       pageSize,
       total

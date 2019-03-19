@@ -57,6 +57,8 @@ module.exports = (sequelize, DataTypes) => {
 
   Order.associate = function(models) {
     Order.belongsTo(models.Block, { foreignKey: "create_time", targetKey: "number", as: "block" });
+    Order.belongsTo(models.Block, { foreignKey: "lastupdate_time", targetKey: "number", as: "updateBlock" });
+    Order.belongsTo(models.TradingPair, { foreignKey: "pairid", targetKey: "pairid", as: "pair" });
   };
 
   return Order;
