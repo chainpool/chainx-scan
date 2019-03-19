@@ -29,7 +29,6 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
       dataSource={dataSource.map(data => {
         return {
           key: data.txid,
-          // version: data.version,
           txid: (
             <ExternalLink
               type="btcTxid"
@@ -40,27 +39,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
             />
           ),
           txType: data.tx_type,
-          // hash: (
-          //   <ExternalLink
-          //     type="btcHash"
-          //     value={data.header}
-          //     render={() => {
-          //       return <Hash style={{ width: 136 }} className="text-truncate" value={data.header} />;
-          //     }}
-          //   />
-          // ),
-          // parent: (
-          //   <ExternalLink
-          //     type="btcHash"
-          //     value={data.parent}
-          //     render={() => {
-          //       return <Hash style={{ width: 136 }} className="text-truncate" value={data.parent} />;
-          //     }}
-          //   />
-          // ),
-          // merkle: <Hash style={{ width: 136 }} className="text-truncate" value={data.merkle} />,
-          // time: <DateShow value={data.time * 1000} />,
-          // bits: data.bits,
+          time: <DateShow value={data["block.time"]} />,
           relay: <Hash style={{ width: 136 }} className="text-truncate" value={data.relay} />
         };
       })}
