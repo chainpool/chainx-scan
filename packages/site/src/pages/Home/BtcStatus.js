@@ -1,8 +1,8 @@
-import React, { useEffect, useCallback } from "react";
+import React, { useEffect } from "react";
 
-import { useSubject, SubjectState } from "../../shared";
+import { SubjectState, useSubject } from "../../shared";
 import api from "../../services/api";
-import { Hash, Number, DateShow, TxLink, ExternalLink, AddressLink } from "../../components";
+import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink } from "../../components";
 
 const subject = new SubjectState({ data: [] });
 
