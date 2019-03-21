@@ -3,12 +3,9 @@ module.exports = (sequelize, DataTypes) => {
   const Withdraw = sequelize.define(
     "Withdraw",
     {
-      id: {
-        type: DataTypes.BIGINT,
-        primaryKey: true
-      },
       accountid: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        primaryKey: true
       },
       token: {
         type: DataTypes.STRING
@@ -43,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Withdraw.associate = function(models) {
-    // associations can be defined here
+    Withdraw.belongsTo(models.Block, { foreignKey: "height", targetKey: "number", as: "block" });
   };
 
   return Withdraw;
