@@ -59,6 +59,12 @@ class BlockController {
       return;
     }
 
+    const { fields } = ctx.query;
+    if (fields) {
+      const fieldsArr = fields.split(",");
+      Object.assign(option, { attributes: fieldsArr });
+    }
+
     const block = await ctx.db.Block.findOne(option);
     if (!block) {
       ctx.status = 404;

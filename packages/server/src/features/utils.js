@@ -35,11 +35,16 @@ function trimFields(obj, fields) {
 }
 
 function normalizeBlock(block) {
-  return {
-    ...block,
-    digest: JSON.parse(block.digest),
-    data: JSON.parse(block.data)
-  };
+  const result = { ...block };
+  if (result.digest) {
+    result.digest = JSON.parse(block.digest);
+  }
+
+  if (result.data) {
+    result.data = JSON.parse(block.data);
+  }
+
+  return result;
 }
 
 function normalizeTransaction(tx) {
