@@ -18,10 +18,14 @@ class AssetController {
     }
 
     const where = { accountid: accountId };
-    const { token } = ctx.query;
+    const { token, chain } = ctx.query;
     if (token) {
-      Object.assign(where, { token });
+      Object.assign(where, { token, chain });
     }
+    if (chain) {
+      Object.assign(where, { chain });
+    }
+
     const { page, pageSize } = extractPage(ctx);
     const { rows, count } = await ctx.db.Deposit.findAndCountAll({
       where,
@@ -42,6 +46,14 @@ class AssetController {
     const { accountId } = ctx.params;
 
     const where = { accountid: accountId };
+    const { token, chain } = ctx.query;
+    if (token) {
+      Object.assign(where, { token });
+    }
+    if (chain) {
+      Object.assign(where, { chain });
+    }
+
     const { page, pageSize } = extractPage(ctx);
     const { rows, count } = await ctx.db.Withdraw.findAndCountAll({
       where,
