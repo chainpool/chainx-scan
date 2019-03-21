@@ -44,7 +44,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   Deposit.associate = function(models) {
-    // associations can be defined here
+    Deposit.belongsTo(models.Block, { foreignKey: "height", targetKey: "number", as: "block" });
   };
 
   return Deposit;

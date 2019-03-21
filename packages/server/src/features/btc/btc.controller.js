@@ -70,6 +70,26 @@ class BtcController {
       total: count
     };
   }
+
+  async deposits(ctx) {
+    const { page, pageSize } = extractPage(ctx);
+
+    const { rows, count } = await ctx.db.Deposit.findAndCountAll({
+      where: { chain: "1" }, // '1' 代表btc chain
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      order: [["height", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize,
+      raw: true
+    });
+
+    ctx.body = {
+      items: rows,
+      page,
+      pageSize,
+      total: count
+    };
+  }
 }
 
 module.exports = new BtcController();
