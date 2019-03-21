@@ -59,6 +59,7 @@ async function feedBtcHeaders(io, db) {
 
   try {
     const rows = await db.BtcHeader.findAll({
+      attributes: ["bitcoin_height", "header", "time", "relay", "chainx_tx", "txid"],
       order: [["time", "DESC"]],
       limit: pageSize,
       offset: page * pageSize
