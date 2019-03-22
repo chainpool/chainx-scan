@@ -78,10 +78,6 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
           dataIndex: "version"
         },
         {
-          title: "父哈希",
-          dataIndex: "parent"
-        },
-        {
           title: "默克尔根",
           dataIndex: "merkle"
         },
