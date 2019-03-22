@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 import { useSubject, SubjectState } from "../../shared";
 import api from "../../services/api";
@@ -33,7 +34,11 @@ export default function DashBoard() {
     },
     {
       label: "验证人数",
-      data: <Number value={data.validators} />
+      data: (
+        <NavLink to={`/validators`} className="nav-link">
+          <Number value={data.validators} />
+        </NavLink>
+      )
     },
     {
       label: "投票总数",
