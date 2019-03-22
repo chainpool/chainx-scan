@@ -29,7 +29,7 @@ export default function BtcStatus() {
               <th>区块哈希</th>
               <th>时间</th>
               <th>中继人</th>
-              <th>PCX 交易哈希</th>
+              <th>ChainX 交易哈希</th>
               <th className="has-text-right">交易数</th>
             </tr>
           </thead>
