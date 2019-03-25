@@ -27,7 +27,5 @@ db.sequelize.authenticate().then(() => {
   app.context.db = db;
 
   const port = process.env.SERVER_PORT || 3001;
-  server.listen(port, () =>
-    console.log(`✅  The server is running at http://localhost:${port}/`)
-  );
+  server.listen(port, () => console.log(`✅  The server is running at http://localhost:${port}/`));
 });
