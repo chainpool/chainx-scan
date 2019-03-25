@@ -14,7 +14,7 @@ import { BlockChainNav, CrossChainNav } from "../components";
 
 export default function Main() {
   return (
-    <div className="section">
+    <div className="section main-content">
       <section className="container">
         <Switch>
           <Route exact path="/" component={Home} />

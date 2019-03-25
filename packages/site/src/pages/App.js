@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
+import Footer from "./Footer";
 import { AppContextProvider } from "../components/AppContext";
 
 export default function App() {
@@ -11,6 +12,7 @@ export default function App() {
         <React.Fragment>
           <Header />
           <Main />
+          <Footer />
         </React.Fragment>
       </Router>
     </AppContextProvider>

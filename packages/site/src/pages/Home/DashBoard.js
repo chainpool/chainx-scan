@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { useSubject, SubjectState } from "../../shared";
 import api from "../../services/api";
-import { Amount, Number } from "../../components";
+import { Amount, Number, Spinner } from "../../components";
 
 const subject = new SubjectState({ data: {} });
 
@@ -54,17 +54,25 @@ export default function DashBoard() {
     }
   ];
 
+  const loading = (
+    <div style={{ height: 176, background: "#fff", width: "100%", display: "flex" }}>
+      <Spinner />
+    </div>
+  );
+
   return (
     <section className="panel">
       <div className="panel-heading">链状态</div>
       <div className="panel-block" style={{ padding: 0 }}>
         <div className="columns is-multiline is-gapless" style={{ width: "100%" }}>
-          {dataSource.map(item => (
-            <div key={item.label} className="column is-3 dashboard-cell">
-              <div className="dashboard-cell__title">{item.label}</div>
-              <div className="dashboard-cell__content">{item.data}</div>
-            </div>
-          ))}
+          {dataSource && data && data.best
+            ? dataSource.map(item => (
+                <div key={item.label} className="column is-3 dashboard-cell">
+                  <div className="dashboard-cell__title">{item.label}</div>
+                  <div className="dashboard-cell__content">{item.data}</div>
+                </div>
+              ))
+            : loading}
         </div>
       </div>
     </section>

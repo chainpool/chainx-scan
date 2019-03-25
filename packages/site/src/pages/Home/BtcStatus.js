@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 import { SubjectState, useSubject } from "../../shared";
 import api from "../../services/api";
-import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink } from "../../components";
+import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink, Spinner } from "../../components";
 
 const subject = new SubjectState({ data: [] });
 
@@ -17,6 +17,14 @@ export default function BtcStatus() {
   const getTxNumber = txid => {
     return JSON.parse(txid).length;
   };
+
+  const loading = (
+    <tr style={{ height: 370, background: "#fff" }}>
+      <td colSpan="6" style={{ verticalAlign: "middle" }}>
+        <Spinner />
+      </td>
+    </tr>
+  );
 
   return (
     <section className="panel">
@@ -34,39 +42,40 @@ export default function BtcStatus() {
             </tr>
           </thead>
           <tbody>
-            {data &&
-              data.map(btcBlock => (
-                <tr key={btcBlock.bitcoin_height}>
-                  <td>
-                    <ExternalLink
-                      type="btcHash"
-                      value={btcBlock.header}
-                      render={() => {
-                        return <Number value={btcBlock.bitcoin_height} />;
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <ExternalLink
-                      type="btcHash"
-                      value={btcBlock.header}
-                      render={() => {
-                        return <Hash style={{ width: 136 }} className="text-truncate" value={btcBlock.header} />;
-                      }}
-                    />
-                  </td>
-                  <td>
-                    <DateShow value={btcBlock.time * 1000} />
-                  </td>
-                  <td>
-                    <AddressLink style={{ width: 136 }} className="text-truncate" value={btcBlock.relay} />
-                  </td>
-                  <td>
-                    <TxLink style={{ width: 136 }} className="text-truncate" value={btcBlock.chainx_tx} />
-                  </td>
-                  <td className="has-text-right">{getTxNumber(btcBlock.txid)}</td>
-                </tr>
-              ))}
+            {data && data.length
+              ? data.map(btcBlock => (
+                  <tr key={btcBlock.bitcoin_height}>
+                    <td>
+                      <ExternalLink
+                        type="btcHash"
+                        value={btcBlock.header}
+                        render={() => {
+                          return <Number value={btcBlock.bitcoin_height} />;
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <ExternalLink
+                        type="btcHash"
+                        value={btcBlock.header}
+                        render={() => {
+                          return <Hash style={{ width: 136 }} className="text-truncate" value={btcBlock.header} />;
+                        }}
+                      />
+                    </td>
+                    <td>
+                      <DateShow value={btcBlock.time * 1000} />
+                    </td>
+                    <td>
+                      <AddressLink style={{ width: 136 }} className="text-truncate" value={btcBlock.relay} />
+                    </td>
+                    <td>
+                      <TxLink style={{ width: 136 }} className="text-truncate" value={btcBlock.chainx_tx} />
+                    </td>
+                    <td className="has-text-right">{getTxNumber(btcBlock.txid)}</td>
+                  </tr>
+                ))
+              : loading}
           </tbody>
         </table>
       </div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { AddressLink, BlockLink, Number } from "../../components";
+import { AddressLink, BlockLink, Number, Spinner } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { SubjectState, useSubject } from "../../shared";
 import api from "../../services/api";
@@ -16,6 +16,14 @@ export default function Blocks() {
     return () => subscription.unsubscribe();
   }, [api]);
 
+  const loading = (
+    <tr style={{ height: 370, background: "#fff" }}>
+      <td colSpan="3" style={{ verticalAlign: "middle" }}>
+        <Spinner />
+      </td>
+    </tr>
+  );
+
   return (
     <section className="panel">
       <div className="panel-heading">最新区块</div>
@@ -29,19 +37,21 @@ export default function Blocks() {
             </tr>
           </thead>
           <tbody>
-            {blocks.map(({ number, producer, extrinsics }) => (
-              <tr key={number}>
-                <td>
-                  <BlockLink value={number} />
-                </td>
-                <td>
-                  <AddressLink isValidator value={producer} />
-                </td>
-                <td className="has-text-right">
-                  <Number value={extrinsics} />
-                </td>
-              </tr>
-            ))}
+            {blocks && blocks.length
+              ? blocks.map(({ number, producer, extrinsics }) => (
+                  <tr key={number}>
+                    <td>
+                      <BlockLink value={number} />
+                    </td>
+                    <td>
+                      <AddressLink isValidator value={producer} />
+                    </td>
+                    <td className="has-text-right">
+                      <Number value={extrinsics} />
+                    </td>
+                  </tr>
+                ))
+              : loading}
           </tbody>
         </table>
       </div>

@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <section className="blockTransaction">
       <DashBoard />
-      <BtcStatus />
       <div className="columns">
         <div className="column">
           <BestBlocks />
@@ -18,6 +17,7 @@ export default function Home() {
           <BestTransactions />
         </div>
       </div>
+      <BtcStatus />
     </section>
   );
 }
