@@ -68,6 +68,10 @@ export default function BlockDetail(props) {
             data: <TxAction module={data.module} call={data.call} />
           },
           {
+            label: "参数",
+            data: JSON.stringify(data.args)
+          },
+          {
             label: "版本",
             data: data.version
           },

@@ -16,10 +16,15 @@ export default function Account(props) {
   } = match;
 
   const [detail, setDetail] = useState({});
+  const [loading, setLoading] = useState(false);
   const [activeKey, setActiveKey] = useState("nativeAsset");
 
   useEffect(() => {
-    const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data));
+    setLoading(false);
+    const subscription = api.fetchAccountDetail$(accountId).subscribe(data => {
+      setDetail(data);
+      setLoading(true);
+    });
     return () => subscription.unsubscribe();
   }, [accountId]);
 
