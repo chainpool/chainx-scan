@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { hexStripPrefix } from "@polkadot/util";
+import { NavLink } from "react-router-dom";
 
 import { BlockLink, AddressLink, TxLink, TxAction, PanelList } from "../../components";
 import { RenderEvents } from "../Events";
@@ -28,7 +29,18 @@ export default function BlockDetail(props) {
 
   return (
     <div>
-      <h4 className="title is-size-5">交易详情</h4>
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <NavLink to="/txs">交易列表</NavLink>
+          </li>
+          <li class="is-active">
+            <a href="#" aria-current="page">
+              交易详情
+            </a>
+          </li>
+        </ul>
+      </nav>
       <PanelList
         dataSource={[
           {

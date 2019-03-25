@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
+import { NavLink } from "react-router-dom";
 
 import api from "../../services/api";
 import { PanelList, AddressLink, Number } from "../../components";
@@ -24,7 +25,18 @@ export default function Account(props) {
 
   return (
     <div>
-      <h4 className="title is-size-5">账户详情</h4>
+      <nav class="breadcrumb" aria-label="breadcrumbs">
+        <ul>
+          <li>
+            <NavLink to="/accounts">账户列表</NavLink>
+          </li>
+          <li class="is-active">
+            <a href="#" aria-current="page">
+              账户详情
+            </a>
+          </li>
+        </ul>
+      </nav>
       <PanelList
         dataSource={[
           {
