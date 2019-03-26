@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
-import { NavLink } from "react-router-dom";
 
-import { BlockLink, AddressLink, DateShow, PanelList } from "../../components";
+import { BlockLink, AddressLink, DateShow, PanelList, Breadcrumb, Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
@@ -37,18 +36,22 @@ export default function BlockDetail(props) {
     return () => subscription.unsubscribe();
   }, [blockNumber]);
 
+  const breadcrumb = <Breadcrumb dataSource={[{ to: "/blocks", label: "区块列表" }, { label: "区块详情" }]} />;
+
+  if (!data || !data.number) {
+    return (
+      <>
+        {breadcrumb}
+        <div style={{ paddingTop: "30%" }}>
+          <Spinner />
+        </div>
+      </>
+    );
+  }
+
   return (
     <div>
-      <nav className="breadcrumb">
-        <ul>
-          <li>
-            <NavLink to="/blocks">区块列表</NavLink>
-          </li>
-          <li className="is-active">
-            <a href="#">区块详情</a>
-          </li>
-        </ul>
-      </nav>
+      {breadcrumb}
       <PanelList
         dataSource={[
           {

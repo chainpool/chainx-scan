@@ -157,7 +157,7 @@ a:focus {
 }
 
 .main-content {
-  min-height: calc(100vh - 52px - 60px);
+  min-height: calc(100vh - 52px - 50px);
 }
 
 /**
@@ -166,7 +166,7 @@ a:focus {
 
 .page-footer {
   border-top: 3px solid rgba(246, 201, 74, 0.65);
-  height: 60px;
+  height: 50px;
   background: #fafafa;
   color: rgba(74, 74, 108, 0.65);
   font-size: 12px;

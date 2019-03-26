@@ -16,3 +16,4 @@ export { default as OrderDirection } from "./OrderDirection";
 export { default as OrderStatus } from "./OrderStatus";
 export { default as OrderClass } from "./OrderClass";
 export { default as CrossChainNav } from "./CrossChainNav";
+export { default as Breadcrumb } from "./Breadcrumb";

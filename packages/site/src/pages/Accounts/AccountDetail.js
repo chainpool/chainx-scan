@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
-import { NavLink } from "react-router-dom";
 
 import api from "../../services/api";
-import { PanelList, AddressLink, Number } from "../../components";
+import { PanelList, AddressLink, Number, Breadcrumb, Spinner } from "../../components";
 import AccountAsset from "./AccountAsset";
 import AccountNomination from "./AccountNomination";
 import AccountOrder from "./AccountOrder";
@@ -20,28 +19,30 @@ export default function Account(props) {
   const [activeKey, setActiveKey] = useState("nativeAsset");
 
   useEffect(() => {
-    setLoading(false);
+    setLoading(true);
     const subscription = api.fetchAccountDetail$(accountId).subscribe(data => {
       setDetail(data);
-      setLoading(true);
+      setLoading(false);
     });
     return () => subscription.unsubscribe();
   }, [accountId]);
 
+  const breadcrumb = <Breadcrumb dataSource={[{ to: "/accounts", label: "账户列表" }, { label: "账户详情" }]} />;
+
+  if (loading) {
+    return (
+      <>
+        {breadcrumb}
+        <div style={{ paddingTop: "30%" }}>
+          <Spinner />
+        </div>
+      </>
+    );
+  }
+
   return (
-    <div>
-      <nav className="breadcrumb" aria-label="breadcrumbs">
-        <ul>
-          <li>
-            <NavLink to="/accounts">账户列表</NavLink>
-          </li>
-          <li className="is-active">
-            <a href="#" aria-current="page">
-              账户详情
-            </a>
-          </li>
-        </ul>
-      </nav>
+    <>
+      {breadcrumb}
       <PanelList
         dataSource={[
           {
@@ -103,6 +104,6 @@ export default function Account(props) {
         {detail && detail.accountId && activeKey === "orderList" && <AccountOrder accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "accountTrade" && <AccountTrade accountId={detail.accountId} />}
       </div>
-    </div>
+    </>
   );
 }
