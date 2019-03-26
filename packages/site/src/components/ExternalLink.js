@@ -14,6 +14,8 @@ export default function ExternalLink(props) {
     href = `https://live.blockcypher.com/btc-testnet/block/${value}/`;
   } else if (type === "btcTxid") {
     href = `https://live.blockcypher.com/btc-testnet/tx/${value}/`;
+  } else if (type === "btcAddress") {
+    href = `https://live.blockcypher.com/btc-testnet/address/${value}`;
   }
 
   return href ? (

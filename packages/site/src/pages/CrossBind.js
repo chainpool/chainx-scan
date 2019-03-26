@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, AddressLink } from "../components";
+import { Table, AddressLink, ExternalLink } from "../components";
 import { useSubject, SubjectState } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -30,7 +30,7 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
         return {
           key: data.accountid,
           pcxAddress: <AddressLink value={data.accountid} />,
-          btcAddress: data.address,
+          btcAddress: <ExternalLink type="btcAddress" value={data.address} />,
           channel: data.channel
         };
       })}
