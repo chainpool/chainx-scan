@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Amount } from "../../components";
+import { Table, Amount, TokenName } from "../../components";
 import api from "../../services/api";
 
 export default function AccountAsset(props) {
@@ -81,7 +81,7 @@ export default function AccountAsset(props) {
         list.map(data => {
           return {
             key: data.token,
-            token: data.token,
+            token: <TokenName value={data.token} />,
             free: <Amount value={data.Free} symbol={data.token} hideSymbol={true} />,
             reservedStaking: <Amount value={data.ReservedStaking} symbol={data.token} hideSymbol={true} />,
             reservedStakingRevocation: (

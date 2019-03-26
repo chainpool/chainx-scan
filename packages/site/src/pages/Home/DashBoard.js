@@ -4,6 +4,7 @@ import { NavLink } from "react-router-dom";
 import { useSubject, SubjectState } from "../../shared";
 import api from "../../services/api";
 import { Amount, Number, Spinner } from "../../components";
+import PCX from "../../assets/tokens/pcx.png";
 
 const subject = new SubjectState({ data: {} });
 
@@ -62,7 +63,10 @@ export default function DashBoard() {
 
   return (
     <section className="panel">
-      <div className="panel-heading">链状态</div>
+      <div className="panel-heading">
+        <img src={PCX} alt="pcx" className="panel-heading-icon" />
+        链状态
+      </div>
       <div className="panel-block" style={{ padding: 0 }}>
         <div className="columns is-multiline is-gapless" style={{ width: "100%" }}>
           {dataSource && data && data.best

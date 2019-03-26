@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 
 import api from "../../services/api";
-import { PanelList, AddressLink, Number, Breadcrumb, Spinner } from "../../components";
+import { PanelList, AddressLink, Number, Breadcrumb, Spinner, ExternalLink } from "../../components";
 import AccountAsset from "./AccountAsset";
 import AccountNomination from "./AccountNomination";
 import AccountOrder from "./AccountOrder";
@@ -55,7 +55,7 @@ export default function Account(props) {
           },
           {
             label: "BTC 充值地址",
-            data: detail.btcAddress
+            data: <ExternalLink type="btcAddress" value={detail.btcAddress} />
           }
         ]}
       />

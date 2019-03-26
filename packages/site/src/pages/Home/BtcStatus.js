@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { SubjectState, useSubject } from "../../shared";
 import api from "../../services/api";
 import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink, Spinner } from "../../components";
+import Bitcoin from "../../assets/tokens/btc.png";
 
 const subject = new SubjectState({ data: [] });
 
@@ -28,7 +29,10 @@ export default function BtcStatus() {
 
   return (
     <section className="panel">
-      <div className="panel-heading">Bitcoin</div>
+      <div className="panel-heading">
+        <img src={Bitcoin} alt="Bitcoin" className="panel-heading-icon" />
+        Bitcoin
+      </div>
       <div className="panel-block">
         <table className="table is-striped is-fullwidth data-table">
           <thead>
