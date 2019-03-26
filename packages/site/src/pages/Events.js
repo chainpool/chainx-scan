@@ -26,7 +26,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
     <Table
       expandedRowRender={data => (
         <div>
-          <span>交易参数：</span>
+          <span>事件参数：</span>
           <span>{data.args}</span>
         </div>
       )}
