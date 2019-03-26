@@ -30,12 +30,12 @@ export default function Account(props) {
 
   return (
     <div>
-      <nav class="breadcrumb" aria-label="breadcrumbs">
+      <nav className="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li>
             <NavLink to="/accounts">账户列表</NavLink>
           </li>
-          <li class="is-active">
+          <li className="is-active">
             <a href="#" aria-current="page">
               账户详情
             </a>

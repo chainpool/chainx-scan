@@ -1,37 +1,24 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 
-import { hexStripPrefix, hexAddPrefix } from "@polkadot/util";
-import { fetch } from "../shared";
+import api from "../services/api";
 
 export default function InputSearch(props) {
   const { history } = props;
 
   const [str, setStr] = useState("");
 
-  async function search(input) {
-    input = input.trim();
-    if (!isNaN(input) && /^\d*$/.test(input)) {
-      history.push(`/blocks/${input}`);
-      setStr("");
-      return;
-    }
-    try {
-      const txResult = await fetch(`/tx/${hexStripPrefix(input)}`);
-      if (txResult && !txResult.error) {
+  const search = useCallback(
+    async str => {
+      const result = await api.search(str);
+      if (result.error) {
+        alert(result.error.message);
+      } else {
+        history.push(result.result);
         setStr("");
-        return history.push(`/txs/${hexAddPrefix(input)}`);
       }
-      const blockResult = await fetch(`/block/${hexAddPrefix(input)}`);
-      if (blockResult && !blockResult.error) {
-        setStr("");
-        return history.push(`/blocks/${hexAddPrefix(input)}`);
-      }
-      alert("找不到对应的交易或区块");
-    } catch {
-      alert("无效的值");
-      return;
-    }
-  }
+    },
+    [api]
+  );
 
   return (
     <input
@@ -45,7 +32,7 @@ export default function InputSearch(props) {
       style={{ minWidth: 350 }}
       className="input is-rounded"
       type="text"
-      placeholder="搜索区块高度/区块哈希/交易哈希"
+      placeholder="搜索区块高度/区块哈希/交易哈希/账户地址"
     />
   );
 }

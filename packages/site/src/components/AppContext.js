@@ -1,5 +1,5 @@
 import React, { useContext, useReducer, useEffect } from "react";
-import { fetch } from "../shared";
+import api from "../services/api";
 
 const AppContext = React.createContext();
 
@@ -19,20 +19,18 @@ function reducer(state, action) {
 export function AppContextProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  async function fetTokens() {
-    const result = await fetch("/tokens");
-    dispatch({ type: "setToken", payload: result });
-  }
-
-  async function fetchIntentions() {
-    const result = await fetch("/intentions?page_size=100");
-    dispatch({ type: "setIntentions", payload: result && result.items ? result.items : [] });
-  }
-
   useEffect(() => {
-    fetTokens();
-    fetchIntentions();
-  }, []);
+    const token = api.fetchTokens$().subscribe(result => {
+      dispatch({ type: "setToken", payload: result });
+    });
+    const intentions = api.fetchIntentions$({ pageSize: 200 }).subscribe(result => {
+      dispatch({ type: "setIntentions", payload: result && result.items ? result.items : [] });
+    });
+    return () => {
+      token.unsubcription();
+      intentions.unsubcription();
+    };
+  }, [api]);
 
   return <AppContext.Provider value={[state, dispatch]}>{props.children}</AppContext.Provider>;
 }

@@ -39,15 +39,13 @@ export default function BlockDetail(props) {
 
   return (
     <div>
-      <nav class="breadcrumb" aria-label="breadcrumbs">
+      <nav className="breadcrumb">
         <ul>
           <li>
             <NavLink to="/blocks">区块列表</NavLink>
           </li>
-          <li class="is-active">
-            <a href="#" aria-current="page">
-              区块详情
-            </a>
+          <li className="is-active">
+            <a href="#">区块详情</a>
           </li>
         </ul>
       </nav>

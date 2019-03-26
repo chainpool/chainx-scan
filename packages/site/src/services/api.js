@@ -3,6 +3,8 @@ import { from, throwError, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
 
+import { decodeAddress } from "../shared";
+
 class Api {
   endpoint = null;
   socket = null;
@@ -17,7 +19,11 @@ class Api {
     for (const key of Object.keys(params)) {
       url.searchParams.set(paramsKeyConvert(key), params[key]);
     }
-    return from(window.fetch(url, options).then(response => response.json())).pipe(
+    return window.fetch(url, options).then(response => response.json());
+  };
+
+  fetch$ = (path, params = {}, options) => {
+    return from(this.fetch(path, params, options)).pipe(
       catchError(err => {
         // @todo 全局的错误上报处理
         return throwError(err);
@@ -48,14 +54,14 @@ class Api {
    * 获取账户详情
    */
   fetchAccountDetail$ = accountId => {
-    return this.fetch(`/account/${accountId}/detail`);
+    return this.fetch$(`/account/${accountId}/detail`);
   };
 
   /**
    * 获取账户跨链资产列表
    */
   fetchAccountBalance$ = accountId => {
-    return this.fetch(`/account/${accountId}/balance`);
+    return this.fetch$(`/account/${accountId}/balance`);
   };
 
   /**
@@ -83,49 +89,49 @@ class Api {
    * 获取验证人列表
    */
   fetchIntentions$ = (params, options) => {
-    return this.fetch(`/intentions`, params, options);
+    return this.fetch$(`/intentions`, params, options);
   };
 
   /**
    * 获取区块列表
    */
   fetchBlocks$ = (params, options) => {
-    return this.fetch(`/blocks`, params, options);
+    return this.fetch$(`/blocks`, params, options);
   };
 
   /**
    * 获取交易列表
    */
   fetchTxs$ = (params, options) => {
-    return this.fetch(`/txs`, params, options);
+    return this.fetch$(`/txs`, params, options);
   };
 
   /**
    * 获取事件列表
    */
   fetchEvents$ = (params, options) => {
-    return this.fetch(`/events`, params, options);
+    return this.fetch$(`/events`, params, options);
   };
 
   /**
    * 获取账号列表
    */
   fetchAccounts$ = (params, options) => {
-    return this.fetch(`/accounts`, params, options);
+    return this.fetch$(`/accounts`, params, options);
   };
 
   /**
    * 获取区块详情
    */
   fetchBlockDetail$ = blockId => {
-    return this.fetch(`/block/${blockId}`);
+    return this.fetch$(`/block/${blockId}`);
   };
 
   /**
    * 获取交易详情
    */
   fetchTxDetail$ = txId => {
-    return this.fetch(`/tx/${txId}`);
+    return this.fetch$(`/tx/${txId}`);
   };
 
   /**
@@ -139,49 +145,101 @@ class Api {
    * 获取账户资产列表
    */
   fetchAccountAssset$ = (accountId, params) => {
-    return this.fetch(`/account/${hexAddPrefix(accountId)}/balance`, params);
+    return this.fetch$(`/account/${hexAddPrefix(accountId)}/balance`, params);
   };
 
   /**
    * 获取账户投票列表
    */
   fetchAccountNominations$ = (accountId, params) => {
-    return this.fetch(`/account/${hexAddPrefix(accountId)}/nominations`, params);
+    return this.fetch$(`/account/${hexAddPrefix(accountId)}/nominations`, params);
   };
 
   /**
    * 获取账户挂单列表
    */
   fetchAccountOrders$ = (accountId, params) => {
-    return this.fetch(`/trade/userorders/${hexStripPrefix(accountId)}`, params);
+    return this.fetch$(`/trade/userorders/${hexStripPrefix(accountId)}`, params);
   };
 
   /**
    * 获取账户交易列表
    */
   fetchAccountTxs$ = (accountId, params) => {
-    return this.fetch(`/account/${hexStripPrefix(accountId)}/txs`, params);
+    return this.fetch$(`/account/${hexStripPrefix(accountId)}/txs`, params);
   };
 
   /**
    * 跨链 BTC 列表
    */
   fetchBtcBlocks$ = params => {
-    return this.fetch(`/btc/headers`, params);
+    return this.fetch$(`/btc/headers`, params);
   };
 
   /**
    * 跨链 BTC 交易
    */
   fetchBtcTxs$ = params => {
-    return this.fetch(`/btc/txs`, params);
+    return this.fetch$(`/btc/txs`, params);
   };
 
   /**
    * 跨链 BTC 绑定地址
    */
   fetchBtcBind$ = params => {
-    return this.fetch(`/btc/addresses`, params);
+    return this.fetch$(`/btc/addresses`, params);
+  };
+
+  /**
+   * 获取 token 和精度对应关系
+   */
+  fetchTokens$ = params => {
+    return this.fetch$("/tokens", params);
+  };
+
+  /**
+   * 搜索，返回一个对象
+   */
+  search = async (input = "") => {
+    input = input.trim();
+    if (isNaN(input) && /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{48,}$/.test(input)) {
+      try {
+        const address = decodeAddress(input);
+        return {
+          result: `/accounts/${address}`
+        };
+      } catch {}
+    }
+    if (!isNaN(input) && /^\d*$/.test(input)) {
+      return {
+        result: `/blocks/${input}`
+      };
+    }
+    try {
+      const txResult = await this.fetch(`/tx/${hexStripPrefix(input)}`);
+      if (txResult && !txResult.error) {
+        return {
+          result: `/txs/${hexAddPrefix(input)}`
+        };
+      }
+      const blockResult = await this.fetch(`/block/${hexAddPrefix(input)}`);
+      if (blockResult && !blockResult.error) {
+        return {
+          result: `/blocks/${hexAddPrefix(input)}`
+        };
+      }
+      return {
+        error: {
+          message: "找不到对应的交易或区块"
+        }
+      };
+    } catch {
+      return {
+        error: {
+          message: "无效的值"
+        }
+      };
+    }
   };
 }
 

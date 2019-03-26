@@ -29,12 +29,12 @@ export default function BlockDetail(props) {
 
   return (
     <div>
-      <nav class="breadcrumb" aria-label="breadcrumbs">
+      <nav className="breadcrumb" aria-label="breadcrumbs">
         <ul>
           <li>
             <NavLink to="/txs">交易列表</NavLink>
           </li>
-          <li class="is-active">
+          <li className="is-active">
             <a href="#" aria-current="page">
               交易详情
             </a>
