@@ -24,9 +24,10 @@ export default function Validators(props) {
       pagination={tableData.pagination}
       dataSource={
         tableData.dataSource &&
-        tableData.dataSource.map(data => {
+        tableData.dataSource.map((data, index) => {
           return {
-            key: `${data.accountid}${data.height}`,
+            key: `${data.accountid}`,
+            index: (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1,
             name: <AddressLink isValidator value={data.accountid} />,
             url: <ExternalLink value={data.url} />,
             address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
@@ -37,6 +38,10 @@ export default function Validators(props) {
         })
       }
       columns={[
+        {
+          title: "排名",
+          dataIndex: "index"
+        },
         {
           title: "名称",
           dataIndex: "name"
