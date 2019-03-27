@@ -107,6 +107,7 @@ class TradeController {
     ctx.body = {
       items: items.map(item => ({
         ...item,
+        fill_index: JSON.parse(item.fill_index),
         ["pair.currency_pair"]: JSON.parse(item["pair.currency_pair"]),
         ["pair.online"]: item["pair.online"] === "true"
       })),
