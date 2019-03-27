@@ -33,6 +33,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       bitcoin_height: {
         type: DataTypes.BIGINT
+      },
+      header: {
+        type: DataTypes.STRING
       }
     },
     {
