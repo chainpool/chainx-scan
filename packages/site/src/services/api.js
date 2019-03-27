@@ -228,9 +228,18 @@ class Api {
           result: `/blocks/${hexAddPrefix(input)}`
         };
       }
+
+      const accountResult = await this.fetch(`/account/${hexAddPrefix(input)}/detail`);
+
+      if (accountResult && !accountResult.error) {
+        return {
+          result: `/accounts/${hexAddPrefix(input)}`
+        };
+      }
+
       return {
         error: {
-          message: "找不到对应的交易或区块"
+          message: "找不到对应的交易、区块或账号"
         }
       };
     } catch {
