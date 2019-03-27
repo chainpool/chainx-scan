@@ -1,18 +1,26 @@
 const Address = require("btc-address");
 const binConv = require("binstring");
 
-function stringToBytes(s) {
-  const data = new Uint8Array(s.length);
-  for (let i = 0; i < s.length; i++) {
-    data[i] = s.charCodeAt(i);
+function hexToBytes(str) {
+  if (!str) {
+    return [];
   }
-  return data;
+  var a = [];
+  for (var i = str.startsWith("0x") ? 2 : 0, len = str.length; i < len; i += 2) {
+    a.push(parseInt(str.substr(i, 2), 16));
+  }
+
+  return a;
 }
 
+//XAccounts_CrossChainAddressMapOf #ADDRESS
+//->bitcoin address
+
 function toBtcAddress(btc_layout) {
-  let b = stringToBytes(btc_layout.startsWith("0x") ? btc_layout.slice(2) : btc_layout);
+  let b = hexToBytes(btc_layout);
   let v = b.slice(0, 1);
   let h = b.slice(1, 21);
+  let c = b.slice(22, 25);
 
   let n = "testnet";
   let t = "pubkeyhash";
