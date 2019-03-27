@@ -137,6 +137,34 @@ class TradeController {
 
     ctx.body = fills;
   }
+
+  async filledOrdersByIds(ctx) {
+    const { id } = ctx.query;
+    if (!id) {
+      ctx.status = 400;
+      ctx.body = { error: "no id query param" };
+      return;
+    }
+
+    const ids = id.split(",").map(i => parseInt(i));
+    for (let i of ids) {
+      if (isNaN(i)) {
+        ctx.status = 400;
+        ctx.body = { error: "invalid id" };
+        return;
+      }
+    }
+
+    const orders = await ctx.db.FilledOrder.findAll({
+      where: {
+        id: {
+          $in: ids
+        }
+      }
+    });
+
+    ctx.body = orders;
+  }
 }
 
 module.exports = new TradeController();

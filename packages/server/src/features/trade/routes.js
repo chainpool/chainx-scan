@@ -9,5 +9,6 @@ router.get("/trade/latestfills/:pairId", tradeController.latestFills);
 router.get("/trade/userorders/:accountId", tradeController.userOrders);
 router.get("/trade/userorder/fills/:accountId/:index", tradeController.orderFills);
 router.get("/kline", klineController.getCandles);
+router.get("/trade/fill_orders", tradeController.filledOrdersByIds);
 
 module.exports = router;
