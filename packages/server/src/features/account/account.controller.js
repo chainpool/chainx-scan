@@ -6,7 +6,8 @@ class AccountController {
 
     const { rows: intentions, count } = await ctx.db.Intention.findAndCountAll({
       limit: pageSize,
-      offset: page * pageSize
+      offset: page * pageSize,
+      order: [["totalNomination", "DESC"]]
     });
 
     const items = intentions.map(intention => {
