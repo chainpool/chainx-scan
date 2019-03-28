@@ -31,6 +31,9 @@ export default function Validators(props) {
             name: <AddressLink isValidator value={data.accountid} />,
             url: <ExternalLink value={data.url} />,
             address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
+            jackpotAddress: (
+              <AddressLink value={data.jackpotAddress} style={{ maxWidth: 136 }} className="text-truncate" />
+            ),
             selfVote: <Amount value={data.selfVote} />,
             totalNomination: <Amount value={data.totalNomination} />,
             jackpot: <Amount value={data.jackpot} />
@@ -53,6 +56,10 @@ export default function Validators(props) {
         {
           title: "账户地址",
           dataIndex: "address"
+        },
+        {
+          title: "奖池金额",
+          dataIndex: "jackpotAddress"
         },
         {
           title: "自抵押数",
