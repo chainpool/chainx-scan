@@ -1,4 +1,5 @@
 const { extractPage } = require("../utils");
+const { toBtcAddress } = require("../btc/address");
 
 class AccountController {
   async intentions(ctx) {
@@ -66,7 +67,7 @@ class AccountController {
       attributes: ["nonce"],
       raw: true
     });
-    const addressMap = await ctx.db.CrossChainAddressMap.findOne({
+    const addresses = await ctx.db.CrossChainAddressMap.findAll({
       where: { accountid: accountId, chain: "Bitcoin" },
       attributes: ["address"],
       raw: true
@@ -75,7 +76,7 @@ class AccountController {
     ctx.body = {
       accountId,
       txCount: nonce ? nonce.nonce : 0,
-      btcAddress: addressMap ? addressMap.address : null
+      btcAddresses: addresses.map(address => toBtcAddress(address.address))
     };
   }
 
