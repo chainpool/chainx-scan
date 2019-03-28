@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
+import { NavLink } from "react-router-dom";
 
 import { SubjectState, useSubject } from "../../shared";
 import api from "../../services/api";
 import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink, Spinner } from "../../components";
 import Bitcoin from "../../assets/tokens/btc.png";
+import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 
 const subject = new SubjectState({ data: [] });
 
@@ -82,6 +84,12 @@ export default function BtcStatus() {
               : loading}
           </tbody>
         </table>
+      </div>
+      <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
+        <NavLink className="view-more" to="/crossblocks">
+          查看全部
+          <IconChevronRight />
+        </NavLink>
       </div>
     </section>
   );
