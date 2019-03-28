@@ -55,7 +55,16 @@ export default function Account(props) {
           },
           {
             label: "BTC 充值地址",
-            data: <ExternalLink type="btcAddress" value={detail.btcAddress} />
+            data: (
+              <>
+                {detail.btcAddress &&
+                  detail.btcAddress.map((address, index) => (
+                    <div key={index}>
+                      <ExternalLink type="btcAddress" value={address} />
+                    </div>
+                  ))}
+              </>
+            )
           }
         ]}
       />
