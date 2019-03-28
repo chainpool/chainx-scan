@@ -29,9 +29,9 @@ class BtcController {
     const { page, pageSize } = extractPage(ctx);
 
     const items = await ctx.db.sequelize.query(
-      `SELECT tx.txid, tx.tx_type, tx.header, header.time, tx.chainx_tx, tx.relay, block.time as "block.time" FROM "XBridgeOfBTC_TxFor" AS tx
+      `SELECT tx.txid, tx.tx_type, tx.header, header.time, tx.chainx_tx, tx.relay, transaction.time as "block.time" FROM "XBridgeOfBTC_TxFor" AS tx
       INNER JOIN "XBridgeOfBTC_BlockHeaderFor" AS header on tx.header=header.header
-      INNEr JOIN "block" ON block.number=tx.height
+      INNER JOIN "transaction" ON transaction.hash=tx.chainx_tx
       WHERE tx.header IS NOT NULL
       ORDER BY tx.height DESC
       LIMIT ${pageSize} OFFSET ${page * pageSize}`,
