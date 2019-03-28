@@ -52,7 +52,7 @@ module.exports = (sequelize, DataTypes) => {
   );
 
   BtcHeader.associate = function(models) {
-    BtcHeader.belongsTo(models.Block, { foreignKey: "height", targetKey: "number", as: "block" });
+    BtcHeader.belongsTo(models.Transaction, { foreignKey: "chainx_tx", targetKey: "hash", as: "block" });
   };
 
   return BtcHeader;

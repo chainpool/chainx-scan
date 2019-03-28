@@ -6,7 +6,8 @@ class BtcController {
     const { page, pageSize } = extractPage(ctx);
 
     const { rows, count } = await ctx.db.BtcHeader.findAndCountAll({
-      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      where: { chainx_tx: { $ne: null } },
+      include: [{ model: ctx.db.Transaction, as: "block", attributes: ["time"] }],
       order: [["time", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
@@ -32,7 +33,7 @@ class BtcController {
       `SELECT tx.txid, tx.tx_type, tx.header, header.time, tx.chainx_tx, tx.relay, transaction.time as "block.time" FROM "XBridgeOfBTC_TxFor" AS tx
       INNER JOIN "XBridgeOfBTC_BlockHeaderFor" AS header on tx.header=header.header
       INNER JOIN "transaction" ON transaction.hash=tx.chainx_tx
-      WHERE tx.header IS NOT NULL
+      WHERE tx.header IS NOT NULL AND tx.chainx_tx IS NOT NULL
       ORDER BY tx.height DESC
       LIMIT ${pageSize} OFFSET ${page * pageSize}`,
       {
