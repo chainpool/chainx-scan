@@ -57,6 +57,11 @@ export default function AccountAsset(props) {
       align: "right"
     },
     {
+      title: "提现冻结",
+      dataIndex: "reservedWithdrawal",
+      align: "right"
+    },
+    {
       title: "赎回冻结",
       dataIndex: "reservedStakingRevocation",
       align: "right"
