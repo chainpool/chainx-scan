@@ -10,6 +10,7 @@ import Validators from "./Validators";
 import CrossBlocks from "./CrossBlocks";
 import CrossTxs from "./CrossTxs";
 import CrossBind from "./CrossBind";
+import Dapp from "./Dapp";
 import { BlockChainNav, CrossChainNav } from "../components";
 
 export default function Main() {
@@ -65,6 +66,7 @@ export default function Main() {
               </div>
             )}
           />
+          <Route path="/dapp" component={Dapp} />
           <Redirect to="/" />
         </Switch>
       </section>

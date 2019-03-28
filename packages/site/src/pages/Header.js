@@ -37,6 +37,9 @@ export default withRouter(function Header(props) {
       >
         跨链轻节点
       </NavLink>
+      <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/dapp">
+        Dapp
+      </NavLink>
     </div>
   );
 

@@ -198,6 +198,20 @@ class Api {
   };
 
   /**
+   * 获取 pairs 列表
+   */
+  fetchPairs$ = params => {
+    return this.fetch$("/trade/pairs", params);
+  };
+
+  /**
+   * 获取挂单列表
+   */
+  fetchHandicap$ = (pairid, params) => {
+    return this.fetch$(`/trade/handicap/${pairid}`, params);
+  };
+
+  /**
    * 搜索，返回一个对象
    */
   search = async (input = "") => {

@@ -1,5 +1,5 @@
 import { BehaviorSubject } from "rxjs";
-import { scan, shareReplay, distinctUntilChanged } from "rxjs/operators";
+import { scan, publishReplay, refCount, distinctUntilChanged } from "rxjs/operators";
 
 export default class SubjectState {
   constructor(initState) {
@@ -9,15 +9,9 @@ export default class SubjectState {
         return { ...acc, ...newVal };
       }, initState),
       distinctUntilChanged(),
-      shareReplay({
-        bufferSize: 1,
-        refCount: true
-      })
+      publishReplay(1),
+      refCount()
     );
-  }
-
-  getValue() {
-    return this.subject.getValue();
   }
 
   setState(value) {

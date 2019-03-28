@@ -3,7 +3,7 @@ import { useAppContext } from "./AppContext";
 
 function numberToAmount(
   number,
-  { symbol = "", hideSymbol = false, precision = 0, unsetDigits = false, useGrouping = true } = {}
+  { symbol = "", minDigits, hideSymbol = false, precision = 0, unsetDigits = false, useGrouping = true } = {}
 ) {
   if (number === null || number === undefined) return "";
   if (isNaN(number)) {
@@ -11,25 +11,52 @@ function numberToAmount(
   }
   const options = {};
 
-  if (!hideSymbol && symbol) {
-    options.style = "currency";
-    options.currencyDisplay = "name";
-    options.currency = symbol;
-  }
-
   if (!unsetDigits) {
-    options.minimumFractionDigits = precision;
+    if (minDigits !== undefined) {
+      options.minimumFractionDigits = minDigits;
+    } else {
+      options.minimumFractionDigits = precision;
+    }
   }
 
   options.useGrouping = useGrouping;
 
-  return (number / Math.pow(10, precision)).toLocaleString(undefined, options);
+  const value = (number / Math.pow(10, precision)).toLocaleString(undefined, options);
+
+  if (!hideSymbol && symbol) {
+    return `${value} ${symbol}`;
+  }
+
+  return value;
 }
 
 export default memo(function Amount(props) {
-  const { value, symbol = "PCX", hideSymbol = false, unsetDigits = false, useGrouping = true } = props;
+  const {
+    value,
+    precision,
+    minDigits,
+    symbol = "PCX",
+    hideSymbol = false,
+    unsetDigits = false,
+    useGrouping = true
+  } = props;
   const [{ tokens }] = useAppContext();
-  if (!tokens.length) return null;
-  const { precision } = tokens.find(token => token.token === symbol.toUpperCase());
-  return numberToAmount(value, { symbol, hideSymbol, precision, unsetDigits, useGrouping });
+
+  let tokenPrecision = precision;
+  if (tokenPrecision === undefined) {
+    if (!tokens.length) return null;
+    const findToken = tokens.find(token => token.token === symbol.toUpperCase());
+    if (findToken) {
+      tokenPrecision = findToken.precision;
+    }
+  }
+
+  return numberToAmount(value, {
+    symbol,
+    hideSymbol,
+    precision: tokenPrecision,
+    unsetDigits,
+    useGrouping,
+    minDigits
+  });
 });

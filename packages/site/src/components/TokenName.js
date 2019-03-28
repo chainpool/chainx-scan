@@ -1,12 +1,12 @@
 import React from "react";
 import PCX from "../assets/tokens/pcx.png";
 import BTC from "../assets/tokens/btc.png";
-import XDOT from "../assets/tokens/xdot.png";
+import SDOT from "../assets/tokens/sdot.png";
 
 const iconMap = {
   PCX,
   BTC,
-  XDOT
+  SDOT
 };
 
 export default function TokenName(props) {

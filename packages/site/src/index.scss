@@ -246,3 +246,123 @@ a:focus {
   border-bottom-color: #4183c4;
   animation: spinner 0.8s ease infinite;
 }
+
+/**
+ * pairs
+ */
+.pairs {
+  padding: 0;
+  align-items: normal;
+  .pairs-items {
+    width: 50%;
+    font-size: 20px;
+    color: #3f3f3f;
+    border-right: 1px solid #dbdbdb;
+    background: hsl(0, 0%, 96%);
+  }
+  .pairs-item {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #dbdbdb;
+    cursor: pointer;
+    &.active {
+      background: #fff;
+      border-left: 3px solid $primary;
+    }
+  }
+  .pairs-item-icon {
+    margin-left: 16px;
+    margin-right: 16px;
+    margin-top: -2px;
+    height: 40px;
+  }
+  .pairs-content {
+    width: 50%;
+    padding: 24px;
+    color: #343434;
+  }
+  .pairs-content-item {
+    margin-bottom: 24px;
+    .pairs-content-item__label {
+      font-size: 12px;
+      color: hsl(0, 0%, 48%);
+    }
+  }
+}
+
+/**
+ * 挂单列表
+ */
+.handicap {
+  align-items: normal;
+  padding: 20px;
+  font-size: 12px;
+  .handicap-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .handicap-header {
+    display: flex;
+    color: #363636;
+    margin-bottom: 16px;
+  }
+  .handicap-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+  .handicap-step {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .handicap-sell {
+    flex: 1 1 0%;
+  }
+  .handicap-now-price {
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .handicap-buy {
+    flex: 1 1 0%;
+  }
+  .bid-item {
+    display: flex;
+  }
+  .ask-item {
+    display: flex;
+  }
+  .price {
+    text-align: left;
+    flex: 0.8 1 0%;
+  }
+  .last-price {
+    font-size: 16px;
+    color: #34c69a;
+  }
+  .amount {
+    text-align: right;
+    flex: 1 1 0%;
+  }
+  .total {
+    text-align: right;
+    flex: 1 1 0%;
+  }
+  .handicap-buy,
+  .handicap-sell {
+    line-height: 25px;
+    .odd {
+      background: whitesmoke;
+    }
+  }
+  .handicap-sell .price {
+    color: #ea754b;
+  }
+  .handicap-buy .price {
+    color: #34c69a;
+  }
+}
