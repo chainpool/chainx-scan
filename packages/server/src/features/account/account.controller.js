@@ -61,7 +61,11 @@ class AccountController {
   async accountDetail(ctx) {
     const { accountId } = ctx.params;
 
-    const count = await ctx.db.Transaction.count({ where: { signed: accountId } });
+    const nonce = await ctx.db.AccountNonce.findOne({
+      where: { accountid: accountId },
+      attributes: ["nonce"],
+      raw: true
+    });
     const addressMap = await ctx.db.CrossChainAddressMap.findOne({
       where: { accountid: accountId, chain: "Bitcoin" },
       attributes: ["address"],
@@ -70,7 +74,7 @@ class AccountController {
 
     ctx.body = {
       accountId,
-      txCount: count,
+      txCount: nonce ? nonce.nonce : 0,
       btcAddress: addressMap ? addressMap.address : null
     };
   }
