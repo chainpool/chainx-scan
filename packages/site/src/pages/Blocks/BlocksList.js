@@ -44,11 +44,11 @@ export default function BlocksList() {
           dataIndex: "hash"
         },
         {
-          title: "时间",
+          title: "出块时间",
           dataIndex: "time"
         },
         {
-          title: "验证人",
+          title: "验证节点",
           dataIndex: "producer"
         },
         {
