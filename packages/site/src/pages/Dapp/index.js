@@ -3,14 +3,14 @@ import classnames from "classnames";
 
 import PairList from "./PairList";
 import PendingOrders from "./PendingOrders";
-import { useSubject, SubjectState } from "../../shared";
+import { useRedux, createStore } from "../../shared";
 import api from "../../services/api";
 
-const subject = new SubjectState({ pairs: [], loadingHandicap: true });
+const store = createStore({ pairs: [], loadingHandicap: true });
 
 export default function Dapp() {
   const [activeKey, setActiveKey] = useState("currentEntrust");
-  const [{ pairs, activePairId, loadingHandicap, handicap }, setState] = useSubject(subject);
+  const [{ pairs, activePairId, loadingHandicap, handicap }, setState] = useRedux(store);
 
   const activePair = useMemo(() => {
     const pair = pairs.find(pair => pair.pairid === activePairId) || pairs[0];

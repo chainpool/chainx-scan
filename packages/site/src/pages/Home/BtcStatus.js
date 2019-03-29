@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { SubjectState, useSubject } from "../../shared";
+import { useRedux, createStore } from "../../shared";
 import api from "../../services/api";
 import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink, Spinner } from "../../components";
 import Bitcoin from "../../assets/tokens/btc.png";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 
-const subject = new SubjectState({ data: [] });
+const store = createStore({ data: [] });
 
 export default function BtcStatus() {
-  const [{ data }, setState] = useSubject(subject);
+  const [{ data }, setState] = useRedux(store);
 
   useEffect(() => {
     const subscription = api.fetchBtcStatus$().subscribe(data => setState({ data: data }));

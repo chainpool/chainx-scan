@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 import { TxLink, AddressLink, TxAction, Spinner } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import api from "../../services/api";
-import { useSubject, SubjectState } from "../../shared";
+import { useRedux, createStore } from "../../shared";
 
-const subject = new SubjectState({ txs: [] });
+const store = createStore({ txs: [] });
 
 export default function BestTransactions() {
-  const [{ txs }, setState] = useSubject(subject);
+  const [{ txs }, setState] = useRedux(store);
 
   useEffect(() => {
     const subscription = api.fetchLatestTxs$().subscribe(data => setState({ txs: data }));
