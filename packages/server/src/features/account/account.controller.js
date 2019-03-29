@@ -14,7 +14,7 @@ class AccountController {
     const items = intentions.map(intention => {
       Object.assign(intention.dataValues, {
         isActive: intention.dataValues.isActive === "true",
-        isTrustee: intention.dataValues.isTrustee === "true",
+        isTrustee: JSON.parse(intention.dataValues.isTrustee),
         isValidator: intention.dataValues.isValidator === "true"
       });
       return intention;
