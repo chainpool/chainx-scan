@@ -34,6 +34,10 @@ export default function DashBoard() {
       data: <Amount value={data.pcx_issuance} />
     },
     {
+      label: "验证节点选举届数",
+      data: <Number value={data.vote_cycle} />
+    },
+    {
       label: "验证节点数",
       data: (
         <NavLink to={`/validators`} className="nav-link">
@@ -44,10 +48,6 @@ export default function DashBoard() {
     {
       label: "用户投票总数",
       data: <Amount value={data.votes} />
-    },
-    {
-      label: "验证节点选举届数",
-      data: <Number value={data.vote_cycle} />
     }
   ];
 
