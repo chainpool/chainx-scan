@@ -2,6 +2,16 @@ const { extractPage } = require("../utils");
 const { toBtcAddress } = require("./address");
 
 class BtcController {
+  async status(ctx) {
+    const rows = await ctx.db.BtcStatus.findAll({
+      order: [["height", "DESC"]],
+      limit: 1,
+      raw: true
+    });
+
+    ctx.body = rows.length > 0 ? rows[0] : null;
+  }
+
   async headers(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
