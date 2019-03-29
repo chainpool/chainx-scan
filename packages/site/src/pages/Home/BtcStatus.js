@@ -39,12 +39,14 @@ export default function BtcStatus() {
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>块高</th>
-              <th>区块哈希</th>
-              <th>时间</th>
-              <th>中继人</th>
-              <th>ChainX 交易哈希</th>
-              <th className="has-text-right">交易数</th>
+              <th>BitCoin 块高</th>
+              <th>BitCoin 区块哈希</th>
+              <th>BitCoin 出块时间</th>
+              <th>nonce</th>
+              <th>跨链交易数</th>
+              <th>ChainX 中继交易哈希</th>
+              <th>ChainX 中继人</th>
+              <th>ChainX 中继时间</th>
             </tr>
           </thead>
           <tbody>
@@ -72,13 +74,17 @@ export default function BtcStatus() {
                     <td>
                       <DateShow value={btcBlock.time * 1000} />
                     </td>
+                    <td>{btcBlock.nonce}</td>
+                    <td>{getTxNumber(btcBlock.txid)}</td>
+                    <td>
+                      <TxLink style={{ width: 136 }} className="text-truncate" value={btcBlock.chainx_tx} />
+                    </td>
                     <td>
                       <AddressLink style={{ width: 136 }} className="text-truncate" value={btcBlock.relay} />
                     </td>
                     <td>
-                      <TxLink style={{ width: 136 }} className="text-truncate" value={btcBlock.chainx_tx} />
+                      <DateShow value={btcBlock["block.time"]} />
                     </td>
-                    <td className="has-text-right">{getTxNumber(btcBlock.txid)}</td>
                   </tr>
                 ))
               : loading}

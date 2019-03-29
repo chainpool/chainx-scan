@@ -18,23 +18,23 @@ export default function DashBoard() {
 
   const dataSource = [
     {
-      label: "最新块高",
+      label: "最新高度",
       data: <Number value={data.best} />
     },
     {
-      label: "确认块高",
+      label: "确认高度",
       data: <Number value={data.finalized} />
     },
     {
-      label: "交易总数",
+      label: "ChainX 交易总数",
       data: <Number value={data.transactions} />
     },
     {
-      label: "发行总数",
+      label: "发行总数(PCX)",
       data: <Amount value={data.pcx_issuance} />
     },
     {
-      label: "验证人数",
+      label: "验证节点数",
       data: (
         <NavLink to={`/validators`} className="nav-link">
           <Number value={data.validators} />
@@ -42,15 +42,11 @@ export default function DashBoard() {
       )
     },
     {
-      label: "投票总数",
+      label: "用户投票总数(PCX)",
       data: <Amount value={data.votes} />
     },
     {
-      label: "分红周期",
-      data: <Number value={data.dividend_cycle} />
-    },
-    {
-      label: "选举周期",
+      label: "验证节点选举届数",
       data: <Number value={data.vote_cycle} />
     }
   ];
