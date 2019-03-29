@@ -30,7 +30,7 @@ export default function DashBoard() {
       data: <Number value={data.transactions} />
     },
     {
-      label: "发行总数(PCX)",
+      label: "发行总数",
       data: <Amount value={data.pcx_issuance} />
     },
     {
@@ -42,7 +42,7 @@ export default function DashBoard() {
       )
     },
     {
-      label: "用户投票总数(PCX)",
+      label: "用户投票总数",
       data: <Amount value={data.votes} />
     },
     {
