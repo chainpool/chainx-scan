@@ -51,10 +51,6 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
           dataIndex: "event"
         },
         {
-          title: "交易序号",
-          dataIndex: "phaseValue"
-        },
-        {
           title: "事件序号",
           dataIndex: "index"
         },
