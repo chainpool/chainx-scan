@@ -6,7 +6,6 @@ class BtcController {
     const { page, pageSize } = extractPage(ctx);
 
     const { rows, count } = await ctx.db.BtcHeader.findAndCountAll({
-      where: { chainx_tx: { $ne: null } },
       include: [{ model: ctx.db.Transaction, as: "block", attributes: ["time"] }],
       order: [["time", "DESC"]],
       limit: pageSize,
