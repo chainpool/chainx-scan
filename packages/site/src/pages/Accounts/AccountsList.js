@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, AddressLink, Amount } from "../../components";
+import { Table, AddressLink, Amount, Number } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -24,8 +24,11 @@ export default function AccountsList() {
           return {
             key: data.accountid,
             accountid: <AddressLink value={data.accountid} />,
-            pcx: <Amount symbol="PCX" value={data.pcx || 0} />,
-            btc: <Amount symbol="BTC" value={data.btc || 0} />
+            pcxFree: <Amount symbol="PCX" value={data.pcx_free || 0} hideSymbol />,
+            pcx: <Amount symbol="PCX" value={data.pcx || 0} hideSymbol />,
+            btc: <Amount symbol="BTC" value={data.btc || 0} hideSymbol />,
+            sdot: <Amount symbol="SDOT" value={data.sdot || 0} hideSymbol />,
+            nonce: <Number value={data.nonce} />
           };
         })
       }
@@ -35,13 +38,28 @@ export default function AccountsList() {
           dataIndex: "accountid"
         },
         {
-          title: "PCX 总余额",
+          title: "PCX可用余额",
+          dataIndex: "pcxFree",
+          align: "right"
+        },
+        {
+          title: "PCX总余额",
           dataIndex: "pcx",
           align: "right"
         },
         {
-          title: "BTC 总余额",
+          title: "BTC总余额",
           dataIndex: "btc",
+          align: "right"
+        },
+        {
+          title: "SDOT总余额",
+          dataIndex: "sdot",
+          align: "right"
+        },
+        {
+          title: "交易数",
+          dataIndex: "nonce",
           align: "right"
         }
       ]}

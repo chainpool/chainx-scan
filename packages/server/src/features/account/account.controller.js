@@ -34,13 +34,16 @@ class AccountController {
     const totalField = `"Free" + "ReservedStaking" + "ReservedStakingRevocation" + "ReservedWithdrawal" + "ReservedDexSpot" + "ReservedDexFuture" AS total`;
 
     const rows = await ctx.db.sequelize.query(
-      `SELECT DISTINCT(x.accountid), btc.total as btc, pcx.total + balance.balance as pcx FROM "XAssets_AssetBalance" AS x
+      `SELECT DISTINCT(x.accountid), btc.total as btc, sdot.total as sdot, balance.balance AS pcx_free, pcx.total + balance.balance as pcx, nonce.nonce FROM "XAssets_AssetBalance" AS x
       LEFT JOIN (SELECT accountid as id, ${totalField} FROM "XAssets_AssetBalance" WHERE token='BTC') as btc
       ON x.accountid=btc.id
       LEFT JOIN (SELECT accountid as id, ${totalField} FROM "XAssets_AssetBalance" WHERE token='PCX') as pcx
       ON x.accountid=pcx.id
+      LEFT JOIN (SELECT accountid as id, ${totalField} FROM "XAssets_AssetBalance" WHERE token='SDOT') as sdot
+      ON x.accountid=sdot.id
       LEFT JOIN "Balances_FreeBalance" as balance
       ON x.accountid=balance.accountid
+      LEFT JOIN "System_AccountNonce" as nonce ON x.accountid=nonce.accountid
       LIMIT ${pageSize} OFFSET ${page * pageSize}`,
       {
         type: ctx.db.sequelize.QueryTypes.SELECT
