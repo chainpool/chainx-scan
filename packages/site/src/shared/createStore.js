@@ -1,12 +1,36 @@
-import { createStore } from "redux";
+import { createStore, combineReducers } from "redux";
 
-export default initState => {
-  return createStore((state = { ...initState }, action) => {
+const staticReducers = {
+  noop: (x = {}) => x
+};
+
+function createReducer(asyncReducers) {
+  return combineReducers({
+    ...staticReducers,
+    ...asyncReducers
+  });
+}
+
+export default function configureStore(initialState) {
+  const store = createStore(createReducer(), initialState);
+
+  store.asyncReducers = {};
+
+  store.injectReducer = (key, asyncReducer) => {
+    store.asyncReducers[key] = asyncReducer;
+    store.replaceReducer(createReducer(store.asyncReducers));
+  };
+
+  return store;
+}
+
+export const createCommonReducer = (namespace, initState) => {
+  return (state = { ...initState }, action) => {
     switch (action.type) {
-      case "SET_STATE":
+      case `${namespace}/setState`:
         return { ...state, ...action.payload };
       default:
         return state;
     }
-  });
+  };
 };

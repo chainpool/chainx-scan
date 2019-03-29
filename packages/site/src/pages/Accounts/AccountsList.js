@@ -2,13 +2,11 @@ import React, { useMemo, useEffect } from "react";
 
 import { Table, AddressLink, Amount } from "../../components";
 import TableService from "../../services/tableService";
-import { useRedux, createStore } from "../../shared";
+import { useRedux } from "../../shared";
 import api from "../../services/api";
 
-const store = createStore({ tableData: {} });
-
 export default function AccountsList() {
-  const [{ tableData }, setState] = useRedux(store);
+  const [{ tableData }, setState] = useRedux("accountsList", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchAccounts$, tableData), []);
 
   useEffect(() => {

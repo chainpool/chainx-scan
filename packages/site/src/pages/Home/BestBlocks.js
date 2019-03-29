@@ -3,13 +3,11 @@ import { NavLink } from "react-router-dom";
 
 import { AddressLink, BlockLink, Number, Spinner } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useRedux, createStore } from "../../shared";
+import { useRedux } from "../../shared";
 import api from "../../services/api";
 
-const store = createStore({ blocks: [] });
-
-export default function Blocks() {
-  const [{ blocks }, setState] = useRedux(store);
+export default function BestBlocks() {
+  const [{ blocks }, setState] = useRedux("bestBlocks", { blocks: [] });
 
   useEffect(() => {
     const subscription = api.fetchLatestBlocks$().subscribe(data => setState({ blocks: data }));

@@ -3,14 +3,15 @@ import React, { useEffect, useMemo } from "react";
 
 import PairList from "./PairList";
 import PendingOrders from "./PendingOrders";
-import { useRedux, createStore } from "../../shared";
+import { useRedux } from "../../shared";
 import api from "../../services/api";
-
-const store = createStore({ pairs: [], loadingHandicap: true });
 
 export default function Dapp() {
   // const [activeKey, setActiveKey] = useState("currentEntrust");
-  const [{ pairs, activePairId, loadingHandicap, handicap }, setState] = useRedux(store);
+  const [{ pairs, activePairId, loadingHandicap, handicap }, setState] = useRedux("dapp", {
+    pairs: [],
+    loadingHandicap: true
+  });
 
   const activePair = useMemo(() => {
     const pair = pairs.find(pair => pair.pairid === activePairId) || pairs[0];

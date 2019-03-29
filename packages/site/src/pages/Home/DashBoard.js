@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { useRedux, createStore } from "../../shared";
+import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { Amount, Number, Spinner } from "../../components";
 import PCX from "../../assets/tokens/pcx.png";
 
-const store = createStore({ data: {} });
-
 export default function DashBoard() {
-  const [{ data }, setState] = useRedux(store);
+  const [{ data }, setState] = useRedux("dashBoard", { data: {} });
 
   useEffect(() => {
     const subscription = api.fetchChainStatus$().subscribe(result => setState({ data: result }));

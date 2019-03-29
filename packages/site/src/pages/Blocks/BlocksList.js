@@ -1,14 +1,12 @@
 import React, { useEffect, useMemo } from "react";
 
 import { Table, BlockLink, AddressLink, DateShow, Number } from "../../components";
-import { useRedux, createStore } from "../../shared";
+import { useRedux } from "../../shared";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 
-const store = createStore({ tableData: {} });
-
 export default function BlocksList() {
-  const [{ tableData }, setState] = useRedux(store);
+  const [{ tableData }, setState] = useRedux("blocksList", { tableData: {} });
 
   const tableService = useMemo(() => new TableService(api.fetchBlocks$, tableData), []);
 

@@ -3,14 +3,12 @@ import React, { useEffect, useMemo } from "react";
 import { Table, AddressLink, ExternalLink, Amount } from "../components";
 import api from "../services/api";
 import TableService from "../services/tableService";
-import { useRedux, createStore } from "../shared";
-
-const store = createStore({ tableData: {} });
+import { useRedux } from "../shared";
 
 export default function Validators(props) {
   const { tableProps } = props;
 
-  const [{ tableData }, setState] = useRedux(store);
+  const [{ tableData }, setState] = useRedux("validators", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData), []);
 
   useEffect(() => {

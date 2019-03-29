@@ -1,14 +1,12 @@
 import React, { useMemo, useEffect } from "react";
 
 import { Table, DateShow, Hash, ExternalLink, AddressLink } from "../components";
-import { useRedux, createStore } from "../shared";
+import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
 
-const store = createStore({ tableData: {} });
-
 export default function CrossTxs() {
-  const [{ tableData }, setState] = useRedux(store);
+  const [{ tableData }, setState] = useRedux("crossTxs", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchBtcTxs$, tableData), []);
 
   useEffect(() => {

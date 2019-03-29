@@ -2,13 +2,11 @@ import React, { useMemo, useEffect } from "react";
 
 import { Table, TxLink, BlockLink, TxAction, DateShow } from "../../components";
 import TableService from "../../services/tableService";
-import { useRedux, createStore } from "../../shared";
+import { useRedux } from "../../shared";
 import api from "../../services/api";
 
-const store = createStore({ tableData: {} });
-
 export default function TxsList() {
-  const [{ tableData }, setState] = useRedux(store);
+  const [{ tableData }, setState] = useRedux("txsList", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchTxs$, tableData), []);
 
   useEffect(() => {
