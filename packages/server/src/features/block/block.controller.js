@@ -8,32 +8,31 @@ class BlockController {
       return;
     }
 
-    const { from, to } = ctx.query;
-    if ((from && !to) || (!from && to)) {
-      ctx.status = 400;
-      return;
-    }
-
     const option = {
       order: [["number", "DESC"]],
       raw: true
     };
 
-    if (from && /^\d+$/.test(from) && to && /^\d+$/.test(to)) {
-      Object.assign(option, {
-        where: {
-          $and: [{ number: { $lt: to } }, { number: { $gte: from } }]
-        }
-      });
-    } else {
-      Object.assign(option, {
-        limit: pageSize,
-        offset: page * pageSize
-      });
-    }
+    Object.assign(option, {
+      limit: pageSize,
+      offset: page * pageSize
+    });
 
-    const blocks = await ctx.db.Block.findAll(option);
-    const count = await ctx.db.Block.count();
+    const blocks = await ctx.db.sequelize.query(
+      `SELECT block.*, event.count as event_count FROM block
+    LEFT JOIN (select number, count(*) from event group by number order by number desc) as event
+    on block.number=event.number
+    ORDER BY block.number DESC
+    LIMIT ${pageSize} OFFSET ${page * pageSize};`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const rows = await ctx.db.sequelize.query(`SELECT COUNT(*) FROM block`, {
+      type: ctx.db.sequelize.QueryTypes.SELECT
+    });
+    const total = rows[0].count;
 
     const items = blocks.map(normalizeBlock);
 
@@ -41,7 +40,7 @@ class BlockController {
       items,
       pageSize,
       page,
-      total: count
+      total
     };
   }
 

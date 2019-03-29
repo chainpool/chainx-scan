@@ -28,7 +28,8 @@ export default function BlocksList() {
             hash: <BlockLink style={{ width: 138 }} className="text-truncate" value={data.hash} />,
             time: <DateShow value={data.time} />,
             producer: <AddressLink isValidator value={data.producer} />,
-            extrinsics: <Number value={data.extrinsics} />
+            extrinsics: <Number value={data.extrinsics} />,
+            eventCount: <Number value={data.event_count} />
           };
         })
       }
@@ -52,6 +53,10 @@ export default function BlocksList() {
         {
           title: "交易数",
           dataIndex: "extrinsics"
+        },
+        {
+          title: "事件数",
+          dataIndex: "eventCount"
         }
       ]}
     />

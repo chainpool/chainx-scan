@@ -24,12 +24,12 @@ export default function DashBoard() {
       data: <Number value={data.finalized} />
     },
     {
-      label: "ChainX 交易总数",
+      label: "ChainX交易总数",
       data: <Number value={data.transactions} />
     },
     {
-      label: "发行总数",
-      data: <Amount value={data.pcx_issuance} />
+      label: "发行总量 (PCX)",
+      data: <Amount value={data.pcx_issuance} hideSymbol />
     },
     {
       label: "验证节点选举届数",
@@ -44,8 +44,8 @@ export default function DashBoard() {
       )
     },
     {
-      label: "用户投票总数",
-      data: <Amount value={data.votes} />
+      label: "用户投票总数 (PCX)",
+      data: <Amount value={data.votes} hideSymbol />
     }
   ];
 
