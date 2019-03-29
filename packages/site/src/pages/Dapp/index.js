@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from "react";
-import classnames from "classnames";
+import React, { useEffect, useMemo } from "react";
+// import classnames from "classnames";
 
 import PairList from "./PairList";
 import PendingOrders from "./PendingOrders";
@@ -9,7 +9,7 @@ import api from "../../services/api";
 const store = createStore({ pairs: [], loadingHandicap: true });
 
 export default function Dapp() {
-  const [activeKey, setActiveKey] = useState("currentEntrust");
+  // const [activeKey, setActiveKey] = useState("currentEntrust");
   const [{ pairs, activePairId, loadingHandicap, handicap }, setState] = useRedux(store);
 
   const activePair = useMemo(() => {

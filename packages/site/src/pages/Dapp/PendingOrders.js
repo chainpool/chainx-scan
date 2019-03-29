@@ -5,7 +5,7 @@ import { Amount, Spinner } from "../../components";
 
 export default function PendingOrders(props) {
   const { loading, handicap, activePair } = props;
-  const { price, precision, unit_precision: unitPrecision, currency_pair: currencyPair } = activePair || {};
+  const { precision, unit_precision: unitPrecision, currency_pair: currencyPair } = activePair || {};
 
   return (
     <section className="panel">
@@ -56,7 +56,7 @@ export default function PendingOrders(props) {
                   {handicap &&
                     handicap.bids &&
                     handicap.bids.map((item, index) => (
-                      <div className="bid-item" className={classnames("ask-item", { odd: !(index % 2) })} key={index}>
+                      <div className={classnames("bid-item", { odd: !(index % 2) })} key={index}>
                         <span className="price">
                           <Amount
                             value={item.price}
