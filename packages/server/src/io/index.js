@@ -59,10 +59,12 @@ async function feedBtcHeaders(io, db) {
 
   try {
     const rows = await db.BtcHeader.findAll({
-      attributes: ["bitcoin_height", "header", "time", "relay", "chainx_tx", "txid"],
+      include: [{ model: db.Transaction, as: "block", attributes: ["time"] }],
+      attributes: ["bitcoin_height", "header", "time", "relay", "chainx_tx", "txid", "nonce"],
       order: [["time", "DESC"]],
       limit: pageSize,
-      offset: page * pageSize
+      offset: page * pageSize,
+      raw: true
     });
 
     io.to(latestBtcHeadersRoom).emit("latestBtcHeaders", rows);
