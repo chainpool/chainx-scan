@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, BlockLink, TxAction, DateShow, TxLink } from "../components";
+import { Table, BlockLink, Spinner, TxAction, DateShow, TxLink } from "../components";
 import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -14,7 +14,11 @@ export default function Events() {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  return <RenderEvents {...{ tableData, handleChange: tableService.handleChange }} />;
+  if (tableData && tableData.dataSource && tableData.dataSource.length > 0) {
+    return <RenderEvents {...{ tableData, handleChange: tableService.handleChange }} />;
+  }
+
+  return <Spinner />;
 }
 
 export function RenderEvents({ tableProps, tableData, handleChange }) {

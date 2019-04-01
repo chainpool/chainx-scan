@@ -1,6 +1,6 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
-import { Table, TxLink, BlockLink, TxAction, DateShow, Number } from "../../components";
+import { BlockLink, DateShow, Number, Spinner, Table, TxAction, TxLink } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -14,7 +14,11 @@ export default function TxsList() {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  return <RenderTxsList {...{ tableData, handleChange: tableService.handleChange }} />;
+  if (tableData && tableData.dataSource && tableData.dataSource.length > 0) {
+    return <RenderTxsList {...{ tableData, handleChange: tableService.handleChange }} />;
+  }
+
+  return <Spinner />;
 }
 
 export function RenderTxsList({ tableProps, tableData, handleChange }) {

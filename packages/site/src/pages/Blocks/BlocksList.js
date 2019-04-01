@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Table, BlockLink, AddressLink, DateShow, Number } from "../../components";
+import { Spinner, Table, BlockLink, AddressLink, DateShow, Number } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
@@ -14,6 +14,10 @@ export default function BlocksList() {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
+
+  if (!tableData || !tableData.dataSource || tableData.dataSource.length <= 0) {
+    return <Spinner />;
+  }
 
   return (
     <Table

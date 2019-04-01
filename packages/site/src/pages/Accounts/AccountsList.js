@@ -1,6 +1,6 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
-import { Table, AddressLink, Amount, Number } from "../../components";
+import { AddressLink, Amount, Number, Spinner, Table } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -13,6 +13,10 @@ export default function AccountsList() {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
+
+  if (!tableData || !tableData.dataSource || tableData.dataSource.length <= 0) {
+    return <Spinner />;
+  }
 
   return (
     <Table
