@@ -5,17 +5,26 @@ import api from "../services/api";
 import TableService from "../services/tableService";
 import { useRedux } from "../shared";
 
+const indexExtend = (index, trust) => (
+  <span>
+    {index}
+    {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
+  </span>
+);
+
+const AddressLinkExtend = (value, isValidator, isActive) => (
+  <>
+    <AddressLink isValidator value={value} />
+    {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
+  </>
+);
+
 export default function Validators(props) {
   const { tableProps } = props;
 
   const [{ tableData }, setState] = useRedux("validators", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData), []);
-  const indexExtend = (index, trust) => (
-    <span>
-      {index}
-      {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
-    </span>
-  );
+
   useEffect(() => {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
@@ -33,7 +42,7 @@ export default function Validators(props) {
           return {
             key: `${data.accountid}`,
             index: indexExtend(_index, data.isTrustee),
-            name: <AddressLink isValidator value={data.accountid} isActive={data.isActive} />,
+            name: AddressLinkExtend(data.accountid, true, data.isActive),
             url: <ExternalLink value={data.url} />,
             address: (
               <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />
