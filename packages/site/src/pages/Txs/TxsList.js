@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, TxLink, BlockLink, TxAction, DateShow } from "../../components";
+import { Table, TxLink, BlockLink, TxAction, DateShow, Number } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -28,6 +28,7 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
         return {
           key: data.hash,
           number: <BlockLink value={data.number} />,
+          index: <Number value={data.index} />,
           hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
           time: <DateShow value={data.time} />,
           action: <TxAction module={data.module} call={data.call} />
@@ -39,12 +40,16 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           dataIndex: "number"
         },
         {
-          title: "交易哈希",
-          dataIndex: "hash"
+          title: "出块时间",
+          dataIndex: "time"
         },
         {
-          title: "时间",
-          dataIndex: "time"
+          title: "交易序号",
+          dataIndex: "index"
+        },
+        {
+          title: "交易哈希",
+          dataIndex: "hash"
         },
         {
           title: "操作",
