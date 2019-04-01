@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Table, AddressLink, ExternalLink, Amount, Number } from "../components";
+import { Table, AddressLink, ExternalLink, Amount, Number, IndexExtend } from "../components";
 import api from "../services/api";
 import TableService from "../services/tableService";
 import { useRedux } from "../shared";
@@ -23,9 +23,10 @@ export default function Validators(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
+          let $index = (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1;
           return {
             key: `${data.accountid}`,
-            index: (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1,
+            index: <IndexExtend index={$index} trust={data.isTrustee} />,
             name: <AddressLink isValidator value={data.accountid} />,
             url: <ExternalLink value={data.url} />,
             address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
