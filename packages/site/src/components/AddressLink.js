@@ -7,7 +7,7 @@ import { useAppContext } from "./AppContext";
 import { encodeAddress } from "../shared";
 
 export default memo(function AddressLink(props) {
-  const { value, className, style, isValidator } = props;
+  const { value, className, style, isValidator, isActive } = props;
   const hexValue = hexAddPrefix(value);
 
   const [{ intentions = [] }] = useAppContext();
@@ -24,8 +24,11 @@ export default memo(function AddressLink(props) {
   }
 
   return (
-    <NavLink to={`/accounts/${hexValue}`} style={style} className={classnames("nav-link", className)}>
-      {showValue}
-    </NavLink>
+    <span>
+      <NavLink to={`/accounts/${hexValue}`} style={style} className={classnames("nav-link", className)}>
+        {showValue}
+      </NavLink>
+      {isActive ? "" : <span className="table-tag-nagtive">(已退选)</span>}
+    </span>
   );
 });

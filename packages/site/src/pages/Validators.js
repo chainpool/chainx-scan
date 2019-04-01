@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Table, AddressLink, ExternalLink, Amount, Number, IndexExtend } from "../components";
+import { Table, AddressLink, ExternalLink, Amount, Number } from "../components";
 import api from "../services/api";
 import TableService from "../services/tableService";
 import { useRedux } from "../shared";
@@ -10,7 +10,12 @@ export default function Validators(props) {
 
   const [{ tableData }, setState] = useRedux("validators", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData), []);
-
+  const indexExtend = (index, trust) => (
+    <span>
+      {index}
+      {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
+    </span>
+  );
   useEffect(() => {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
@@ -23,15 +28,18 @@ export default function Validators(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
-          let $index = (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1;
+          const _index = (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1;
+
           return {
             key: `${data.accountid}`,
-            index: <IndexExtend index={$index} trust={data.isTrustee} />,
-            name: <AddressLink isValidator value={data.accountid} />,
+            index: indexExtend(_index, data.isTrustee),
+            name: <AddressLink isValidator value={data.accountid} isActive={data.isActive} />,
             url: <ExternalLink value={data.url} />,
-            address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
+            address: (
+              <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />
+            ),
             jackpotAddress: (
-              <AddressLink value={data.jackpotAddress} style={{ maxWidth: 136 }} className="text-truncate" />
+              <AddressLink value={data.jackpotAddress} isActive style={{ maxWidth: 136 }} className="text-truncate" />
             ),
             selfVote: <Amount value={data.selfVote} hideSymbol />,
             totalNomination: <Amount value={data.totalNomination} hideSymbol />,
