@@ -22,6 +22,12 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
 
   return (
     <Table
+      expandedRowRender={data => (
+        <div>
+          <span>参数：</span>
+          <span>{data.args}</span>
+        </div>
+      )}
       onChange={handleChange}
       pagination={pagination}
       dataSource={dataSource.map(data => {
@@ -31,7 +37,8 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           index: <Number value={data.index} />,
           hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
           time: <DateShow value={data.time} />,
-          action: <TxAction module={data.module} call={data.call} />
+          action: <TxAction module={data.module} call={data.call} />,
+          args: JSON.stringify(data.args)
         };
       })}
       columns={[
