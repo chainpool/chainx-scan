@@ -48,6 +48,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       height: {
         type: DataTypes.BIGINT
+      },
+      blocks: {
+        type: DataTypes.BIGINT
       }
     },
     {

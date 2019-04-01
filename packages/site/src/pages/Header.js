@@ -28,7 +28,7 @@ export default withRouter(function Header(props) {
         区块链
       </NavLink>
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/validators">
-        验证人
+        验证节点
       </NavLink>
       <NavLink
         className={classnames("navbar-item is-tab", { "is-active": isMatchCross })}

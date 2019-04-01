@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Table, AddressLink, ExternalLink, Amount } from "../components";
+import { Table, AddressLink, ExternalLink, Amount, Number } from "../components";
 import api from "../services/api";
 import TableService from "../services/tableService";
 import { useRedux } from "../shared";
@@ -32,9 +32,10 @@ export default function Validators(props) {
             jackpotAddress: (
               <AddressLink value={data.jackpotAddress} style={{ maxWidth: 136 }} className="text-truncate" />
             ),
-            selfVote: <Amount value={data.selfVote} />,
-            totalNomination: <Amount value={data.totalNomination} />,
-            jackpot: <Amount value={data.jackpot} />
+            selfVote: <Amount value={data.selfVote} hideSymbol />,
+            totalNomination: <Amount value={data.totalNomination} hideSymbol />,
+            jackpot: <Amount value={data.jackpot} hideSymbol />,
+            blocks: <Number value={data.blocks} />
           };
         })
       }
@@ -56,7 +57,7 @@ export default function Validators(props) {
           dataIndex: "address"
         },
         {
-          title: "奖池金额",
+          title: "奖池地址",
           dataIndex: "jackpotAddress"
         },
         {
@@ -72,6 +73,11 @@ export default function Validators(props) {
         {
           title: "奖池金额",
           dataIndex: "jackpot",
+          align: "right"
+        },
+        {
+          title: "累计出块总数",
+          dataIndex: "blocks",
           align: "right"
         }
       ]}
