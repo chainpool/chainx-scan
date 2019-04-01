@@ -120,6 +120,20 @@ a:focus {
   }
 }
 
+.table-tag-trust{
+  margin-left: 10px;
+  padding: 3px 5px;
+  border-radius: 3px;
+  color: #3F3F3F;
+  font-size: 12px;
+  background-color: #f5dc95;
+}
+.table-tag-nagtive{
+  margin-left: 5px;
+  color: #959595;
+  font-size: 12px;
+}
+
 .dashboard-cell {
   height: 88px;
   display: flex;

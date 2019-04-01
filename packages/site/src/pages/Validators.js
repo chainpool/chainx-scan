@@ -5,6 +5,20 @@ import api from "../services/api";
 import TableService from "../services/tableService";
 import { useRedux } from "../shared";
 
+const indexExtend = (index, trust) => (
+  <span>
+    {index}
+    {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
+  </span>
+);
+
+const AddressLinkExtend = (value, isValidator, isActive) => (
+  <>
+    <AddressLink isValidator value={value} />
+    {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
+  </>
+);
+
 export default function Validators(props) {
   const { tableProps } = props;
 
@@ -23,14 +37,18 @@ export default function Validators(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
+          const _index = (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1;
+
           return {
             key: `${data.accountid}`,
-            index: (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1,
-            name: <AddressLink isValidator value={data.accountid} />,
+            index: indexExtend(_index, data.isTrustee),
+            name: AddressLinkExtend(data.accountid, true, data.isActive),
             url: <ExternalLink value={data.url} />,
-            address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
+            address: (
+              <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />
+            ),
             jackpotAddress: (
-              <AddressLink value={data.jackpotAddress} style={{ maxWidth: 136 }} className="text-truncate" />
+              <AddressLink value={data.jackpotAddress} isActive style={{ maxWidth: 136 }} className="text-truncate" />
             ),
             selfVote: <Amount value={data.selfVote} hideSymbol />,
             totalNomination: <Amount value={data.totalNomination} hideSymbol />,
