@@ -7,6 +7,7 @@ class EventController {
 
     const order = [["number", "DESC"], ["index", "ASC"]];
     const options = {
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order,
       limit: pageSize,
       offset: page * pageSize,

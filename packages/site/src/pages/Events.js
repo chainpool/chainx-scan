@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, BlockLink, TxAction } from "../components";
+import { Table, BlockLink, TxAction, DateShow, TxLink } from "../components";
 import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -38,7 +38,9 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
           index: data.index && data.index,
           phaseValue: data.phase && data.phase.value,
           action: <TxAction module={data.module} call={data.name} />,
-          args: JSON.stringify(data.args)
+          args: JSON.stringify(data.args),
+          time: <DateShow value={data["block.time"]} />,
+          hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.transaction_tx} />
         };
       })}
       columns={[
@@ -47,12 +49,20 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
           dataIndex: "number"
         },
         {
-          title: "阶段",
-          dataIndex: "event"
+          title: "出块时间",
+          dataIndex: "time"
         },
         {
           title: "事件序号",
           dataIndex: "index"
+        },
+        {
+          title: "交易哈希",
+          dataIndex: "hash"
+        },
+        {
+          title: "阶段",
+          dataIndex: "event"
         },
         {
           title: "操作",

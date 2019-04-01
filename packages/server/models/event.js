@@ -1,6 +1,6 @@
 "use strict";
 module.exports = (sequelize, DataTypes) => {
-  const Block = sequelize.define(
+  const Event = sequelize.define(
     "Event",
     {
       number: {
@@ -25,6 +25,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       data: {
         type: DataTypes.TEXT
+      },
+      transaction_tx: {
+        type: DataTypes.STRING
       }
     },
     {
@@ -34,9 +37,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Block.associate = function(models) {
-    // associations can be defined here
+  Event.associate = function(models) {
+    Event.belongsTo(models.Block, { foreignKey: "number", targetKey: "number", as: "block" });
   };
 
-  return Block;
+  return Event;
 };
