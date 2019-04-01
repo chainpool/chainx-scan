@@ -3,7 +3,7 @@ const { extractPage } = require("../utils");
 class EventController {
   async getEvents(ctx) {
     const { page, pageSize } = extractPage(ctx);
-    const { block } = ctx.query;
+    const { block, tx } = ctx.query;
 
     const order = [["number", "DESC"], ["index", "ASC"]];
     const options = {
@@ -15,6 +15,8 @@ class EventController {
     };
     if (block && /^\d+$/.test(block)) {
       Object.assign(options, { where: { number: block } });
+    } else if (tx) {
+      Object.assign(options, { where: { transaction_tx: tx } });
     }
     const transactions = await ctx.db.Event.findAll(options);
     const count = await ctx.db.Event.count();

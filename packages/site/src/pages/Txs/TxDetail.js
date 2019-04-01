@@ -20,9 +20,7 @@ export default function BlockDetail(props) {
   }, [txid]);
 
   useEffect(() => {
-    const subscription = api
-      .fetchEvents$({ block: blockNumber })
-      .subscribe(({ items }) => setEventsData({ dataSource: items }));
+    const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ items }) => setEventsData({ dataSource: items }));
     return () => subscription.unsubscribe();
   }, [blockNumber]);
 
