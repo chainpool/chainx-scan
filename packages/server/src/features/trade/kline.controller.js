@@ -15,16 +15,15 @@ class KlineController {
 
     const rows = await ctx.db.sequelize.query(
       `SELECT
-    b.time,
-    k.open,
-    k.high,
-    k.close,
-    k.low,
-    k.volume
+    time,
+    open,
+    high,
+    close,
+    low,
+    volume
     from kline as k
-    inner join block as b on k.time=b.number
-    where k.type=${type} AND k.pairid=${pairid} AND b.time <= ${endDate} AND b.time >= ${startDate}
-    ORDER BY b.time DESC;`,
+    where type=${type} AND pairid=${pairid} AND time <= ${endDate} AND time >= ${startDate}
+    ORDER BY time DESC;`,
       {
         type: ctx.db.sequelize.QueryTypes.SELECT
       }
