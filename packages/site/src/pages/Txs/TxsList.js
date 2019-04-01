@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { BlockLink, DateShow, Number, Spinner, Table, TxAction, TxLink } from "../../components";
+import { AddressLink, BlockLink, DateShow, Number, Spinner, Table, TxAction, TxLink } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -42,7 +42,8 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
           time: <DateShow value={data.time} />,
           action: <TxAction module={data.module} call={data.call} />,
-          args: JSON.stringify(data.args)
+          args: JSON.stringify(data.args),
+          signed: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />
         };
       })}
       columns={[
@@ -61,6 +62,10 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
         {
           title: "交易哈希",
           dataIndex: "hash"
+        },
+        {
+          title: "发送人",
+          dataIndex: "signed"
         },
         {
           title: "操作",
