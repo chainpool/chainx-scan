@@ -6,14 +6,14 @@ import TableService from "../services/tableService";
 import { useRedux } from "../shared";
 
 const indexExtend = (index, trust) => (
-  <span className="table-index">
+  <span className="nowrap">
     {index}
     {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
   </span>
 );
 
 const AddressLinkExtend = (value, isValidator, isActive) => (
-  <span className="table-index">
+  <span className="nowrap">
     <AddressLink isValidator value={value} />
     {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
   </span>
