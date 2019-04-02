@@ -96,10 +96,10 @@ export default function BlockDetail(props) {
           </ul>
         </div>
         {data && data.number && activeKey === "txs" && (
-          <RenderTxsList tableData={txsData} tableProps={{ pagination: false }} />
+          <RenderTxsList tableData={txsData} tableProps={{ pagination: false, simpleMode: true }} />
         )}
         {data && data.number && activeKey === "events" && (
-          <RenderEvents tableData={eventsData} tableProps={{ pagination: false }} />
+          <RenderEvents tableData={eventsData} tableProps={{ pagination: false, simpleMode: true }} />
         )}
       </div>
     </div>

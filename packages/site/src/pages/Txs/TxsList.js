@@ -22,7 +22,37 @@ export default function TxsList() {
 }
 
 export function RenderTxsList({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = { ...tableData, ...tableProps };
+  const { pagination, dataSource = [], simpleMode = false } = { ...tableData, ...tableProps };
+
+  const optionalColumns = [
+    {
+      title: "区块高度",
+      dataIndex: "number"
+    },
+    {
+      title: "出块时间",
+      dataIndex: "time"
+    }
+  ];
+  const columns = [
+    ...(simpleMode ? [] : optionalColumns),
+    {
+      title: "交易序号",
+      dataIndex: "index"
+    },
+    {
+      title: "交易哈希",
+      dataIndex: "hash"
+    },
+    {
+      title: "发送人",
+      dataIndex: "signed"
+    },
+    {
+      title: "操作",
+      dataIndex: "action"
+    }
+  ];
 
   return (
     <Table
@@ -46,32 +76,7 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           signed: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />
         };
       })}
-      columns={[
-        {
-          title: "区块高度",
-          dataIndex: "number"
-        },
-        {
-          title: "出块时间",
-          dataIndex: "time"
-        },
-        {
-          title: "交易序号",
-          dataIndex: "index"
-        },
-        {
-          title: "交易哈希",
-          dataIndex: "hash"
-        },
-        {
-          title: "发送人",
-          dataIndex: "signed"
-        },
-        {
-          title: "操作",
-          dataIndex: "action"
-        }
-      ]}
+      columns={columns}
     />
   );
 }

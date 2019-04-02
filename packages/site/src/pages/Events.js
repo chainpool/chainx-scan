@@ -22,7 +22,37 @@ export default function Events() {
 }
 
 export function RenderEvents({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = tableData;
+  const { pagination, dataSource = [], simpleMode = false } = { ...tableData, ...tableProps };
+
+  const optionalColumns = [
+    {
+      title: "区块高度",
+      dataIndex: "number"
+    },
+    {
+      title: "出块时间",
+      dataIndex: "time"
+    }
+  ];
+  const columns = [
+    ...(simpleMode ? [] : optionalColumns),
+    {
+      title: "事件序号",
+      dataIndex: "index"
+    },
+    {
+      title: "交易哈希",
+      dataIndex: "hash"
+    },
+    {
+      title: "阶段",
+      dataIndex: "event"
+    },
+    {
+      title: "操作",
+      dataIndex: "action"
+    }
+  ];
 
   return (
     <Table
@@ -47,32 +77,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
           hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.transaction_tx} />
         };
       })}
-      columns={[
-        {
-          title: "区块高度",
-          dataIndex: "number"
-        },
-        {
-          title: "出块时间",
-          dataIndex: "time"
-        },
-        {
-          title: "事件序号",
-          dataIndex: "index"
-        },
-        {
-          title: "交易哈希",
-          dataIndex: "hash"
-        },
-        {
-          title: "阶段",
-          dataIndex: "event"
-        },
-        {
-          title: "操作",
-          dataIndex: "action"
-        }
-      ]}
+      columns={columns}
       {...tableProps}
     />
   );
