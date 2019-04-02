@@ -92,7 +92,9 @@ export default function BlockDetail(props) {
             </li>
           </ul>
         </div>
-        {data && data.number && <RenderEvents tableData={eventsData} tableProps={{ pagination: false }} />}
+        {data && data.number && (
+          <RenderEvents tableData={eventsData} tableProps={{ pagination: false, simpleMode: true }} />
+        )}
       </div>
     </div>
   );
