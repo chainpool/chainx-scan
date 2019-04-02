@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Amount, AddressLink } from "../../components";
+import { Table, Amount, AddressLink, Number } from "../../components";
 import api from "../../services/api";
 
 export default function AccountNomination(props) {
@@ -26,23 +26,32 @@ export default function AccountNomination(props) {
           return {
             key: data.nominee,
             nominee: <AddressLink value={data.nominee} isValidator />,
-            nomination: <Amount value={data.nomination} />,
-            revocations: <Amount value={getRevocations(data.revocations)} />
+            nomination: <Amount value={data.nomination} hideSymbol />,
+            revocations: <Amount value={getRevocations(data.revocations)} hideSymbol />,
+            updateHeight: <Number value={data.last_vote_weight_update} />,
+            weight: <Number value={data.last_vote_weight} />
           };
         })
       }
       columns={[
         {
-          title: "节点名称",
+          title: "节点名",
           dataIndex: "nominee"
         },
         {
-          title: "投票数",
-          dataIndex: "nomination",
-          align: "right"
+          title: "票龄更新高度",
+          dataIndex: "updateHeight"
         },
         {
-          title: "赎回冻结",
+          title: "历史总票龄",
+          dataIndex: "weight"
+        },
+        {
+          title: "投票金额 (PCX)",
+          dataIndex: "nomination"
+        },
+        {
+          title: "赎回冻结 (PCX)",
           dataIndex: "revocations",
           align: "right"
         }
