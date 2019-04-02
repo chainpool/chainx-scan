@@ -116,6 +116,55 @@ class AccountController {
 
     ctx.body = rows;
   }
+
+  async fillOrders(ctx) {
+    const { accountId } = ctx.params;
+    const { page, pageSize } = extractPage(ctx);
+
+    const records = await ctx.db.sequelize.query(
+      `
+    SELECT f.id, f.amount, f.price,
+    o.direction, o.price as set_price,
+    p.currency_pair as pair, p.precision, b.time as time
+    FROM "event_xspot_FillsOf" AS f
+    INNER JOIN "event_xspot_AccountOrder" AS o
+    ON o.accountid=f.maker_user AND f.maker_user_order_index=o.id OR f.taker_user=o.accountid AND f.taker_user_order_index=o.id
+    INNER JOIN "XSpot_TradingPairOf" AS p on f.pairid=p.pairid
+    INNER JOIN block AS b on b.number=f.time
+    where o.accountid='${accountId}' ORDER BY f.time DESC
+    LIMIT ${pageSize} OFFSET ${page * pageSize};
+    `,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const rows = await ctx.db.sequelize.query(
+      `SELECT COUNT(*)
+    FROM "event_xspot_FillsOf" AS f
+    INNER JOIN "event_xspot_AccountOrder" AS o
+    ON o.accountid=f.maker_user AND f.maker_user_order_index=o.id OR f.taker_user=o.accountid AND f.taker_user_order_index=o.id
+    INNER JOIN "XSpot_TradingPairOf" AS p on f.pairid=p.pairid
+    INNER JOIN block AS b on b.number=f.time
+    where o.accountid='${accountId}'`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+    const total = rows[0].count;
+
+    const items = records.map(row => ({
+      ...row,
+      pair: JSON.parse(row.pair)
+    }));
+
+    ctx.body = {
+      items,
+      total,
+      page,
+      pageSize
+    };
+  }
 }
 
 module.exports = new AccountController();

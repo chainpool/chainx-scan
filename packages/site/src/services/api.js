@@ -163,6 +163,13 @@ class Api {
   };
 
   /**
+   * 获取账户成交列表
+   */
+  fetchAccountFillOrders$ = (accountId, params) => {
+    return this.fetch$(`/account/${hexStripPrefix(accountId)}/fill_orders`, params);
+  };
+
+  /**
    * 获取账户交易列表
    */
   fetchAccountTxs$ = (accountId, params) => {

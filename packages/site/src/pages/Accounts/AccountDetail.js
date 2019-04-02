@@ -8,6 +8,7 @@ import AccountNomination from "./AccountNomination";
 import AccountOrder from "./AccountOrder";
 import AccountTrade from "./AccountTrade";
 import BindAddressList from "./BindAddressList";
+import FillOrderList from "./FillOrderList";
 
 export default function Account(props) {
   const { match } = props;
@@ -97,6 +98,12 @@ export default function Account(props) {
               <a>当前委托列表</a>
             </li>
             <li
+              onClick={() => setActiveKey("fillOrderList")}
+              className={classnames({ "is-active": activeKey === "fillOrderList" })}
+            >
+              <a>历史委托列表</a>
+            </li>
+            <li
               onClick={() => setActiveKey("accountTrade")}
               className={classnames({ "is-active": activeKey === "accountTrade" })}
             >
@@ -119,6 +126,7 @@ export default function Account(props) {
         {detail && detail.accountId && activeKey === "nomination" && <AccountNomination accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "orderList" && <AccountOrder accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "accountTrade" && <AccountTrade accountId={detail.accountId} />}
+        {detail && detail.accountId && activeKey === "fillOrderList" && <FillOrderList accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "bindAddresses" && (
           <BindAddressList accountId={detail.accountId} />
         )}

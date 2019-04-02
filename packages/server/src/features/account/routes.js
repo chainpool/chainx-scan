@@ -9,5 +9,6 @@ router.get("/account/:accountId/nominations", nominationController.accountNomina
 router.get("/account/:accountId/detail", accountController.accountDetail);
 router.get("/account/:accountId/txs", accountController.txs);
 router.get("/account/:accountId/binds", accountController.bindAddresses);
+router.get("/account/:accountId/fill_orders", accountController.fillOrders);
 
 module.exports = router;
