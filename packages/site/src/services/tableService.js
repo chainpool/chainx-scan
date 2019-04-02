@@ -40,7 +40,6 @@ export default class tableService {
     })
       .pipe(take(1))
       .subscribe(({ items, page, pageSize, total }) => {
-        console.log(items);
         this.setState({
           dataSource: items,
           loading: false,

@@ -31,15 +31,7 @@ export default function Main() {
             )}
           />
           <Route path="/accounts" component={Accounts} />
-          <Route
-            path="/validators"
-            component={Validator}
-            // render={props => (
-            //   <div className="box">
-            //     <Validators {...props} />
-            //   </div>
-            // )}
-          />
+          <Route path="/validators" component={Validator} />
           <Route
             path="/crossblocks"
             render={props => (
