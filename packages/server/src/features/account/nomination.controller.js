@@ -20,7 +20,7 @@ class NominationController {
 
     const where = { nominee: accountId };
     const { rows: items, count } = await ctx.db.Nomination.findAndCountAll({
-      attributes: { exclude: ["nominee"] },
+      attributes: { exclude: ["nominee", "height"] },
       where,
       limit: pageSize,
       offset: page * pageSize,
