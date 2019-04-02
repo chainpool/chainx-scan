@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-import { Table, Amount, DateShow, OrderDirection, OrderStatus, OrderClass, Number } from "../../components";
+import { Amount, DateShow, Number, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
 import HasFill from "./HasFill";
 import api from "../../services/api";
 
@@ -11,8 +11,6 @@ export default function AccountOrder(props) {
     const subscription = api.fetchAccountOrders$(props.accountId).subscribe(data => setTableData(data));
     return () => subscription.unsubscribe();
   }, [props.accountId]);
-
-  console.log(tableData);
 
   return (
     <Table

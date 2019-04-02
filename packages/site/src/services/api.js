@@ -170,6 +170,13 @@ class Api {
   };
 
   /**
+   * 获取账户绑定地址列表
+   */
+  fetchAccountBindAddresses$ = (accountId, params) => {
+    return this.fetch$(`/account/${hexAddPrefix(accountId)}/binds`, params);
+  };
+
+  /**
    * 跨链 BTC 列表
    */
   fetchBtcBlocks$ = params => {

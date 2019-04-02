@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 
 import api from "../../services/api";
-import { PanelList, AddressLink, Number, Breadcrumb, Spinner, ExternalLink } from "../../components";
+import { AddressLink, Breadcrumb, ExternalLink, Number, PanelList, Spinner } from "../../components";
 import AccountAsset from "./AccountAsset";
 import AccountNomination from "./AccountNomination";
 import AccountOrder from "./AccountOrder";
 import AccountTrade from "./AccountTrade";
+import BindAddressList from "./BindAddressList";
 
 export default function Account(props) {
   const { match } = props;
@@ -101,6 +102,12 @@ export default function Account(props) {
             >
               <a>交易列表</a>
             </li>
+            <li
+              onClick={() => setActiveKey("bindAddresses")}
+              className={classnames({ "is-active": activeKey === "bindAddresses" })}
+            >
+              <a>地址绑定列表</a>
+            </li>
           </ul>
         </div>
         {detail && detail.accountId && activeKey === "nativeAsset" && (
@@ -112,6 +119,9 @@ export default function Account(props) {
         {detail && detail.accountId && activeKey === "nomination" && <AccountNomination accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "orderList" && <AccountOrder accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "accountTrade" && <AccountTrade accountId={detail.accountId} />}
+        {detail && detail.accountId && activeKey === "bindAddresses" && (
+          <BindAddressList accountId={detail.accountId} />
+        )}
       </div>
     </>
   );

@@ -104,6 +104,18 @@ class AccountController {
       total: count
     };
   }
+
+  async bindAddresses(ctx) {
+    const { accountId } = ctx.params;
+
+    const rows = await ctx.db.CrossChainAddressMap.findAll({
+      attributes: { exclude: ["height"] },
+      where: { accountid: accountId },
+      raw: true
+    });
+
+    ctx.body = rows;
+  }
 }
 
 module.exports = new AccountController();

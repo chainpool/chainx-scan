@@ -8,5 +8,6 @@ router.get("/accounts", accountController.accounts);
 router.get("/account/:accountId/nominations", nominationController.accountNominations);
 router.get("/account/:accountId/detail", accountController.accountDetail);
 router.get("/account/:accountId/txs", accountController.txs);
+router.get("/account/:accountId/binds", accountController.bindAddresses);
 
 module.exports = router;
