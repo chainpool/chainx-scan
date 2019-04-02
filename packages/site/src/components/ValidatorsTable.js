@@ -25,10 +25,10 @@ export default function ValidatorsTable(props) {
       dataSource={
         dataSource &&
         dataSource.map((data, index) => {
-          //   const _index = (pagination.current - 1) * pagination.pageSize + index + 1;
+          const _index = (pagination.current - 1) * pagination.pageSize + index + 1;
           return {
             key: `${data.accountid}`,
-            index: indexExtend(index + 1, data.isTrustee),
+            index: indexExtend(_index, data.isTrustee),
             name: AddressLinkExtend(data.accountid, true, data.isActive),
             url: <ExternalLink value={data.url} />,
             address: (

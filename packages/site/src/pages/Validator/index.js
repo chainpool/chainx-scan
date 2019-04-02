@@ -11,17 +11,19 @@ export default function Validator(props) {
   ];
   return (
     <div className="box">
-      <ul className="tab">
-        {tabs.map((tab, index) => (
-          <li
-            className={classnames({ "tab-active": index === tabIndex }, "tab-item")}
-            key={index}
-            onClick={() => setIndex(index)}
-          >
-            {tab.text}
-          </li>
-        ))}
-      </ul>
+      <div className="tabs">
+        <ul>
+          {tabs.map((tab, index) => (
+            <li
+              className={classnames({ "is-active": index === tabIndex }, "tab-item")}
+              key={index}
+              onClick={() => setIndex(index)}
+            >
+              <a>{tab.text}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
       {tabs.map((tab, index) => {
         if (index === tabIndex) return <Validators key={index} {...props} tabFilter={tabs[tabIndex].filter} />;
         else return null;

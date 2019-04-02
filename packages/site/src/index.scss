@@ -148,24 +148,16 @@ a:focus {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  font-family: PingFangSC-Semibold;
   font-size: 16px;
   color: #939393;
 }
 
 .tab-item {
-  margin: 0 20px;
-  line-height: 48px;
+  // margin: 0 20px;
+  // line-height: 48px;
   box-sizing: border-box;
   cursor: pointer;
-  &.tab-active{
-    border-bottom: 2px solid #F6C94A;
-    color: #3F3F3F;
-  }
-  &:hover{
-    border-bottom: 2px solid #F6C94A;
-    color: #3F3F3F;
-  }
+  color: #4a4a4a;
 }
 
 .dashboard-cell {
