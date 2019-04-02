@@ -1,9 +1,6 @@
-import React, { useEffect, useMemo } from "react";
+import React from "react";
 
 import { Table, AddressLink, ExternalLink, Amount, Number } from "../components";
-import api from "../services/api";
-import TableService from "../services/tableService";
-import { useRedux } from "../shared";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">
@@ -19,26 +16,16 @@ const AddressLinkExtend = (value, isValidator, isActive) => (
   </span>
 );
 
-export default function Validators(props) {
-  const { tableProps } = props;
-
-  const [{ tableData }, setState] = useRedux("validators", { tableData: {} });
-  const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData), []);
-
-  useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
-    return () => subscription.unsubscribe();
-  }, [tableService]);
-
+export default function ValidatorsTable(props) {
+  const { dataSource = [], pagination = {}, handleChange } = props;
   return (
     <Table
-      onChange={tableService.handleChange}
-      pagination={tableData.pagination}
+      onChange={handleChange}
+      pagination={pagination}
       dataSource={
-        tableData.dataSource &&
-        tableData.dataSource.map((data, index) => {
-          const _index = (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1;
-
+        dataSource &&
+        dataSource.map((data, index) => {
+          const _index = (pagination.current - 1) * pagination.pageSize + index + 1;
           return {
             key: `${data.accountid}`,
             index: indexExtend(_index, data.isTrustee),
@@ -99,7 +86,6 @@ export default function Validators(props) {
           align: "right"
         }
       ]}
-      {...tableProps}
     />
   );
 }

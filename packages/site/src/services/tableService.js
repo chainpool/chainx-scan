@@ -17,24 +17,26 @@ export default class tableService {
       refCount()
     );
     this._fetchTable = _fetchTable;
-    this.fetchTable(initialize.pagination);
+    this.fetchTable({ ...initialize.pagination, tabFilter: initData.tabFilter });
   }
 
   static initData = {
     dataSource: [],
     loading: false,
+    tabFilter: null,
     pagination: {
       current: 1,
-      pageSize: 20,
+      pageSize: 200,
       total: 0
     }
   };
 
-  fetchTable = ({ current, pageSize }) => {
+  fetchTable = ({ current, pageSize, tabFilter }) => {
     this.setState({ loading: true });
     this._fetchTable({
       page: current - 1,
-      pageSize: pageSize
+      pageSize,
+      tabFilter
     })
       .pipe(take(1))
       .subscribe(({ items, page, pageSize, total }) => {

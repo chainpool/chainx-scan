@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 import { from, throwError, Observable } from "rxjs";
-import { catchError } from "rxjs/operators";
+import { catchError, map } from "rxjs/operators";
 import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
 
 import { decodeAddress } from "../shared";
@@ -89,7 +89,18 @@ class Api {
    * 获取验证人列表
    */
   fetchIntentions$ = (params, options) => {
-    return this.fetch$(`/intentions`, params, options);
+    return this.fetch$(`/intentions`, params, options).pipe(
+      map(result => {
+        if (typeof params.tabFilter === "string") {
+          result.items = result.items.filter(item => item.isTrustee.indexOf(params.tabFilter) >= 0);
+          result.total = result.items.length;
+        } else if (params.tabFilter === 1) {
+          result.items = result.items.filter(item => !item.isValidator);
+          result.total = result.items.length;
+        }
+        return result;
+      })
+    );
   };
 
   /**

@@ -18,3 +18,4 @@ export { default as OrderClass } from "./OrderClass";
 export { default as CrossChainNav } from "./CrossChainNav";
 export { default as Breadcrumb } from "./Breadcrumb";
 export { default as TokenName } from "./TokenName";
+export { default as ValidatorsTable } from "./ValidatorsTable";
