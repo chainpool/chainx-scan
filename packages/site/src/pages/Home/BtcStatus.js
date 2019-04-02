@@ -37,14 +37,14 @@ export default function BtcStatus() {
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>BitCoin 块高</th>
-              <th>BitCoin 区块哈希</th>
-              <th>BitCoin 出块时间</th>
+              <th>BitCoin块高</th>
+              <th>BitCoin区块哈希</th>
+              <th>BitCoin出块时间</th>
               <th>nonce</th>
               <th>跨链交易数</th>
-              <th>ChainX 中继交易哈希</th>
-              <th>ChainX 中继人</th>
-              <th>ChainX 中继时间</th>
+              <th>ChainX中继交易哈希</th>
+              <th>ChainX中继人</th>
+              <th>ChainX中继时间</th>
             </tr>
           </thead>
           <tbody>
