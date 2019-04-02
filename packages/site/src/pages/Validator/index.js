@@ -4,7 +4,11 @@ import Validators from "./Validators";
 
 export default function Validator(props) {
   const [tabIndex, setIndex] = useState(0);
-  const tabs = ["验证节点", "Bitcoin信托节点", "候选节点"];
+  const tabs = [
+    { text: "验证节点", filter: null },
+    { text: "Bitcoin信托节点", filter: "Bitcoin" },
+    { text: "候选节点", filter: 1 }
+  ];
   return (
     <div className="box">
       <ul className="tab">
@@ -14,11 +18,14 @@ export default function Validator(props) {
             key={index}
             onClick={() => setIndex(index)}
           >
-            {tab}
+            {tab.text}
           </li>
         ))}
       </ul>
-      <Validators {...props} tabIndex={tabIndex} />
+      {tabs.map((tab, index) => {
+        if (index === tabIndex) return <Validators key={index} {...props} tabFilter={tabs[tabIndex].filter} />;
+        else return null;
+      })}
     </div>
   );
 }
