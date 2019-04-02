@@ -1,15 +1,18 @@
 import React, { memo } from "react";
 
-const DIRECTION = {
-  SELL: "卖出",
-  BUY: "买入"
+const Status = {
+  ZeroExecuted: "未成交",
+  ParitialExecuted: "部分成交",
+  AllExecuted: "全部成交",
+  ParitialExecutedAndCanceled: "部分成交已取消",
+  Canceled: "已取消"
 };
 
 export default memo(function OrderStatus(props) {
   const { value } = props;
   if (!value || typeof value !== "string") return "";
 
-  const text = DIRECTION[value.toUpperCase()] || value;
+  const text = Status[value] || value;
 
   return <div>{text}</div>;
 });

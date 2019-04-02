@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Table, Amount, DateShow, OrderDirection, OrderStatus, OrderClass, Number } from "../../components";
+import HasFill from "./HasFill";
 import api from "../../services/api";
 
 export default function AccountOrder(props) {
@@ -30,7 +31,7 @@ export default function AccountOrder(props) {
             createTime: <DateShow value={data["block.time"]} />,
             updateTime: <DateShow value={data["updateBlock.time"]} />,
             amount: <Number value={data.amount} precision={data["pair.precision"]} />,
-            hasFillAmount: <Number value={data.hasfill_amount} precision={data["pair.precision"]} />
+            hasFillAmount: <HasFill fill={data.hasfill_amount} total={data.amount} precision={data["pair.precision"]} />
           };
         })
       }
@@ -60,7 +61,7 @@ export default function AccountOrder(props) {
           dataIndex: "amount"
         },
         {
-          title: "已成交数量",
+          title: "已成交数量/成交率",
           dataIndex: "hasFillAmount"
         },
         {

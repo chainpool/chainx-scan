@@ -93,7 +93,7 @@ export default function Account(props) {
               onClick={() => setActiveKey("orderList")}
               className={classnames({ "is-active": activeKey === "orderList" })}
             >
-              <a>挂单列表</a>
+              <a>当前委托列表</a>
             </li>
             <li
               onClick={() => setActiveKey("accountTrade")}
