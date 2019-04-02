@@ -120,22 +120,52 @@ a:focus {
   }
 }
 
-.nowrap{
+/**  不换行标签 **/
+.nowrap {
   white-space: nowrap;
 }
 
-.table-tag-trust{
+/**  信托标签 **/
+.table-tag-trust {
   margin-left: 10px;
   padding: 3px 5px;
   border-radius: 3px;
-  color: #3F3F3F;
+  color: #3f3f3f;
   font-size: 12px;
   background-color: #f5dc95;
 }
-.table-tag-nagtive{
+
+/**  退选标签 **/
+.table-tag-nagtive {
   margin-left: 5px;
   color: #959595;
   font-size: 12px;
+}
+
+/**  标签页 **/
+.tab {
+  margin-top:  -20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  font-family: PingFangSC-Semibold;
+  font-size: 16px;
+  color: #939393;
+}
+
+.tab-item {
+  margin: 0 20px;
+  line-height: 48px;
+  box-sizing: border-box;
+  cursor: pointer;
+  &.tab-active{
+    border-bottom: 2px solid #F6C94A;
+    color: #3F3F3F;
+  }
+  &:hover{
+    border-bottom: 2px solid #F6C94A;
+    color: #3F3F3F;
+  }
 }
 
 .dashboard-cell {
@@ -147,7 +177,7 @@ a:focus {
   box-shadow: 1px 1px 0 #dedede;
   .dashboard-cell__title {
     font-size: 14px;
-    color: #3F3F3F;
+    color: #3f3f3f;
     margin-bottom: 5px;
   }
   .dashboard-cell__content {

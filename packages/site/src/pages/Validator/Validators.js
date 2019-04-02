@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Table, AddressLink, ExternalLink, Amount, Number } from "../components";
-import api from "../services/api";
-import TableService from "../services/tableService";
-import { useRedux } from "../shared";
+import { Table, AddressLink, ExternalLink, Amount, Number } from "../../components";
+import api from "../../services/api";
+import TableService from "../../services/tableService";
+import { useRedux } from "../../shared";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">
@@ -20,23 +20,30 @@ const AddressLinkExtend = (value, isValidator, isActive) => (
 );
 
 export default function Validators(props) {
-  const { tableProps } = props;
-
+  const { tableProps, tabIndex } = props;
   const [{ tableData }, setState] = useRedux("validators", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData), []);
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    const subscription = tableService.getState$().subscribe(data => {
+      setState({ tableData: data });
+    });
     return () => subscription.unsubscribe();
   }, [tableService]);
+
+  let viewData = [];
+  if (tabIndex === 1)
+    viewData = tableData.dataSource && tableData.dataSource.filter(item => item.isTrustee.indexOf("Bitcoin") >= 0);
+  else if (tabIndex === 2) viewData = tableData.dataSource && tableData.dataSource.filter(item => !item.isValidator);
+  else viewData = tableData.dataSource && [...tableData.dataSource];
 
   return (
     <Table
       onChange={tableService.handleChange}
       pagination={tableData.pagination}
       dataSource={
-        tableData.dataSource &&
-        tableData.dataSource.map((data, index) => {
+        viewData &&
+        viewData.map((data, index) => {
           const _index = (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1;
 
           return {
