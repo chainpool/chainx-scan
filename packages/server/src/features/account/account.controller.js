@@ -89,7 +89,7 @@ class AccountController {
     const { page, pageSize } = extractPage(ctx);
     const order = [["number", "DESC"], ["index", "DESC"]];
     const { rows: items, count } = await ctx.db.Transaction.findAndCountAll({
-      attributes: ["number", "hash", "module", "call", "time"],
+      attributes: ["number", "index", "signed", "hash", "module", "call", "time"],
       where: { signed: accountId },
       order,
       limit: pageSize,

@@ -22,7 +22,7 @@ export default function TxsList() {
 }
 
 export function RenderTxsList({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [], simpleMode = false } = { ...tableData, ...tableProps };
+  const { pagination, dataSource = [], simpleMode = false, showSigned = true } = { ...tableData, ...tableProps };
 
   const optionalColumns = [
     {
@@ -44,10 +44,14 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
       title: "交易哈希",
       dataIndex: "hash"
     },
-    {
-      title: "发送人",
-      dataIndex: "signed"
-    },
+    ...(showSigned
+      ? [
+          {
+            title: "发送人",
+            dataIndex: "signed"
+          }
+        ]
+      : []),
     {
       title: "操作",
       dataIndex: "action"

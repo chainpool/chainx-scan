@@ -13,5 +13,5 @@ export default function AccountTrade(props) {
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
-  return <RenderTxsList tableData={tableData} tableProps={{ pagination: false }} />;
+  return <RenderTxsList tableData={tableData} tableProps={{ pagination: false, showSigned: false }} />;
 }
