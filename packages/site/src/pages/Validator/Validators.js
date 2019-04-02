@@ -31,20 +31,22 @@ export default function Validators(props) {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  let viewData = [];
+  let viewData = {};
   if (tabIndex === 1)
-    viewData = tableData.dataSource && tableData.dataSource.filter(item => item.isTrustee.indexOf("Bitcoin") >= 0);
-  else if (tabIndex === 2) viewData = tableData.dataSource && tableData.dataSource.filter(item => !item.isValidator);
-  else viewData = tableData.dataSource && [...tableData.dataSource];
-
+    viewData.dataSource =
+      tableData.dataSource && tableData.dataSource.filter(item => item.isTrustee.indexOf("Bitcoin") >= 0);
+  else if (tabIndex === 2)
+    viewData.dataSource = tableData.dataSource && tableData.dataSource.filter(item => !item.isValidator);
+  else viewData.dataSource = tableData.dataSource && [...tableData.dataSource];
+  viewData.pagination = tableData.dataSource && { ...tableData.pagination, total: viewData.dataSource.length };
   return (
     <Table
       onChange={tableService.handleChange}
-      pagination={tableData.pagination}
+      pagination={viewData.pagination}
       dataSource={
-        viewData &&
-        viewData.map((data, index) => {
-          const _index = (tableData.pagination.current - 1) * tableData.pagination.pageSize + index + 1;
+        viewData.dataSource &&
+        viewData.dataSource.map((data, index) => {
+          const _index = (viewData.pagination.current - 1) * viewData.pagination.pageSize + index + 1;
 
           return {
             key: `${data.accountid}`,
