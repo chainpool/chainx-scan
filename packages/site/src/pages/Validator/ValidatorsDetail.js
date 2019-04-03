@@ -4,6 +4,7 @@ import { hexAddPrefix } from "@polkadot/util";
 
 import { ExternalLink, AddressLink, PanelList, Breadcrumb, Spinner, Amount, Number } from "../../components";
 import { RenderNominationsList } from "./NominationsList";
+import { RenderSettingList } from "./SettingList";
 import api from "../../services/api";
 
 export default function BlockDetail(props) {
@@ -11,8 +12,8 @@ export default function BlockDetail(props) {
 
   const [data, setData] = useState({});
   const [nomiData, setNomiData] = useState({});
-  // const [txsData, setTxsData] = useState({});
-  const [activeKey, setActiveKey] = useState("vote");
+  const [settingData, setSettingData] = useState({});
+  const [activeKey, setActiveKey] = useState("trust");
   const nodeId = /^\d*$/.test(match.params.node) ? match.params.node : hexAddPrefix(match.params.node);
 
   useEffect(() => {
@@ -20,12 +21,10 @@ export default function BlockDetail(props) {
     return () => subscription.unsubscribe();
   }, [nodeId]);
 
-  // useEffect(() => {
-  //   const subscription = api
-  //     .fetchEvents$({ block: blockNumber })
-  //     .subscribe(({ items }) => setEventsData({ dataSource: items }));
-  //   return () => subscription.unsubscribe();
-  // }, [blockNumber]);
+  useEffect(() => {
+    const subscription = api.fetchTrusteeSettingList$(nodeId).subscribe(dataSource => setSettingData({ dataSource }));
+    return () => subscription.unsubscribe();
+  }, [nodeId]);
 
   useEffect(() => {
     const subscription = api
@@ -105,7 +104,8 @@ export default function BlockDetail(props) {
             </li>
           </ul>
         </div>
-        <div>{nomiData && activeKey === "vote" && <RenderNominationsList tableData={nomiData} />}</div>
+        <>{nomiData && activeKey === "vote" && <RenderNominationsList tableData={nomiData} />}</>
+        <>{nomiData && activeKey === "trust" && <RenderSettingList tableData={settingData} />}</>
       </div>
     </div>
   );

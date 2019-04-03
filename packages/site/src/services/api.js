@@ -79,11 +79,19 @@ class Api {
   fetchValidatorDetail$ = nodeId => {
     return this.fetch$(`/intention/${nodeId}`);
   };
+
   /**
    * 获取投票用户列表
    */
   fetchNominations$ = nodeId => {
     return this.fetch$(`/intention/${nodeId}/nominations`);
+  };
+
+  /**
+   * 获取信托设置列表
+   */
+  fetchTrusteeSettingList$ = nodeId => {
+    return this.fetch$(`/intention/${nodeId}/settings`);
   };
 
   /**
