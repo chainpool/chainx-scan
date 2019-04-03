@@ -9,7 +9,7 @@ export default function BlockDetail(props) {
   const { match } = props;
 
   const [data, setData] = useState({});
-  const [nomiData, setNomiData] = useState({});
+  // const [nomiData, setNomiData] = useState({});
   // const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
   const nodeId = /^\d*$/.test(match.params.node) ? match.params.node : hexAddPrefix(match.params.node);
@@ -27,10 +27,10 @@ export default function BlockDetail(props) {
   //   return () => subscription.unsubscribe();
   // }, [blockNumber]);
 
-  useEffect(() => {
-    const subscription = api.fetchTNomi$(nodeId).subscribe(({ items }) => setNomiData({ dataSource: items }));
-    return () => subscription.unsubscribe();
-  }, [nodeId]);
+  // useEffect(() => {
+  //   const subscription = api.fetchTNomi$(nodeId).subscribe(({ items }) => setNomiData({ dataSource: items }));
+  //   return () => subscription.unsubscribe();
+  // }, [nodeId]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
 

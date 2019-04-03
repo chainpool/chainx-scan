@@ -66,7 +66,7 @@ class Api {
   /**
    * 获取投票用户列表
    */
-  fetchTNomi$ = nodeId => {
+  fetchNominations$ = nodeId => {
     return this.fetch$(`/intention/${nodeId}/nominations`);
   };
 
