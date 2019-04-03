@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
-import { BlockLink, AddressLink, DateShow, PanelList, Breadcrumb, Spinner } from "../../components";
+import { Link, AddressLink, DateShow, PanelList, Breadcrumb, Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
@@ -56,15 +56,15 @@ export default function BlockDetail(props) {
         dataSource={[
           {
             label: "区块高度",
-            data: <BlockLink value={data.number} />
+            data: <Link parent="blocks" value={data.number} />
           },
           {
             label: "区块哈希",
-            data: <BlockLink value={data.hash} />
+            data: <Link parent="blocks" value={data.hash} />
           },
           {
             label: "父哈希",
-            data: <BlockLink value={data.parent_hash} />
+            data: <Link parent="blocks" value={data.parent_hash} />
           },
           {
             label: "状态根",

@@ -1,6 +1,9 @@
 import React from "react";
 
-import { Table, AddressLink, ExternalLink, Amount, Number } from "../components";
+import { Table, AddressLink, Link, ExternalLink, Amount, Number } from "../components";
+import { hexAddPrefix } from "@polkadot/util";
+
+import { useAppContext } from "./AppContext";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">
@@ -9,12 +12,20 @@ const indexExtend = (index, trust) => (
   </span>
 );
 
-const AddressLinkExtend = (value, isValidator, isActive) => (
-  <span className="nowrap">
-    <AddressLink isValidator value={value} />
-    {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
-  </span>
-);
+const AddressLinkExtend = (value, isValidator, isActive) => {
+  const hexValue = hexAddPrefix(value);
+  const [{ intentions = [] }] = useAppContext();
+  if (isValidator) {
+    const { name = "" } = intentions.find(({ accountid }) => accountid === hexValue) || {};
+    value = name;
+  }
+  return (
+    <span className="nowrap">
+      <Link parent="validators" hexValue={hexValue} value={value} />
+      {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
+    </span>
+  );
+};
 
 export default function ValidatorsTable(props) {
   const { dataSource = [], pagination = {}, handleChange } = props;
