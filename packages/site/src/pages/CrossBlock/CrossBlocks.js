@@ -1,9 +1,9 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, Number, AddressLink } from "../components";
-import { useRedux } from "../shared";
-import TableService from "../services/tableService";
-import api from "../services/api";
+import { Table, DateShow, Hash, ExternalLink, Number, AddressLink } from "../../components";
+import { useRedux } from "../../shared";
+import TableService from "../../services/tableService";
+import api from "../../services/api";
 
 export default function CrossBlocks() {
   const [{ tableData }, setState] = useRedux("crossBlocks", { tableData: {} });
