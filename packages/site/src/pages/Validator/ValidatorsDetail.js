@@ -27,9 +27,7 @@ export default function BlockDetail(props) {
   }, [nodeId]);
 
   useEffect(() => {
-    const subscription = api
-      .fetchAccountNominations$(nodeId)
-      .subscribe(({ items }) => setNomiData({ dataSource: items }));
+    const subscription = api.fetchNominations$(nodeId).subscribe(({ items }) => setNomiData({ dataSource: items }));
     return () => subscription.unsubscribe();
   }, [nodeId]);
 

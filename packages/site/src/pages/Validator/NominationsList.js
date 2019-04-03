@@ -7,7 +7,7 @@ import api from "../../services/api";
 
 export default function NominationsList() {
   const [{ tableData }, setState] = useRedux("nominationsList", { tableData: {} });
-  const tableService = useMemo(() => new TableService(api.fetchAccountNominations$, tableData), []);
+  const tableService = useMemo(() => new TableService(api.fetchNominations$, tableData), []);
 
   useEffect(() => {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
