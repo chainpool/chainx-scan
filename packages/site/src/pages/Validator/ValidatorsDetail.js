@@ -3,17 +3,17 @@ import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
 import { ExternalLink, AddressLink, PanelList, Breadcrumb, Spinner, Amount, Number } from "../../components";
+import { RenderNominationsList } from "./NominationsList";
 import api from "../../services/api";
 
 export default function BlockDetail(props) {
   const { match } = props;
 
   const [data, setData] = useState({});
-  // const [eventsData, setEventsData] = useState({});
+  const [nomiData, setNomiData] = useState({});
   // const [txsData, setTxsData] = useState({});
-  const [activeKey, setActiveKey] = useState("txs");
+  const [activeKey, setActiveKey] = useState("vote");
   const nodeId = /^\d*$/.test(match.params.node) ? match.params.node : hexAddPrefix(match.params.node);
-  // const nodeNumber = data.number;
 
   useEffect(() => {
     const subscription = api.fetchValidatorDetail$(nodeId).subscribe(data => setData(data));
@@ -27,12 +27,12 @@ export default function BlockDetail(props) {
   //   return () => subscription.unsubscribe();
   // }, [blockNumber]);
 
-  // useEffect(() => {
-  //   const subscription = api
-  //     .fetchTxs$({ block: blockNumber })
-  //     .subscribe(({ items }) => setTxsData({ dataSource: items }));
-  //   return () => subscription.unsubscribe();
-  // }, [blockNumber]);
+  useEffect(() => {
+    const subscription = api
+      .fetchAccountNominations$(nodeId)
+      .subscribe(({ items }) => setNomiData({ dataSource: items }));
+    return () => subscription.unsubscribe();
+  }, [nodeId]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
 
@@ -62,13 +62,11 @@ export default function BlockDetail(props) {
           },
           {
             label: "账户地址",
-            data: <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />
+            data: <AddressLink value={data.accountid} isActive className="text-truncate" />
           },
           {
             label: "奖池地址",
-            data: (
-              <AddressLink value={data.jackpotAddress} isActive style={{ maxWidth: 136 }} className="text-truncate" />
-            )
+            data: <AddressLink value={data.jackpotAddress} isActive className="text-truncate" />
           },
           {
             label: "自抵押数",
@@ -99,14 +97,15 @@ export default function BlockDetail(props) {
       <div className="box">
         <div className="tabs">
           <ul>
-            <li onClick={() => setActiveKey("txs")} className={classnames({ "is-active": activeKey === "txs" })}>
+            <li onClick={() => setActiveKey("trust")} className={classnames({ "is-active": activeKey === "trust" })}>
               <a>信托设置</a>
             </li>
-            <li onClick={() => setActiveKey("events")} className={classnames({ "is-active": activeKey === "events" })}>
+            <li onClick={() => setActiveKey("vote")} className={classnames({ "is-active": activeKey === "vote" })}>
               <a>投票用户列表</a>
             </li>
           </ul>
         </div>
+        <div>{nomiData && activeKey === "vote" && <RenderNominationsList tableData={nomiData} />}</div>
       </div>
     </div>
   );
