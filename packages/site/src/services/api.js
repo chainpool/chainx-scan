@@ -63,6 +63,12 @@ class Api {
   fetchValidatorDetail$ = nodeId => {
     return this.fetch$(`/intention/${nodeId}`);
   };
+  /**
+   * 获取投票用户列表
+   */
+  fetchTNomi$ = nodeId => {
+    return this.fetch$(`/intention/${nodeId}/nominations`);
+  };
 
   /**
    * 获取账户跨链资产列表
