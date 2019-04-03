@@ -2,17 +2,17 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
-import { Link, ExternalLink, AddressLink, PanelList, Breadcrumb, Spinner, Amount, Number } from "../../components";
-import { RenderTxsList } from "../Txs/TxsList";
-import { RenderEvents } from "../Events";
+import { ExternalLink, AddressLink, PanelList, Breadcrumb, Spinner, Amount, Number } from "../../components";
+// import { RenderTxsList } from "../Txs/TxsList";
+// import { RenderEvents } from "../Events";
 import api from "../../services/api";
 
 export default function BlockDetail(props) {
   const { match } = props;
 
   const [data, setData] = useState({});
-  const [eventsData, setEventsData] = useState({});
-  const [txsData, setTxsData] = useState({});
+  // const [eventsData, setEventsData] = useState({});
+  // const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
   const nodeId = /^\d*$/.test(match.params.node) ? match.params.node : hexAddPrefix(match.params.node);
   // const nodeNumber = data.number;
@@ -109,12 +109,6 @@ export default function BlockDetail(props) {
             </li>
           </ul>
         </div>
-        {data && data.number && activeKey === "txs" && (
-          <RenderTxsList tableData={txsData} tableProps={{ pagination: false, simpleMode: true }} />
-        )}
-        {data && data.number && activeKey === "events" && (
-          <RenderEvents tableData={eventsData} tableProps={{ pagination: false, simpleMode: true }} />
-        )}
       </div>
     </div>
   );
