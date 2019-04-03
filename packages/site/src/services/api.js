@@ -38,11 +38,36 @@ class Api {
     if (this.socket.disconnected) {
       this.socket.connect();
     }
+    const reconect = e => {
+      console.log("connect_error");
+      if (!!this.socket) {
+        this.socket.removeListener(eventName);
+        this.socket.disconnect();
+        this.socket.close();
+        this.socket = null;
+      }
+      setTimeout(() => {
+        if (!this.socket) {
+          this.socket = io(process.env.REACT_APP_SERVER);
+        }
+        console.log("reconect");
+        this.socket.connect();
+      }, 1500);
+    };
     return new Observable(observer => {
-      this.socket.emit("subscribe", name);
+      this.socket.on("open", () => this.socket.emit("subscribe", name));
       this.socket.on(eventName, data => {
         observer.next(data);
       });
+      // this.socket.on('disconnect', reconect)
+      // this.socket.on('error', reconect)
+      // this.socket.on('reconnect', reconect)
+      this.socket.on("connect_error", reconect);
+      // this.socket.on('connect_timeout', reconect)
+      // this.socket.on('reconnect_attempt', reconect)
+      // this.socket.on('reconnecting', reconect)
+      // this.socket.on('reconnect_error', reconect)
+      // this.socket.on('reconnect_failed', reconect)
       return () => {
         this.socket.removeListener(eventName);
         this.socket.emit("unsubscribe", name);
