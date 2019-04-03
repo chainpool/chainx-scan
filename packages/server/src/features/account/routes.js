@@ -7,6 +7,7 @@ const router = new Router();
 router.get("/intentions", accountController.intentions);
 router.get("/intention/:accountId", intentionController.intention);
 router.get("/intention/:accountId/nominations", nominationController.byNominee);
+router.get("/intention/:accountId/settings", intentionController.setting);
 router.get("/accounts", accountController.accounts);
 router.get("/account/:accountId/nominations", nominationController.accountNominations);
 router.get("/account/:accountId/detail", accountController.accountDetail);

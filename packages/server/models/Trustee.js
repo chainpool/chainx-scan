@@ -5,10 +5,12 @@ module.exports = (sequelize, DataTypes) => {
     "Trustee",
     {
       accountid: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        primaryKey: true
       },
       chain: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        primaryKey: true
       },
       about: {
         type: DataTypes.STRING
