@@ -50,14 +50,15 @@ class Api {
         }, 1500);
       }
     };
+    if (!this.hasBindConnectError) {
+      this.socket.on("connect_error", e => reconect(e, "connect_error"));
+      this.hasBindConnectError = true;
+    }
     return new Observable(observer => {
-      this.socket.on("connect", () => {
-        this.socket.emit("subscribe", name);
-      });
+      this.socket.emit("subscribe", name);
       this.socket.on(eventName, data => {
         observer.next(data);
       });
-      this.socket.on("connect_error", e => reconect(e, "connect_error"));
       return () => {
         this.socket.removeListener(eventName);
         this.socket.emit("unsubscribe", name);
