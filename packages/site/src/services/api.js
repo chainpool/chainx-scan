@@ -83,6 +83,13 @@ class Api {
   };
 
   /**
+   * 获取节点详情
+   */
+  fetchValidatorDetail$ = nodeId => {
+    return this.fetch$(`/intention/${nodeId}`);
+  };
+
+  /**
    * 获取账户跨链资产列表
    */
   fetchAccountBalance$ = accountId => {

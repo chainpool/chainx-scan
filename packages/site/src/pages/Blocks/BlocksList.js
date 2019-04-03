@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Spinner, Table, BlockLink, AddressLink, DateShow, Number } from "../../components";
+import { Spinner, Table, Link, DateShow, Number, AddressLinkExtend } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
@@ -28,10 +28,10 @@ export default function BlocksList() {
         tableData.dataSource.map(data => {
           return {
             key: data.number,
-            number: <BlockLink value={data.number} />,
-            hash: <BlockLink style={{ width: 138 }} className="text-truncate" value={data.hash} />,
+            number: <Link parent="blocks" value={data.number} />,
+            hash: <Link parent="blocks" style={{ width: 138 }} className="text-truncate" value={data.hash} />,
             time: <DateShow value={data.time} />,
-            producer: <AddressLink isValidator value={data.producer} />,
+            producer: <AddressLinkExtend value={data.producer} />,
             extrinsics: <Number value={data.extrinsics} />,
             eventCount: <Number value={data.event_count} />
           };
