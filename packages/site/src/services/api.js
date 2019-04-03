@@ -38,6 +38,22 @@ class Api {
     if (this.socket.disconnected) {
       this.socket.connect();
     }
+    const reconect = e => {
+      if (this.socket.disconnected) {
+        this.socket.close();
+      }
+      setTimeout(() => {
+        this.socket.connect();
+      }, 1500);
+    };
+    if (!this.hasBindConnectError) {
+      this.socket.on("connect_error", reconect);
+      this.hasBindConnectError = true;
+    }
+    if (!this.hasBindConnectTimeout) {
+      this.socket.on("connect_timeout", reconect);
+      this.hasBindConnectTimeout = true;
+    }
     return new Observable(observer => {
       this.socket.emit("subscribe", name);
       this.socket.on(eventName, data => {
