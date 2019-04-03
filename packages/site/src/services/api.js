@@ -42,12 +42,9 @@ class Api {
       if (this.socket.disconnected) {
         this.socket.close();
       }
-      if (typeof this.socketTimer != "number") {
-        this.socketTimer = setTimeout(() => {
-          this.socket.connect();
-          this.socketTimer = null;
-        }, 1500);
-      }
+      setTimeout(() => {
+        this.socket.connect();
+      }, 1500);
     };
     if (!this.hasBindConnectError) {
       this.socket.on("connect_error", reconect);
