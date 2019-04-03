@@ -85,8 +85,16 @@ export default function BlockDetail(props) {
             data: <Amount value={data.jackpot} hideSymbol />
           },
           {
-            label: "累计出块数",
+            label: "出块总数",
             data: <Number value={data.blocks} />
+          },
+          {
+            label: "票龄最新高度",
+            data: data.lastTotalVoteWeightUpdate
+          },
+          {
+            label: "历史总票龄",
+            data: data.lastTotalVoteWeight
           }
         ]}
       />
