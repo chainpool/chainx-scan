@@ -1,18 +1,11 @@
 import React from "react";
 
-import { Table, AddressLink, ExternalLink, Amount, Number } from "../components";
+import { Table, AddressLink, AddressLinkExtend, ExternalLink, Amount, Number } from "../components";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">
     {index}
     {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
-  </span>
-);
-
-const AddressLinkExtend = (value, isValidator, isActive) => (
-  <span className="nowrap">
-    <AddressLink isValidator value={value} />
-    {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
   </span>
 );
 
@@ -29,7 +22,7 @@ export default function ValidatorsTable(props) {
           return {
             key: `${data.accountid}`,
             index: indexExtend(_index, data.isTrustee),
-            name: AddressLinkExtend(data.accountid, true, data.isActive),
+            name: <AddressLinkExtend value={data.accountid} isActive={data.isActive} />,
             url: <ExternalLink value={data.url} />,
             address: (
               <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />
