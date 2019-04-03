@@ -26,7 +26,7 @@ export default class tableService {
     tabFilter: null,
     pagination: {
       current: 1,
-      pageSize: 200,
+      pageSize: 20,
       total: 0
     }
   };
