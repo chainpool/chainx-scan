@@ -45,14 +45,16 @@ class Api {
       if (typeof this.socketTimer != "number") {
         this.socketTimer = setTimeout(() => {
           this.socket.connect();
-          clearTimeout(this.socketTimer);
-          this.socketTimer = null;
         }, 1500);
       }
     };
     if (!this.hasBindConnectError) {
-      this.socket.on("connect_error", e => reconect(e, "connect_error"));
+      this.socket.on("connect_error", reconect);
       this.hasBindConnectError = true;
+    }
+    if (!this.hasBindConnectTimeout) {
+      this.socket.on("connect_timeout", reconect);
+      this.hasBindConnectTimeout = true;
     }
     return new Observable(observer => {
       this.socket.emit("subscribe", name);
