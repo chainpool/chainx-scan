@@ -176,7 +176,7 @@ class Api {
    * 获取账户投票列表
    */
   fetchAccountNominations$ = (accountId, params) => {
-    return this.fetch$(`/account/${hexAddPrefix(accountId)}/nominations`, params);
+    return this.fetch$(`/intention/${hexAddPrefix(accountId)}/nominations`, params);
   };
 
   /**

@@ -3,6 +3,7 @@ import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
 import { ExternalLink, AddressLink, PanelList, Breadcrumb, Spinner, Amount, Number } from "../../components";
+import { RenderNominationsList } from "./NominationsList";
 import api from "../../services/api";
 
 export default function BlockDetail(props) {
@@ -11,9 +12,8 @@ export default function BlockDetail(props) {
   const [data, setData] = useState({});
   const [nomiData, setNomiData] = useState({});
   // const [txsData, setTxsData] = useState({});
-  const [activeKey, setActiveKey] = useState("trust");
+  const [activeKey, setActiveKey] = useState("vote");
   const nodeId = /^\d*$/.test(match.params.node) ? match.params.node : hexAddPrefix(match.params.node);
-  // const nodeNumber = data.number;
 
   useEffect(() => {
     const subscription = api.fetchValidatorDetail$(nodeId).subscribe(data => setData(data));
@@ -28,7 +28,9 @@ export default function BlockDetail(props) {
   // }, [blockNumber]);
 
   useEffect(() => {
-    const subscription = api.fetchTNomi$(nodeId).subscribe(({ items }) => setNomiData({ dataSource: items }));
+    const subscription = api
+      .fetchAccountNominations$(nodeId)
+      .subscribe(({ items }) => setNomiData({ dataSource: items }));
     return () => subscription.unsubscribe();
   }, [nodeId]);
 
@@ -103,7 +105,7 @@ export default function BlockDetail(props) {
             </li>
           </ul>
         </div>
-        <div />
+        <div>{nomiData && activeKey === "vote" && <RenderNominationsList tableData={nomiData} />}</div>
       </div>
     </div>
   );
