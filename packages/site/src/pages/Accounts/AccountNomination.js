@@ -4,7 +4,7 @@ import { Table, Amount, AddressLink, Number } from "../../components";
 import api from "../../services/api";
 
 export default function AccountNomination(props) {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState({});
 
   useEffect(() => {
     const subscription = api.fetchAccountNominations$(props.accountId).subscribe(data => setList(data));
@@ -22,7 +22,8 @@ export default function AccountNomination(props) {
       pagination={false}
       dataSource={
         list &&
-        list.map(data => {
+        list.items &&
+        list.items.map(data => {
           return {
             key: data.nominee,
             nominee: <AddressLink value={data.nominee} isValidator />,
