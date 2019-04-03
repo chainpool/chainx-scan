@@ -45,6 +45,7 @@ class Api {
       if (typeof this.socketTimer != "number") {
         this.socketTimer = setTimeout(() => {
           this.socket.connect();
+          this.socketTimer = null;
         }, 1500);
       }
     };
