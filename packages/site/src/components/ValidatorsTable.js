@@ -1,9 +1,6 @@
 import React from "react";
 
-import { Table, AddressLink, Link, ExternalLink, Amount, Number } from "../components";
-import { hexAddPrefix } from "@polkadot/util";
-
-import { useAppContext } from "./AppContext";
+import { Table, AddressLink, AddressLinkExtend, ExternalLink, Amount, Number } from "../components";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">
@@ -11,21 +8,6 @@ const indexExtend = (index, trust) => (
     {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
   </span>
 );
-
-const AddressLinkExtend = (value, isValidator, isActive) => {
-  const hexValue = hexAddPrefix(value);
-  const [{ intentions = [] }] = useAppContext();
-  if (isValidator) {
-    const { name = "" } = intentions.find(({ accountid }) => accountid === hexValue) || {};
-    value = name;
-  }
-  return (
-    <span className="nowrap">
-      <Link parent="validators" hexValue={hexValue} value={value} />
-      {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
-    </span>
-  );
-};
 
 export default function ValidatorsTable(props) {
   const { dataSource = [], pagination = {}, handleChange } = props;
@@ -40,7 +22,7 @@ export default function ValidatorsTable(props) {
           return {
             key: `${data.accountid}`,
             index: indexExtend(_index, data.isTrustee),
-            name: AddressLinkExtend(data.accountid, true, data.isActive),
+            name: <AddressLinkExtend value={data.accountid} isActive={data.isActive} />,
             url: <ExternalLink value={data.url} />,
             address: (
               <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />

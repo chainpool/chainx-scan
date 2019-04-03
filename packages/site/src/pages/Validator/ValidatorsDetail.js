@@ -3,8 +3,6 @@ import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
 import { ExternalLink, AddressLink, PanelList, Breadcrumb, Spinner, Amount, Number } from "../../components";
-// import { RenderTxsList } from "../Txs/TxsList";
-// import { RenderEvents } from "../Events";
 import api from "../../services/api";
 
 export default function BlockDetail(props) {
