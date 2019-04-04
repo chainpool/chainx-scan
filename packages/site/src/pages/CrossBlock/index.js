@@ -9,6 +9,7 @@ import Etherum from "../../assets/crossblocks/etherum.jpg";
 import DepositMine from "../../assets/crossblocks/deposit_mine.jpg";
 import CrossTxs from "./CrossTxs";
 import CrossBind from "./CrossBind";
+import CrossDeposits from "./CrossDeposits";
 import EtherumBind from "./EtherumBind";
 
 export default function CrossBlock(props) {
@@ -60,6 +61,7 @@ export default function CrossBlock(props) {
                 )}
                 {props.location.pathname === "/crossblocks/bitcoin/crosstxs" && <CrossTxs {...props} />}
                 {props.location.pathname === "/crossblocks/bitcoin/crossbind" && <CrossBind {...props} />}
+                {props.location.pathname === "/crossblocks/bitcoin/deposits" && <CrossDeposits {...props} />}
               </div>
             );
           }}
