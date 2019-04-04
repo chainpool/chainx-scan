@@ -1,6 +1,6 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
-import { Table, Link, Spinner, TxAction, DateShow, TxLink } from "../components";
+import { DateShow, Link, Phase, Spinner, Table, TxAction, TxLink } from "../components";
 import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -68,7 +68,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
         return {
           key: `${data.number}${data.index}`,
           number: <Link parent="blocks" value={data.number} />,
-          event: data.phase && data.phase.option,
+          event: <Phase phase={data.phase && data.phase.option} />,
           index: data.index && data.index,
           phaseValue: data.phase && data.phase.value,
           action: <TxAction module={data.module} call={data.name} />,

@@ -5,6 +5,7 @@ const moduleNameMap = {
   XSpot: "币币交易",
   XStaking: "投票选举",
   XSystem: "系统",
+  System: "核心",
   XBridgeOfBTC: "Bitcoin桥",
   Timestamp: "时间戳",
   XAssets: "资产",
