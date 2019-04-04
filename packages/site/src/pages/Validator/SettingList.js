@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Table } from "../../components";
+import { useRedux } from "../../shared";
+import api from "../../services/api";
 
-export function RenderSettingList({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = { ...tableData, ...tableProps };
+export default function SettingList({ nodeID, ...props }) {
+  const [{ dataSource }, setState] = useRedux(`settingList-${nodeID}`, { dataSource: [] });
+
+  useEffect(() => {
+    const subscription = api.fetchTrusteeSettingList$(nodeID).subscribe(dataSource => setState({ dataSource }));
+    return () => subscription.unsubscribe();
+  }, [nodeID]);
   const columns = [
     {
       title: "链",
@@ -19,8 +26,6 @@ export function RenderSettingList({ tableProps, tableData, handleChange }) {
   ];
   return (
     <Table
-      onChange={handleChange}
-      pagination={pagination}
       dataSource={dataSource.map(data => {
         return {
           key: `${data.chain}`,

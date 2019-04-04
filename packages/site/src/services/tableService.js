@@ -2,11 +2,12 @@ import { BehaviorSubject } from "rxjs";
 import { take, scan, publishReplay, refCount, distinctUntilChanged } from "rxjs/operators";
 
 export default class tableService {
-  constructor(_fetchTable, initData = {}) {
+  constructor(_fetchTable, initData = {}, peddingData = {}) {
     const initialize = {
       ...tableService.initData,
       ...initData
     };
+    this.peddingData = peddingData;
     this.subject = new BehaviorSubject(initialize);
     this.state$ = this.subject.asObservable().pipe(
       scan((acc, newVal) => {
@@ -17,13 +18,12 @@ export default class tableService {
       refCount()
     );
     this._fetchTable = _fetchTable;
-    this.fetchTable({ ...initialize.pagination, tabFilter: initData.tabFilter });
+    this.fetchTable({ ...initialize.pagination }, peddingData);
   }
 
   static initData = {
     dataSource: [],
     loading: false,
-    tabFilter: null,
     pagination: {
       current: 1,
       pageSize: 20,
@@ -31,13 +31,15 @@ export default class tableService {
     }
   };
 
-  fetchTable = ({ current, pageSize, tabFilter }) => {
+  fetchTable = ({ current, pageSize }) => {
     this.setState({ loading: true });
-    this._fetchTable({
-      page: current - 1,
-      pageSize,
-      tabFilter
-    })
+    this._fetchTable(
+      {
+        page: current - 1,
+        pageSize
+      },
+      { ...this.peddingData }
+    )
       .pipe(take(1))
       .subscribe(({ items, page, pageSize, total }) => {
         this.setState({
@@ -53,7 +55,7 @@ export default class tableService {
   };
 
   handleChange = ({ current, pageSize }) => {
-    this.fetchTable({ current, pageSize });
+    this.fetchTable({ current, pageSize }, this.peddingData);
   };
 
   setState(value) {

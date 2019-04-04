@@ -17,11 +17,11 @@ export default function Validators(props) {
       }
     }
   });
-  const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData), []);
+  const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData, { tabFilter }), []);
 
   useEffect(() => {
     const subscription = tableService.getState$().subscribe(data => {
-      setState({ tableData: { ...data, tabFilter } });
+      setState({ tableData: { ...data } });
     });
     return () => subscription.unsubscribe();
   }, [tabFilter]);

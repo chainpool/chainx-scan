@@ -90,10 +90,9 @@ class Api {
   /**
    * 获取信托设置列表
    */
-  fetchTrusteeSettingList$ = (nodeId, params) => {
-    return this.fetch$(`/intention/${nodeId}/settings`, params);
+  fetchTrusteeSettingList$ = nodeID => {
+    return this.fetch$(`/intention/${nodeID}/settings`);
   };
-
   /**
    * 获取账户跨链资产列表
    */
@@ -125,13 +124,14 @@ class Api {
   /**
    * 获取验证人列表
    */
-  fetchIntentions$ = (params, options) => {
-    return this.fetch$(`/intentions`, params, options).pipe(
+  fetchIntentions$ = (params, options = {}) => {
+    const { tabFilter = null } = options;
+    return this.fetch$(`/intentions`, params).pipe(
       map(result => {
-        if (typeof params.tabFilter === "string") {
-          result.items = result.items.filter(item => item.isTrustee.indexOf(params.tabFilter) >= 0);
+        if (typeof tabFilter === "string") {
+          result.items = result.items.filter(item => item.isTrustee.indexOf(tabFilter) >= 0);
           result.total = result.items.length;
-        } else if (params.tabFilter === 1) {
+        } else if (tabFilter === 1) {
           result.items = result.items.filter(item => !item.isValidator);
           result.total = result.items.length;
         }
