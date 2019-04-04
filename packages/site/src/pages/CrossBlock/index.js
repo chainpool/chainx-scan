@@ -22,7 +22,11 @@ export default function CrossBlock(props) {
               充值挖矿
             </NavLink>
           </li>
-          <li className={classnames({ "is-active": activeKey.includes("/crossblocks/bitcoin") })}>
+          <li
+            className={classnames({
+              "is-active": activeKey.includes("/crossblocks/bitcoin") || activeKey === "/crossblocks"
+            })}
+          >
             <NavLink to="/crossblocks/bitcoin">
               <img className="tab-img" src={Bitcoin} alt="Bitcoin转接桥" />
               Bitcoin转接桥
@@ -45,12 +49,14 @@ export default function CrossBlock(props) {
           }}
         />
         <Route
-          path="/crossblocks(/bitcoin)?(/:list)?"
+          path="/crossblocks(/bitcoin/:list)?"
           render={props => {
             return (
               <div className="box">
                 <CrossChainNav activeKey={props.location.pathname} />
-                {props.location.pathname === "/crossblocks/bitcoin" && <CrossBlocks {...props} />}
+                {(props.location.pathname === "/crossblocks/bitcoin" || props.location.pathname === "/crossblocks") && (
+                  <CrossBlocks {...props} />
+                )}
                 {props.location.pathname === "/crossblocks/bitcoin/crosstxs" && <CrossTxs {...props} />}
                 {props.location.pathname === "/crossblocks/bitcoin/crossbind" && <CrossBind {...props} />}
               </div>
