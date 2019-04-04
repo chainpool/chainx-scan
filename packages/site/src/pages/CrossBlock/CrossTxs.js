@@ -1,6 +1,6 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useEffect, useMemo } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, AddressLink } from "../../components";
+import { AddressLink, Amount, DateShow, ExternalLink, Hash, Table } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -46,14 +46,18 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
             />
           ),
           txType: data.tx_type,
-          time: <DateShow value={data.time * 1000} />,
           blockTime: <DateShow value={data["block.time"]} />,
-          relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />
+          relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />,
+          value: <Amount value={data.value} precision={8} symbol={"BTC"} />
         };
       })}
       columns={[
         {
-          title: "交易哈希",
+          title: "Bitcoin区块哈希",
+          dataIndex: "hash"
+        },
+        {
+          title: "Bitcoin交易哈希",
           dataIndex: "txid"
         },
         {
@@ -61,12 +65,8 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
           dataIndex: "txType"
         },
         {
-          title: "块哈希",
-          dataIndex: "hash"
-        },
-        {
-          title: "交易时间",
-          dataIndex: "time"
+          title: "金额",
+          dataIndex: "value"
         },
         {
           title: "中继人",
