@@ -62,6 +62,10 @@ export default function BlockDetail(props) {
             data: <AddressLink value={data.accountid} isActive className="text-truncate" />
           },
           {
+            label: "出块地址",
+            data: <AddressLink value={data.sessionKey} isActive className="text-truncate" />
+          },
+          {
             label: "奖池地址",
             data: <AddressLink value={data.jackpotAddress} isActive className="text-truncate" />
           },
