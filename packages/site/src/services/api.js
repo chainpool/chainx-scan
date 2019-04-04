@@ -239,10 +239,17 @@ class Api {
   };
 
   /**
-   * 跨链 BTC 列表
+   * 跨链充值列表
    */
   fetchBtcDeposits$ = params => {
     return this.fetch$(`/btc/deposits`, params);
+  };
+
+  /**
+   * 跨链提现列表
+   */
+  fetchBtcWithdrawals$ = params => {
+    return this.fetch$(`/btc/withdrawals`, params);
   };
 
   /**
