@@ -11,6 +11,11 @@ class AccountController {
     };
   }
 
+  async pseduIntentions(ctx) {
+    const intentions = await ctx.db.PseduIntention.findAll({ raw: true });
+    ctx.body = intentions;
+  }
+
   async setting(ctx) {
     const { accountId } = ctx.params;
 

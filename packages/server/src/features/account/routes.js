@@ -5,6 +5,7 @@ const intentionController = require("./intention.controller");
 
 const router = new Router();
 router.get("/intentions", accountController.intentions);
+router.get("/psedu_intentions", intentionController.pseduIntentions);
 router.get("/intention/:accountId", intentionController.intention);
 router.get("/intention/:accountId/nominations", nominationController.byNominee);
 router.get("/intention/:accountId/settings", intentionController.setting);
