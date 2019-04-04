@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, AddressLink, TxLink } from "../../components";
+import { Table, Hash, ExternalLink, AddressLink } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -37,14 +37,12 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
               }}
             />
           ),
-          chainx_tx: <TxLink style={{ width: 136 }} className="text-truncate" value={data.chainx_tx} />,
           accountid: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
           token: data.token,
           balance: data.balance,
           txstate: data.txstate,
           memo: data.memo,
-          address: <ExternalLink type="btcAddress" value={data.address} />,
-          blockTime: <DateShow value={data["block.time"]} />
+          address: <ExternalLink type="btcAddress" value={data.address} />
         };
       })}
       columns={[
