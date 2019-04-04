@@ -5,16 +5,16 @@ import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 
-export default function NominationsList() {
-  const [{ tableData }, setState] = useRedux("nominationsList", { tableData: {} });
-  const tableService = useMemo(() => new TableService(api.fetchNominations$, tableData), []);
+export default function NominationsList({ nodeID, ...props }) {
+  const [{ tableData }, setState] = useRedux(`nominationsList-${nodeID}`, { tableData: {} });
+  const tableService = useMemo(() => new TableService(api.fetchNominations$, tableData, { nodeID }), []);
 
   useEffect(() => {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  if (tableData && tableData.dataSource && tableData.dataSource.length > 0) {
+  if (tableData && tableData.dataSource && tableData.dataSource.length >= 0) {
     return <RenderNominationsList {...{ tableData, handleChange: tableService.handleChange }} />;
   }
 
