@@ -5,8 +5,8 @@ import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
 
-export default function CrossDeposits() {
-  const [{ tableData }, setState] = useRedux("crossDeposits", { tableData: {} });
+export default function CrossWithdrawals() {
+  const [{ tableData }, setState] = useRedux("crossWithdrawals", { tableData: {} });
 
   const tableService = useMemo(() => new TableService(api.fetchBtcWithdrawals$, tableData), []);
 
@@ -15,10 +15,10 @@ export default function CrossDeposits() {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  return <RenderCrossDeposits {...{ tableData, handleChange: tableService.handleChange }} />;
+  return <RenderCrossWithdrawals {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 
-export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
+export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [] } = tableData;
 
   return (
