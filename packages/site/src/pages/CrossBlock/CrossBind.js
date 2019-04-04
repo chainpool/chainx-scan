@@ -1,9 +1,9 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, AddressLink, ExternalLink } from "../components";
-import { useRedux } from "../shared";
-import TableService from "../services/tableService";
-import api from "../services/api";
+import { Table, AddressLink, ExternalLink } from "../../components";
+import { useRedux } from "../../shared";
+import TableService from "../../services/tableService";
+import api from "../../services/api";
 
 export default function CrossBind() {
   const [{ tableData }, setState] = useRedux("crossBind", { tableData: {} });
@@ -26,7 +26,7 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
       pagination={pagination}
       dataSource={dataSource.map(data => {
         return {
-          key: data.accountid,
+          key: data.address,
           pcxAddress: <AddressLink value={data.accountid} />,
           btcAddress: <ExternalLink type="btcAddress" value={data.address} />,
           channel: data.channel

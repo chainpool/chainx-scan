@@ -152,12 +152,28 @@ a:focus {
   color: #939393;
 }
 
+/** 顶部标签 **/
+.top{
+  font-size: 20px;
+  line-height: 50px;
+  li{
+    flex: 1;
+  }
+}
+
 .tab-item {
   // margin: 0 20px;
   // line-height: 48px;
   box-sizing: border-box;
   cursor: pointer;
   color: #4a4a4a;
+}
+
+.tab-img{
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  margin: 0 10px;
 }
 
 .dashboard-cell {
