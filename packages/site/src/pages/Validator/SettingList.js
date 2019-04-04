@@ -10,15 +10,6 @@ export default function SettingList({ nodeID, ...props }) {
     const subscription = api.fetchTrusteeSettingList$(nodeID).subscribe(dataSource => setState({ dataSource }));
     return () => subscription.unsubscribe();
   }, [nodeID]);
-  if (dataSource && dataSource.length >= 0) {
-    return <RenderSettingList {...{ dataSource }} />;
-  }
-
-  return <Spinner />;
-}
-
-export function RenderSettingList({ tableProps, dataSource = [], handleChange }) {
-  const { pagination } = { ...tableProps };
   const columns = [
     {
       title: "链",
@@ -35,8 +26,6 @@ export function RenderSettingList({ tableProps, dataSource = [], handleChange })
   ];
   return (
     <Table
-      onChange={handleChange}
-      pagination={pagination}
       dataSource={dataSource.map(data => {
         return {
           key: `${data.chain}`,
