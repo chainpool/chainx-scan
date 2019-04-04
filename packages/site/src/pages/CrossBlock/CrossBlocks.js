@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, Number, AddressLink } from "../../components";
+import { Table, DateShow, Hash, ExternalLink, Number, AddressLink, TxLink } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -28,7 +28,7 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
       dataSource={dataSource.map(data => {
         return {
           key: data.bitcoin_height,
-          version: data.version,
+          txid: data.txid.length,
           height: (
             <ExternalLink
               type="btcHash"
@@ -56,44 +56,45 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
               }}
             />
           ),
-          merkle: <Hash style={{ width: 136 }} className="text-truncate" value={data.merkle} />,
+          chainx_tx: <TxLink style={{ width: 136 }} className="text-truncate" value={data.chainx_tx} />,
           time: <DateShow value={data.time * 1000} />,
           bits: data.bits,
+          nonce: data.nonce,
           relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />,
           blockTime: <DateShow value={data["block.time"]} />
         };
       })}
       columns={[
         {
-          title: "区块高度",
+          title: "Bitcoin块高",
           dataIndex: "height"
         },
         {
-          title: "区块哈希",
+          title: "Bitcoin区块哈希",
           dataIndex: "hash"
         },
         {
-          title: "版本",
-          dataIndex: "version"
-        },
-        {
-          title: "默克尔根",
-          dataIndex: "merkle"
-        },
-        {
-          title: "区块时间",
+          title: "Bitcoin出块时间",
           dataIndex: "time"
         },
         {
-          title: "bits",
-          dataIndex: "bits"
+          title: "nonce",
+          dataIndex: "nonce"
         },
         {
-          title: "中继人",
+          title: "跨链交易数",
+          dataIndex: "txid"
+        },
+        {
+          title: "ChainX中继交易哈希",
+          dataIndex: "chainx_tx"
+        },
+        {
+          title: "ChainX中继人",
           dataIndex: "relay"
         },
         {
-          title: "中继提交时间",
+          title: "ChainX中继时间",
           dataIndex: "blockTime"
         }
       ]}
