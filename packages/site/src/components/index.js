@@ -10,6 +10,7 @@ export { default as DateShow } from "./DateShow";
 export { default as Amount } from "./Amount";
 export { default as Number } from "./Number";
 export { default as ExternalLink } from "./ExternalLink";
+export { default as EtherumLink } from "./EtherumLink";
 export { default as InputSearch } from "./InputSearch";
 export { default as PanelList } from "./PanelList";
 export { default as Hash } from "./Hash";

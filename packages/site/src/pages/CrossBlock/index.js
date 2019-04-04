@@ -9,6 +9,7 @@ import Etherum from "../../assets/crossblocks/etherum.jpg";
 import DepositMine from "../../assets/crossblocks/deposit_mine.jpg";
 import CrossTxs from "./CrossTxs";
 import CrossBind from "./CrossBind";
+import EtherumBind from "./EtherumBind";
 
 export default function CrossBlock(props) {
   const activeKey = props.location.pathname;
@@ -45,7 +46,7 @@ export default function CrossBlock(props) {
         <Route
           path="/crossblocks/etherum"
           render={props => {
-            return <div />;
+            return <EtherumBind {...props} />;
           }}
         />
         <Route
