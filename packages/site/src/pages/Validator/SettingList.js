@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Table, Spinner } from "../../components";
+import { Table } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 
