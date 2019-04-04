@@ -51,6 +51,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       blocks: {
         type: DataTypes.BIGINT
+      },
+      missedBlocks: {
+        type: DataTypes.BIGINT
       }
     },
     {
