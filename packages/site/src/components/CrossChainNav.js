@@ -7,7 +7,9 @@ export default function BlockChain(props) {
   return (
     <div className={classnames("tabs", className)} style={style}>
       <ul>
-        <li className={classnames({ "is-active": activeKey === "/crossblocks/bitcoin" })}>
+        <li
+          className={classnames({ "is-active": activeKey === "/crossblocks/bitcoin" || activeKey === "/crossblocks" })}
+        >
           <NavLink to="/crossblocks/bitcoin">区块列表</NavLink>
         </li>
         <li className={classnames({ "is-active": activeKey === "/crossblocks/bitcoin/crosstxs" })}>

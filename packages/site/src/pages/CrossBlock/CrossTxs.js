@@ -1,9 +1,9 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, AddressLink } from "../components";
-import { useRedux } from "../shared";
-import TableService from "../services/tableService";
-import api from "../services/api";
+import { Table, DateShow, Hash, ExternalLink, AddressLink } from "../../components";
+import { useRedux } from "../../shared";
+import TableService from "../../services/tableService";
+import api from "../../services/api";
 
 export default function CrossTxs() {
   const [{ tableData }, setState] = useRedux("crossTxs", { tableData: {} });
