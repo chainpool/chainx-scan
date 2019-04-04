@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, Amount, DateShow, ExternalLink, Hash, Table } from "../../components";
+import { AddressLink, Amount, DateShow, ExternalLink, Hash, Table, TxLink } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -48,7 +48,8 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
           txType: data.tx_type,
           blockTime: <DateShow value={data["block.time"]} />,
           relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />,
-          value: <Amount value={data.value} precision={8} symbol={"BTC"} />
+          value: <Amount value={data.value} precision={8} symbol={"BTC"} />,
+          chainxHash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.chainx_tx} />
         };
       })}
       columns={[
@@ -69,11 +70,15 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
           dataIndex: "value"
         },
         {
-          title: "中继人",
+          title: "ChainX中继交易哈希",
+          dataIndex: "chainxHash"
+        },
+        {
+          title: "ChainX中继人",
           dataIndex: "relay"
         },
         {
-          title: "中继提交时间",
+          title: "ChainX中继时间",
           dataIndex: "blockTime"
         }
       ]}
