@@ -76,15 +76,15 @@ class Api {
   /**
    * 获取节点详情
    */
-  fetchValidatorDetail$ = nodeId => {
-    return this.fetch$(`/intention/${nodeId}`);
+  fetchValidatorDetail$ = (nodeId, params) => {
+    return this.fetch$(`/intention/${nodeId}`, params);
   };
 
   /**
    * 获取投票用户列表
    */
-  fetchNominations$ = (params, { nodeID }) => {
-    return this.fetch$(`/intention/${nodeID}/nominations`, params);
+  fetchNominations$ = (nodeId, params) => {
+    return this.fetch$(`/intention/${nodeId}/nominations`, params);
   };
 
   /**
@@ -250,6 +250,13 @@ class Api {
    */
   fetchBtcBind$ = params => {
     return this.fetch$(`/btc/addresses`, params);
+  };
+
+  /**
+   * 跨链以太绑定
+   */
+  fetchEtherumBind$ = params => {
+    return this.fetch$(`/eth/addresses`, params);
   };
 
   /**
