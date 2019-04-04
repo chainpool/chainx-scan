@@ -70,6 +70,18 @@ export default function BlockDetail(props) {
             data: <Amount value={data.jackpot} hideSymbol />
           },
           {
+            label: "漏块总数",
+            data: (
+              <span>
+                <Number value={data.missedBlocks} />
+                <span>{`(${(isNaN(data.missedBlocks / (data.missedBlocks + data.blocks))
+                  ? 0
+                  : (data.missedBlocks / (data.missedBlocks + data.blocks)) * 100
+                ).toFixed(2)}%)`}</span>
+              </span>
+            )
+          },
+          {
             label: "出块总数",
             data: <Number value={data.blocks} />
           },
