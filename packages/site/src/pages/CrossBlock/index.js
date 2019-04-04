@@ -11,6 +11,7 @@ import CrossTxs from "./CrossTxs";
 import CrossBind from "./CrossBind";
 import CrossDeposits from "./CrossDeposits";
 import EtherumBind from "./EtherumBind";
+import DepositsMine from "./DepositsMine";
 
 export default function CrossBlock(props) {
   const activeKey = props.location.pathname;
@@ -43,7 +44,7 @@ export default function CrossBlock(props) {
         </ul>
       </div>
       <Switch>
-        <Route path="/crossblocks/depositMine" render={props => <div />} />
+        <Route path="/crossblocks/depositMine" render={props => <DepositsMine {...props} />} />
         <Route
           path="/crossblocks/etherum"
           render={props => {

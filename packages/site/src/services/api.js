@@ -267,6 +267,13 @@ class Api {
   };
 
   /**
+   * 获取充值挖矿列表
+   */
+  fetchDepositsMine$ = params => {
+    return this.fetch$(`/psedu_intentions`, params);
+  };
+
+  /**
    * 获取 token 和精度对应关系
    */
   fetchTokens$ = params => {
