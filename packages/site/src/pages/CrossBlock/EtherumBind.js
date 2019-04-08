@@ -13,7 +13,6 @@ export default function EtherumBind() {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
-  // if (tableData.loading) return <Spinner />;
   return <RenderEtherumBind {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 

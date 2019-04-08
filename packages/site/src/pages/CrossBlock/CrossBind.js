@@ -22,9 +22,6 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
 
   return (
     <>
-      {/* {tableData.loading ? (
-        <Spinner />
-      ) : ( */}
       <Table
         loading={loading}
         onChange={handleChange}
@@ -53,7 +50,6 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
         ]}
         {...tableProps}
       />
-      {/* )} */}
     </>
   );
 }

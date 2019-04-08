@@ -22,55 +22,53 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = tableData;
 
   return (
-    <>
-      <Table
-        loading={loading}
-        onChange={handleChange}
-        pagination={pagination}
-        dataSource={dataSource.map((data, index) => {
-          return {
-            key: index,
-            txid: (
-              <ExternalLink
-                type="btcHash"
-                value={data.txid}
-                render={() => {
-                  return <Hash style={{ width: 136 }} className="text-truncate" value={data.txid} />;
-                }}
-              />
-            ),
-            chainx_tx: <TxLink style={{ width: 136 }} className="text-truncate" value={data.chainx_tx} />,
-            accountid: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
-            token: data.token,
-            balance: data.balance,
-            address: <ExternalLink type="btcAddress" value={data.address} />,
-            blockTime: <DateShow value={data["block.time"]} />
-          };
-        })}
-        columns={[
-          {
-            title: "Bitcoin交易哈希",
-            dataIndex: "txid"
-          },
-          {
-            title: "Bitcoin来源地址",
-            dataIndex: "address"
-          },
-          {
-            title: "ChainX发放地址",
-            dataIndex: "accountid"
-          },
-          {
-            title: "资产",
-            dataIndex: "token"
-          },
-          {
-            title: "金额",
-            dataIndex: "balance"
-          }
-        ]}
-        {...tableProps}
-      />
-    </>
+    <Table
+      loading={loading}
+      onChange={handleChange}
+      pagination={pagination}
+      dataSource={dataSource.map((data, index) => {
+        return {
+          key: index,
+          txid: (
+            <ExternalLink
+              type="btcHash"
+              value={data.txid}
+              render={() => {
+                return <Hash style={{ width: 136 }} className="text-truncate" value={data.txid} />;
+              }}
+            />
+          ),
+          chainx_tx: <TxLink style={{ width: 136 }} className="text-truncate" value={data.chainx_tx} />,
+          accountid: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
+          token: data.token,
+          balance: data.balance,
+          address: <ExternalLink type="btcAddress" value={data.address} />,
+          blockTime: <DateShow value={data["block.time"]} />
+        };
+      })}
+      columns={[
+        {
+          title: "Bitcoin交易哈希",
+          dataIndex: "txid"
+        },
+        {
+          title: "Bitcoin来源地址",
+          dataIndex: "address"
+        },
+        {
+          title: "ChainX发放地址",
+          dataIndex: "accountid"
+        },
+        {
+          title: "资产",
+          dataIndex: "token"
+        },
+        {
+          title: "金额",
+          dataIndex: "balance"
+        }
+      ]}
+      {...tableProps}
+    />
   );
 }
