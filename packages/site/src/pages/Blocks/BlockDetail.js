@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
-import { Link, AddressLink, DateShow, PanelList, Breadcrumb, Spinner } from "../../components";
+import { Link, AddressLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
@@ -14,6 +14,8 @@ export default function BlockDetail(props) {
   const [eventsData, setEventsData] = useState({});
   const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
+  const [txsLoading, setTxsLoading] = useState(true);
+  const [eventLoading, setEventLoading] = useState(true);
   const blockId = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
   const blockNumber = data.number;
 
@@ -23,16 +25,18 @@ export default function BlockDetail(props) {
   }, [blockId]);
 
   useEffect(() => {
-    const subscription = api
-      .fetchEvents$({ block: blockNumber })
-      .subscribe(({ items }) => setEventsData({ dataSource: items }));
+    const subscription = api.fetchEvents$({ block: blockNumber }).subscribe(({ items }) => {
+      setEventLoading(false);
+      setEventsData({ dataSource: items });
+    });
     return () => subscription.unsubscribe();
   }, [blockNumber]);
 
   useEffect(() => {
-    const subscription = api
-      .fetchTxs$({ block: blockNumber })
-      .subscribe(({ items }) => setTxsData({ dataSource: items }));
+    const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
+      setTxsLoading(false);
+      setTxsData({ dataSource: items });
+    });
     return () => subscription.unsubscribe();
   }, [blockNumber]);
 
@@ -96,10 +100,16 @@ export default function BlockDetail(props) {
           </ul>
         </div>
         {data && data.number && activeKey === "txs" && (
-          <RenderTxsList tableData={txsData} tableProps={{ pagination: false, simpleMode: true }} />
+          <RenderTxsList
+            tableData={{ ...txsData, loading: txsLoading }}
+            tableProps={{ pagination: false, simpleMode: true }}
+          />
         )}
         {data && data.number && activeKey === "events" && (
-          <RenderEvents tableData={eventsData} tableProps={{ pagination: false, simpleMode: true }} />
+          <RenderEvents
+            tableData={{ ...eventsData, loading: eventLoading }}
+            tableProps={{ pagination: false, simpleMode: true }}
+          />
         )}
       </div>
     </div>

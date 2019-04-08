@@ -6,6 +6,7 @@ export { default as Table } from "./Table";
 export { default as BlockChainNav } from "./BlockChainNav";
 export { default as TxAction } from "./TxAction";
 export { default as Spinner } from "./Spinner";
+export { default as AntSpinner } from "./AntSpinner";
 export { default as DateShow } from "./DateShow";
 export { default as Amount } from "./Amount";
 export { default as Number } from "./Number";

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { hexStripPrefix } from "@polkadot/util";
 
-import { Link, AddressLink, TxLink, TxAction, PanelList, Breadcrumb, Spinner } from "../../components";
+import { Link, AddressLink, TxLink, TxAction, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
 
@@ -10,6 +10,7 @@ export default function BlockDetail(props) {
 
   const [data, setData] = useState({});
   const [eventsData, setEventsData] = useState({});
+  const [eventLoading, setEventLoading] = useState(true);
 
   const blockNumber = data.number;
   const txid = hexStripPrefix(match.params.txid);
@@ -20,7 +21,10 @@ export default function BlockDetail(props) {
   }, [txid]);
 
   useEffect(() => {
-    const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ items }) => setEventsData({ dataSource: items }));
+    const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ items }) => {
+      setEventLoading(false);
+      setEventsData({ dataSource: items });
+    });
     return () => subscription.unsubscribe();
   }, [blockNumber]);
 
@@ -93,7 +97,10 @@ export default function BlockDetail(props) {
           </ul>
         </div>
         {data && data.number && (
-          <RenderEvents tableData={eventsData} tableProps={{ pagination: false, simpleMode: true }} />
+          <RenderEvents
+            tableData={{ ...eventsData, eventLoading }}
+            tableProps={{ pagination: false, simpleMode: true }}
+          />
         )}
       </div>
     </div>

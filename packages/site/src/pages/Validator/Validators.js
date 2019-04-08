@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { ValidatorsTable, Spinner } from "../../components";
+import { ValidatorsTable } from "../../components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
@@ -26,13 +26,11 @@ export default function Validators(props) {
     return () => subscription.unsubscribe();
   }, [tabFilter]);
   return (
-    <>
-      <ValidatorsTable
-        loading={tableData.loading}
-        dataSource={tableData.dataSource}
-        pagination={tableData.pagination}
-        handleChange={tableData.handleChange}
-      />
-    </>
+    <ValidatorsTable
+      loading={tableData.loading}
+      dataSource={tableData.dataSource}
+      pagination={tableData.pagination}
+      handleChange={tableData.handleChange}
+    />
   );
 }

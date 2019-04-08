@@ -2,7 +2,15 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
-import { ExternalLink, AddressLink, PanelList, Breadcrumb, Spinner, Amount, Number } from "../../components";
+import {
+  ExternalLink,
+  AddressLink,
+  PanelList,
+  Breadcrumb,
+  AntSpinner as Spinner,
+  Amount,
+  Number
+} from "../../components";
 import NominationsList from "./NominationsList";
 import SettingList from "./SettingList";
 import api from "../../services/api";
@@ -21,7 +29,7 @@ export default function BlockDetail(props) {
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
 
-  if (!data) {
+  if (!data || data.name == undefined) {
     return (
       <>
         {breadcrumb}

@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { DateShow, Link, Phase, Spinner, Table, TxAction, TxLink } from "../components";
+import { DateShow, Link, Phase, Table, TxAction, TxLink } from "../components";
 import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -14,15 +14,11 @@ export default function Events() {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  if (tableData && tableData.dataSource && tableData.dataSource.length > 0) {
-    return <RenderEvents {...{ tableData, handleChange: tableService.handleChange }} />;
-  }
-
-  return <Spinner />;
+  return <RenderEvents {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 
 export function RenderEvents({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [], simpleMode = false } = { ...tableData, ...tableProps };
+  const { pagination, dataSource = [], simpleMode = false, loading } = { ...tableData, ...tableProps };
 
   const optionalColumns = [
     {
@@ -56,6 +52,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
 
   return (
     <Table
+      loading={loading}
       expandedRowRender={data => (
         <div>
           <span>事件参数：</span>
