@@ -13,6 +13,8 @@
 3. `yarn`
 4. `yarn prod`
 
+Note: config the database in `package/server/config`
+
 ## Client
 
 ### For development
@@ -21,8 +23,6 @@
 2. `yarn`
 3. `echo REACT_APP_SERVER=http://localhost:3001 > .env`
 4. `yarn start`
-
-Note: config the database in `package/server/config`
 
 ### For production
 
