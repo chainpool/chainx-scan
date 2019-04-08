@@ -14,7 +14,7 @@ export default function NominationsList({ nodeID, ...props }) {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  if (tableData && tableData.dataSource && tableData.dataSource.length >= 0) {
+  if (!tableData.loading) {
     return <RenderNominationsList {...{ tableData, handleChange: tableService.handleChange }} />;
   }
 

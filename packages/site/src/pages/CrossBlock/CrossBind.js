@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, AddressLink, ExternalLink } from "../../components";
+import { Table, AddressLink, ExternalLink, Spinner } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -21,32 +21,38 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [] } = tableData;
 
   return (
-    <Table
-      onChange={handleChange}
-      pagination={pagination}
-      dataSource={dataSource.map(data => {
-        return {
-          key: data.address,
-          pcxAddress: <AddressLink value={data.accountid} />,
-          btcAddress: <ExternalLink type="btcAddress" value={data.address} />,
-          channel: data.channel
-        };
-      })}
-      columns={[
-        {
-          title: "BTC 地址",
-          dataIndex: "btcAddress"
-        },
-        {
-          title: "PCX 地址",
-          dataIndex: "pcxAddress"
-        },
-        {
-          title: "渠道",
-          dataIndex: "channel"
-        }
-      ]}
-      {...tableProps}
-    />
+    <>
+      {tableData.loading ? (
+        <Spinner />
+      ) : (
+        <Table
+          onChange={handleChange}
+          pagination={pagination}
+          dataSource={dataSource.map(data => {
+            return {
+              key: data.address,
+              pcxAddress: <AddressLink value={data.accountid} />,
+              btcAddress: <ExternalLink type="btcAddress" value={data.address} />,
+              channel: data.channel
+            };
+          })}
+          columns={[
+            {
+              title: "BTC 地址",
+              dataIndex: "btcAddress"
+            },
+            {
+              title: "PCX 地址",
+              dataIndex: "pcxAddress"
+            },
+            {
+              title: "渠道",
+              dataIndex: "channel"
+            }
+          ]}
+          {...tableProps}
+        />
+      )}
+    </>
   );
 }

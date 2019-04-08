@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, AddressLink, EtherumLink } from "../../components";
+import { Table, AddressLink, EtherumLink, Spinner } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -13,7 +13,7 @@ export default function EtherumBind() {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
-
+  if (tableData.loading) return <Spinner />;
   return <RenderEtherumBind {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 

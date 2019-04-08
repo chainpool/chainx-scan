@@ -83,8 +83,8 @@ class Api {
   /**
    * 获取投票用户列表
    */
-  fetchNominations$ = (nodeId, params) => {
-    return this.fetch$(`/intention/${nodeId}/nominations`, params);
+  fetchNominations$ = (params, { nodeID }) => {
+    return this.fetch$(`/intention/${nodeID}/nominations`, params);
   };
 
   /**
