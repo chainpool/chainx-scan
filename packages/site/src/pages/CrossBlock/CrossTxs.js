@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, Amount, DateShow, ExternalLink, Hash, Table, TxLink } from "../../components";
+import { AddressLink, Amount, DateShow, ExternalLink, Hash, Table, TxLink, Spinner } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -18,10 +18,11 @@ export default function CrossTxs() {
 }
 
 export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = tableData;
+  const { pagination, dataSource = [], loading } = tableData;
 
   return (
     <Table
+      loading={loading}
       onChange={handleChange}
       pagination={pagination}
       dataSource={dataSource.map(data => {

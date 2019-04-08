@@ -6,16 +6,19 @@ import api from "../../services/api";
 // TODO: add pagination
 export default function FillOrderList(props) {
   const [tableData, setTableData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const subscription = api
-      .fetchAccountFillOrders$(props.accountId, { pageSize: 1000 })
-      .subscribe(data => setTableData(data));
+    const subscription = api.fetchAccountFillOrders$(props.accountId, { pageSize: 1000 }).subscribe(data => {
+      setLoading(false);
+      setTableData(data);
+    });
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
   return (
     <Table
+      loading={loading}
       pagination={false}
       dataSource={
         tableData.items &&

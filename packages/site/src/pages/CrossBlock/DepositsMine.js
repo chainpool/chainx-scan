@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table } from "../../components";
+import { Table, Spinner } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -18,10 +18,11 @@ export default function DepositsMine() {
 }
 
 export function RenderDepositsMine({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = tableData;
+  const { pagination, dataSource = [], loading } = tableData;
 
   return (
     <Table
+      loading={loading}
       onChange={handleChange}
       pagination={pagination}
       dataSource={dataSource.map(data => {

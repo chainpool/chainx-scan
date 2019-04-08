@@ -4,14 +4,19 @@ import { Table } from "@src/components";
 
 export default function BindAddressList(props) {
   const [tableData, setTableData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const subscription = api.fetchAccountBindAddresses$(props.accountId).subscribe(data => setTableData(data));
+    const subscription = api.fetchAccountBindAddresses$(props.accountId).subscribe(data => {
+      setLoading(false);
+      setTableData(data);
+    });
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
   return (
     <Table
+      loading={loading}
       pagination={false}
       dataSource={
         tableData &&

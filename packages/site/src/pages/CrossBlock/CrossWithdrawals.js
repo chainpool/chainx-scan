@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, Hash, ExternalLink, AddressLink } from "../../components";
+import { Table, Hash, ExternalLink, AddressLink, Spinner } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -19,10 +19,11 @@ export default function CrossWithdrawals() {
 }
 
 export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = tableData;
+  const { pagination, dataSource = [], loading } = tableData;
 
   return (
     <Table
+      loading={loading}
       onChange={handleChange}
       pagination={pagination}
       dataSource={dataSource.map((data, index) => {

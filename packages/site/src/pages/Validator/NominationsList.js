@@ -14,15 +14,15 @@ export default function NominationsList({ nodeID, ...props }) {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  if (tableData && tableData.dataSource && tableData.dataSource.length >= 0) {
-    return <RenderNominationsList {...{ tableData, handleChange: tableService.handleChange }} />;
-  }
+  // if (!tableData.loading) {
+  return <RenderNominationsList {...{ tableData, handleChange: tableService.handleChange }} />;
+  // }
 
-  return <Spinner />;
+  // return <Spinner />;
 }
 
 export function RenderNominationsList({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = { ...tableData, ...tableProps };
+  const { pagination, dataSource = [], loading } = { ...tableData, ...tableProps };
   const columns = [
     {
       title: "账户地址",
@@ -51,6 +51,7 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
   };
   return (
     <Table
+      loading={loading}
       onChange={handleChange}
       pagination={pagination}
       dataSource={dataSource.map(data => {

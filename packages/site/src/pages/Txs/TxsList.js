@@ -21,7 +21,7 @@ export default function TxsList() {
   return <Spinner />;
 }
 
-export function RenderTxsList({ tableProps, tableData, handleChange }) {
+export function RenderTxsList({ tableProps, tableData, handleChange, loading }) {
   const { pagination, dataSource = [], simpleMode = false, showSigned = true } = { ...tableData, ...tableProps };
 
   const optionalColumns = [
@@ -60,6 +60,7 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
 
   return (
     <Table
+      loading={loading}
       expandedRowRender={data => (
         <div>
           <span>参数：</span>

@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, Number, AddressLink, TxLink } from "../../components";
+import { Table, DateShow, Hash, ExternalLink, Number, AddressLink, TxLink, Spinner } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -19,10 +19,11 @@ export default function CrossBlocks() {
 }
 
 export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [] } = tableData;
+  const { pagination, dataSource = [], loading } = tableData;
 
   return (
     <Table
+      loading={loading}
       onChange={handleChange}
       pagination={pagination}
       dataSource={dataSource.map(data => {

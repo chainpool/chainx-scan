@@ -5,9 +5,13 @@ import api from "../../services/api";
 
 export default function AccountNomination(props) {
   const [list, setList] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const subscription = api.fetchAccountNominations$(props.accountId).subscribe(data => setList(data));
+    const subscription = api.fetchAccountNominations$(props.accountId).subscribe(data => {
+      setLoading(false);
+      setList(data);
+    });
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
@@ -19,6 +23,7 @@ export default function AccountNomination(props) {
 
   return (
     <Table
+      loading={loading}
       pagination={false}
       dataSource={
         list &&

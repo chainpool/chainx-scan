@@ -6,14 +6,19 @@ import api from "../../services/api";
 
 export default function AccountOrder(props) {
   const [tableData, setTableData] = useState({});
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const subscription = api.fetchAccountOrders$(props.accountId).subscribe(data => setTableData(data));
+    const subscription = api.fetchAccountOrders$(props.accountId).subscribe(data => {
+      setLoading(false);
+      setTableData(data);
+    });
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
   return (
     <Table
+      loading={loading}
       pagination={false}
       dataSource={
         tableData.items &&
