@@ -6,11 +6,12 @@ import api from "../../services/api";
 export default function AccountAsset(props) {
   const [list, setList] = useState([]);
   const isNative = props.isNative;
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const subscription = api
-      .fetchAccountAssset$(props.accountId, { native: isNative })
-      .subscribe(data => setList(data));
+    const subscription = api.fetchAccountAssset$(props.accountId, { native: isNative }).subscribe(data => {
+      setList(data);
+      setLoading(false);
+    });
     return () => subscription.unsubscribe();
   }, [props.accountId, isNative]);
 
@@ -80,6 +81,7 @@ export default function AccountAsset(props) {
 
   return (
     <Table
+      loading={loading}
       pagination={false}
       dataSource={
         list &&

@@ -13,15 +13,16 @@ export default function EtherumBind() {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
-  if (tableData.loading) return <Spinner />;
+  // if (tableData.loading) return <Spinner />;
   return <RenderEtherumBind {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 
-export function RenderEtherumBind({ tableProps, tableData, handleChange }) {
+export function RenderEtherumBind({ tableProps, tableData, handleChange, loading }) {
   const { pagination, dataSource = [] } = tableData;
 
   return (
     <Table
+      loading={loading}
       onChange={handleChange}
       pagination={pagination}
       dataSource={dataSource.map(data => {

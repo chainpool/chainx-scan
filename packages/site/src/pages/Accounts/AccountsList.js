@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 import { AddressLink, Amount, Number, Spinner, Table } from "../../components";
 import TableService from "../../services/tableService";
@@ -7,10 +7,14 @@ import api from "../../services/api";
 
 export default function AccountsList() {
   const [{ tableData }, setState] = useRedux("accountsList", { tableData: {} });
+  const [loading, setLoading] = useState(true);
   const tableService = useMemo(() => new TableService(api.fetchAccounts$, tableData), []);
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    const subscription = tableService.getState$().subscribe(data => {
+      setLoading(false);
+      setState({ tableData: data });
+    });
     return () => subscription.unsubscribe();
   }, [tableService]);
 
@@ -20,6 +24,7 @@ export default function AccountsList() {
 
   return (
     <Table
+      loading={loading}
       onChange={tableService.handleChange}
       pagination={tableData.pagination}
       dataSource={

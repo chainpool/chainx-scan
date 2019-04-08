@@ -10,9 +10,10 @@ const indexExtend = (index, trust) => (
 );
 
 export default function ValidatorsTable(props) {
-  const { dataSource = [], pagination = {}, handleChange } = props;
+  const { dataSource = [], pagination = {}, handleChange, loading } = props;
   return (
     <Table
+      loading={loading}
       onChange={handleChange}
       pagination={pagination}
       dataSource={

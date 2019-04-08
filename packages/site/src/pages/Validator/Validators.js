@@ -27,15 +27,12 @@ export default function Validators(props) {
   }, [tabFilter]);
   return (
     <>
-      {!tableData.loading ? (
-        <ValidatorsTable
-          dataSource={tableData.dataSource}
-          pagination={tableData.pagination}
-          handleChange={tableData.handleChange}
-        />
-      ) : (
-        <Spinner />
-      )}
+      <ValidatorsTable
+        loading={tableData.loading}
+        dataSource={tableData.dataSource}
+        pagination={tableData.pagination}
+        handleChange={tableData.handleChange}
+      />
     </>
   );
 }
