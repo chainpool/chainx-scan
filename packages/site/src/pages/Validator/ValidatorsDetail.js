@@ -29,7 +29,7 @@ export default function BlockDetail(props) {
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
 
-  if (!data || data.name == undefined) {
+  if (!data || data.name === undefined) {
     return (
       <>
         {breadcrumb}
@@ -67,15 +67,15 @@ export default function BlockDetail(props) {
           },
           {
             label: "自抵押数",
-            data: <Amount value={data.selfVote} hideSymbol />
+            data: <Amount value={data.selfVote} />
           },
           {
             label: "总得票数",
-            data: <Amount value={data.totalNomination} hideSymbol />
+            data: <Amount value={data.totalNomination} />
           },
           {
             label: "奖池金额",
-            data: <Amount value={data.jackpot} hideSymbol />
+            data: <Amount value={data.jackpot} />
           },
           {
             label: "漏块总数",

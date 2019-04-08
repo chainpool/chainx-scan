@@ -25,11 +25,11 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
       dataIndex: "nominator"
     },
     {
-      title: "投票数量",
+      title: "投票数量(PCX)",
       dataIndex: "nomination"
     },
     {
-      title: "赎回冻结",
+      title: "赎回冻结(PCX)",
       dataIndex: "revocations"
     },
     {
@@ -54,7 +54,7 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
         return {
           key: `${data.nominator}`,
           nominator: <AddressLink className="text-truncate" value={data.nominator} style={{ maxWidth: 140 }} />,
-          revocations: <Amount value={getRevocations(data.revocations)} />,
+          revocations: <Amount value={getRevocations(data.revocations)} hideSymbol />,
           nomination: <Number value={data.nomination} />,
           last_vote_weight_update: <Number value={data.last_vote_weight_update} />,
           last_vote_weight: <Number value={data.last_vote_weight} />

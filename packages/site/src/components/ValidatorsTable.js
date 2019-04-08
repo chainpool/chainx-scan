@@ -60,17 +60,17 @@ export default function ValidatorsTable(props) {
           dataIndex: "jackpotAddress"
         },
         {
-          title: "自抵押数",
+          title: "自抵押数(PCX)",
           dataIndex: "selfVote",
           align: "right"
         },
         {
-          title: "总得票数",
+          title: "总得票数(PCX)",
           dataIndex: "totalNomination",
           align: "right"
         },
         {
-          title: "奖池金额",
+          title: "奖池金额(PCX)",
           dataIndex: "jackpot",
           align: "right"
         },
