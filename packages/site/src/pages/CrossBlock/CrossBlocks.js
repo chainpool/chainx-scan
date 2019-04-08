@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, Number, AddressLink, TxLink, Spinner } from "../../components";
+import { Table, DateShow, Hash, ExternalLink, Number, AddressLink, TxLink } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";

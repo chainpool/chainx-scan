@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, Link, DateShow, Number, Spinner, Table, TxAction, TxLink } from "../../components";
+import { AddressLink, Link, DateShow, Number, Table, TxAction, TxLink } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -13,16 +13,14 @@ export default function TxsList() {
     const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
-
-  if (tableData && tableData.dataSource && tableData.dataSource.length > 0) {
-    return <RenderTxsList {...{ tableData, handleChange: tableService.handleChange }} />;
-  }
-
-  return <Spinner />;
+  return <RenderTxsList {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 
-export function RenderTxsList({ tableProps, tableData, handleChange, loading }) {
-  const { pagination, dataSource = [], simpleMode = false, showSigned = true } = { ...tableData, ...tableProps };
+export function RenderTxsList({ tableProps, tableData, handleChange }) {
+  const { pagination, dataSource = [], simpleMode = false, showSigned = true, loading } = {
+    ...tableData,
+    ...tableProps
+  };
 
   const optionalColumns = [
     {
@@ -57,7 +55,6 @@ export function RenderTxsList({ tableProps, tableData, handleChange, loading }) 
       dataIndex: "action"
     }
   ];
-
   return (
     <Table
       loading={loading}

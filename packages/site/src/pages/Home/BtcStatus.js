@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { useRedux } from "../../shared";
 import api from "../../services/api";
-import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink, Spinner } from "../../components";
+import { AddressLink, DateShow, ExternalLink, Hash, Number, TxLink, AntSpinner as Spinner } from "../../components";
 import Bitcoin from "../../assets/tokens/btc.png";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 
@@ -21,7 +21,7 @@ export default function BtcStatus() {
 
   const loading = (
     <tr style={{ height: 370, background: "#fff" }}>
-      <td colSpan="6" style={{ verticalAlign: "middle" }}>
+      <td colSpan="8" style={{ verticalAlign: "middle" }}>
         <Spinner />
       </td>
     </tr>

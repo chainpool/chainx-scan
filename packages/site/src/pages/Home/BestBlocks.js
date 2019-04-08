@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { Link, Number, Spinner, AddressLinkExtend } from "../../components";
+import { Link, Number, AntSpinner as Spinner, AddressLinkExtend } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useRedux } from "../../shared";
 import api from "../../services/api";

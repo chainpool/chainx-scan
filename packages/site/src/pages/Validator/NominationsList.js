@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, Number, Spinner, Table, Amount } from "../../components";
+import { AddressLink, Number, Table, Amount } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -14,11 +14,7 @@ export default function NominationsList({ nodeID, ...props }) {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  // if (!tableData.loading) {
   return <RenderNominationsList {...{ tableData, handleChange: tableService.handleChange }} />;
-  // }
-
-  // return <Spinner />;
 }
 
 export function RenderNominationsList({ tableProps, tableData, handleChange }) {

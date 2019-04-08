@@ -17,7 +17,7 @@ export default function Account(props) {
   } = match;
 
   const [detail, setDetail] = useState({});
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [activeKey, setActiveKey] = useState("nativeAsset");
 
   useEffect(() => {

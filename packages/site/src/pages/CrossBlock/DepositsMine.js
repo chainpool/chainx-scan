@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, Spinner } from "../../components";
+import { Table } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
