@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 
-import { Amount, Spinner } from "../../components";
+import { Amount, AntSpinner as Spinner } from "../../components";
 import BTC from "../../assets/tokens/btc.png";
 import SDOT from "../../assets/tokens/sdot.png";
 import PCX from "../../assets/tokens/pcx.png";

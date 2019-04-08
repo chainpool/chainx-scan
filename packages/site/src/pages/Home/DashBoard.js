@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { useRedux } from "../../shared";
 import api from "../../services/api";
-import { Amount, Number, Spinner } from "../../components";
+import { Amount, Number, AntSpinner as Spinner } from "../../components";
 import PCX from "../../assets/tokens/pcx.png";
 
 export default function DashBoard() {

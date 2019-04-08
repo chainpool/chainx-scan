@@ -280,6 +280,13 @@ a:focus {
   width: 100%;
 }
 
+.spinner-wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
 @keyframes spinner {
   to {
     transform: rotate(360deg);
