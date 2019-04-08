@@ -8,8 +8,8 @@ export default function Validator(props) {
   const [tabIndex, setIndex] = useState(0);
   const tabs = [
     { text: "验证节点", filter: null },
-    { text: "Bitcoin信托节点", filter: "Bitcoin" },
-    { text: "候选节点", filter: 1 }
+    { text: "候选节点", filter: 1 },
+    { text: "Bitcoin信托节点", filter: "Bitcoin" }
   ];
   return (
     <Switch>
