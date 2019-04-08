@@ -1,7 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 
-import { Amount, Spinner } from "../../components";
+import { Amount, AntSpinner as Spinner } from "../../components";
 
 export default function PendingOrders(props) {
   const { loading, handicap, activePair } = props;
