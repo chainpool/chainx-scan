@@ -46,15 +46,15 @@ export function RenderDepositsMine({ tableProps, tableData, handleChange }) {
           dataIndex: "circulation"
         },
         {
-          title: "挖矿算力",
+          title: "挖矿算力(PCX)",
           dataIndex: "power"
         },
         {
-          title: "折合投票数",
+          title: "折合投票数(PCX)",
           dataIndex: ""
         },
         {
-          title: "奖池金额",
+          title: "奖池金额(PCX)",
           dataIndex: "jackpot"
         },
         {
