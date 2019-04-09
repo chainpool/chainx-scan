@@ -55,9 +55,9 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
           key: `${data.nominator}`,
           nominator: <AddressLink className="text-truncate" value={data.nominator} style={{ maxWidth: 140 }} />,
           revocations: <Amount value={getRevocations(data.revocations)} hideSymbol />,
-          nomination: <Number value={data.nomination} />,
+          nomination: <Amount value={data.nomination} hideSymbol />,
           last_vote_weight_update: <Number value={data.last_vote_weight_update} />,
-          last_vote_weight: <Number value={data.last_vote_weight} />
+          last_vote_weight: <Amount value={data.last_vote_weight} hideSymbol />
         };
       })}
       columns={columns}
