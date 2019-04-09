@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, AddressLink, ExternalLink } from "../../components";
+import { Table, AddressLink, ExternalLink, AddressLinkExtend } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -29,9 +29,16 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
         dataSource={dataSource.map(data => {
           return {
             key: data.address,
-            pcxAddress: <AddressLink value={data.accountid} />,
-            btcAddress: <ExternalLink type="btcAddress" value={data.address} />,
-            channel: data.channel
+            pcxAddress: <AddressLink style={{ maxWidth: 300 }} className="text-truncate" value={data.accountid} />,
+            btcAddress: (
+              <ExternalLink
+                style={{ maxWidth: 300 }}
+                className="text-truncate"
+                type="btcAddress"
+                value={data.address}
+              />
+            ),
+            channel: <AddressLinkExtend value={data.accountid} isActive />
           };
         })}
         columns={[
