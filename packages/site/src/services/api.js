@@ -143,29 +143,29 @@ class Api {
   /**
    * 获取区块列表
    */
-  fetchBlocks$ = (params, options) => {
-    return this.fetch$(`/blocks`, params, options);
+  fetchBlocks$ = params => {
+    return this.fetch$(`/blocks`, params);
   };
 
   /**
    * 获取交易列表
    */
-  fetchTxs$ = (params, options) => {
-    return this.fetch$(`/txs`, params, options);
+  fetchTxs$ = params => {
+    return this.fetch$(`/txs`, params);
   };
 
   /**
    * 获取事件列表
    */
-  fetchEvents$ = (params, options) => {
-    return this.fetch$(`/events`, params, options);
+  fetchEvents$ = params => {
+    return this.fetch$(`/events`, params);
   };
 
   /**
    * 获取账号列表
    */
-  fetchAccounts$ = (params, options) => {
-    return this.fetch$(`/accounts`, params, options);
+  fetchAccounts$ = params => {
+    return this.fetch$(`/accounts`, params);
   };
 
   /**
