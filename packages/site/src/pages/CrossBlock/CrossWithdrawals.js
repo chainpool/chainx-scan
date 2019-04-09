@@ -57,7 +57,7 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) 
           key: index,
           txid: (
             <ExternalLink
-              type="btcHash"
+              type="btcTxid"
               value={data.txid}
               render={() => {
                 return <Hash style={{ width: 136 }} className="text-truncate" value={data.txid} />;
