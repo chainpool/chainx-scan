@@ -109,12 +109,16 @@ class AccountController {
     const { accountId } = ctx.params;
 
     const rows = await ctx.db.CrossChainAddressMap.findAll({
+      include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
       attributes: { exclude: ["height"] },
       where: { accountid: accountId },
       raw: true
     });
 
-    ctx.body = rows;
+    ctx.body = rows.map(row => ({
+      ...row,
+      address: toBtcAddress(row.address)
+    }));
   }
 
   async fillOrders(ctx) {
