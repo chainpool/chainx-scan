@@ -28,6 +28,7 @@ export default function FillOrderList(props) {
 
   return (
     <Table
+      onChange={tableService.handleChange}
       loading={tableData.loading}
       pagination={tableData.pagination}
       dataSource={
