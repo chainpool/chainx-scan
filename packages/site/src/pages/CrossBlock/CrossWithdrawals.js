@@ -49,11 +49,11 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) 
       columns={[
         {
           title: "ChainX申请交易哈希",
-          dataIndex: "accountid"
+          dataIndex: ""
         },
         {
           title: "ChainX申请地址",
-          dataIndex: "address"
+          dataIndex: "accountid"
         },
         {
           title: "Bitcoin交易哈希",
