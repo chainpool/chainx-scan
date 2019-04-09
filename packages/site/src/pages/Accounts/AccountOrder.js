@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 
 import { Amount, DateShow, Number, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
 import HasFill from "./HasFill";
 import api from "../../services/api";
+import TableService from "../../services/tableService";
+import { useRedux } from "../../shared";
 
 export default function AccountOrder(props) {
-  const [tableData, setTableData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [{ tableData }, setTableData] = useRedux(`accountOrder`, {
+    tableData: {
+      pagination: {
+        current: 1,
+        pageSize: 10,
+        total: 0
+      }
+    }
+  });
+  const tableService = useMemo(
+    () => new TableService(api.fetchAccountOrders$, tableData, { accountId: props.accountId }),
+    []
+  );
 
   useEffect(() => {
-    const subscription = api.fetchAccountOrders$(props.accountId).subscribe(data => {
-      setLoading(false);
-      setTableData(data);
-    });
+    const subscription = tableService.getState$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
   return (
     <Table
-      loading={loading}
+      loading={tableData.loading}
       pagination={false}
       dataSource={
-        tableData.items &&
-        tableData.items.map(data => {
+        tableData.dataSource &&
+        tableData.dataSource.map(data => {
           return {
             key: data.id,
             id: data.id,
