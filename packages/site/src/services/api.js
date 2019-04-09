@@ -206,8 +206,8 @@ class Api {
   /**
    * 获取账户挂单列表
    */
-  fetchAccountOrders$ = (params, { accountId }) => {
-    return this.fetch$(`/trade/userorders/${hexStripPrefix(accountId)}`, params);
+  fetchAccountOrders$ = (params, { accountId, status }) => {
+    return this.fetch$(`/trade/userorders/${hexStripPrefix(accountId)}`, { ...params, status });
   };
 
   /**

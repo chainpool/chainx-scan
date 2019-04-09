@@ -29,7 +29,7 @@ export default function Validators(props) {
       loading={tableData.loading}
       dataSource={tableData.dataSource}
       pagination={tableData.pagination}
-      handleChange={tableData.handleChange}
+      handleChange={tableService.handleChange}
     />
   );
 }
