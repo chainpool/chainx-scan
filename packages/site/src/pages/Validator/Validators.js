@@ -9,7 +9,6 @@ export default function Validators(props) {
   const { tabFilter } = props;
   const [{ tableData }, setState] = useRedux(`validators-${tabFilter}`, {
     tableData: {
-      tabFilter,
       pagination: {
         current: 1,
         pageSize: 200,

@@ -206,21 +206,21 @@ class Api {
   /**
    * 获取账户挂单列表
    */
-  fetchAccountOrders$ = (accountId, params) => {
+  fetchAccountOrders$ = (params, { accountId }) => {
     return this.fetch$(`/trade/userorders/${hexStripPrefix(accountId)}`, params);
   };
 
   /**
    * 获取账户成交列表
    */
-  fetchAccountFillOrders$ = (accountId, params) => {
+  fetchAccountFillOrders$ = (params, { accountId }) => {
     return this.fetch$(`/account/${hexStripPrefix(accountId)}/fill_orders`, params);
   };
 
   /**
    * 获取账户交易列表
    */
-  fetchAccountTxs$ = (accountId, params) => {
+  fetchAccountTxs$ = (params, { accountId }) => {
     return this.fetch$(`/account/${hexStripPrefix(accountId)}/txs`, params);
   };
 

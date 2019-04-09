@@ -1,28 +1,38 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo } from "react";
 
 import { DateShow, Number, OrderDirection, Table } from "../../components";
 import api from "../../services/api";
+import TableService from "../../services/tableService";
+import { useRedux } from "../../shared";
 
 // TODO: add pagination
 export default function FillOrderList(props) {
-  const [tableData, setTableData] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [{ tableData }, setTableData] = useRedux(`fillOrderList`, {
+    tableData: {
+      pagination: {
+        current: 1,
+        pageSize: 10,
+        total: 0
+      }
+    }
+  });
+  const tableService = useMemo(
+    () => new TableService(api.fetchAccountFillOrders$, tableData, { accountId: props.accountId }),
+    []
+  );
 
   useEffect(() => {
-    const subscription = api.fetchAccountFillOrders$(props.accountId, { pageSize: 1000 }).subscribe(data => {
-      setLoading(false);
-      setTableData(data);
-    });
+    const subscription = tableService.getState$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
   return (
     <Table
-      loading={loading}
-      pagination={false}
+      loading={tableData.loading}
+      pagination={tableData.pagination}
       dataSource={
-        tableData.items &&
-        tableData.items.map((data, index) => {
+        tableData.dataSource &&
+        tableData.dataSource.map((data, index) => {
           return {
             key: index,
             id: data.id,
