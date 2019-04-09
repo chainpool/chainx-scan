@@ -30,6 +30,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       chain: {
         type: DataTypes.STRING
+      },
+      chainx_tx: {
+        type: DataTypes.STRING
       }
     },
     {
