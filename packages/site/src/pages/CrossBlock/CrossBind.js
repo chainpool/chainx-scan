@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, AddressLink, ExternalLink, AddressLinkExtend } from "../../components";
+import { Table, AddressLink, ExternalLink, AddressLinkVilidator } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -38,7 +38,7 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
                 value={data.address}
               />
             ),
-            channel: <AddressLinkExtend value={data.accountid} isActive />
+            channel: <AddressLinkVilidator hexValue={data.accountid} value={data["intention.name"]} />
           };
         })}
         columns={[
