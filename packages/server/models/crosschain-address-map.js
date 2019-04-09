@@ -30,6 +30,11 @@ module.exports = (sequelize, DataTypes) => {
 
   CrossChainAddressMap.associate = function(models) {
     // associations can be defined here
+    CrossChainAddressMap.belongsTo(models.Intention, {
+      foreignKey: "channel",
+      targetKey: "accountid",
+      as: "intention"
+    });
   };
 
   return CrossChainAddressMap;
