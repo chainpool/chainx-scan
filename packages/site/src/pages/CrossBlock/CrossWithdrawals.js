@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, Hash, ExternalLink, AddressLink } from "../../components";
+import { Table, Hash, ExternalLink, AddressLink, Amount, TxLink } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -20,7 +20,33 @@ export default function CrossWithdrawals() {
 
 export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = tableData;
-
+  const processTxState = txstate => {
+    switch (txstate) {
+      case "0":
+      case "NotApplying":
+        return "未申请";
+      case "1":
+      case "Applying":
+        return "申请中";
+      case "2":
+      case "Signing":
+        return "签名中";
+      case "3":
+      case "Broadcasting":
+        return "广播中";
+      case "4":
+      case "Processing":
+        return "处理中";
+      case "5":
+      case "Confirming":
+        return "确认中";
+      case "6":
+      case "Confirmed":
+        return "已确认";
+      default:
+        return "未知";
+    }
+  };
   return (
     <Table
       loading={loading}
@@ -31,7 +57,7 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) 
           key: index,
           txid: (
             <ExternalLink
-              type="btcHash"
+              type="btcTxid"
               value={data.txid}
               render={() => {
                 return <Hash style={{ width: 136 }} className="text-truncate" value={data.txid} />;
@@ -40,20 +66,20 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) 
           ),
           accountid: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
           token: data.token,
-          balance: data.balance,
-          txstate: data.txstate,
+          balance: <Amount value={data.balance} precision={8} hideSymbol />,
+          txstate: processTxState(data.txstate),
           memo: data.memo,
-          address: <ExternalLink type="btcAddress" value={data.address} />
+          chainx_tx: <TxLink style={{ width: 136 }} className="text-truncate" value={data.chainx_tx} />
         };
       })}
       columns={[
         {
           title: "ChainX申请交易哈希",
-          dataIndex: "accountid"
+          dataIndex: "chainx_tx"
         },
         {
           title: "ChainX申请地址",
-          dataIndex: "address"
+          dataIndex: "accountid"
         },
         {
           title: "Bitcoin交易哈希",

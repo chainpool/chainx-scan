@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, AddressLink, TxLink } from "../../components";
+import { Table, DateShow, Hash, ExternalLink, AddressLink, TxLink, Amount } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -31,7 +31,7 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
           key: index,
           txid: (
             <ExternalLink
-              type="btcHash"
+              type="btcTxid"
               value={data.txid}
               render={() => {
                 return <Hash style={{ width: 136 }} className="text-truncate" value={data.txid} />;
@@ -41,7 +41,7 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
           chainx_tx: <TxLink style={{ width: 136 }} className="text-truncate" value={data.chainx_tx} />,
           accountid: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
           token: data.token,
-          balance: data.balance,
+          balance: <Amount value={data.balance} precision={8} hideSymbol />,
           address: <ExternalLink type="btcAddress" value={data.address} />,
           blockTime: <DateShow value={data["block.time"]} />
         };

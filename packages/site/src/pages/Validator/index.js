@@ -7,8 +7,8 @@ import ValidatorsDetail from "./ValidatorsDetail";
 export default function Validator(props) {
   const [tabIndex, setIndex] = useState(0);
   const tabs = [
-    { text: "验证节点", filter: null },
-    { text: "候选节点", filter: 1 },
+    { text: "验证节点", filter: "all" },
+    { text: "候选节点", filter: "unsettled" },
     { text: "Bitcoin信托节点", filter: "Bitcoin" }
   ];
   return (

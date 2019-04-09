@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "@src/services/api";
-import { Table } from "@src/components";
+import { Table, AddressLinkVilidator, ExternalLink } from "@src/components";
 
 export default function BindAddressList(props) {
   const [tableData, setTableData] = useState([]);
@@ -24,8 +24,15 @@ export default function BindAddressList(props) {
           return {
             key: data.address,
             chain: data.chain,
-            address: data.address,
-            channel: data.channel
+            address: (
+              <ExternalLink
+                style={{ maxWidth: 300 }}
+                className="text-truncate"
+                type="btcAddress"
+                value={data.address}
+              />
+            ),
+            channel: <AddressLinkVilidator hexValue={data.accountid} value={data["intention.name"]} />
           };
         })
       }

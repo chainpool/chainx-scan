@@ -128,13 +128,21 @@ class Api {
     const { tabFilter = null } = options;
     return this.fetch$(`/intentions`, params).pipe(
       map(result => {
-        if (typeof tabFilter === "string") {
-          result.items = result.items.filter(item => item.isTrustee.indexOf(tabFilter) >= 0);
-          result.total = result.items.length;
-        } else if (tabFilter === 1) {
-          result.items = result.items.filter(item => !item.isValidator);
-          result.total = result.items.length;
+        if (!tabFilter) {
+          return result;
         }
+        switch (tabFilter) {
+          case "unsettled":
+            result.items = result.items.filter(item => !item.isValidator);
+            break;
+          case "all":
+            result.items = result.items.filter(item => item.isValidator);
+            break;
+          default:
+            result.items = result.items.filter(item => item.isTrustee.indexOf(tabFilter) >= 0);
+            break;
+        }
+        result.total = result.items.length;
         return result;
       })
     );
