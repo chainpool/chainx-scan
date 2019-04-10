@@ -1,8 +1,7 @@
 export { default as Link } from "./Link";
 export { default as TxLink } from "./TxLink";
 export { default as AddressLink } from "./AddressLink";
-export { default as AddressLinkExtend } from "./AddressLinkExtend";
-export { default as AddressLinkVilidator } from "./AddressLinkVilidator";
+export { default as ValidatorsLink } from "./ValidatorsLink";
 export { default as Table } from "./Table";
 export { default as BlockChainNav } from "./BlockChainNav";
 export { default as TxAction } from "./TxAction";
