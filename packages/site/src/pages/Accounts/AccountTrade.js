@@ -26,6 +26,7 @@ export default function AccountTrade(props) {
 
   return (
     <RenderTxsList
+      handleChange={tableService.handleChange}
       loading={tableData.loading}
       tableData={tableData}
       tableProps={{ pagination: tableData.pagination, showSigned: false }}

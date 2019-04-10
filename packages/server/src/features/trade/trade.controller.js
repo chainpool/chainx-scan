@@ -156,11 +156,13 @@ class TradeController {
     }
 
     const orders = await ctx.db.FilledOrder.findAll({
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       where: {
         id: {
           $in: ids
         }
-      }
+      },
+      raw: true
     });
 
     ctx.body = orders;

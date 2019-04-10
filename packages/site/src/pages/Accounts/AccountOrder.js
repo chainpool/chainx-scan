@@ -17,7 +17,7 @@ export default function AccountOrder(props) {
     }
   });
   const tableService = useMemo(
-    () => new TableService(api.fetchAccountOrders$, tableData, { accountId: props.accountId }),
+    () => new TableService(api.fetchAccountOrders$, tableData, { accountId: props.accountId, status: 0 }),
     []
   );
 
@@ -28,8 +28,9 @@ export default function AccountOrder(props) {
 
   return (
     <Table
+      onChange={tableService.handleChange}
       loading={tableData.loading}
-      pagination={false}
+      pagination={tableData.pagination}
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map(data => {

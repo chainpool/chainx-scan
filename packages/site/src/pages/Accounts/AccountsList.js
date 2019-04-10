@@ -24,7 +24,7 @@ export default function AccountsList() {
         tableData.dataSource.map(data => {
           return {
             key: data.accountid,
-            accountid: <AddressLink value={data.accountid} />,
+            accountid: <AddressLink style={{ maxWidth: 300 }} className="text-truncate" value={data.accountid} />,
             pcxFree: <Amount symbol="PCX" value={data.pcx_free || 0} hideSymbol />,
             pcx: <Amount symbol="PCX" value={data.pcx || 0} hideSymbol />,
             btc: <Amount symbol="BTC" value={data.btc || 0} hideSymbol />,

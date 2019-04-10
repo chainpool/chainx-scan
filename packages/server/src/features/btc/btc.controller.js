@@ -128,6 +128,28 @@ class BtcController {
       total: count
     };
   }
+
+  async sessionTrustees(ctx) {
+    const rows = await ctx.db.SessionTrusteeInfo.findAll({
+      where: { chain: "Bitcoin" },
+      attributes: { exclude: ["chain", "height"] },
+      order: [["id", "DESC"]],
+      limit: 5,
+      raw: true
+    });
+
+    const normalizedRows = rows.map(row => ({
+      ...row,
+      trustee_list: JSON.parse(row.trustee_list)
+    }));
+
+    ctx.body = normalizedRows.reduce((result, row) => {
+      row.trustee_list.forEach(trustee => {
+        result.push({ trustee, id: row.id });
+      });
+      return result;
+    }, []);
+  }
 }
 
 module.exports = new BtcController();
