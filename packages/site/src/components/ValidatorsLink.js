@@ -10,7 +10,7 @@ export default function VilidatorLink({ value, name = "", isActive = true }) {
     const [{ intentions = [] }] = useAppContext();
     const intention = intentions.find(({ accountid }) => accountid === hexValue) || { name: "" };
     name = intention.name;
-  } else if (typeof name != "string") {
+  } else if (name === null) {
     name = "";
   }
   return (
