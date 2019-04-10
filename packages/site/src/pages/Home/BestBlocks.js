@@ -39,7 +39,7 @@ export default function BestBlocks() {
               ? blocks.map(({ number, producer, extrinsics }) => (
                   <tr key={number}>
                     <td>
-                      <Link parent="blocks" value={number} />
+                      <BlockLink value={number} />
                     </td>
                     <td>
                       <ValidatorLink value={producer} />

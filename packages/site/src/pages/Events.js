@@ -64,7 +64,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
       dataSource={dataSource.map(data => {
         return {
           key: `${data.number}${data.index}`,
-          number: <Link parent="blocks" value={data.number} />,
+          number: <BlockLink value={data.number} />,
           event: <Phase phase={data.phase && data.phase.option} />,
           index: data.index && data.index,
           phaseValue: data.phase && data.phase.value,

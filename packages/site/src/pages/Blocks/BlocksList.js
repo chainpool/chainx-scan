@@ -25,8 +25,8 @@ export default function BlocksList() {
         tableData.dataSource.map(data => {
           return {
             key: data.number,
-            number: <Link parent="blocks" value={data.number} />,
-            hash: <Link parent="blocks" style={{ width: 138 }} className="text-truncate" value={data.hash} />,
+            number: <BlockLink value={data.number} />,
+            hash: <BlockLink style={{ width: 138 }} className="text-truncate" value={data.hash} />,
             time: <DateShow value={data.time} />,
             producer: <ValidatorLink value={data.producer} />,
             extrinsics: <Number value={data.extrinsics} />,

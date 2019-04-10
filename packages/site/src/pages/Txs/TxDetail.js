@@ -48,7 +48,7 @@ export default function BlockDetail(props) {
         dataSource={[
           {
             label: "区块高度",
-            data: <Link parent="blocks" value={data.number} />
+            data: <BlockLink value={data.number} />
           },
           {
             label: "序号",
