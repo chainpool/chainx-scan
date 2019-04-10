@@ -9,7 +9,7 @@ export default function Validator(props) {
   const tabs = [
     { text: "验证节点", filter: "all" },
     { text: "候选节点", filter: "unsettled" },
-    { text: "Bitcoin信托节点", filter: "Bitcoin" }
+    { text: "信托节点(Bitcoin)", filter: "Bitcoin" }
   ];
   return (
     <Switch>
