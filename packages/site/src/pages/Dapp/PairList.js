@@ -34,7 +34,7 @@ export default function PairList(props) {
                       key={pair.pairid}
                     >
                       {currencyImg && <img src={currencyImg} className="pairs-item-icon" alt={currency} />}
-                      {pair.currency_pair[1]}/{pair.currency_pair[0]}
+                      {pair.currency_pair[0]}/{pair.currency_pair[1]}
                     </div>
                   );
                 })}
