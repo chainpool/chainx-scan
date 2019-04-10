@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Table, ValidatorsLink } from "@src/components";
+import { Table, ValidatorLink } from "@src/components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 
@@ -22,7 +22,7 @@ export default function CrossHost() {
           return {
             key: index,
             id: data.id,
-            trustee: <ValidatorsLink value={data.trustee} name={data.name} />
+            trustee: <ValidatorLink value={data.trustee} name={data.name} />
           };
         })}
         columns={[
