@@ -9,11 +9,13 @@
 }
 
 $primary: #f6c94a;
+$link: #46aee2;
+$link-hover: #359acc;
 
 // 导航栏断点：
 $navbar-breakpoint: $tablet + (2 * $gap);
-$family-sans-serif: monospace, BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
-  "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-sans-serif: monospace, "PingFangSC-Regular", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
+  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $body-family: $family-sans-serif;
 
 // panel
@@ -42,6 +44,7 @@ a:focus {
 
 .panel-footer-link {
   padding: 0.75em 1.25em;
+
   a {
     font-size: 14px;
     color: #3f3f3f;
@@ -65,9 +68,30 @@ a:focus {
   white-space: nowrap;
 }
 
+.breadcrumb {
+  font-weight: bold;
+
+  a {
+    color: $primary;
+  }
+}
+
 .ant-table {
+  .ant-table-thead {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
   td {
     word-break: break-all;
+  }
+
+  tbody {
+    tr {
+      &:nth-child(odd) {
+        background-color: whitesmoke;
+      }
+    }
   }
 }
 
@@ -88,6 +112,30 @@ a:focus {
   }
 }
 
+.navbar {
+  .navbar-menu {
+    .navbar-start {
+      .navbar-item {
+        color: #b1b1b1;
+        padding: 0.5rem 0 0.5rem;
+        margin: 0 0.75rem;
+
+        &:hover {
+          color: #fff;
+          border-width: 0;
+          padding-bottom: 0.5rem;
+        }
+
+        &.is-active {
+          color: #fff;
+          border-bottom: 3px solid $primary;
+          padding-bottom: calc(0.5rem - 3px);
+        }
+      }
+    }
+  }
+}
+
 .nav-link,
 .panel-list .nav-link {
   display: inline-block;
@@ -95,16 +143,19 @@ a:focus {
   overflow: hidden;
   vertical-align: top;
   z-index: 0;
-  color: #4183c4;
+  color: $link;
   transition: color 0.2s;
   outline: none;
+
   &:hover {
-    color: #1e70bf;
+    color: $link-hover;
+
     &:before {
-      background-color: #2c76bf;
+      background-color: $link;
       transform: scaleX(1);
     }
   }
+
   &:before {
     position: absolute;
     top: auto;
@@ -112,7 +163,7 @@ a:focus {
     left: 0;
     width: 100%;
     height: 1px;
-    background-color: #4183c4;
+    background-color: $link;
     content: "";
     transition: all 0.2s;
     backface-visibility: hidden;
@@ -132,7 +183,7 @@ a:focus {
   border-radius: 3px;
   color: #3f3f3f;
   font-size: 12px;
-  background-color: #f5dc95;
+  background-color: $primary;
 }
 
 /**  退选标签 **/
@@ -144,7 +195,7 @@ a:focus {
 
 /**  标签页 **/
 .tab {
-  margin-top:  -20px;
+  margin-top: -20px;
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -152,11 +203,35 @@ a:focus {
   color: #939393;
 }
 
-/** 顶部标签 **/
-.top{
+/** 自定义标签样式 **/
+.tabs {
+  li {
+    &.is-active {
+      a {
+        padding-bottom: calc(0.5em - 2px);
+        margin-bottom: -1px;
+        border-bottom-color: $primary;
+        color: #3f3f3f;
+        border-width: 3px;
+      }
+    }
+
+    a {
+      margin: 0.5em 1em 0;
+      padding: 0 0 0.5em;
+      border-width: 0;
+      color: #c1c1c1;
+      font-weight: bold;
+    }
+  }
+}
+
+/** 跨链顶部标签 **/
+.top {
   font-size: 20px;
   line-height: 50px;
-  li{
+
+  li {
     flex: 1;
   }
 }
@@ -169,11 +244,28 @@ a:focus {
   color: #4a4a4a;
 }
 
-.tab-img{
+.tab-img {
   display: inline-block;
   width: 28px;
   height: 28px;
   margin: 0 10px;
+}
+
+/** 挂单交易深度样式 **/
+.capstotal {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+
+  &.asks {
+    background-color: #f7e6e0;
+  }
+
+  &.bids {
+    background-color: #dfeee4;
+  }
 }
 
 .dashboard-cell {
@@ -183,11 +275,14 @@ a:focus {
   align-items: center;
   justify-content: center;
   box-shadow: 1px 1px 0 #dedede;
+
   .dashboard-cell__title {
     font-size: 14px;
+    font-family: "PingFangSC-Semibold";
     color: #3f3f3f;
     margin-bottom: 5px;
   }
+
   .dashboard-cell__content {
     font-size: 16px;
     color: #959595;
@@ -202,13 +297,14 @@ a:focus {
   .panel-item__title {
     width: 25%;
     font-size: 12px;
-    color: #959595;
+    color: #3f3f3f;
   }
+
   .panel-item__content {
     word-break: break-all;
     width: 75%;
     font-size: 12px;
-    color: #3f3f3f;
+    color: #959595;
   }
 }
 
@@ -235,19 +331,24 @@ a:focus {
   font-size: 12px;
   display: flex;
   align-items: center;
+
   a {
     color: rgba(74, 74, 108, 0.65);
   }
+
   a:hover {
     color: rgba(74, 74, 108, 0.65);
   }
+
   .container {
     display: flex;
   }
+
   .footer-start {
     display: flex;
     flex: 1;
   }
+
   ul li {
     margin-right: 32px;
   }
@@ -255,6 +356,7 @@ a:focus {
   .chainx-code-wrapper {
     position: relative;
     cursor: pointer;
+
     &:hover {
       .chainx-code {
         display: block;
@@ -280,7 +382,7 @@ a:focus {
   width: 100%;
 }
 
-.spinner-wrap{
+.spinner-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -316,6 +418,7 @@ a:focus {
 .pairs {
   padding: 0;
   align-items: normal;
+
   .pairs-items {
     width: 50%;
     font-size: 20px;
@@ -323,30 +426,36 @@ a:focus {
     border-right: 1px solid #dbdbdb;
     background: hsl(0, 0%, 96%);
   }
+
   .pairs-item {
     height: 90px;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #dbdbdb;
     cursor: pointer;
+
     &.active {
       background: #fff;
       border-left: 3px solid $primary;
     }
   }
+
   .pairs-item-icon {
     margin-left: 16px;
     margin-right: 16px;
     margin-top: -2px;
     height: 40px;
   }
+
   .pairs-content {
     width: 50%;
     padding: 24px;
     color: #343434;
   }
+
   .pairs-content-item {
     margin-bottom: 24px;
+
     .pairs-content-item__label {
       font-size: 12px;
       color: hsl(0, 0%, 48%);
@@ -361,70 +470,97 @@ a:focus {
   align-items: normal;
   padding: 20px;
   font-size: 12px;
+
   .handicap-list {
     width: 100%;
     display: flex;
     flex-direction: column;
   }
+
   .handicap-header {
     display: flex;
     color: #363636;
     margin-bottom: 16px;
   }
+
   .handicap-content {
     flex: 1;
     display: flex;
     align-items: center;
   }
+
   .handicap-step {
     flex: 1;
     display: flex;
     flex-direction: column;
   }
+
   .handicap-sell {
     flex: 1 1 0%;
   }
+
   .handicap-now-price {
     height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
   .handicap-buy {
     flex: 1 1 0%;
   }
+
   .bid-item {
+    position: relative;
     display: flex;
+
+    span {
+      z-index: 1;
+    }
   }
+
   .ask-item {
+    position: relative;
     display: flex;
+
+    span {
+      z-index: 1;
+    }
   }
+
   .price {
     text-align: left;
     flex: 0.8 1 0%;
   }
+
   .last-price {
     font-size: 16px;
     color: #34c69a;
   }
+
   .amount {
     text-align: right;
     flex: 1 1 0%;
   }
+
   .total {
     text-align: right;
     flex: 1 1 0%;
   }
+
   .handicap-buy,
   .handicap-sell {
     line-height: 25px;
+
     .odd {
       background: whitesmoke;
     }
   }
+
   .handicap-sell .price {
     color: #ea754b;
   }
+
   .handicap-buy .price {
     color: #34c69a;
   }
