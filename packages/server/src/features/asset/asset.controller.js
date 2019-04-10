@@ -29,9 +29,11 @@ class AssetController {
     const { page, pageSize } = extractPage(ctx);
     const { rows, count } = await ctx.db.Deposit.findAndCountAll({
       where,
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
-      offset: page * pageSize
+      offset: page * pageSize,
+      raw: true
     });
 
     ctx.body = {
@@ -57,9 +59,11 @@ class AssetController {
     const { page, pageSize } = extractPage(ctx);
     const { rows, count } = await ctx.db.Withdraw.findAndCountAll({
       where,
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
-      offset: page * pageSize
+      offset: page * pageSize,
+      raw: true
     });
 
     ctx.body = {
