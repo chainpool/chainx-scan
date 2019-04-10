@@ -6,7 +6,21 @@ import { Amount, AntSpinner as Spinner } from "../../components";
 export default function PendingOrders(props) {
   const { loading, handicap, activePair } = props;
   const { precision, unit_precision: unitPrecision, currency_pair: currencyPair } = activePair || {};
-
+  const min = !!handicap
+    ? !!handicap.asks.length
+      ? !!handicap.bids.length
+        ? Math.min(handicap.asks[handicap.asks.length - 1].total, handicap.bids[0].total)
+        : handicap.asks[handicap.asks.length - 1].total
+      : handicap.bids[0].total
+    : 0;
+  const max = !!handicap
+    ? !!handicap.asks.length
+      ? !!handicap.bids.length
+        ? Math.max(handicap.asks[0].total, handicap.bids[handicap.bids.length - 1].total)
+        : handicap.asks[0].total
+      : handicap.bids[handicap.bids.length - 1].total
+    : 0;
+  const derta = max - min || 1;
   return (
     <section className="panel">
       <div className="panel-heading">挂单列表</div>
@@ -25,6 +39,7 @@ export default function PendingOrders(props) {
                     handicap.asks &&
                     handicap.asks.map((item, index) => (
                       <div className={classnames("ask-item", { odd: !(index % 2) })} key={index}>
+                        <div className="asks capstotal" style={{ width: `${((item.total - min) / derta) * 50}%` }} />
                         <span className="price">
                           <Amount
                             value={item.price}
@@ -57,6 +72,7 @@ export default function PendingOrders(props) {
                     handicap.bids &&
                     handicap.bids.map((item, index) => (
                       <div className={classnames("bid-item", { odd: !(index % 2) })} key={index}>
+                        <div className="bids capstotal" style={{ width: `${((item.total - min) / derta) * 80}%` }} />
                         <span className="price">
                           <Amount
                             value={item.price}

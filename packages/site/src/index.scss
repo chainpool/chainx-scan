@@ -190,6 +190,7 @@ a:focus {
   color: #939393;
 }
 
+/** 自定义标签样式 **/
 .tabs{
   li{
     &.is-active{
@@ -211,7 +212,7 @@ a:focus {
   }
 }
 
-/** 顶部标签 **/
+/** 跨链顶部标签 **/
 .top{
   font-size: 20px;
   line-height: 50px;
@@ -233,6 +234,21 @@ a:focus {
   width: 28px;
   height: 28px;
   margin: 0 10px;
+}
+
+/** 挂单交易深度样式 **/
+.capstotal{
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  &.asks{
+    background-color: #F7E6E0;
+  }
+  &.bids{
+    background-color: #DFEEE4;
+  }
 }
 
 .dashboard-cell {
@@ -454,10 +470,18 @@ a:focus {
     flex: 1 1 0%;
   }
   .bid-item {
+    position: relative;
     display: flex;
+    span{
+      z-index: 1;
+    }
   }
   .ask-item {
+    position: relative;
     display: flex;
+    span{
+      z-index: 1;
+    }
   }
   .price {
     text-align: left;
