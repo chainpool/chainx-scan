@@ -16,8 +16,8 @@ export default function EtherumBind() {
   return <RenderEtherumBind {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 
-export function RenderEtherumBind({ tableProps, tableData, handleChange, loading }) {
-  const { pagination, dataSource = [] } = tableData;
+export function RenderEtherumBind({ tableProps, tableData, handleChange }) {
+  const { pagination, dataSource = [], loading } = tableData;
 
   return (
     <Table
