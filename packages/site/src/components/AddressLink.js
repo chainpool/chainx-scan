@@ -4,7 +4,6 @@ import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
 import { useAppContext } from "./AppContext";
-import { encodeAddress } from "../shared";
 
 export default memo(function AddressLink(props) {
   const { value, className, style } = props;
