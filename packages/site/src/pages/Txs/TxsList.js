@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, Link, DateShow, Number, Table, TxAction, TxLink } from "../../components";
+import { AddressLink, BlockLink, DateShow, Number, Table, TxAction, TxLink } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -69,7 +69,7 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
       dataSource={dataSource.map(data => {
         return {
           key: data.hash,
-          number: <Link parent="blocks" value={data.number} />,
+          number: <BlockLink value={data.number} />,
           index: <Number value={data.index} />,
           hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
           time: <DateShow value={data.time} />,

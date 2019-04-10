@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { DateShow, Link, Phase, Table, TxAction, TxLink } from "../components";
+import { DateShow, BlockLink, Phase, Table, TxAction, TxLink } from "../components";
 import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
@@ -64,7 +64,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
       dataSource={dataSource.map(data => {
         return {
           key: `${data.number}${data.index}`,
-          number: <Link parent="blocks" value={data.number} />,
+          number: <BlockLink value={data.number} />,
           event: <Phase phase={data.phase && data.phase.option} />,
           index: data.index && data.index,
           phaseValue: data.phase && data.phase.value,

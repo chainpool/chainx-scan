@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { Link, Number, AntSpinner as Spinner, ValidatorLink } from "../../components";
+import { BlockLink, Number, AntSpinner as Spinner, ValidatorLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -39,7 +39,7 @@ export default function BestBlocks() {
               ? blocks.map(({ number, producer, extrinsics }) => (
                   <tr key={number}>
                     <td>
-                      <Link parent="blocks" value={number} />
+                      <BlockLink value={number} />
                     </td>
                     <td>
                       <ValidatorLink value={producer} />

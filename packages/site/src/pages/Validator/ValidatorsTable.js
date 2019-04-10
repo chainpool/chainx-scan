@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Table, AddressLink, ValidatorLink, ExternalLink, Amount, Number } from "../components";
+import { Table, AddressLink, ValidatorLink, ExternalLink, Amount, Number } from "../../components";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">

@@ -1,21 +1,24 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
+import classnames from "classnames";
 
 import { hexAddPrefix } from "@polkadot/util";
 import { useAppContext } from "./AppContext";
-import { Link } from "./index.js";
 
-export default function VilidatorLink({ value, name = "", isActive = true }) {
+export default function VilidatorLink({ value, name = false, isActive = true, style, className }) {
   const hexValue = hexAddPrefix(value);
-  if (name === "") {
+  if (name === null) {
+    name = "";
+  } else if (!name) {
     const [{ intentions = [] }] = useAppContext();
     const intention = intentions.find(({ accountid }) => accountid === hexValue) || { name: "" };
     name = intention.name;
-  } else if (name === null) {
-    name = "";
   }
   return (
     <span className="nowrap">
-      <Link parent="validators" hexValue={hexValue} value={name} />
+      <NavLink to={`/validators/${hexValue}`} style={style} className={classnames("nav-link", className)}>
+        {name}
+      </NavLink>
       {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
     </span>
   );
