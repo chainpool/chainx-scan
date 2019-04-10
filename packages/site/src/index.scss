@@ -8,11 +8,12 @@
   src: url("https://cdn.jsdelivr.net/npm/dejavu-sans@1.0.0/fonts/dejavu-sans-webfont.ttf") format("truetype");
 }
 
+
 $primary: #f6c94a;
 
 // 导航栏断点：
 $navbar-breakpoint: $tablet + (2 * $gap);
-$family-sans-serif: "PingFangSC-Regular", monospace, BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
+$family-sans-serif: monospace, "PingFangSC-Regular", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell",
   "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $body-family: $family-sans-serif;
 
@@ -66,15 +67,15 @@ a:focus {
 }
 
 .breadcrumb{
-  font-family: 'PingFangSC-Semibold';
+  font-weight: bold;
   a{
-    color: #f6c94a;
+    color: $primary;
   }
 }
 
 .ant-table {
   .ant-table-thead{
-    font-family: 'PingFangSC-Semibold';
+    font-weight: bold;
     font-size: 12px;
   }
   td {
@@ -119,7 +120,7 @@ a:focus {
         }
         &.is-active{
           color: #fff;
-          border-bottom: 3px solid #f6c94a;
+          border-bottom: 3px solid $primary;
           padding-bottom: calc(0.5rem - 3px);
         }
       }
@@ -170,7 +171,7 @@ a:focus {
   border-radius: 3px;
   color: #3f3f3f;
   font-size: 12px;
-  background-color: #f5dc95;
+  background-color: $primary;
 }
 
 /**  退选标签 **/
@@ -197,7 +198,7 @@ a:focus {
       a{
         padding-bottom: calc(.5em - 2px);
         margin-bottom: -1px;
-        border-bottom-color: #f6c94a;
+        border-bottom-color: $primary;
         color: #3f3f3f;
         border-width: 3px;
       }
@@ -207,7 +208,7 @@ a:focus {
       padding: 0 0 .5em;
       border-width: 0;
       color: #c1c1c1;
-      font-family: 'PingFangSC-Semibold';
+      font-weight: bold;
     }
   }
 }
