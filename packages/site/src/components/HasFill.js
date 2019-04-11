@@ -29,7 +29,7 @@ export default memo(function(props) {
   return (
     <span>
       <Number value={fill} precision={precision} />
-      {`(${percent}%)`}
+      (<Number value={fill / total} options={{ style: "percent", minimumFractionDigits: 1 }} />)
     </span>
   );
 });
