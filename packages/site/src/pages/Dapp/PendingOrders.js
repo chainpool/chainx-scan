@@ -14,9 +14,9 @@ export default function PendingOrders(props) {
       <div className="panel-block handicap" style={{ minHeight: 365 }}>
         <dl className="handicap-list">
           <dt className="handicap-header">
-            <span className="price">价格({currencyPair ? currencyPair[1] : "---"})</span>
-            <span className="amount">数量({currencyPair ? currencyPair[0] : "---"})</span>
-            <span className="total">累计深度({currencyPair ? currencyPair[0] : "---"})</span>
+            <span className="price">价格({currencyPair ? currencyPair[1] : "-"})</span>
+            <span className="amount">数量({currencyPair ? currencyPair[0] : "-"})</span>
+            <span className="total">累计深度({currencyPair ? currencyPair[0] : "-"})</span>
           </dt>
           <dd className="handicap-content">
             {!loading ? (
