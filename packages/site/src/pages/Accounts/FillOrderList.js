@@ -48,7 +48,7 @@ export default function FillOrderList(props) {
       }
       columns={[
         {
-          title: "交易ID",
+          title: "委托编号",
           dataIndex: "id"
         },
         {
