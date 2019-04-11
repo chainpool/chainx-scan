@@ -51,7 +51,7 @@ export default function AccountOrder(props) {
       }
       columns={[
         {
-          title: "挂单序号",
+          title: "委托编号",
           dataIndex: "id"
         },
         {
