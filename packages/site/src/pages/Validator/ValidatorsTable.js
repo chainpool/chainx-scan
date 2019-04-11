@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Table, AddressLink, ValidatorLink, ExternalLink, Amount, Number } from "../../components";
+import { Table, AddressLink, ValidatorLink, ExternalLink, Amount, NumberFormat } from "../../components";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">
@@ -34,7 +34,7 @@ export default function ValidatorsTable(props) {
             selfVote: <Amount value={data.selfVote} hideSymbol />,
             totalNomination: <Amount value={data.totalNomination} hideSymbol />,
             jackpot: <Amount value={data.jackpot} hideSymbol />,
-            blocks: <Number value={data.blocks} />
+            blocks: <NumberFormat value={data.blocks} />
           };
         })
       }

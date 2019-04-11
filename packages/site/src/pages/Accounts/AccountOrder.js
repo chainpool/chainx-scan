@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Amount, DateShow, Number, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
+import { Amount, DateShow, NumberFormat, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
 import { HasFill } from "@src/components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
@@ -47,7 +47,7 @@ export default function AccountOrder(props) {
             status: <OrderStatus value={data.status} />,
             createTime: <DateShow value={data["block.time"]} />,
             updateTime: <DateShow value={data["updateBlock.time"]} />,
-            amount: <Number value={data.amount} precision={data["pair.precision"]} />,
+            amount: <NumberFormat value={data.amount} precision={data["pair.precision"]} />,
             hasFillAmount: <HasFill fill={data.hasfill_amount} total={data.amount} precision={data["pair.precision"]} />
           };
         })

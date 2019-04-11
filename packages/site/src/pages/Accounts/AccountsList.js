@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, Amount, Number, Table } from "../../components";
+import { AddressLink, Amount, NumberFormat, Table } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -32,7 +32,7 @@ export default function AccountsList() {
             pcx: <Amount symbol="PCX" value={data.pcx || 0} hideSymbol />,
             btc: <Amount symbol="BTC" value={data.btc || 0} hideSymbol />,
             sdot: <Amount symbol="SDOT" value={data.sdot || 0} hideSymbol />,
-            nonce: <Number value={data.nonce} />
+            nonce: <NumberFormat value={data.nonce} />
           };
         })
       }

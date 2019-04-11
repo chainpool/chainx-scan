@@ -1,6 +1,6 @@
 import React, { useMemo, useEffect } from "react";
 
-import { Table, DateShow, Hash, ExternalLink, Number, AddressLink, TxLink } from "../../components";
+import { Table, DateShow, Hash, ExternalLink, NumberFormat, AddressLink, TxLink } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
@@ -38,7 +38,7 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
               type="btcHash"
               value={data.header}
               render={() => {
-                return <Number value={data.bitcoin_height} />;
+                return <NumberFormat value={data.bitcoin_height} />;
               }}
             />
           ),
