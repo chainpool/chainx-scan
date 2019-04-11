@@ -6,6 +6,9 @@ import { useRedux } from "../../shared";
 
 export default function HistoryEntrust({ activePair = {} }) {
   const { pairid } = activePair;
+
+  if (pairid === undefined) return <RenderHistoryEntrust />;
+
   const [{ tableData }, setTableData] = useRedux(`historyEntrust_${pairid}`, {
     tableData: {
       pagination: {
@@ -15,16 +18,14 @@ export default function HistoryEntrust({ activePair = {} }) {
       }
     }
   });
+
   const tableService = useMemo(() => new TableService(api.fetchTradeHistory$, tableData, { pairid }), [pairid]);
+
   useEffect(() => {
-    if (typeof pairid === "number") {
-      const subscription = tableService
-        .fetchTable()
-        .getState$()
-        .subscribe(data => setTableData({ tableData: { ...data } }));
-      return () => subscription.unsubscribe();
-    }
-  }, [pairid]);
+    const subscription = tableService.getState$().subscribe(data => setTableData({ tableData: { ...data } }));
+    return () => subscription.unsubscribe();
+  }, [tableService]);
+
   return <RenderHistoryEntrust {...tableData} {...tableService} {...activePair} />;
 }
 

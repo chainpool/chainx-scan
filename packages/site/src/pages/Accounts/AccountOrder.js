@@ -22,10 +22,7 @@ export default function AccountOrder(props) {
   );
 
   useEffect(() => {
-    const subscription = tableService
-      .fetchTable()
-      .getState$()
-      .subscribe(data => setTableData({ tableData: { ...data } }));
+    const subscription = tableService.getState$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 

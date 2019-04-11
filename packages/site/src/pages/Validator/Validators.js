@@ -19,12 +19,9 @@ export default function Validators(props) {
   const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData, { tabFilter }), []);
 
   useEffect(() => {
-    const subscription = tableService
-      .fetchTable()
-      .getState$()
-      .subscribe(data => {
-        setState({ tableData: { ...data } });
-      });
+    const subscription = tableService.getState$().subscribe(data => {
+      setState({ tableData: { ...data } });
+    });
     return () => subscription.unsubscribe();
   }, [tabFilter]);
   return (

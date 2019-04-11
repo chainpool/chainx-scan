@@ -19,6 +19,7 @@ export default class tableService {
       refCount()
     );
     this._fetchTable = _fetchTable;
+    this.fetchTable();
   }
 
   static initData = {
