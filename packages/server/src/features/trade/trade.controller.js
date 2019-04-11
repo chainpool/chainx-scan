@@ -189,6 +189,28 @@ class TradeController {
       total
     };
   }
+
+  async allFilledOrders(ctx) {
+    const { pairId } = ctx.params;
+    const { page, pageSize } = extractPage(ctx);
+
+    const { rows: items, count: total } = await ctx.db.FilledOrder.findAndCountAll({
+      where: { pairid: pairId },
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      attributes: { exclude: ["pairid", "time"] },
+      order: [["time", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize,
+      raw: true
+    });
+
+    ctx.body = {
+      items,
+      page,
+      pageSize,
+      total
+    };
+  }
 }
 
 module.exports = new TradeController();
