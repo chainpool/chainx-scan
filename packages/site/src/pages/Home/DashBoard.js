@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 
 import { useRedux } from "../../shared";
 import api from "../../services/api";
-import { Amount, Number, AntSpinner as Spinner } from "../../components";
+import { Amount, NumberFormat, AntSpinner as Spinner } from "../../components";
 import PCX from "../../assets/tokens/pcx.png";
 
 export default function DashBoard() {
@@ -17,15 +17,15 @@ export default function DashBoard() {
   const dataSource = [
     {
       label: "最新高度",
-      data: <Number value={data.best} />
+      data: <NumberFormat value={data.best} />
     },
     {
       label: "确认高度",
-      data: <Number value={data.finalized} />
+      data: <NumberFormat value={data.finalized} />
     },
     {
       label: "ChainX交易总数",
-      data: <Number value={data.transactions} />
+      data: <NumberFormat value={data.transactions} />
     },
     {
       label: "发行总量 (PCX)",
@@ -33,13 +33,13 @@ export default function DashBoard() {
     },
     {
       label: "验证节点选举届数",
-      data: <Number value={data.vote_cycle} />
+      data: <NumberFormat value={data.vote_cycle} />
     },
     {
       label: "验证节点数",
       data: (
         <NavLink to={`/validators`} className="nav-link">
-          <Number value={data.validators} />
+          <NumberFormat value={data.validators} />
         </NavLink>
       )
     },

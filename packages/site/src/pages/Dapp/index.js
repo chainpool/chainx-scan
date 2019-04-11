@@ -1,13 +1,15 @@
-import React, { useEffect, useMemo } from "react";
-// import classnames from "classnames";
+import React, { useEffect, useMemo, useState } from "react";
+import classnames from "classnames";
 
 import PairList from "./PairList";
 import PendingOrders from "./PendingOrders";
+import CurrentEntrust, { RenderCurrentEntrust } from "./CurrentEntrust";
+import HistoryEntrust, { RenderHistoryEntrust } from "./HistoryEntrust";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 
 export default function Dapp() {
-  // const [activeKey, setActiveKey] = useState("currentEntrust");
+  const [activeKey, setActiveKey] = useState("currentEntrust");
   const [{ pairs, activePairId, loadingHandicap, handicap }, setState] = useRedux("dapp", {
     pairs: [],
     loadingHandicap: true
@@ -73,7 +75,7 @@ export default function Dapp() {
           <PendingOrders loading={loadingHandicap} handicap={handicap} activePair={activePair} />
         </div>
       </div>
-      {/* <div className="box">
+      <div className="box">
         <div className="tabs">
           <ul>
             <li
@@ -90,7 +92,13 @@ export default function Dapp() {
             </li>
           </ul>
         </div>
-      </div> */}
+        <>
+          {activeKey === "currentEntrust" &&
+            (!activePair ? <RenderCurrentEntrust /> : <CurrentEntrust activePair={activePair} />)}
+          {activeKey === "historyEntrust" &&
+            (!activePair ? <RenderHistoryEntrust /> : <HistoryEntrust activePair={activePair} />)}
+        </>
+      </div>
     </>
   );
 }

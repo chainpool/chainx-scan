@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, Number, Table, Amount } from "../../components";
+import { AddressLink, NumberFormat, Table, Amount } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -56,7 +56,7 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
           nominator: <AddressLink className="text-truncate" value={data.nominator} style={{ maxWidth: 140 }} />,
           revocations: <Amount value={getRevocations(data.revocations)} hideSymbol />,
           nomination: <Amount value={data.nomination} hideSymbol />,
-          last_vote_weight_update: <Number value={data.last_vote_weight_update} />,
+          last_vote_weight_update: <NumberFormat value={data.last_vote_weight_update} />,
           last_vote_weight: <Amount value={data.last_vote_weight} hideSymbol />
         };
       })}

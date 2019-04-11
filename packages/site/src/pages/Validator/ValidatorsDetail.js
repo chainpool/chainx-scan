@@ -9,7 +9,7 @@ import {
   Breadcrumb,
   AntSpinner as Spinner,
   Amount,
-  Number
+  NumberFormat
 } from "../../components";
 import NominationsList from "./NominationsList";
 import SettingList from "./SettingList";
@@ -81,7 +81,7 @@ export default function BlockDetail(props) {
             label: "漏块总数",
             data: (
               <span>
-                <Number value={data.missedBlocks} />
+                <NumberFormat value={data.missedBlocks} />
                 <span>{`(${(isNaN(data.missedBlocks / (data.missedBlocks + data.blocks))
                   ? 0
                   : (data.missedBlocks / (data.missedBlocks + data.blocks)) * 100
@@ -91,7 +91,7 @@ export default function BlockDetail(props) {
           },
           {
             label: "出块总数",
-            data: <Number value={data.blocks} />
+            data: <NumberFormat value={data.blocks} />
           },
           {
             label: "票龄最新高度",

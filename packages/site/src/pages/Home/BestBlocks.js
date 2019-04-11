@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { BlockLink, Number, AntSpinner as Spinner, ValidatorLink } from "../../components";
+import { BlockLink, NumberFormat, AntSpinner as Spinner, ValidatorLink } from "../../components";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -45,7 +45,7 @@ export default function BestBlocks() {
                       <ValidatorLink value={producer} />
                     </td>
                     <td className="has-text-right">
-                      <Number value={extrinsics} />
+                      <NumberFormat value={extrinsics} />
                     </td>
                   </tr>
                 ))

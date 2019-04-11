@@ -21,7 +21,7 @@ function numberToAmount(
 
   options.useGrouping = useGrouping;
 
-  const value = (number / Math.pow(10, precision)).toLocaleString(undefined, options);
+  const value = new Intl.NumberFormat(undefined, options).format(number / Math.pow(10, precision));
 
   if (!hideSymbol && symbol) {
     return `${value} ${symbol}`;

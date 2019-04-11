@@ -318,6 +318,20 @@ class Api {
   };
 
   /**
+   * 获取当前委托列表
+   */
+  fetchTradeCurrent$ = (params, { pairid }) => {
+    return this.fetch$(`/trade/all_orders/${pairid}`, params);
+  };
+
+  /**
+   * 获取历史委托列表
+   */
+  fetchTradeHistory$ = (params, { pairid }) => {
+    return this.fetch$(`/trade/all_filled_orders/${pairid}`, params);
+  };
+
+  /**
    * 搜索，返回一个对象
    */
   search = async (input = "") => {

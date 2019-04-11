@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Amount, DateShow, Number, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
-import HasFill from "./HasFill";
+import { Amount, DateShow, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
+import { HasFill } from "@src/components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
@@ -38,14 +38,16 @@ export default function AccountOrder(props) {
             key: data.id,
             id: data.id,
             pair: `${data["pair.currency_pair"][0]}/${data["pair.currency_pair"][1]}`,
-            price: <Amount value={data.price} symbol={data["pair.currency_pair"][0]} hideSymbol={true} />,
+            price: <Amount value={data.price} symbol={data["pair.currency_pair"][0]} hideSymbol />,
             class: <OrderClass value={data.class} />,
             direction: <OrderDirection value={data.direction} />,
             status: <OrderStatus value={data.status} />,
             createTime: <DateShow value={data["block.time"]} />,
             updateTime: <DateShow value={data["updateBlock.time"]} />,
-            amount: <Number value={data.amount} precision={data["pair.precision"]} />,
-            hasFillAmount: <HasFill fill={data.hasfill_amount} total={data.amount} precision={data["pair.precision"]} />
+            amount: <Amount value={data.amount} symbol={data["pair.currency_pair"][0]} hideSymbol />,
+            hasFillAmount: (
+              <HasFill fill={data.hasfill_amount} total={data.amount} symbol={data["pair.currency_pair"][0]} />
+            )
           };
         })
       }

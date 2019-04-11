@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { DateShow, Number, OrderDirection, Table } from "../../components";
+import { DateShow, Amount, OrderDirection, Table } from "../../components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
@@ -40,9 +40,9 @@ export default function FillOrderList(props) {
             pair: `${data["pair"][0]}/${data["pair"][1]}`,
             direction: <OrderDirection value={data.direction} />,
             time: <DateShow value={data.time} />,
-            amount: <Number value={data.amount} precision={data.precision} />,
-            setPrice: <Number value={data.set_price} precision={data.precision} />,
-            price: <Number value={data.price} precision={data.precision} />
+            amount: <Amount value={data.amount} symbol={data["pair"][0]} hideSymbol />,
+            setPrice: <Amount value={data.set_price} symbol={data["pair"][0]} hideSymbol />,
+            price: <Amount value={data.price} symbol={data["pair"][0]} hideSymbol />
           };
         })
       }

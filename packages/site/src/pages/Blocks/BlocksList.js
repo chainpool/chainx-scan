@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Table, BlockLink, DateShow, Number, ValidatorLink } from "../../components";
+import { Table, BlockLink, DateShow, NumberFormat, ValidatorLink } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
@@ -29,8 +29,8 @@ export default function BlocksList() {
             hash: <BlockLink style={{ width: 138 }} className="text-truncate" value={data.hash} />,
             time: <DateShow value={data.time} />,
             producer: <ValidatorLink value={data.producer} />,
-            extrinsics: <Number value={data.extrinsics} />,
-            eventCount: <Number value={data.event_count} />
+            extrinsics: <NumberFormat value={data.extrinsics} />,
+            eventCount: <NumberFormat value={data.event_count} />
           };
         })
       }

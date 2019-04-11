@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import { Table, Amount, ValidatorLink, Number } from "../../components";
+import { Table, Amount, ValidatorLink, NumberFormat } from "../../components";
 import api from "../../services/api";
 
 export default function AccountNomination(props) {
@@ -33,8 +33,8 @@ export default function AccountNomination(props) {
             nominee: <ValidatorLink value={data.nominee} />,
             nomination: <Amount value={data.nomination} hideSymbol />,
             revocations: <Amount value={getRevocations(data.revocations)} hideSymbol />,
-            updateHeight: <Number value={data.last_vote_weight_update} />,
-            weight: <Number value={data.last_vote_weight} />
+            updateHeight: <NumberFormat value={data.last_vote_weight_update} />,
+            weight: <NumberFormat value={data.last_vote_weight} />
           };
         })
       }

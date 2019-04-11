@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 
 import api from "../../services/api";
-import { AddressLink, Breadcrumb, ExternalLink, Number, PanelList } from "../../components";
+import { AddressLink, Breadcrumb, ExternalLink, NumberFormat, PanelList } from "../../components";
 import AccountAsset from "./AccountAsset";
 import AccountNomination from "./AccountNomination";
 import AccountOrder from "./AccountOrder";
@@ -37,7 +37,7 @@ export default function Account(props) {
           },
           {
             label: "账户交易数",
-            data: <Number value={detail.txCount} />
+            data: <NumberFormat value={detail.txCount} />
           },
           {
             label: "BTC 充值地址",
