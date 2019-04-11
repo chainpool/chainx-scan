@@ -167,6 +167,27 @@ class TradeController {
 
     ctx.body = orders;
   }
+
+  async allOrders(ctx) {
+    const { pairId } = ctx.params;
+    const { page, pageSize } = extractPage(ctx);
+
+    const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
+      where: { pairid: pairId, $or: [{ status: "ZeroExecuted" }, { status: "ParitialExecuted" }] },
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      order: [["create_time", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize,
+      raw: true
+    });
+
+    ctx.body = {
+      items,
+      page,
+      pageSize,
+      total
+    };
+  }
 }
 
 module.exports = new TradeController();
