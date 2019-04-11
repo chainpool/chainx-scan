@@ -53,11 +53,11 @@ export function RenderHistoryEntrust({
                 value={data.price}
                 precision={precision}
                 minDigits={precision - unit_precision}
-                symbol={currency_pair ? currency_pair[0] : ""}
+                symbol={currency_pair[0]}
                 hideSymbol
               />
             ),
-            amount: <Amount value={data.amount} symbol={currency_pair ? currency_pair[1] : ""} hideSymbol />,
+            amount: <Amount value={data.amount} symbol={currency_pair[1]} hideSymbol />,
             maker_user: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.maker_user} />,
             maker_user_order_index: data.maker_user_order_index,
             taker_user: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.taker_user} />,
@@ -72,11 +72,11 @@ export function RenderHistoryEntrust({
           dataIndex: "id"
         },
         {
-          title: `价格(${currency_pair ? currency_pair[0] : ""})`,
+          title: `价格(${currency_pair ? currency_pair[0] : "-"})`,
           dataIndex: "price"
         },
         {
-          title: `数量(${currency_pair ? currency_pair[1] : ""})`,
+          title: `数量(${currency_pair ? currency_pair[1] : "-"})`,
           dataIndex: "amount"
         },
         {

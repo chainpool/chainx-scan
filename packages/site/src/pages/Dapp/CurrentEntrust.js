@@ -55,14 +55,12 @@ export function RenderCurrentEntrust({
                 value={data.price}
                 precision={precision}
                 minDigits={precision - unit_precision}
-                symbol={currency_pair ? currency_pair[0] : ""}
+                symbol={currency_pair[0]}
                 hideSymbol
               />
             ),
-            amount: <Amount value={data.amount} symbol={currency_pair ? currency_pair[1] : ""} hideSymbol />,
-            reserve_last: (
-              <Amount value={data.reserve_last} symbol={currency_pair ? currency_pair[1] : ""} hideSymbol />
-            ),
+            amount: <Amount value={data.amount} symbol={currency_pair[1]} hideSymbol />,
+            reserve_last: <Amount value={data.reserve_last} symbol={currency_pair[1]} hideSymbol />,
             hasFillAmount: (
               <HasFill fill={data.hasfill_amount} total={data.amount} precision={data["pair.precision"]} />
             ),
@@ -85,15 +83,15 @@ export function RenderCurrentEntrust({
           dataIndex: "direction"
         },
         {
-          title: `委托价格(${currency_pair ? currency_pair[1] : ""})`,
+          title: `委托价格(${currency_pair ? currency_pair[1] : "-"})`,
           dataIndex: "price"
         },
         {
-          title: `委托数量(${currency_pair ? currency_pair[0] : ""})`,
+          title: `委托数量(${currency_pair ? currency_pair[0] : "-"})`,
           dataIndex: "amount"
         },
         {
-          title: `冻结金额(${currency_pair ? currency_pair[0] : ""})`,
+          title: `冻结金额(${currency_pair ? currency_pair[0] : "-"})`,
           dataIndex: "reserve_last"
         },
         {
