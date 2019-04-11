@@ -1,5 +1,6 @@
-import { BehaviorSubject } from "rxjs";
-import { take, scan, publishReplay, refCount, distinctUntilChanged } from "rxjs/operators";
+import { Observable } from "rxjs";
+import { take } from "rxjs/operators";
+import { createStore } from "redux";
 
 export default class tableService {
   constructor(_fetchTable, initData = {}, peddingData = {}) {
@@ -8,16 +9,25 @@ export default class tableService {
       ...initData
     };
     this.initialize = initialize;
-    this.peddingData = peddingData;
-    this.subject = new BehaviorSubject(initialize);
-    this.state$ = this.subject.asObservable().pipe(
-      scan((acc, newVal) => {
-        return { ...acc, ...newVal };
-      }, initialize),
-      distinctUntilChanged(),
-      publishReplay(1),
-      refCount()
-    );
+    this._peddingData = peddingData;
+
+    this._store = createStore((state, action) => {
+      switch (action.type) {
+        case `set`:
+          return { ...state, ...action.payload };
+        default:
+          return state;
+      }
+    }, initialize);
+
+    this._state$ = new Observable(observer => {
+      observer.next(this._store.getState());
+      const unsubscribe = this._store.subscribe(() => {
+        observer.next(this._store.getState());
+      });
+      return () => unsubscribe();
+    });
+
     this._fetchTable = _fetchTable;
   }
 
@@ -31,15 +41,20 @@ export default class tableService {
     }
   };
 
+  get store() {
+    return this._store;
+  }
+
   fetchTable$ = (params = {}) => {
     const { current = this.initialize.pagination.current, pageSize = this.initialize.pagination.pageSize } = params;
     this.setState({ loading: true });
+
     this._fetchTable(
       {
         page: current - 1,
         pageSize
       },
-      { ...this.peddingData }
+      { ...this._peddingData }
     )
       .pipe(take(1))
       .subscribe(({ items, page, pageSize, total }) => {
@@ -53,7 +68,8 @@ export default class tableService {
           }
         });
       });
-    return this.getState$();
+
+    return this._state$;
   };
 
   handleChange = ({ current, pageSize }) => {
@@ -61,10 +77,6 @@ export default class tableService {
   };
 
   setState = value => {
-    return this.subject.next(value);
-  };
-
-  getState$ = () => {
-    return this.state$;
+    return this.store.dispatch({ type: "set", payload: value });
   };
 }
