@@ -26,7 +26,7 @@ Note: config the database in `package/server/config`
 
 ### For production
 
-1. `cd pacakges/site`
+1. `cd packages/site`
 2. `yarn`
 3. `echo REACT_APP_SERVER=http://localhost:3001 > .env`
 4. `yarn build`
