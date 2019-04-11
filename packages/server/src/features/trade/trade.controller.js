@@ -175,6 +175,7 @@ class TradeController {
     const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
       where: { pairid: pairId, $or: [{ status: "ZeroExecuted" }, { status: "ParitialExecuted" }] },
       include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      attributes: { exclude: ["pairid"] },
       order: [["create_time", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
