@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { NumberFormat, Amount } from ".";
 
-export default memo(function(props) {
+export default memo(function HasFill(props) {
   const { fill, total, symbol } = props;
 
   return (
