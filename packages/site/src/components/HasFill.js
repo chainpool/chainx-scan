@@ -1,8 +1,9 @@
 import React, { memo } from "react";
 import { Number } from ".";
+import { useAppContext } from "./AppContext";
 
 export default memo(function(props) {
-  const { fill, total, precision } = props;
+  const { fill, total, symbol } = props;
   const toFixed = (num, perc) => {
     if (typeof num !== "number") return num;
     num = num.toString().split(".");
@@ -16,6 +17,14 @@ export default memo(function(props) {
   };
   const number = isNaN(fill / total) ? 0 : fill / total;
   const percent = toFixed(number * 100, 1);
+
+  const [{ tokens }] = useAppContext();
+  let precision = 0;
+  if (!tokens.length) return null;
+  const findToken = tokens.find(token => token.token === symbol.toUpperCase());
+  if (findToken) {
+    precision = findToken.precision;
+  }
 
   return (
     <span>
