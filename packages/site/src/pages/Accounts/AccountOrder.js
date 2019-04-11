@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo } from "react";
 
 import { Amount, DateShow, Number, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
-import HasFill from "./HasFill";
+import { HasFill } from "@src/components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
@@ -22,7 +22,10 @@ export default function AccountOrder(props) {
   );
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setTableData({ tableData: { ...data } }));
+    const subscription = tableService
+      .fetchTable()
+      .getState$()
+      .subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 

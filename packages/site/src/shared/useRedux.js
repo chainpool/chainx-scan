@@ -29,7 +29,7 @@ export default function useRedux(namespace, initState) {
       });
     });
     return () => unsubscribe();
-  }, [store]);
+  }, [store, namespace]);
 
   const setState = useCallback(
     payload => {

@@ -7,6 +7,7 @@ export default class tableService {
       ...tableService.initData,
       ...initData
     };
+    this.initialize = initialize;
     this.peddingData = peddingData;
     this.subject = new BehaviorSubject(initialize);
     this.state$ = this.subject.asObservable().pipe(
@@ -18,7 +19,6 @@ export default class tableService {
       refCount()
     );
     this._fetchTable = _fetchTable;
-    this.fetchTable({ ...initialize.pagination }, peddingData);
   }
 
   static initData = {
@@ -31,7 +31,8 @@ export default class tableService {
     }
   };
 
-  fetchTable = ({ current, pageSize }) => {
+  fetchTable = (params = {}) => {
+    const { current = this.initialize.pagination.current, pageSize = this.initialize.pagination.pageSize } = params;
     this.setState({ loading: true });
     this._fetchTable(
       {
@@ -52,6 +53,7 @@ export default class tableService {
           }
         });
       });
+    return this;
   };
 
   handleChange = ({ current, pageSize }) => {

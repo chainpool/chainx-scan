@@ -21,3 +21,4 @@ export { default as CrossChainNav } from "./CrossChainNav";
 export { default as Breadcrumb } from "./Breadcrumb";
 export { default as TokenName } from "./TokenName";
 export { default as Phase } from "./Phase";
+export { default as HasFill } from "./HasFill";

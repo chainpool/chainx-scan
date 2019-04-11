@@ -11,7 +11,10 @@ export default function CrossWithdrawals() {
   const tableService = useMemo(() => new TableService(api.fetchBtcWithdrawals$, tableData), []);
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    const subscription = tableService
+      .fetchTable()
+      .getState$()
+      .subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
 

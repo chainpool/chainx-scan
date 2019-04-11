@@ -22,7 +22,10 @@ export default function FillOrderList(props) {
   );
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setTableData({ tableData: { ...data } }));
+    const subscription = tableService
+      .fetchTable()
+      .getState$()
+      .subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
   }, [props.accountId]);
 
