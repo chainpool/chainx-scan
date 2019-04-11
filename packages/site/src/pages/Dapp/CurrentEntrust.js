@@ -61,9 +61,7 @@ export function RenderCurrentEntrust({
             ),
             amount: <Amount value={data.amount} symbol={currency_pair[1]} hideSymbol />,
             reserve_last: <Amount value={data.reserve_last} symbol={currency_pair[1]} hideSymbol />,
-            hasFillAmount: (
-              <HasFill fill={data.hasfill_amount} total={data.amount} precision={data["pair.precision"]} />
-            ),
+            hasFillAmount: <HasFill fill={data.hasfill_amount} total={data.amount} symbol={currency_pair[0]} />,
             status: <OrderStatus value={data.status} />,
             createTime: <DateShow value={data["block.time"]} />
           };
