@@ -3,24 +3,16 @@ import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 
-import { useAppContext } from "./AppContext";
 import { encodeAddress } from "../shared";
 
 export default memo(function AddressLink(props) {
-  const { value, className, style, isValidator } = props;
+  const { value, className, style } = props;
   const hexValue = hexAddPrefix(value);
-
-  const [{ intentions = [] }] = useAppContext();
 
   let showValue = "";
 
   if (hexValue !== "0x") {
-    if (!isValidator) {
-      showValue = encodeAddress(hexValue);
-    } else {
-      const { name = "" } = intentions.find(({ accountid }) => accountid === hexValue) || {};
-      showValue = name;
-    }
+    showValue = encodeAddress(hexValue);
   }
 
   return (

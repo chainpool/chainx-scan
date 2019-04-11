@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { ValidatorsTable } from "../../components";
+import ValidatorsTable from "./ValidatorsTable";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";

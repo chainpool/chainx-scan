@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import api from "@src/services/api";
-import { Table, AddressLinkVilidator, ExternalLink } from "@src/components";
+import { Table, ValidatorLink, ExternalLink } from "@src/components";
 
 export default function BindAddressList(props) {
   const [tableData, setTableData] = useState([]);
@@ -32,7 +32,7 @@ export default function BindAddressList(props) {
                 value={data.address}
               />
             ),
-            channel: <AddressLinkVilidator hexValue={data.accountid} value={data["intention.name"]} />
+            channel: <ValidatorLink value={data.accountid} name={data["intention.name"]} />
           };
         })
       }

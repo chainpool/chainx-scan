@@ -9,6 +9,7 @@
 }
 
 $primary: #f6c94a;
+$primary-hover: #e6b738;
 $link: #46aee2;
 $link-hover: #359acc;
 
@@ -73,6 +74,9 @@ a:focus {
 
   a {
     color: $primary;
+    &:hover{
+      color: $primary-hover;
+    }
   }
 }
 

@@ -93,6 +93,14 @@ class Api {
   fetchTrusteeSettingList$ = nodeID => {
     return this.fetch$(`/intention/${nodeID}/settings`);
   };
+
+  /**
+   * 获取托管地址列表
+   */
+  fetchTrusteeList$ = () => {
+    return this.fetch$(`/btc/session_trustees`);
+  };
+
   /**
    * 获取账户跨链资产列表
    */

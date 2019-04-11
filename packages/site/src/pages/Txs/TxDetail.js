@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { hexStripPrefix } from "@polkadot/util";
 
-import { Link, AddressLink, TxLink, TxAction, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
+import {
+  BlockLink,
+  AddressLink,
+  TxLink,
+  TxAction,
+  PanelList,
+  Breadcrumb,
+  AntSpinner as Spinner
+} from "../../components";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
 
@@ -48,7 +56,7 @@ export default function BlockDetail(props) {
         dataSource={[
           {
             label: "区块高度",
-            data: <Link parent="blocks" value={data.number} />
+            data: <BlockLink value={data.number} />
           },
           {
             label: "序号",
