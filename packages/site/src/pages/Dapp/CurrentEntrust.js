@@ -22,7 +22,7 @@ export default function CurrentEntrust({ activePair = {} }) {
   const tableService = useMemo(() => new TableService(api.fetchTradeCurrent$, tableData, { pairid }), [pairid]);
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setTableData({ tableData: { ...data } }));
+    const subscription = tableService.fetchTable$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
   }, [tableService]);
 

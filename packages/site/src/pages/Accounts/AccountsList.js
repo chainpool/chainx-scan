@@ -10,7 +10,7 @@ export default function AccountsList() {
   const tableService = useMemo(() => new TableService(api.fetchAccounts$, tableData), []);
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
 

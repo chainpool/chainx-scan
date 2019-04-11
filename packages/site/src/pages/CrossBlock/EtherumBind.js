@@ -10,7 +10,7 @@ export default function EtherumBind() {
   const tableService = useMemo(() => new TableService(api.fetchEtherumBind$, tableData), []);
 
   useEffect(() => {
-    const subscription = tableService.getState$().subscribe(data => setState({ tableData: data }));
+    const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
   return <RenderEtherumBind {...{ tableData, handleChange: tableService.handleChange }} />;

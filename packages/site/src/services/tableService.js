@@ -19,7 +19,6 @@ export default class tableService {
       refCount()
     );
     this._fetchTable = _fetchTable;
-    this.fetchTable();
   }
 
   static initData = {
@@ -32,7 +31,7 @@ export default class tableService {
     }
   };
 
-  fetchTable = (params = {}) => {
+  fetchTable$ = (params = {}) => {
     const { current = this.initialize.pagination.current, pageSize = this.initialize.pagination.pageSize } = params;
     this.setState({ loading: true });
     this._fetchTable(
@@ -54,18 +53,18 @@ export default class tableService {
           }
         });
       });
-    return this;
+    return this.getState$();
   };
 
   handleChange = ({ current, pageSize }) => {
-    this.fetchTable({ current, pageSize }, this.peddingData);
+    this.fetchTable$({ current, pageSize }, this.peddingData);
   };
 
-  setState(value) {
+  setState = value => {
     return this.subject.next(value);
-  }
+  };
 
-  getState$() {
+  getState$ = () => {
     return this.state$;
-  }
+  };
 }
