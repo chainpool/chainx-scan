@@ -5,7 +5,7 @@ import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 
 export default function HistoryEntrust({ activePair = {} }) {
-  const { pairid, precision, unit_precision, currency_pair } = activePair;
+  const { pairid } = activePair;
   const [{ tableData }, setTableData] = useRedux(`historyEntrust_${pairid}`, {
     tableData: {
       pagination: {
@@ -25,14 +25,26 @@ export default function HistoryEntrust({ activePair = {} }) {
       return () => subscription.unsubscribe();
     }
   }, [pairid]);
+  return <RenderHistoryEntrust {...tableData} {...tableService} {...activePair} />;
+}
+
+export function RenderHistoryEntrust({
+  handleChange,
+  loading = true,
+  pagination,
+  precision,
+  dataSource = [],
+  unit_precision,
+  currency_pair
+}) {
   return (
     <Table
-      onChange={tableService.handleChange}
-      loading={tableData.loading}
-      pagination={tableData.pagination}
+      onChange={handleChange}
+      loading={loading}
+      pagination={pagination}
       dataSource={
-        tableData.dataSource &&
-        tableData.dataSource.map(data => {
+        dataSource &&
+        dataSource.map(data => {
           return {
             key: data.id,
             id: data.id,
@@ -41,10 +53,11 @@ export default function HistoryEntrust({ activePair = {} }) {
                 value={data.price}
                 precision={precision}
                 minDigits={precision - unit_precision}
-                symbol={currency_pair[1]}
+                symbol={currency_pair ? currency_pair[1] : ""}
+                hideSymbol
               />
             ),
-            amount: <Amount value={data.amount} precision={precision} symbol="" />,
+            amount: <Amount value={data.amount} symbol={currency_pair ? currency_pair[0] : ""} hideSymbol />,
             maker_user: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.maker_user} />,
             maker_user_order_index: data.maker_user_order_index,
             taker_user: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.taker_user} />,
@@ -59,11 +72,11 @@ export default function HistoryEntrust({ activePair = {} }) {
           dataIndex: "id"
         },
         {
-          title: "价格",
+          title: `价格(${currency_pair ? currency_pair[0] : ""})`,
           dataIndex: "price"
         },
         {
-          title: "数量",
+          title: `数量(${currency_pair ? currency_pair[1] : ""})`,
           dataIndex: "amount"
         },
         {

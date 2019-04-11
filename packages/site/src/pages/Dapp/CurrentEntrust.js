@@ -5,7 +5,7 @@ import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 
 export default function CurrentEntrust({ activePair = {} }) {
-  const { pairid, precision, unit_precision, currency_pair } = activePair;
+  const { pairid } = activePair;
   const [{ tableData }, setTableData] = useRedux(`currentEntrust_${pairid}`, {
     tableData: {
       pagination: {
@@ -25,14 +25,26 @@ export default function CurrentEntrust({ activePair = {} }) {
       return () => subscription.unsubscribe();
     }
   }, [pairid]);
+  return <RenderCurrentEntrust {...tableData} {...tableService} {...activePair} />;
+}
+
+export function RenderCurrentEntrust({
+  handleChange,
+  loading = true,
+  pagination,
+  dataSource = [],
+  precision,
+  unit_precision,
+  currency_pair
+}) {
   return (
     <Table
-      onChange={tableService.handleChange}
-      loading={tableData.loading}
-      pagination={tableData.pagination}
+      onChange={handleChange}
+      loading={loading}
+      pagination={pagination}
       dataSource={
-        tableData.dataSource &&
-        tableData.dataSource.map(data => {
+        dataSource &&
+        dataSource.map(data => {
           return {
             key: data.id,
             accountid: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.accountid} />,
@@ -43,11 +55,14 @@ export default function CurrentEntrust({ activePair = {} }) {
                 value={data.price}
                 precision={precision}
                 minDigits={precision - unit_precision}
-                symbol={currency_pair[1]}
+                symbol={currency_pair ? currency_pair[1] : ""}
+                hideSymbol
               />
             ),
-            amount: <Amount value={data.amount} precision={precision} symbol="" />,
-            reserve_last: <Amount value={data.reserve_last} precision={precision} symbol={currency_pair[0]} />,
+            amount: <Amount value={data.amount} symbol={currency_pair ? currency_pair[0] : ""} hideSymbol />,
+            reserve_last: (
+              <Amount value={data.reserve_last} symbol={currency_pair ? currency_pair[0] : ""} hideSymbol />
+            ),
             hasFillAmount: (
               <HasFill fill={data.hasfill_amount} total={data.amount} precision={data["pair.precision"]} />
             ),
@@ -70,15 +85,15 @@ export default function CurrentEntrust({ activePair = {} }) {
           dataIndex: "direction"
         },
         {
-          title: "委托价格",
+          title: `委托价格(${currency_pair ? currency_pair[0] : ""})`,
           dataIndex: "price"
         },
         {
-          title: "委托数量",
+          title: `委托数量(${currency_pair ? currency_pair[1] : ""})`,
           dataIndex: "amount"
         },
         {
-          title: "冻结金额",
+          title: `冻结金额(${currency_pair ? currency_pair[1] : ""})`,
           dataIndex: "reserve_last"
         },
         {

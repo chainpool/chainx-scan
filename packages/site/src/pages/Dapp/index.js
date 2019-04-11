@@ -3,8 +3,8 @@ import classnames from "classnames";
 
 import PairList from "./PairList";
 import PendingOrders from "./PendingOrders";
-import CurrentEntrust from "./CurrentEntrust";
-import HistoryEntrust from "./HistoryEntrust";
+import CurrentEntrust, { RenderCurrentEntrust } from "./CurrentEntrust";
+import HistoryEntrust, { RenderHistoryEntrust } from "./HistoryEntrust";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 
@@ -93,8 +93,10 @@ export default function Dapp() {
           </ul>
         </div>
         <>
-          {activeKey === "currentEntrust" && <CurrentEntrust activePair={activePair} />}
-          {activeKey === "historyEntrust" && <HistoryEntrust activePair={activePair} />}
+          {activeKey === "currentEntrust" &&
+            (!activePair ? <RenderCurrentEntrust /> : <CurrentEntrust activePair={activePair} />)}
+          {activeKey === "historyEntrust" &&
+            (!activePair ? <RenderHistoryEntrust /> : <HistoryEntrust activePair={activePair} />)}
         </>
       </div>
     </>
