@@ -28,16 +28,8 @@ class BalanceController {
     }
 
     const balances = await ctx.db.Balance.findAll({
-      include: [{ model: ctx.db.FreeBalance, as: "freeBalance", attributes: ["balance"] }],
       where,
       raw: true
-    });
-    balances.forEach(balance => {
-      if (balance.token.toLowerCase() === "pcx") {
-        Object.assign(balance, { Free: balance["freeBalance.balance"] });
-      }
-
-      delete balance["freeBalance.balance"];
     });
     ctx.body = balances;
   }
