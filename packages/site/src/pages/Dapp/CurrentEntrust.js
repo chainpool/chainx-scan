@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from "react";
-import { AddressLink, Amount, DateShow, OrderDirection, OrderStatus, Table, HasFill } from "@src/components";
+import { AddressLink, Amount, DateShow, OrderDirection, OrderStatus, Table, HasFill } from "../../components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";

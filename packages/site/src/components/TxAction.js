@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { getModuleName, getCallName } from "@src/shared";
+import { getModuleName, getCallName } from "../shared";
 
 export default function TxAction(props) {
   const { module, call, className, style } = props;

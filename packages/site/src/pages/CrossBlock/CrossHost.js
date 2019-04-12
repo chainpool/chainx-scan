@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Table, ValidatorLink } from "@src/components";
+import { Table, ValidatorLink } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 

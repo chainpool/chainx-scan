@@ -1,7 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { Amount, DateShow, OrderClass, OrderDirection, OrderStatus, Table } from "../../components";
-import { HasFill } from "@src/components";
+import { Amount, DateShow, OrderClass, OrderDirection, OrderStatus, Table, HasFill } from "../../components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";

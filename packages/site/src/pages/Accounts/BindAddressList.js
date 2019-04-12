@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import api from "@src/services/api";
-import { Table, ValidatorLink, ExternalLink } from "@src/components";
+import api from "../../services/api";
+import { Table, ValidatorLink, ExternalLink } from "../../components";
 
 export default function BindAddressList(props) {
   const [tableData, setTableData] = useState([]);
