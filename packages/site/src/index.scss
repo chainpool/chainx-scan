@@ -3,6 +3,15 @@
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
 
+@font-face {
+  font-family: Droid Sans Mono;
+  font-style: normal;
+  font-weight: 400;
+  src: local("Droid Sans Mono"), local("DroidSansMono"), url(/fonts/droid-sans.rev1.woff2) format("woff2"),
+    url(/fonts/droid-sans.rev1.ttf) format("truetype");
+  unicode-range: "U+00??,U+0131,U+0152-0153,U+02c6,U+02da,U+02dc,U+2000-206f,U+2074,U+20ac,U+2212,U+2215,U+e0ff,U+effd,U+f000";
+}
+
 $primary: #f6c94a;
 $primary-hover: #e6b738;
 $link: #46aee2;
@@ -10,7 +19,7 @@ $link-hover: #359acc;
 
 // 导航栏断点：
 $navbar-breakpoint: $tablet + (2 * $gap);
-$family-sans-serif: "Courier", "Arial", sans-serif;
+$family-sans-serif: "Droid Sans Mono", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
 $body-family: $family-sans-serif;
 
 // panel
