@@ -74,7 +74,7 @@ export function RenderCurrentEntrust({
           dataIndex: "accountid"
         },
         {
-          title: "委托账户编号",
+          title: "委托编号",
           dataIndex: "id"
         },
         {
