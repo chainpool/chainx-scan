@@ -3,11 +3,6 @@
 @import "~bulma/sass/utilities/_all.sass";
 @import "~bulma/sass/base/_all.sass";
 
-@font-face {
-  font-family: "Dejavu Sans";
-  src: url("https://cdn.jsdelivr.net/npm/dejavu-sans@1.0.0/fonts/dejavu-sans-webfont.ttf") format("truetype");
-}
-
 $primary: #f6c94a;
 $primary-hover: #e6b738;
 $link: #46aee2;
@@ -15,8 +10,7 @@ $link-hover: #359acc;
 
 // 导航栏断点：
 $navbar-breakpoint: $tablet + (2 * $gap);
-$family-sans-serif: monospace, "PingFangSC-Regular", BlinkMacSystemFont, -apple-system, "Segoe UI", "Roboto", "Oxygen",
-  "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+$family-sans-serif: monospace, BlinkMacSystemFont, -apple-system, "Arial", "Microsoft YaHei", sans-serif;
 $body-family: $family-sans-serif;
 
 // panel
@@ -74,7 +68,7 @@ a:focus {
 
   a {
     color: $primary;
-    &:hover{
+    &:hover {
       color: $primary-hover;
     }
   }
@@ -282,7 +276,6 @@ a:focus {
 
   .dashboard-cell__title {
     font-size: 14px;
-    font-family: "PingFangSC-Semibold";
     color: #3f3f3f;
     margin-bottom: 5px;
   }
