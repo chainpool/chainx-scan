@@ -6,7 +6,12 @@ export default class tableService {
   constructor(_fetchTable, initData = {}, peddingData = {}) {
     const initialize = {
       ...tableService.initData,
-      ...initData
+      ...initData,
+      pagination: {
+        ...tableService.initData.pagination,
+        ...initData.pagination,
+        pageSize: initData && initData.pagination && initData.pagination.pageSize
+      }
     };
     this.initialize = initialize;
     this._peddingData = peddingData;

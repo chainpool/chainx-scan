@@ -4,18 +4,16 @@ import { hexAddPrefix } from "@polkadot/util";
 
 import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
-import { RenderEvents } from "../Events";
+import Events from "../Events";
 import api from "../../services/api";
 
 export default function BlockDetail(props) {
   const { match } = props;
 
   const [data, setData] = useState({});
-  const [eventsData, setEventsData] = useState({});
   const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
   const [txsLoading, setTxsLoading] = useState(true);
-  const [eventLoading, setEventLoading] = useState(true);
   const blockId = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
   const blockNumber = data.number;
 
@@ -23,14 +21,6 @@ export default function BlockDetail(props) {
     const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data));
     return () => subscription.unsubscribe();
   }, [blockId]);
-
-  useEffect(() => {
-    const subscription = api.fetchEvents$({ block: blockNumber }).subscribe(({ items }) => {
-      setEventLoading(false);
-      setEventsData({ dataSource: items });
-    });
-    return () => subscription.unsubscribe();
-  }, [blockNumber]);
 
   useEffect(() => {
     const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
@@ -105,12 +95,7 @@ export default function BlockDetail(props) {
             tableProps={{ pagination: false, simpleMode: true }}
           />
         )}
-        {data && data.number && activeKey === "events" && (
-          <RenderEvents
-            tableData={{ ...eventsData, loading: eventLoading }}
-            tableProps={{ pagination: false, simpleMode: true }}
-          />
-        )}
+        {data && data.number && activeKey === "events" && <Events tableProps={{ simpleMode: true }} />}
       </div>
     </div>
   );
