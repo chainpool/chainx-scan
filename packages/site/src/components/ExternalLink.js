@@ -22,7 +22,7 @@ export default function ExternalLink({ value, render, type }) {
     case "btcAddress":
       href = `https://live.blockcypher.com/btc-testnet/address/${value}`;
       break;
-    case "etherscan":
+    case "ethAddress":
       href = `https://etherscan.io/address/${value}`;
       break;
     default:
