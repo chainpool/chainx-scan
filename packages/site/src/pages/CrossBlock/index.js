@@ -46,28 +46,30 @@ export default function CrossBlock(props) {
         </ul>
       </div>
       <Switch>
-        <Route path="/crossblocks/depositMine" render={props => <DepositsMine {...props} />} />
         <Route
-          path="/crossblocks/etherum"
+          path="/crossblocks/:active?/:list?"
           render={props => {
-            return <EtherumBind {...props} />;
-          }}
-        />
-        <Route
-          path="/crossblocks(/bitcoin/:list)?"
-          render={props => {
+            const {
+              match: {
+                params: { active, list }
+              }
+            } = props;
             return (
-              <div className="box">
-                <CrossChainNav activeKey={props.location.pathname} />
-                {(props.location.pathname === "/crossblocks/bitcoin" || props.location.pathname === "/crossblocks") && (
-                  <CrossBlocks {...props} />
+              <>
+                {active === "depositMine" && <DepositsMine {...props} />}
+                {active === "etherum" && <EtherumBind {...props} />}
+                {(!active || active === "bitcoin") && (
+                  <div className="box">
+                    <CrossChainNav activeKey={list} />
+                    {(!list || list === "blocks") && <CrossBlocks {...props} />}
+                    {list === "crosstxs" && <CrossTxs {...props} />}
+                    {list === "crossbind" && <CrossBind {...props} />}
+                    {list === "crosshost" && <CrossHost {...props} />}
+                    {list === "deposits" && <CrossDeposits {...props} />}
+                    {list === "withdrawals" && <CrossWithdrawals {...props} />}
+                  </div>
                 )}
-                {props.location.pathname === "/crossblocks/bitcoin/crosstxs" && <CrossTxs {...props} />}
-                {props.location.pathname === "/crossblocks/bitcoin/crossbind" && <CrossBind {...props} />}
-                {props.location.pathname === "/crossblocks/bitcoin/crosshost" && <CrossHost {...props} />}
-                {props.location.pathname === "/crossblocks/bitcoin/deposits" && <CrossDeposits {...props} />}
-                {props.location.pathname === "/crossblocks/bitcoin/withdrawals" && <CrossWithdrawals {...props} />}
-              </div>
+              </>
             );
           }}
         />
