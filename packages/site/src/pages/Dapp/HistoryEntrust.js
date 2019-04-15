@@ -93,7 +93,7 @@ export function RenderHistoryEntrust({
           dataIndex: "taker_user"
         },
         {
-          title: "taker编号",
+          title: "taker委托编号",
           dataIndex: "taker_user_order_index"
         },
         {
