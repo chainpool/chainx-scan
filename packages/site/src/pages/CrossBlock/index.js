@@ -46,19 +46,19 @@ export default function CrossBlock(props) {
         </ul>
       </div>
       <Switch>
+        <Route path="/crossblocks/depositMine" render={props => <DepositsMine {...props} />} />
+        <Route path="/crossblocks/etherum" render={props => <EtherumBind {...props} />} />
         <Route
-          path="/crossblocks/:active?/:list?"
+          path="/crossblocks/:bitcoin?/:list?"
           render={props => {
             const {
               match: {
-                params: { active, list }
+                params: { bitcoin, list }
               }
             } = props;
             return (
               <>
-                {active === "depositMine" && <DepositsMine {...props} />}
-                {active === "etherum" && <EtherumBind {...props} />}
-                {(!active || active === "bitcoin") && (
+                {(!bitcoin || bitcoin === "bitcoin") && (
                   <div className="box">
                     <CrossChainNav activeKey={list} />
                     {(!list || list === "blocks") && <CrossBlocks {...props} />}
