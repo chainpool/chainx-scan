@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
 import { NavLink } from "react-router-dom";
-
+import { useAppContext } from "../../components/AppContext";
 import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
 import { RenderEvents } from "../Events";
@@ -11,7 +11,7 @@ import Icon from "antd/lib/icon";
 
 export default function BlockDetail(props) {
   const { match } = props;
-
+  const [{ blocks }] = useAppContext();
   const [data, setData] = useState({});
   const [eventsData, setEventsData] = useState({});
   const [txsData, setTxsData] = useState({});
@@ -20,7 +20,7 @@ export default function BlockDetail(props) {
   const [eventLoading, setEventLoading] = useState(true);
   const blockId = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
   const blockNumber = data.number;
-
+  const hasNext = blocks.length > 0 && data.number && blocks[0].number >= data.number + 1;
   useEffect(() => {
     const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data));
     return () => subscription.unsubscribe();
@@ -69,8 +69,8 @@ export default function BlockDetail(props) {
           <Icon type="double-left" />
         </NavLink>
         区块高度:{!!data && data.number}
-        <NavLink to={`/blocks/${!!data && data.number + 1}`}>
-          <Icon type="double-right" />
+        <NavLink to={hasNext ? `/blocks/${!!data && data.number + 1}` : ""}>
+          <Icon className={classnames({ forbidden: !hasNext })} type="double-right" />
         </NavLink>
       </div>
       <PanelList

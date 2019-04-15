@@ -1,18 +1,13 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 import { BlockLink, NumberFormat, AntSpinner as Spinner, ValidatorLink } from "../../components";
+import { useAppContext } from "../../components/AppContext";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
-import { useRedux } from "../../shared";
-import api from "../../services/api";
 
 export default function BestBlocks() {
-  const [{ blocks }, setState] = useRedux("bestBlocks", { blocks: [] });
-
-  useEffect(() => {
-    const subscription = api.fetchLatestBlocks$().subscribe(data => setState({ blocks: data }));
-    return () => subscription.unsubscribe();
-  }, [api]);
+  const [rest] = useAppContext();
+  const { blocks } = rest;
 
   const loading = (
     <tr style={{ height: 370, background: "#fff" }}>
