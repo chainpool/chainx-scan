@@ -5,6 +5,7 @@ import { hexAddPrefix } from "@polkadot/util";
 import {
   ExternalLink,
   AddressLink,
+  ValidatorIndex,
   PanelList,
   Breadcrumb,
   AntSpinner as Spinner,
@@ -18,7 +19,7 @@ import api from "../../services/api";
 export default function BlockDetail(props) {
   const {
     match: {
-      params: { node, index }
+      params: { node }
     }
   } = props;
 
@@ -51,7 +52,7 @@ export default function BlockDetail(props) {
         dataSource={[
           {
             label: "排名",
-            data: index
+            data: <ValidatorIndex value={data.name} />
           },
           {
             label: "名称",

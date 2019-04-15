@@ -2,12 +2,10 @@ import React from "react";
 import classnames from "classnames";
 
 import { Amount, AntSpinner as Spinner } from "../../components";
-import PCX from "../../assets/dapp/pcx.jpg";
-import SDOT from "../../assets/dapp/sdot.jpg";
-// import BTC from "../../assets/dapp/BTC.jpg";
+import PCX from "../../assets/tokens/pcx_circle.jpg";
+import SDOT from "../../assets/tokens/sdot.jpg";
 
 const pairMap = {
-  // BTC,
   SDOT,
   PCX
 };

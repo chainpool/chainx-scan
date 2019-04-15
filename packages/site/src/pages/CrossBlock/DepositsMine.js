@@ -6,7 +6,6 @@ import api from "../../services/api";
 
 export default function DepositsMine() {
   const [{ dataSource, loading }, setState] = useRedux("depositsMine", { dataSource: [], loading: true });
-  // const tableService = useMemo(() => new TableService(api.fetchDepositsMine$, tableData), []);
 
   useEffect(() => {
     const subscription = api.fetchDepositsMine$().subscribe(data => {

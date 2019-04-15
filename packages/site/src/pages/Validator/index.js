@@ -13,7 +13,7 @@ export default function Validator(props) {
   ];
   return (
     <Switch>
-      <Route path="/validators/:node/:index?" component={ValidatorsDetail} />
+      <Route path="/validators/:node" component={ValidatorsDetail} />
       <Route
         path="/validators"
         render={props => (

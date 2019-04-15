@@ -23,7 +23,7 @@ export default function ValidatorsTable(props) {
           return {
             key: `${data.accountid}`,
             index: indexExtend(_index, data.isTrustee),
-            name: <ValidatorLink name={data.name} value={data.accountid} index={_index} isActive={data.isActive} />,
+            name: <ValidatorLink name={data.name} value={data.accountid} isActive={data.isActive} />,
             url: <ExternalLink value={data.url} />,
             address: (
               <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />

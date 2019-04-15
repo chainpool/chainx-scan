@@ -19,6 +19,16 @@ export default function CrossTxs() {
 
 export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = tableData;
+  const txType = type => {
+    switch (type) {
+      case "Deposit":
+        return "充值";
+      case "Withdraw":
+        return "提现";
+      default:
+        return "-";
+    }
+  };
 
   return (
     <Table
@@ -46,7 +56,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
               }}
             />
           ),
-          txType: data.tx_type === "Deposit" ? "充值" : "提现",
+          txType: txType(data.tx_type),
           blockTime: <DateShow value={data["block.time"]} />,
           relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />,
           value: <Amount value={data.value} precision={8} symbol={"BTC"} />,
