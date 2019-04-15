@@ -29,7 +29,7 @@ export default function BestBlocks() {
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>高度</th>
+              <th>块高</th>
               <th>验证人</th>
               <th className="has-text-right">交易数</th>
             </tr>

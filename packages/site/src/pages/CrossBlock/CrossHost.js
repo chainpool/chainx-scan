@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Table, ValidatorLink } from "../../components";
+import { Table, ValidatorLink, ExternalLink } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 
@@ -22,7 +22,9 @@ export default function CrossHost() {
           return {
             key: index,
             id: data.id,
-            trustee: <ValidatorLink value={data.trustee} name={data.name} />
+            trustee: <ValidatorLink value={data.trustee} name={data.name} />,
+            hotAddress: <ExternalLink value={data.hotAddress} type="btcAddress" />,
+            coldAddress: <ExternalLink value={data.coldAddress} type="btcAddress" />
           };
         })}
         columns={[
@@ -33,6 +35,14 @@ export default function CrossHost() {
           {
             title: "信托节点",
             dataIndex: "trustee"
+          },
+          {
+            title: "热地址",
+            dataIndex: "hotAddress"
+          },
+          {
+            title: "冷地址",
+            dataIndex: "coldAddress"
           }
         ]}
       />

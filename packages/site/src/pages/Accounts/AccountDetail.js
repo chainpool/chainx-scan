@@ -36,7 +36,7 @@ export default function Account(props) {
             data: <AddressLink value={detail.accountId} />
           },
           {
-            label: "账户交易数",
+            label: "交易数",
             data: <NumberFormat value={detail.txCount} />
           },
           {

@@ -28,8 +28,14 @@ export default function ValidatorsTable(props) {
             address: (
               <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />
             ),
-            jackpotAddress: (
-              <AddressLink value={data.jackpotAddress} isActive style={{ maxWidth: 136 }} className="text-truncate" />
+            missedBlocks: (
+              <span>
+                <NumberFormat value={data.missedBlocks} />
+                <span className="table-tag-nagtive">{`(${(isNaN(data.missedBlocks / (data.missedBlocks + data.blocks))
+                  ? 0
+                  : (data.missedBlocks / (data.missedBlocks + data.blocks)) * 100
+                ).toFixed(2)}%)`}</span>
+              </span>
             ),
             selfVote: <Amount value={data.selfVote} hideSymbol />,
             totalNomination: <Amount value={data.totalNomination} hideSymbol />,
@@ -56,10 +62,6 @@ export default function ValidatorsTable(props) {
           dataIndex: "address"
         },
         {
-          title: "奖池地址",
-          dataIndex: "jackpotAddress"
-        },
-        {
           title: "自抵押数(PCX)",
           dataIndex: "selfVote",
           align: "right"
@@ -73,6 +75,10 @@ export default function ValidatorsTable(props) {
           title: "奖池金额(PCX)",
           dataIndex: "jackpot",
           align: "right"
+        },
+        {
+          title: "漏块总数",
+          dataIndex: "missedBlocks"
         },
         {
           title: "累计出块总数",

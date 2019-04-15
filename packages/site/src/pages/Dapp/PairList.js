@@ -2,12 +2,10 @@ import React from "react";
 import classnames from "classnames";
 
 import { Amount, AntSpinner as Spinner } from "../../components";
-import BTC from "../../assets/tokens/btc.png";
-import SDOT from "../../assets/tokens/sdot.png";
-import PCX from "../../assets/tokens/pcx.png";
+import PCX from "../../assets/tokens/pcx_circle.jpg";
+import SDOT from "../../assets/tokens/sdot.jpg";
 
 const pairMap = {
-  BTC,
   SDOT,
   PCX
 };
@@ -25,7 +23,7 @@ export default function PairList(props) {
               {pairs
                 .filter(pair => pair.online)
                 .map(pair => {
-                  const currency = pair.currency_pair[1];
+                  const currency = pair.currency_pair[0];
                   const currencyImg = pairMap[currency];
                   return (
                     <div
@@ -47,7 +45,7 @@ export default function PairList(props) {
                     value={activePair.price && activePair.price.last_price}
                     precision={activePair.precision}
                     minDigits={activePair.precision - activePair.unit_precision}
-                    symbol={activePair.currency_pair[0]}
+                    symbol={activePair.currency_pair[1]}
                   />
                 </div>
               </div>
@@ -62,7 +60,7 @@ export default function PairList(props) {
                     value={activePair.price && activePair.price.aver_price}
                     precision={activePair.precision}
                     minDigits={activePair.precision - activePair.unit_precision}
-                    symbol={activePair.currency_pair[0]}
+                    symbol={activePair.currency_pair[1]}
                   />
                 </div>
               </div>

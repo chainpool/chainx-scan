@@ -1,6 +1,7 @@
 import React from "react";
+import classnames from "classnames";
 
-export default function ExternalLink({ value, render, type }) {
+export default function ExternalLink({ value, render, type, className, style }) {
   let href = "";
   if (!type) {
     type = false;
@@ -30,7 +31,13 @@ export default function ExternalLink({ value, render, type }) {
   }
 
   return href ? (
-    <a className="nav-link" href={href} target="_blank" rel="noopener noreferrer">
+    <a
+      className={classnames(className, "nav-link")}
+      href={href}
+      style={style}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {render ? render(value) : value}
     </a>
   ) : (

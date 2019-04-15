@@ -43,15 +43,15 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
         })}
         columns={[
           {
-            title: "BTC 地址",
+            title: "Bitcoin地址",
             dataIndex: "btcAddress"
           },
           {
-            title: "PCX 地址",
+            title: "Chainx地址",
             dataIndex: "pcxAddress"
           },
           {
-            title: "渠道",
+            title: "渠道的节点名称",
             dataIndex: "channel"
           }
         ]}

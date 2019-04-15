@@ -1,39 +1,36 @@
-import React, { useMemo, useEffect } from "react";
+import React, { useEffect } from "react";
 
-import { Table } from "../../components";
+import { Table, Amount } from "../../components";
 import { useRedux } from "../../shared";
-import TableService from "../../services/tableService";
 import api from "../../services/api";
 
 export default function DepositsMine() {
-  const [{ tableData }, setState] = useRedux("depositsMine", { tableData: {} });
-  const tableService = useMemo(() => new TableService(api.fetchDepositsMine$, tableData), []);
+  const [{ dataSource, loading }, setState] = useRedux("depositsMine", { dataSource: [], loading: true });
 
   useEffect(() => {
-    const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
+    const subscription = api.fetchDepositsMine$().subscribe(data => {
+      setState({ dataSource: data, loading: false });
+    });
     return () => subscription.unsubscribe();
-  }, [tableService]);
+  }, []);
 
-  return <RenderDepositsMine {...{ tableData, handleChange: tableService.handleChange }} />;
+  return <RenderDepositsMine {...{ dataSource, loading }} />;
 }
 
-export function RenderDepositsMine({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [], loading } = tableData;
-
+export function RenderDepositsMine({ dataSource, loading }) {
   return (
     <Table
       loading={loading}
-      onChange={handleChange}
-      pagination={pagination}
+      pagination={false}
       dataSource={dataSource.map(data => {
         return {
           key: data.address,
           id: data.id,
-          circulation: data.circulation,
-          power: data.power,
-          jackpot: data.jackpot,
+          circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
+          power: <Amount value={data.power} hideSymbol />,
+          jackpot: <Amount value={data.jackpot} hideSymbol />,
           lastTotalDepositWeightUpdate: data.lastTotalDepositWeightUpdate,
-          lastTotalDepositWeight: data.lastTotalDepositWeight
+          lastTotalDepositWeight: <Amount value={data.lastTotalDepositWeight} hideSymbol />
         };
       })}
       columns={[
@@ -66,7 +63,6 @@ export function RenderDepositsMine({ tableProps, tableData, handleChange }) {
           dataIndex: "lastTotalDepositWeight"
         }
       ]}
-      {...tableProps}
     />
   );
 }
