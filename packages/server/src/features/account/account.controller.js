@@ -115,7 +115,7 @@ class AccountController {
 
     ctx.body = rows.map(row => ({
       ...row,
-      address: toBtcAddress(row.address)
+      address: row.chain === "Bitcoin" ? toBtcAddress(row.address) : row.address
     }));
   }
 
