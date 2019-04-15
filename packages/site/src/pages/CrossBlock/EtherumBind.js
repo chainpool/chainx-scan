@@ -27,7 +27,7 @@ export function RenderEtherumBind({ tableProps, tableData, handleChange }) {
       dataSource={dataSource.map(data => {
         return {
           key: data.address,
-          address: <ExternalLink type="etherscan" value={data.address} />,
+          address: <ExternalLink type="ethAddress" value={data.address} />,
           accountid: <AddressLink value={data.accountid} />,
           channel: data.channel
         };
