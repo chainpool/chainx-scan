@@ -56,7 +56,7 @@ export default withRouter(function Header(props) {
   };
 
   return (
-    <nav className="navbar is-black" role="navigation">
+    <nav className="navbar" role="navigation">
       <div className="container">
         <div className="navbar-brand">
           <NavLink to="/" className="navbar-item" activeClassName="selected">

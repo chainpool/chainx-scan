@@ -93,6 +93,13 @@ a:focus {
     font-weight: bold;
     font-size: 13px;
   }
+  tr {
+    td, th {
+      &:last-child {
+        text-align: end;
+      }
+    }
+  }
 
   td {
     word-break: break-all;
@@ -109,7 +116,6 @@ a:focus {
 
 .data-table {
   font-size: 13px;
-
   tbody > tr {
     padding: 1.35em;
     background-color: hsl(0, 0%, 96%);
@@ -125,6 +131,7 @@ a:focus {
 }
 
 .navbar {
+  background-color: #3f3f3f;
   .navbar-menu {
     .navbar-start {
       .navbar-item {

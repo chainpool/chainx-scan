@@ -25,7 +25,6 @@ export default function FillOrderList(props) {
     const subscription = tableService.fetchTable$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
   }, [props.accountId]);
-
   return (
     <Table
       onChange={tableService.handleChange}
@@ -34,6 +33,7 @@ export default function FillOrderList(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
+          console.log(data);
           return {
             key: index,
             id: data.id,
