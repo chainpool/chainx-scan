@@ -19,7 +19,13 @@ class Api {
     for (const key of Object.keys(params)) {
       url.searchParams.set(paramsKeyConvert(key), params[key]);
     }
-    return window.fetch(url, options).then(response => response.json());
+    return window.fetch(url, options).then(response => {
+      return response.status === 200
+        ? response.json()
+        : {
+            status: response.status
+          };
+    });
   };
 
   fetch$ = (path, params = {}, options) => {

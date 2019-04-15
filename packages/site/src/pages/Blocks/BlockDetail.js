@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
+import { NavLink } from "react-router-dom";
 
 import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
+import Icon from "antd/lib/icon";
 
 export default function BlockDetail(props) {
   const { match } = props;
@@ -41,14 +43,20 @@ export default function BlockDetail(props) {
   }, [blockNumber]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/blocks", label: "区块列表" }, { label: "区块详情" }]} />;
-
-  if (!data || !data.number) {
+  if (!data || (!data.status && !data.number)) {
     return (
       <>
         {breadcrumb}
-        <div style={{ paddingTop: "30%" }}>
+        <div style={{ padding: "10%" }}>
           <Spinner />
         </div>
+      </>
+    );
+  } else if (data.status === 404) {
+    return (
+      <>
+        {breadcrumb}
+        <div style={{ padding: "10%", textAlign: "center" }}>未找到该区块</div>
       </>
     );
   }
@@ -56,6 +64,15 @@ export default function BlockDetail(props) {
   return (
     <div>
       {breadcrumb}
+      <div className="switch-block">
+        <NavLink to={`/blocks/${!!data && data.number - 1}`}>
+          <Icon type="double-left" />
+        </NavLink>
+        区块高度:{!!data && data.number}
+        <NavLink to={`/blocks/${!!data && data.number + 1}`}>
+          <Icon type="double-right" />
+        </NavLink>
+      </div>
       <PanelList
         dataSource={[
           {

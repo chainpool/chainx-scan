@@ -280,6 +280,18 @@ a:focus {
   }
 }
 
+/** 区块切换器 **/
+.switch-block {
+  position: relative;
+  bottom: 50px;
+  height: 0px;
+  text-align: center;
+  font-size: 24px;
+  .anticon {
+    color: #daa718;
+  }
+}
+
 .dashboard-cell {
   height: 88px;
   display: flex;
