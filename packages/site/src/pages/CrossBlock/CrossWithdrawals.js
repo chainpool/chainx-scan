@@ -65,6 +65,9 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) 
             />
           ),
           accountid: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
+          address: (
+            <ExternalLink type="btcAddress" style={{ width: 136 }} className="text-truncate" value={data.address} />
+          ),
           token: data.token,
           balance: <Amount value={data.balance} precision={8} hideSymbol />,
           txstate: processTxState(data.txstate),
@@ -84,6 +87,10 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) 
         {
           title: "Bitcoin交易哈希",
           dataIndex: "txid"
+        },
+        {
+          title: "Bitcoin目标地址",
+          dataIndex: "address"
         },
         {
           title: "资产",

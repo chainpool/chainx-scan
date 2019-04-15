@@ -8,6 +8,7 @@ import {
   TxAction,
   PanelList,
   Breadcrumb,
+  DateShow,
   AntSpinner as Spinner
 } from "../../components";
 import { RenderEvents } from "../Events";
@@ -59,6 +60,10 @@ export default function BlockDetail(props) {
             data: <BlockLink value={data.number} />
           },
           {
+            label: "出块时间",
+            data: <DateShow value={data.time} />
+          },
+          {
             label: "序号",
             data: data.index
           },
@@ -71,16 +76,16 @@ export default function BlockDetail(props) {
             data: <AddressLink value={data.signed} />
           },
           {
-            label: "签名",
-            data: data.signature
-          },
-          {
             label: "操作",
             data: <TxAction module={data.module} call={data.call} />
           },
           {
             label: "参数",
             data: JSON.stringify(data.args)
+          },
+          {
+            label: "签名",
+            data: data.signature
           },
           {
             label: "版本",

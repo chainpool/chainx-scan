@@ -45,7 +45,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
       dataIndex: "event"
     },
     {
-      title: "操作",
+      title: "类别",
       dataIndex: "action"
     }
   ];

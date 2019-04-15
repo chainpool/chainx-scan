@@ -79,7 +79,7 @@ export default function BlockDetail(props) {
             data: data.extrinsics_root
           },
           {
-            label: "区块时间",
+            label: "出块时间",
             data: <DateShow value={data.time} format="YYYY-MM-DD HH:mm:ss" />
           },
           {

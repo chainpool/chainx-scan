@@ -16,11 +16,15 @@ import SettingList from "./SettingList";
 import api from "../../services/api";
 
 export default function BlockDetail(props) {
-  const { match } = props;
+  const {
+    match: {
+      params: { node, index }
+    }
+  } = props;
 
   const [data, setData] = useState({});
   const [activeKey, setActiveKey] = useState("trust");
-  const nodeId = /^\d*$/.test(match.params.node) ? match.params.node : hexAddPrefix(match.params.node);
+  const nodeId = /^\d*$/.test(node) ? node : hexAddPrefix(node);
 
   useEffect(() => {
     const subscription = api.fetchValidatorDetail$(nodeId).subscribe(data => setData(data));
@@ -45,6 +49,10 @@ export default function BlockDetail(props) {
       {breadcrumb}
       <PanelList
         dataSource={[
+          {
+            label: "排名",
+            data: index
+          },
           {
             label: "名称",
             data: data.name

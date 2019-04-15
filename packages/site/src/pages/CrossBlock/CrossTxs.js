@@ -46,7 +46,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
               }}
             />
           ),
-          txType: data.tx_type,
+          txType: data.tx_type === "Deposit" ? "充值" : "提现",
           blockTime: <DateShow value={data["block.time"]} />,
           relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />,
           value: <Amount value={data.value} precision={8} symbol={"BTC"} />,
