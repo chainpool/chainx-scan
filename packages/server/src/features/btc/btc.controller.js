@@ -140,12 +140,19 @@ class BtcController {
 
     const normalizedRows = rows.map(row => ({
       ...row,
-      trustee_list: JSON.parse(row.trustee_list)
+      trusteeList: JSON.parse(row.trustee_list),
+      hotAddressList: JSON.parse(row.hot_address_list),
+      coldAddressList: JSON.parse(row.cold_address_list)
     }));
 
     ctx.body = normalizedRows.reduce((result, row) => {
-      row.trustee_list.forEach(trustee => {
-        result.push({ trustee, id: row.id });
+      row.trusteeList.forEach((trustee, index) => {
+        result.push({
+          trustee,
+          id: row.id,
+          hotAddress: row.hotAddressList[index] ? toBtcAddress(row.hotAddressList[index]) : null,
+          coldAddress: row.coldAddressList[index] ? toBtcAddress(row.coldAddressList[index]) : null
+        });
       });
       return result;
     }, []);
