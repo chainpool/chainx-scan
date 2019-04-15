@@ -28,7 +28,7 @@ export default function BindAddressList(props) {
               <ExternalLink
                 style={{ maxWidth: 300 }}
                 className="text-truncate"
-                type="btcAddress"
+                type={data.chain === "Ethereum" ? "etherscan" : "btcAddress"}
                 value={data.address}
               />
             ),
