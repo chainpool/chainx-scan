@@ -22,7 +22,7 @@ class Api {
     return new Promise(async (resolve, reject) => {
       const resp = await window.fetch(url, options);
       if (resp.status !== 200) {
-        reject({
+        resolve({
           error: {
             code: resp.status,
             message: "api is not online"
@@ -38,8 +38,14 @@ class Api {
 
   fetch$ = (path, params = {}, options) => {
     return from(this.fetch(path, params, options)).pipe(
-      map(({ result }) => result),
-      catchError(({ error }) => {
+      map(({ result, error }) => {
+        if (!error) {
+          return result;
+        } else {
+          throw error;
+        }
+      }),
+      catchError(error => {
         // @todo 全局的错误上报处理
         return throwError(error);
       })
@@ -365,22 +371,22 @@ class Api {
       };
     }
     try {
-      const txResult = await this.fetch(`/tx/${hexStripPrefix(input)}`);
-      if (txResult && !txResult.error) {
+      const { result: txResult, error: txError } = await this.fetch(`/tx/${hexStripPrefix(input)}`);
+      if (txResult && !txError) {
         return {
           result: `/txs/${hexAddPrefix(input)}`
         };
       }
-      const blockResult = await this.fetch(`/block/${hexAddPrefix(input)}`);
-      if (blockResult && !blockResult.error) {
+      const { result: blockResult, error: blockError } = await this.fetch(`/block/${hexAddPrefix(input)}`);
+      if (blockResult && !blockError) {
         return {
           result: `/blocks/${hexAddPrefix(input)}`
         };
       }
 
-      const accountResult = await this.fetch(`/account/${hexAddPrefix(input)}/detail`);
+      const { result: accountResult, error: accountError } = await this.fetch(`/account/${hexAddPrefix(input)}/detail`);
 
-      if (accountResult && !accountResult.error) {
+      if (accountResult && !accountError) {
         return {
           result: `/accounts/${hexAddPrefix(input)}`
         };
@@ -391,7 +397,7 @@ class Api {
           message: "找不到对应的交易、区块或账号"
         }
       };
-    } catch {
+    } catch (e) {
       return {
         error: {
           message: "无效的值"
