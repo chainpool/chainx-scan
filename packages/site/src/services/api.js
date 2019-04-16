@@ -19,14 +19,29 @@ class Api {
     for (const key of Object.keys(params)) {
       url.searchParams.set(paramsKeyConvert(key), params[key]);
     }
-    return window.fetch(url, options).then(response => response.json());
+    return new Promise(async (resolve, reject) => {
+      const resp = await window.fetch(url, options);
+      if (resp.status !== 200) {
+        reject({
+          error: {
+            code: resp.status,
+            message: "api is not online"
+          }
+        });
+      } else {
+        resolve({
+          result: await resp.json()
+        });
+      }
+    });
   };
 
   fetch$ = (path, params = {}, options) => {
     return from(this.fetch(path, params, options)).pipe(
-      catchError(err => {
+      map(({ result }) => result),
+      catchError(({ error }) => {
         // @todo 全局的错误上报处理
-        return throwError(err);
+        return throwError(error);
       })
     );
   };
