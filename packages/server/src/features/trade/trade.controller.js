@@ -82,6 +82,7 @@ class TradeController {
      * 0: 零成交或部分成交
      * 1: 部分成交或全部成交
      * 2: 全部成交
+     * 3: 部分成交、全部成交，取消(代表所有历史委托)
      * 没有指定status，则返回所有
      */
     if (status === "0") {
@@ -90,6 +91,15 @@ class TradeController {
       Object.assign(where, { $or: [{ status: "AllExecuted" }, { status: "ParitialExecuted" }] });
     } else if (status === "2") {
       Object.assign(where, { status: "AllExecuted" });
+    } else if (status === "3") {
+      Object.assign(where, {
+        $or: [
+          { status: "AllExecuted" },
+          { status: "ParitialExecuted" },
+          { status: "Canceled" },
+          { status: "ParitialExecutedAndCanceled" }
+        ]
+      });
     }
     const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
       where,
