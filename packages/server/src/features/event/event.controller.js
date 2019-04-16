@@ -18,8 +18,7 @@ class EventController {
     } else if (tx) {
       Object.assign(options, { where: { transaction_tx: tx } });
     }
-    const transactions = await ctx.db.Event.findAll(options);
-    const count = await ctx.db.Event.count();
+    const { rows: transactions, count } = await ctx.db.Event.findAndCountAll(options);
 
     const items = transactions.map(tx => {
       return {
