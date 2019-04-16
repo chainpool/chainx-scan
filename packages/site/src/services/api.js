@@ -213,6 +213,13 @@ class Api {
   };
 
   /**
+   * 获取比特币详情
+   */
+  fetchHTTPBtcStatus$ = () => {
+    return this.fetch$(`/btc/status`);
+  };
+
+  /**
    * 获取账户资产列表
    */
   fetchAccountAssset$ = (accountId, params) => {

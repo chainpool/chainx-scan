@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 import { useRedux } from "../../shared";
@@ -8,6 +8,7 @@ import {
   DateShow,
   ExternalLink,
   Hash,
+  Amount,
   NumberFormat,
   TxLink,
   AntSpinner as Spinner
@@ -17,9 +18,15 @@ import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRigh
 
 export default function BtcStatus() {
   const [{ data }, setState] = useRedux("btcStatus", { data: [] });
+  const [status, setList] = useState({});
 
   useEffect(() => {
-    const subscription = api.fetchBtcStatus$().subscribe(data => setState({ data: data }));
+    const subscription = api.fetchBtcStatus$().subscribe(data => setState({ data }));
+    return () => subscription.unsubscribe();
+  }, [api]);
+
+  useEffect(() => {
+    const subscription = api.fetchHTTPBtcStatus$().subscribe(status => setList(status));
     return () => subscription.unsubscribe();
   }, [api]);
 
@@ -40,6 +47,44 @@ export default function BtcStatus() {
       <div className="panel-heading">
         <img src={Bitcoin} alt="Bitcoin" className="panel-heading-icon" />
         Bitcoin
+      </div>
+      <div className="columns btc_block">
+        <div className="column btc_status">
+          <div className="btc_title">信托节点选举届数</div>
+          <div className="btc_content">{status.trustee_session}</div>
+        </div>
+        <div className="column btc_status">
+          <div className="btc_title">多签托管余额 (热地址)</div>
+          <div className="btc_content">
+            <ExternalLink
+              value={status.hot_address}
+              type="btcAddress"
+              render={() => <Amount value={status.hot_balance} symbol="BTC" />}
+            />
+          </div>
+        </div>
+        <div className="column btc_status">
+          <div className="btc_title">多签托管余额 (冷地址)</div>
+          <div className="btc_content">
+            <ExternalLink
+              value={status.cold_address}
+              type="btcAddress"
+              render={() => <Amount value={status.cold_balance} symbol="BTC" />}
+            />
+          </div>
+        </div>
+        <div className="column btc_status">
+          <div className="btc_title">充值交易总数</div>
+          <div className="btc_content">{status.deposit_count}</div>
+        </div>
+        <div className="column btc_status">
+          <div className="btc_title">提现交易总数</div>
+          <div className="btc_content">{status.withdraw_count}</div>
+        </div>
+        <div className="column btc_status">
+          <div className="btc_title">跨链绑定地址数</div>
+          <div className="btc_content">{status.bind_count}</div>
+        </div>
       </div>
       <div className="panel-block">
         <table className="table is-striped is-fullwidth data-table">
