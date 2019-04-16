@@ -20,10 +20,10 @@ export function AppContextProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const token = api.fetchTokens$().subscribe(result => {
+    const token = api.fetchTokens$().subscribe(({ result }) => {
       dispatch({ type: "setToken", payload: result });
     });
-    const intentions = api.fetchIntentions$({ pageSize: 200 }).subscribe(result => {
+    const intentions = api.fetchIntentions$({ pageSize: 200 }).subscribe(({ result }) => {
       dispatch({ type: "setIntentions", payload: result && result.items ? result.items : [] });
     });
     return () => {

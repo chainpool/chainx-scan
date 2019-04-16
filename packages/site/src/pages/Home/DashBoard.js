@@ -11,7 +11,7 @@ export default function DashBoard() {
   const [{ data }, setState] = useRedux("dashBoard", { data: {} });
 
   useEffect(() => {
-    const subscription = api.fetchChainStatus$().subscribe(result => setState({ data: result }));
+    const subscription = api.fetchChainStatus$().subscribe(({ result: data }) => setState({ data }));
     return () => subscription.unsubscribe();
   }, [api]);
 

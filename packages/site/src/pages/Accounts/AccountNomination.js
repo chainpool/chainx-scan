@@ -8,7 +8,7 @@ export default function AccountNomination(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const subscription = api.fetchAccountNominations$(props.accountId).subscribe(data => {
+    const subscription = api.fetchAccountNominations$(props.accountId).subscribe(({ result: data }) => {
       setLoading(false);
       setList(data);
     });

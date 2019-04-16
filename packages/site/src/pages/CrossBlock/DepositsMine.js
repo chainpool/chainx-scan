@@ -8,7 +8,7 @@ export default function DepositsMine() {
   const [{ dataSource, loading }, setState] = useRedux("depositsMine", { dataSource: [], loading: true });
 
   useEffect(() => {
-    const subscription = api.fetchDepositsMine$().subscribe(data => {
+    const subscription = api.fetchDepositsMine$().subscribe(({ result: data }) => {
       setState({ dataSource: data, loading: false });
     });
     return () => subscription.unsubscribe();

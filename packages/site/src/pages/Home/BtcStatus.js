@@ -19,7 +19,7 @@ export default function BtcStatus() {
   const [{ data }, setState] = useRedux("btcStatus", { data: [] });
 
   useEffect(() => {
-    const subscription = api.fetchBtcStatus$().subscribe(data => setState({ data: data }));
+    const subscription = api.fetchBtcStatus$().subscribe(({ result: data }) => setState({ data }));
     return () => subscription.unsubscribe();
   }, [api]);
 

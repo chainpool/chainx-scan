@@ -8,10 +8,12 @@ export default function AccountAsset(props) {
   const isNative = props.isNative;
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const subscription = api.fetchAccountAssset$(props.accountId, { native: isNative }).subscribe(data => {
-      setList(data);
-      setLoading(false);
-    });
+    const subscription = api
+      .fetchAccountAssset$(props.accountId, { native: isNative })
+      .subscribe(({ result: data }) => {
+        setList(data);
+        setLoading(false);
+      });
     return () => subscription.unsubscribe();
   }, [props.accountId, isNative]);
 

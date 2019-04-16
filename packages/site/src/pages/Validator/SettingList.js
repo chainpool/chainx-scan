@@ -8,7 +8,7 @@ export default function SettingList({ nodeID, ...props }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const subscription = api.fetchTrusteeSettingList$(nodeID).subscribe(dataSource => {
+    const subscription = api.fetchTrusteeSettingList$(nodeID).subscribe(({ result: dataSource }) => {
       setLoading(false);
       setState({ dataSource });
     });

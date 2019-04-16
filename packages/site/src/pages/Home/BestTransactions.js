@@ -10,7 +10,7 @@ export default function BestTransactions() {
   const [{ txs }, setState] = useRedux("bestTransactions", { txs: [] });
 
   useEffect(() => {
-    const subscription = api.fetchLatestTxs$().subscribe(data => setState({ txs: data }));
+    const subscription = api.fetchLatestTxs$().subscribe(({ result: data }) => setState({ txs: data }));
     return () => subscription.unsubscribe();
   }, [api]);
 

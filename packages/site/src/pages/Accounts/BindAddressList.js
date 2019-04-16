@@ -7,7 +7,7 @@ export default function BindAddressList(props) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const subscription = api.fetchAccountBindAddresses$(props.accountId).subscribe(data => {
+    const subscription = api.fetchAccountBindAddresses$(props.accountId).subscribe(({ result: data }) => {
       setLoading(false);
       setTableData(data);
     });

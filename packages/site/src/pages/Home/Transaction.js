@@ -67,7 +67,7 @@ const initChart = (name, data) => {
 
 export default function Transaction({ style }) {
   useEffect(() => {
-    const subscription = api.fetchTransaction$().subscribe(list => {
+    const subscription = api.fetchTransaction$().subscribe(({ result: list }) => {
       initChart("chart", list);
     });
     return () => subscription.unsubscribe();

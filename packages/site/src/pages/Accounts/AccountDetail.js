@@ -20,7 +20,7 @@ export default function Account(props) {
   const [activeKey, setActiveKey] = useState("nativeAsset");
 
   useEffect(() => {
-    const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data));
+    const subscription = api.fetchAccountDetail$(accountId).subscribe(({ result: data }) => setDetail(data));
     return () => subscription.unsubscribe();
   }, [accountId]);
 

@@ -25,12 +25,12 @@ export default function BlockDetail(props) {
   const txid = hexStripPrefix(match.params.txid);
 
   useEffect(() => {
-    const subscription = api.fetchTxDetail$(txid).subscribe(data => setData(data));
+    const subscription = api.fetchTxDetail$(txid).subscribe(({ result: data }) => setData(data));
     return () => subscription.unsubscribe();
   }, [txid]);
 
   useEffect(() => {
-    const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ items }) => {
+    const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ result: { items } }) => {
       setEventLoading(false);
       setEventsData({ dataSource: items });
     });

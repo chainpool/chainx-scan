@@ -7,7 +7,7 @@ import api from "../../services/api";
 export default function CrossHost() {
   const [{ dataSource, loading }, setState] = useRedux("crossHost", { dataSource: [], loading: true });
   useEffect(() => {
-    const subscription = api.fetchTrusteeList$().subscribe(data => {
+    const subscription = api.fetchTrusteeList$().subscribe(({ result: data }) => {
       setState({ dataSource: data, loading: false });
     });
     return () => subscription.unsubscribe();

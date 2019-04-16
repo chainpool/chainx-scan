@@ -19,7 +19,14 @@ export default function BlockDetail(props) {
   const blockNumber = data.number;
   const hasNext = blocks.length > 0 && data.number && blocks[0].number >= data.number + 1;
   useEffect(() => {
-    const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data));
+    const subscription = api.fetchBlockDetail$(blockId).subscribe(
+      ({ result: data }) => {
+        setData(data);
+      },
+      error => {
+        setData(error);
+      }
+    );
     return () => subscription.unsubscribe();
   }, [blockId]);
 
@@ -29,7 +36,7 @@ export default function BlockDetail(props) {
   }, []);
 
   useEffect(() => {
-    const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
+    const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ result: { items } }) => {
       setTxsLoading(false);
       setTxsData({ dataSource: items });
     });
@@ -37,7 +44,7 @@ export default function BlockDetail(props) {
   }, [blockNumber]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/blocks", label: "区块列表" }, { label: "区块详情" }]} />;
-  if (!data || (!data.status && !data.number)) {
+  if (!data || (!data.error && !data.number)) {
     return (
       <>
         {breadcrumb}
@@ -46,7 +53,7 @@ export default function BlockDetail(props) {
         </div>
       </>
     );
-  } else if (data.status === 404) {
+  } else if (data.error) {
     return (
       <>
         {breadcrumb}

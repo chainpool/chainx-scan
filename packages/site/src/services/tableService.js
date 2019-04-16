@@ -62,7 +62,7 @@ export default class tableService {
       { ...this._peddingData }
     )
       .pipe(take(1))
-      .subscribe(({ items, page, pageSize, total }) => {
+      .subscribe(({ result: { items, page, pageSize, total } }) => {
         this.setState({
           dataSource: items,
           loading: false,

@@ -21,7 +21,7 @@ export default function Dapp() {
   }, [pairs, activePairId]);
 
   useEffect(() => {
-    const subcription = api.fetchPairs$().subscribe(result =>
+    const subcription = api.fetchPairs$().subscribe(({ result }) =>
       setState({
         pairs: result.sort((a, b) => a.pairid - b.pairid)
       })
@@ -34,7 +34,7 @@ export default function Dapp() {
       loadingHandicap: true
     });
     if (activePair) {
-      const subcription = api.fetchHandicap$(activePair.pairid).subscribe(result => {
+      const subcription = api.fetchHandicap$(activePair.pairid).subscribe(({ result }) => {
         if (result) {
           let bidSum = 0;
           for (const item of result.bids) {

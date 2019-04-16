@@ -19,7 +19,23 @@ class Api {
     for (const key of Object.keys(params)) {
       url.searchParams.set(paramsKeyConvert(key), params[key]);
     }
-    return window.fetch(url, options).then(response => response.json());
+    return new Promise(async (resolve, reject) => {
+      const resp = await window.fetch(url, options);
+      if (resp.status !== 200) {
+        reject({
+          result: null,
+          error: {
+            code: 500,
+            message: "api is not online"
+          }
+        });
+      } else {
+        const result = await resp.json();
+        resolve({
+          result
+        });
+      }
+    });
   };
 
   fetch$ = (path, params = {}, options) => {
@@ -57,7 +73,7 @@ class Api {
     return new Observable(observer => {
       this.socket.emit("subscribe", name);
       this.socket.on(eventName, data => {
-        observer.next(data);
+        observer.next({ result: data });
       });
       return () => {
         this.socket.removeListener(eventName);
@@ -142,9 +158,9 @@ class Api {
   fetchIntentions$ = (params, options = {}) => {
     const { tabFilter = null } = options;
     return this.fetch$(`/intentions`, params).pipe(
-      map(result => {
+      map(({ result }) => {
         if (!tabFilter) {
-          return result;
+          return { result };
         }
         switch (tabFilter) {
           case "unsettled":
@@ -158,7 +174,7 @@ class Api {
             break;
         }
         result.total = result.items.length;
-        return result;
+        return { result };
       })
     );
   };
