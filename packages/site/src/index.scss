@@ -98,7 +98,8 @@ a:focus {
     font-size: 13px;
   }
   tr {
-    td, th {
+    td,
+    th {
       &:last-child {
         text-align: end;
       }
@@ -195,11 +196,11 @@ a:focus {
 }
 
 /** align items start **/
-.align-start{
+.align-start {
   align-items: flex-start;
 }
 /** flex reverse **/
-.flex-reverse{
+.flex-reverse {
   flex-direction: row-reverse;
 }
 
@@ -312,11 +313,41 @@ a:focus {
   }
 }
 
-#chart{
+#chart {
   height: 264px;
   border-left: 1px solid #dedede;
   padding-left: 20px;
 }
+
+.blockTransaction{
+  .btc_block {
+    margin: 0;
+    padding: 20px;
+    border: 1px solid #dedede;
+    border-top: none;
+    border-bottom: none;
+    .btc_status {
+      height: 88px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 5px 10px;
+      border: 1px solid #dedede;
+      box-shadow: 0 0 20px rgba(222, 222, 222, 0.6);
+      .btc_title {
+        white-space: nowrap;
+        margin-bottom: 10px;
+        font-size: 14px;
+      }
+      .btc_content {
+        font-size: 16px;
+        color: #959595;
+      }
+    }
+  }
+}
+
 .dashboard-cell {
   height: 88px;
   display: flex;
