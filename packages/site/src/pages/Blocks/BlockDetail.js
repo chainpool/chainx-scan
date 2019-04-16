@@ -29,14 +29,6 @@ export default function BlockDetail(props) {
   }, []);
 
   useEffect(() => {
-    const subscription = api.fetchEvents$({ block: blockNumber }).subscribe(({ items }) => {
-      setEventLoading(false);
-      setEventsData({ dataSource: items });
-    });
-    return () => subscription.unsubscribe();
-  }, [blockNumber]);
-
-  useEffect(() => {
     const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
       setTxsLoading(false);
       setTxsData({ dataSource: items });
