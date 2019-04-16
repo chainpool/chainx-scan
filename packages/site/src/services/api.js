@@ -23,7 +23,6 @@ class Api {
       const resp = await window.fetch(url, options);
       if (resp.status !== 200) {
         reject({
-          result: null,
           error: {
             code: 500,
             message: "api is not online"
