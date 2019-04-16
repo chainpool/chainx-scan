@@ -116,6 +116,13 @@ class Api {
   };
 
   /**
+   * 获取交易信息
+   */
+  fetchTransaction$ = () => {
+    return this.fetch$("/chain/daily_transactions");
+  };
+
+  /**
    * 获取最新的交易列表
    */
   fetchLatestTxs$ = () => {

@@ -5,20 +5,19 @@ import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
 
-export default function Events() {
-  const [{ tableData }, setState] = useRedux("events", { tableData: {} });
+export default function Events({ tableProps }) {
+  const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
   const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData), []);
 
   useEffect(() => {
     const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
-
-  return <RenderEvents {...{ tableData, handleChange: tableService.handleChange }} />;
+  return <RenderEvents {...{ tableData, handleChange: tableService.handleChange, tableProps }} />;
 }
 
 export function RenderEvents({ tableProps, tableData, handleChange }) {
-  const { pagination, dataSource = [], simpleMode = false, loading } = { ...tableData, ...tableProps };
+  const { pagination, dataSource = [], simpleMode = false, loading } = { ...tableProps, ...tableData };
 
   const optionalColumns = [
     {
@@ -49,7 +48,6 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
       dataIndex: "action"
     }
   ];
-
   return (
     <Table
       loading={loading}

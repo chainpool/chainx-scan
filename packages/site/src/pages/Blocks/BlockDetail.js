@@ -4,7 +4,7 @@ import { hexAddPrefix } from "@polkadot/util";
 import { NavLink } from "react-router-dom";
 import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
-import { RenderEvents } from "../Events";
+import Events from "../Events";
 import api from "../../services/api";
 import Icon from "antd/lib/icon";
 
@@ -12,11 +12,9 @@ export default function BlockDetail(props) {
   const { match } = props;
   const [blocks, setBlock] = useState([]);
   const [data, setData] = useState({});
-  const [eventsData, setEventsData] = useState({});
   const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
   const [txsLoading, setTxsLoading] = useState(true);
-  const [eventLoading, setEventLoading] = useState(true);
   const blockId = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
   const blockNumber = data.number;
   const hasNext = blocks.length > 0 && data.number && blocks[0].number >= data.number + 1;
@@ -127,12 +125,7 @@ export default function BlockDetail(props) {
             tableProps={{ pagination: false, simpleMode: true }}
           />
         )}
-        {data && data.number && activeKey === "events" && (
-          <RenderEvents
-            tableData={{ ...eventsData, loading: eventLoading }}
-            tableProps={{ pagination: false, simpleMode: true }}
-          />
-        )}
+        {data && data.number && activeKey === "events" && <Events tableProps={{ simpleMode: true }} />}
       </div>
     </div>
   );
