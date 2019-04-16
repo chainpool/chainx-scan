@@ -117,7 +117,9 @@ export default function BlockDetail(props) {
             tableProps={{ pagination: false, simpleMode: true }}
           />
         )}
-        {data && data.number && activeKey === "events" && <Events tableProps={{ simpleMode: true }} />}
+        {data && data.number && activeKey === "events" && (
+          <Events tableProps={{ simpleMode: true, pagination: { pageSizing: 10 } }} block={data.number} />
+        )}
       </div>
     </div>
   );

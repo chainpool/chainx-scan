@@ -5,9 +5,9 @@ import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
 
-export default function Events({ tableProps }) {
+export default function Events({ tableProps, block }) {
   const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
-  const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData), []);
+  const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData, { block }), [block]);
 
   useEffect(() => {
     const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
