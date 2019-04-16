@@ -30,9 +30,8 @@ class Api {
           }
         });
       } else {
-        const result = await resp.json();
         resolve({
-          result
+          result: await resp.json()
         });
       }
     });
