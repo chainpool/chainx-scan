@@ -190,6 +190,15 @@ a:focus {
   }
 }
 
+/** align items start **/
+.align-start{
+  align-items: flex-start;
+}
+/** flex reverse **/
+.flex-reverse{
+  flex-direction: row-reverse;
+}
+
 /**  不换行标签 **/
 .nowrap {
   white-space: nowrap;
@@ -286,7 +295,11 @@ a:focus {
     background-color: #dfeee4;
   }
 }
-
+#chart{
+  height: 264px;
+  border-left: 1px solid #dedede;
+  padding-left: 20px;
+}
 .dashboard-cell {
   height: 88px;
   display: flex;

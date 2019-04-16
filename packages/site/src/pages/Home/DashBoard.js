@@ -5,6 +5,7 @@ import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { Amount, NumberFormat, AntSpinner as Spinner } from "../../components";
 import PCX from "../../assets/tokens/pcx.png";
+import Transaction from "./Transaction";
 
 export default function DashBoard() {
   const [{ data }, setState] = useRedux("dashBoard", { data: {} });
@@ -61,11 +62,12 @@ export default function DashBoard() {
         <img src={PCX} alt="pcx" className="panel-heading-icon" />
         链状态
       </div>
-      <div className="panel-block" style={{ padding: 0 }}>
-        <div className="columns is-multiline is-gapless" style={{ width: "100%" }}>
+      <div className="panel-block flex-reverse align-start" style={{ padding: 0 }}>
+        <Transaction style={{ width: "40%" }} />
+        <div className="columns is-multiline is-gapless" style={{ width: "60%" }}>
           {dataSource && data && data.best
             ? dataSource.map(item => (
-                <div key={item.label} className="column is-3 dashboard-cell">
+                <div key={item.label} className="column is-4 dashboard-cell">
                   <div className="dashboard-cell__title">{item.label}</div>
                   <div className="dashboard-cell__content">{item.data}</div>
                 </div>
