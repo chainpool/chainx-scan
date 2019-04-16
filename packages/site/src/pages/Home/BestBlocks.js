@@ -2,13 +2,12 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { BlockLink, NumberFormat, AntSpinner as Spinner, ValidatorLink } from "../../components";
-import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 
 export default function BestBlocks() {
   const [{ blocks }, setState] = useRedux("bestBlocks", { blocks: [] });
-
   useEffect(() => {
     const subscription = api.fetchLatestBlocks$().subscribe(data => setState({ blocks: data }));
     return () => subscription.unsubscribe();

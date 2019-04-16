@@ -42,6 +42,10 @@ html {
   -webkit-font-smoothing: auto;
 }
 
+.forbidden {
+  color: #dbdbdb !important;
+}
+
 .grecaptcha-badge {
   display: none;
 }
@@ -295,6 +299,19 @@ a:focus {
     background-color: #dfeee4;
   }
 }
+
+/** 区块切换器 **/
+.switch-block {
+  position: relative;
+  bottom: 50px;
+  height: 0px;
+  text-align: center;
+  font-size: 24px;
+  .anticon {
+    color: #daa718;
+  }
+}
+
 #chart{
   height: 264px;
   border-left: 1px solid #dedede;

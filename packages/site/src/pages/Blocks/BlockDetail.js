@@ -1,26 +1,40 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
 import { hexAddPrefix } from "@polkadot/util";
-
+import { NavLink } from "react-router-dom";
 import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
 import Events from "../Events";
 import api from "../../services/api";
+import Icon from "antd/lib/icon";
 
 export default function BlockDetail(props) {
   const { match } = props;
-
+  const [blocks, setBlock] = useState([]);
   const [data, setData] = useState({});
   const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
   const [txsLoading, setTxsLoading] = useState(true);
   const blockId = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
   const blockNumber = data.number;
-
+  const hasNext = blocks.length > 0 && data.number && blocks[0].number >= data.number + 1;
   useEffect(() => {
     const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data));
     return () => subscription.unsubscribe();
   }, [blockId]);
+
+  useEffect(() => {
+    const subscription = api.fetchLatestBlocks$(blockId).subscribe(blocks => setBlock(blocks));
+    return () => subscription.unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const subscription = api.fetchEvents$({ block: blockNumber }).subscribe(({ items }) => {
+      setEventLoading(false);
+      setEventsData({ dataSource: items });
+    });
+    return () => subscription.unsubscribe();
+  }, [blockNumber]);
 
   useEffect(() => {
     const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
@@ -31,14 +45,21 @@ export default function BlockDetail(props) {
   }, [blockNumber]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/blocks", label: "区块列表" }, { label: "区块详情" }]} />;
-
-  if (!data || !data.number) {
+  if (!data || (!data.status && !data.number)) {
     return (
       <>
         {breadcrumb}
-        <div style={{ paddingTop: "30%" }}>
+        <div style={{ padding: "10%" }}>
           <Spinner />
         </div>
+      </>
+    );
+  } else if (data.status === 404) {
+    return (
+      <>
+        {breadcrumb}
+        {/* TODO 未找到模块样式 */}
+        <div style={{ padding: "10%", textAlign: "center" }}>未找到该区块</div>
       </>
     );
   }
@@ -46,6 +67,15 @@ export default function BlockDetail(props) {
   return (
     <div>
       {breadcrumb}
+      <div className="switch-block">
+        <NavLink to={`/blocks/${!!data && data.number - 1}`}>
+          <Icon type="double-left" />
+        </NavLink>
+        区块高度:{!!data && data.number}
+        <NavLink to={hasNext ? `/blocks/${!!data && data.number + 1}` : false}>
+          <Icon className={classnames({ forbidden: !hasNext })} type="double-right" />
+        </NavLink>
+      </div>
       <PanelList
         dataSource={[
           {
