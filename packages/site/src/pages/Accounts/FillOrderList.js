@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { DateShow, Amount, OrderDirection, Table } from "../../components";
+import { DateShow, Amount, OrderDirection, Table, HasFill, OrderStatus } from "../../components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
@@ -17,7 +17,7 @@ export default function FillOrderList(props) {
     }
   });
   const tableService = useMemo(
-    () => new TableService(api.fetchAccountFillOrders$, tableData, { accountId: props.accountId }),
+    () => new TableService(api.fetchAccountOrders$, tableData, { accountId: props.accountId, status: 3 }),
     []
   );
 
@@ -33,16 +33,19 @@ export default function FillOrderList(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
-          console.log(data);
           return {
             key: index,
             id: data.id,
-            pair: `${data["pair"][0]}/${data["pair"][1]}`,
+            pair: `${data["pair.currency_pair"][0]}/${data["pair.currency_pair"][1]}`,
             direction: <OrderDirection value={data.direction} />,
-            time: <DateShow value={data.time} />,
-            amount: <Amount value={data.amount} symbol={data["pair"][0]} hideSymbol />,
-            setPrice: <Amount value={data.set_price} symbol={data["pair"][0]} hideSymbol />,
-            price: <Amount value={data.price} symbol={data["pair"][0]} hideSymbol />
+            time: <DateShow value={data["block.time"]} />,
+            amount: <Amount value={data.amount} symbol={data["pair.currency_pair"][0]} hideSymbol />,
+            setPrice: <Amount value={data.set_price} symbol={data["pair.currency_pair"][0]} hideSymbol />,
+            price: <Amount value={data.price} symbol={data["pair.currency_pair"][0]} hideSymbol />,
+            hasFillAmount: (
+              <HasFill fill={data.hasfill_amount} total={data.amount} symbol={data["pair.currency_pair"][0]} />
+            ),
+            status: <OrderStatus value={data.status} />
           };
         })
       }
@@ -61,15 +64,23 @@ export default function FillOrderList(props) {
         },
         {
           title: "委托价格",
-          dataIndex: "setPrice"
+          dataIndex: "price"
         },
         {
           title: "数量",
           dataIndex: "amount"
         },
+        // {
+        //   title: "成交均价",
+        //   dataIndex: "price"
+        // },
         {
-          title: "成交均价",
-          dataIndex: "price"
+          title: "成交数量/成交率",
+          dataIndex: "hasFillAmount"
+        },
+        {
+          title: "状态",
+          dataIndex: "status"
         },
         {
           title: "时间",
