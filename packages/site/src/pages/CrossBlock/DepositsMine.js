@@ -28,6 +28,7 @@ export function RenderDepositsMine({ dataSource, loading }) {
           id: data.id,
           circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
           power: <Amount value={data.power} hideSymbol />,
+          vote: <Amount value={(data.power * data.circulation) / Math.pow(10, 8)} hideSymbol />,
           jackpot: <Amount value={data.jackpot} hideSymbol />,
           lastTotalDepositWeightUpdate: data.lastTotalDepositWeightUpdate,
           lastTotalDepositWeight: <Amount value={data.lastTotalDepositWeight} hideSymbol />
@@ -48,7 +49,7 @@ export function RenderDepositsMine({ dataSource, loading }) {
         },
         {
           title: "折合投票数(PCX)",
-          dataIndex: ""
+          dataIndex: "vote"
         },
         {
           title: "奖池金额(PCX)",
