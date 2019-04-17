@@ -5,9 +5,43 @@ import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
 
 import { decodeAddress } from "../shared";
 
+class Socket {
+  socket = null;
+  subscribeNames = [];
+  constructor() {
+    this.socket = io(process.env.REACT_APP_SERVER);
+    this.socket.connect();
+    this.socket.on("connect", data => this.connectHandler());
+    this.socket.on("connect_error", data => this.reconnect(data));
+    this.socket.on("disconnect", data => this.reconnect(data));
+    this.socket.on("error", data => this.reconnect(data));
+  }
+  connectHandler(subscribeName = "") {
+    if (!subscribeName) {
+      for (let _name of this.subscribeNames) {
+        this.socket.emit("subscribe", _name);
+      }
+    } else {
+      if (!(subscribeName in this.subscribeNames)) {
+        this.subscribeNames.push(subscribeName);
+      }
+      this.socket.emit("subscribe", subscribeName);
+    }
+  }
+  reconnect(e) {
+    if (this.socket.disconnected) {
+      this.socket.close();
+    }
+    setTimeout(() => {
+      this.socket.connect();
+    }, 1500);
+  }
+}
+
 class Api {
   endpoint = null;
   socket = null;
+  subscribeName = [];
 
   constructor(endpoint) {
     this.endpoint = endpoint;
@@ -54,35 +88,16 @@ class Api {
 
   createObservable = (name, eventName) => {
     if (!this.socket) {
-      this.socket = io(process.env.REACT_APP_SERVER);
-    }
-    if (this.socket.disconnected) {
-      this.socket.connect();
-    }
-    const reconect = e => {
-      if (this.socket.disconnected) {
-        this.socket.close();
-      }
-      setTimeout(() => {
-        this.socket.connect();
-      }, 1500);
-    };
-    if (!this.hasBindConnectError) {
-      this.socket.on("connect_error", reconect);
-      this.hasBindConnectError = true;
-    }
-    if (!this.hasBindConnectTimeout) {
-      this.socket.on("connect_timeout", reconect);
-      this.hasBindConnectTimeout = true;
+      this.socket = new Socket();
     }
     return new Observable(observer => {
-      this.socket.emit("subscribe", name);
-      this.socket.on(eventName, data => {
+      this.socket.connectHandler(name);
+      this.socket.socket.on(eventName, data => {
         observer.next(data);
       });
       return () => {
-        this.socket.removeListener(eventName);
-        this.socket.emit("unsubscribe", name);
+        this.socket.socket.removeListener(eventName);
+        this.socket.closeHandler(name);
       };
     });
   };
