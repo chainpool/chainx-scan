@@ -8,8 +8,6 @@ import { decodeAddress } from "../shared";
 class Socket {
   socket = null;
   subscribeNames = [];
-  eventNames = [];
-  handler = {};
   constructor() {
     this.socket = io(process.env.REACT_APP_SERVER);
     this.socket.connect();
