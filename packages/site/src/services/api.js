@@ -5,7 +5,7 @@ import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
 
 import { decodeAddress } from "../shared";
 
-class _socket {
+class Socket {
   socket = null;
   subscribeNames = [];
   eventNames = [];
@@ -30,15 +30,6 @@ class _socket {
       this.socket.emit("subscribe", subscribeName);
     }
   }
-  closeHandler(subscribeName = "") {
-    if (!subscribeName) {
-      for (let _name of this.subscribeNames) {
-        this.socket.emit("unsubscribe", _name);
-      }
-    } else {
-      this.socket.emit("unsubscribe", subscribeName);
-    }
-  }
   reconnect(e) {
     if (this.socket.disconnected) {
       this.socket.close();
@@ -46,31 +37,6 @@ class _socket {
     setTimeout(() => {
       this.socket.connect();
     }, 1500);
-  }
-  removeListener(eventName = "") {
-    if (!eventName) {
-      for (let _eventName of this.eventNames) {
-        delete this.handler[_eventName];
-      }
-    } else {
-      delete this.handler[eventName];
-    }
-  }
-  listenEventName(eventName = "") {
-    if (!eventName) {
-      for (let _eventName of this.eventNames) {
-        this.socket.on(_eventName, this.handler[_eventName]);
-      }
-    } else {
-      this.socket.on(eventName, this.handler[eventName]);
-    }
-  }
-  on(eventName = "", handler) {
-    if (!(eventName in this.handler)) {
-      this.eventNames.push(eventName);
-      this.handler[eventName] = handler;
-      this.listenEventName(eventName);
-    }
   }
 }
 
@@ -124,15 +90,15 @@ class Api {
 
   createObservable = (name, eventName) => {
     if (!this.socket) {
-      this.socket = new _socket();
+      this.socket = new Socket();
     }
     return new Observable(observer => {
       this.socket.connectHandler(name);
-      this.socket.on(eventName, data => {
+      this.socket.socket.on(eventName, data => {
         observer.next(data);
       });
       return () => {
-        this.socket.removeListener(eventName);
+        this.socket.socket.removeListener(eventName);
         this.socket.closeHandler(name);
       };
     });
