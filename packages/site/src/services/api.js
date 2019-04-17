@@ -201,8 +201,8 @@ class Api {
   /**
    * 获取事件列表
    */
-  fetchEvents$ = params => {
-    return this.fetch$(`/events`, params);
+  fetchEvents$ = (params, { block }) => {
+    return this.fetch$(`/events`, { ...params, block });
   };
 
   /**

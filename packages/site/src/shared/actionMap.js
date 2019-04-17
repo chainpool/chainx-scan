@@ -10,7 +10,12 @@ const moduleNameMap = {
   Timestamp: "时间戳",
   XAssets: "资产",
   XBridgeOfSDOT: "SDOT桥",
-  finality_tracker: "确认高度"
+  finality_tracker: "确认高度",
+  XFeeManager: "手续费管理",
+  GrandpaFinality: "共识确认",
+  DepositorReward: "充值奖励",
+  XAssetsRecords: "资产记录",
+  Indices: "索引"
 };
 
 export function getModuleName(module) {
@@ -42,6 +47,7 @@ const callNameMap = {
   Deposit: "充值",
   WithdrawalFinish: "提现结束",
   Unfreeze: "撤回解冻",
+  DepositorClaim: "充值提息",
   Move: "转移资产",
   Destory: "销毁资产",
   Unnominate: "撤票",
@@ -70,7 +76,10 @@ const callNameMap = {
   InsertHeader: "新增块头",
   WithdrawalApply: "提现申请",
   PutOrder: "挂单",
-  NewSession: "开始新的 session"
+  NewSession: "开始新的 session",
+  FeeForJackpot: "奖池手续费",
+  FeeForProducer: "验证人手续费",
+  FeeForCouncil: "议会手续费"
 };
 
 export function getCallName(call) {
