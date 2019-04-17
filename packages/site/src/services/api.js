@@ -5,9 +5,78 @@ import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
 
 import { decodeAddress } from "../shared";
 
+class _socket {
+  socket = null;
+  subscribeNames = [];
+  eventNames = [];
+  handler = {};
+  constructor(subscribeName, eventName) {
+    if (!(subscribeName in this.subscribeNames)) {
+      this.subscribeNames.push(subscribeName);
+      this.eventNames.push(eventName);
+    }
+    this.socket = io(process.env.REACT_APP_SERVER);
+    this.socket.connect();
+    this.socket.on("connect", data => this.connectHandler());
+    this.socket.on("connect_error", data => this.reconnect());
+    this.socket.on("disconnect", data => this.reconnect());
+  }
+  connectHandler(subscribeName = "") {
+    if (!subscribeName) {
+      for (let _name of this.subscribeNames) {
+        this.socket.emit("subscribe", _name);
+      }
+    } else {
+      this.socket.emit("subscribe", subscribeName);
+    }
+  }
+  closeHandler(subscribeName = "") {
+    if (!subscribeName) {
+      for (let _name of this.subscribeNames) {
+        this.socket.emit("unsubscribe", _name);
+      }
+    } else {
+      this.socket.emit("unsubscribe", subscribeName);
+    }
+  }
+  reconnect() {
+    if (this.socket.disconnected) {
+      this.socket.close();
+    }
+    setTimeout(() => {
+      this.socket.connect();
+    }, 1500);
+  }
+  removeListener(eventName = "") {
+    if (!eventName) {
+      for (let _eventName of this.eventNames) {
+        delete this.handler[_eventName];
+      }
+    } else {
+      delete this.handler[eventName];
+    }
+  }
+  listenEventName(eventName = "") {
+    if (!eventName) {
+      for (let _eventName of this.eventNames) {
+        this.socket.on(_eventName, this.handler[_eventName]);
+      }
+    } else {
+      this.socket.on(eventName, this.handler[eventName]);
+    }
+  }
+  on(eventName = "", handler) {
+    if (!(eventName in this.handler)) {
+      this.handler[eventName] = handler;
+      this.listenEventName(eventName);
+    }
+  }
+}
+
 class Api {
   endpoint = null;
   socket = null;
+  subscribeName = [];
 
   constructor(endpoint) {
     this.endpoint = endpoint;
@@ -53,36 +122,55 @@ class Api {
   };
 
   createObservable = (name, eventName) => {
+    // if (!this.socket) {
+    //   this.socket = io(process.env.REACT_APP_SERVER);
+    // }
+    // if (this.socket.disconnected) {
+    //   this.socket.connect();
+    // }
+    // if (this.subscribeName.indexOf(name) === -1) this.subscribeName.push(name);
+    // const reconect = e => {
+    //   if (this.socket.disconnected) {
+    //     this.socket.close();
+    //   }
+    //   setTimeout(() => {
+    //     this.socket.connect();
+    //   }, 1500);
+    // };
+    // this.socket.on("connect", () => {
+    //   for (let name of this.subscribeName) {
+    //     console.log({ ...this.socket });
+    //     this.socket.emit("subscribe", name);
+    //   }
+    // });
+    // if (!this.hasBindConnectError) {
+    //   this.socket.on("connect_error", reconect);
+    //   this.socket.on("error", e => console.log("error", e));
+    //   this.socket.on("disconnect", e => {
+    //     reconect();
+    //     console.log("disconnect", e);
+    //   });
+    //   this.socket.on("reconnect_error", e => console.log("reconnect_error", e));
+    //   this.socket.on("reconnect_failed", e => console.log("reconnect_failed", e));
+    //   this.hasBindConnectError = true;
+    // }
+    // if (!this.hasBindConnectTimeout) {
+    //   this.socket.on("connect_timeout", reconect);
+    //   this.hasBindConnectTimeout = true;
+    // }
     if (!this.socket) {
-      this.socket = io(process.env.REACT_APP_SERVER);
-    }
-    if (this.socket.disconnected) {
-      this.socket.connect();
-    }
-    const reconect = e => {
-      if (this.socket.disconnected) {
-        this.socket.close();
-      }
-      setTimeout(() => {
-        this.socket.connect();
-      }, 1500);
-    };
-    if (!this.hasBindConnectError) {
-      this.socket.on("connect_error", reconect);
-      this.hasBindConnectError = true;
-    }
-    if (!this.hasBindConnectTimeout) {
-      this.socket.on("connect_timeout", reconect);
-      this.hasBindConnectTimeout = true;
+      this.socket = new _socket();
+    } else {
+      this.socket.connectHandler("name");
     }
     return new Observable(observer => {
-      this.socket.emit("subscribe", name);
+      this.socket.connectHandler(name);
       this.socket.on(eventName, data => {
         observer.next(data);
       });
       return () => {
         this.socket.removeListener(eventName);
-        this.socket.emit("unsubscribe", name);
+        this.socket.closeHandler(name);
       };
     });
   };
