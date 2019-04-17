@@ -14,9 +14,10 @@ const initChart = (name, data) => {
   // 初始化
   var myChart = echarts.init(document.getElementById(name));
   data.reverse();
+  data.pop();
   //处理数据
   const xAxis = data.reduce((pre, cre) => {
-    return pre.concat([dayjs(cre.day * 1000).format("YYYY-MM-DD")]);
+    return pre.concat([dayjs(cre.day * 1000).format("M.D")]);
   }, []);
   const yAxis = data.reduce((pre, cre) => {
     return pre.concat([cre.num]);
@@ -26,7 +27,7 @@ const initChart = (name, data) => {
   const max_length = max_num.toString().length;
   const min_length = min_num.toString().length;
   const max = parseInt(max_num / Math.pow(10, max_length - 2) + 1) * Math.pow(10, max_length - 2);
-  const min = parseInt(min_num / Math.pow(10, min_length - 2) - 1) * Math.pow(10, min_length - 2);
+  const min = parseInt(min_num / Math.pow(10, min_length - 2) - 10) * Math.pow(10, min_length - 2);
   const interval = parseInt(((max - min) / Math.pow(10, max_length - 2)) * Math.pow(10, max_length - 2)) / 4;
   // 绘制图表
   myChart.setOption({
