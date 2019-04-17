@@ -4,13 +4,15 @@ import { createStore } from "redux";
 
 export default class tableService {
   constructor(_fetchTable, initData = {}, peddingData = {}) {
+    let pageSize = initData && initData.pagination && initData.pagination.pageSize;
+    pageSize = pageSize || tableService.initData.pagination.pageSize;
     const initialize = {
       ...tableService.initData,
       ...initData,
       pagination: {
         ...tableService.initData.pagination,
         ...initData.pagination,
-        pageSize: initData && initData.pagination && initData.pagination.pageSize
+        pageSize
       }
     };
     this.initialize = initialize;
