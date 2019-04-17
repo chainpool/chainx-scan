@@ -3,14 +3,14 @@ import { take } from "rxjs/operators";
 import { createStore } from "redux";
 
 export default class tableService {
-  constructor(_fetchTable, initData = {}, peddingData = {}) {
+  constructor(_fetchTable, params = {}, peddingData = {}) {
+    console.log(params);
     const initialize = {
       ...tableService.initData,
-      ...initData,
+      ...params,
       pagination: {
         ...tableService.initData.pagination,
-        ...initData.pagination,
-        pageSize: initData && initData.pagination && initData.pagination.pageSize
+        ...params.pagination
       }
     };
     this.initialize = initialize;
