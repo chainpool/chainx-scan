@@ -22,6 +22,7 @@ class _socket {
     this.socket.on("disconnect", data => this.reconnect());
   }
   connectHandler(subscribeName = "") {
+    console.log(subscribeName);
     if (!subscribeName) {
       for (let _name of this.subscribeNames) {
         this.socket.emit("subscribe", _name);
@@ -160,8 +161,6 @@ class Api {
     // }
     if (!this.socket) {
       this.socket = new _socket();
-    } else {
-      this.socket.connectHandler("name");
     }
     return new Observable(observer => {
       this.socket.connectHandler(name);
