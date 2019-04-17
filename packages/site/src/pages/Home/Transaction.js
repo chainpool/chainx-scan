@@ -16,7 +16,7 @@ const initChart = (name, data) => {
   data.reverse();
   //处理数据
   const xAxis = data.reduce((pre, cre) => {
-    return pre.concat([dayjs(cre.day * 1000).format("YYYY-MM-DD")]);
+    return pre.concat([dayjs(cre.day * 1000).format("M.D")]);
   }, []);
   const yAxis = data.reduce((pre, cre) => {
     return pre.concat([cre.num]);
