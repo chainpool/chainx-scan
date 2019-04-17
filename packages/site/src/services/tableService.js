@@ -4,7 +4,6 @@ import { createStore } from "redux";
 
 export default class tableService {
   constructor(_fetchTable, params = {}, peddingData = {}) {
-    console.log(params);
     const initialize = {
       ...tableService.initData,
       ...params,
