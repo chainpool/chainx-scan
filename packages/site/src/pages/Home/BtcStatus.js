@@ -75,15 +75,21 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">充值交易总数</div>
-          <div className="btc_content">{status.deposit_count}</div>
+          <div className="btc_content">
+            <NavLink to="/crossblocks/bitcoin/deposits">{status.deposit_count}</NavLink>
+          </div>
         </div>
         <div className="column btc_status">
           <div className="btc_title">提现交易总数</div>
-          <div className="btc_content">{status.withdraw_count}</div>
+          <div className="btc_content">
+            <NavLink to="/crossblocks/bitcoin/withdrawals">{status.withdraw_count}</NavLink>
+          </div>
         </div>
         <div className="column btc_status">
           <div className="btc_title">跨链绑定地址数</div>
-          <div className="btc_content">{status.bind_count}</div>
+          <div className="btc_content">
+            <NavLink to="/crossblocks/bitcoin/crossbind">{status.bind_count}</NavLink>
+          </div>
         </div>
       </div>
       <div className="panel-block">
