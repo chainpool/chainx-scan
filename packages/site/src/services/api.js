@@ -10,24 +10,23 @@ class _socket {
   subscribeNames = [];
   eventNames = [];
   handler = {};
-  constructor(subscribeName, eventName) {
-    if (!(subscribeName in this.subscribeNames)) {
-      this.subscribeNames.push(subscribeName);
-      this.eventNames.push(eventName);
-    }
+  constructor() {
     this.socket = io(process.env.REACT_APP_SERVER);
     this.socket.connect();
     this.socket.on("connect", data => this.connectHandler());
-    this.socket.on("connect_error", data => this.reconnect());
-    this.socket.on("disconnect", data => this.reconnect());
+    this.socket.on("connect_error", data => this.reconnect(data));
+    this.socket.on("disconnect", data => this.reconnect(data));
+    this.socket.on("error", data => this.reconnect(data));
   }
   connectHandler(subscribeName = "") {
-    console.log(subscribeName);
     if (!subscribeName) {
       for (let _name of this.subscribeNames) {
         this.socket.emit("subscribe", _name);
       }
     } else {
+      if (!(subscribeName in this.subscribeNames)) {
+        this.subscribeNames.push(subscribeName);
+      }
       this.socket.emit("subscribe", subscribeName);
     }
   }
@@ -40,7 +39,7 @@ class _socket {
       this.socket.emit("unsubscribe", subscribeName);
     }
   }
-  reconnect() {
+  reconnect(e) {
     if (this.socket.disconnected) {
       this.socket.close();
     }
@@ -68,6 +67,7 @@ class _socket {
   }
   on(eventName = "", handler) {
     if (!(eventName in this.handler)) {
+      this.eventNames.push(eventName);
       this.handler[eventName] = handler;
       this.listenEventName(eventName);
     }
@@ -123,42 +123,6 @@ class Api {
   };
 
   createObservable = (name, eventName) => {
-    // if (!this.socket) {
-    //   this.socket = io(process.env.REACT_APP_SERVER);
-    // }
-    // if (this.socket.disconnected) {
-    //   this.socket.connect();
-    // }
-    // if (this.subscribeName.indexOf(name) === -1) this.subscribeName.push(name);
-    // const reconect = e => {
-    //   if (this.socket.disconnected) {
-    //     this.socket.close();
-    //   }
-    //   setTimeout(() => {
-    //     this.socket.connect();
-    //   }, 1500);
-    // };
-    // this.socket.on("connect", () => {
-    //   for (let name of this.subscribeName) {
-    //     console.log({ ...this.socket });
-    //     this.socket.emit("subscribe", name);
-    //   }
-    // });
-    // if (!this.hasBindConnectError) {
-    //   this.socket.on("connect_error", reconect);
-    //   this.socket.on("error", e => console.log("error", e));
-    //   this.socket.on("disconnect", e => {
-    //     reconect();
-    //     console.log("disconnect", e);
-    //   });
-    //   this.socket.on("reconnect_error", e => console.log("reconnect_error", e));
-    //   this.socket.on("reconnect_failed", e => console.log("reconnect_failed", e));
-    //   this.hasBindConnectError = true;
-    // }
-    // if (!this.hasBindConnectTimeout) {
-    //   this.socket.on("connect_timeout", reconect);
-    //   this.hasBindConnectTimeout = true;
-    // }
     if (!this.socket) {
       this.socket = new _socket();
     }
