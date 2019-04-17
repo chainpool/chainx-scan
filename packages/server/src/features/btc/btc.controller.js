@@ -1,5 +1,5 @@
 const { extractPage } = require("../utils");
-const { toBtcAddress } = require("./address");
+const { toBtcAddress, pubKeyToAddress } = require("./address");
 
 class BtcController {
   async status(ctx) {
@@ -150,8 +150,8 @@ class BtcController {
         result.push({
           trustee,
           id: row.id,
-          hotAddress: row.hotAddressList[index] ? toBtcAddress(row.hotAddressList[index]) : null,
-          coldAddress: row.coldAddressList[index] ? toBtcAddress(row.coldAddressList[index]) : null
+          hotAddress: row.hotAddressList[index] ? pubKeyToAddress(row.hotAddressList[index]) : null,
+          coldAddress: row.coldAddressList[index] ? pubKeyToAddress(row.coldAddressList[index]) : null
         });
       });
       return result;

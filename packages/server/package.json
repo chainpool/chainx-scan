@@ -7,6 +7,7 @@
   "dependencies": {
     "@koa/cors": "2",
     "binstring": "^0.2.1",
+    "bitcoinjs-lib": "^5.0.2",
     "btc-address": "^0.4.0",
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",

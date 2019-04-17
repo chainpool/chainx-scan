@@ -1,5 +1,6 @@
 const Address = require("btc-address");
 const binConv = require("binstring");
+const bitcoin = require("bitcoinjs-lib");
 
 function hexToBytes(str) {
   if (!str) {
@@ -57,6 +58,12 @@ function toBtcAddress(btc_layout) {
   return address.toString();
 }
 
+function pubKeyToAddress(pubKey) {
+  const { address } = bitcoin.payments.p2pkh({ pubkey: Buffer.from(pubKey, "hex"), network: bitcoin.networks.testnet });
+  return address;
+}
+
 module.exports = {
-  toBtcAddress
+  toBtcAddress,
+  pubKeyToAddress
 };
