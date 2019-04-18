@@ -29,10 +29,6 @@ export default function DashBoard() {
       data: <NumberFormat value={data.transactions} />
     },
     {
-      label: "发行总量(PCX)",
-      data: <Amount value={data.pcx_issuance} hideSymbol />
-    },
-    {
       label: "账户总数",
       data: <NumberFormat value={data.account_count} />
     },
@@ -47,6 +43,10 @@ export default function DashBoard() {
           <NumberFormat value={data.validators} />
         </NavLink>
       )
+    },
+    {
+      label: "发行总量(PCX)",
+      data: <Amount value={data.pcx_issuance} hideSymbol />
     },
     {
       label: "节点抵押总数(PCX)",
