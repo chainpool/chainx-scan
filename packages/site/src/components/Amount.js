@@ -1,4 +1,4 @@
-import { memo } from "react";
+import React, { memo } from "react";
 import { useAppContext } from "./AppContext";
 
 function numberToAmount(
@@ -22,12 +22,29 @@ function numberToAmount(
   options.useGrouping = useGrouping;
 
   const value = new Intl.NumberFormat(undefined, options).format(number / Math.pow(10, precision));
-
+  const zeroSmoke = value => {
+    const str = value.toString();
+    const Reg = new RegExp(/0{6,}$/);
+    if (Reg.test(str)) {
+      return (
+        <>
+          {str.replace(Reg, "")}
+          <span className="nagtive-light">{str.match(Reg)[0]}</span>
+        </>
+      );
+    } else {
+      return value;
+    }
+  };
   if (!hideSymbol && symbol) {
-    return `${value} ${symbol}`;
+    return (
+      <>
+        {zeroSmoke(value)} {symbol}
+      </>
+    );
   }
 
-  return value;
+  return <>{zeroSmoke(value)}</>;
 }
 
 export default memo(function Amount(props) {
