@@ -17,7 +17,10 @@ $primary-hover: #e6b738;
 $link: #46aee2;
 $link-hover: #359acc;
 $nagtive: #959595;
+$nagtiveMiddle: #dedede;
 $nagtiveLight: #dedede;
+$opacity2: .2;
+$opacity4: .4;
 
 // 导航栏断点：
 $navbar-breakpoint: $tablet + (2 * $gap);
@@ -52,7 +55,22 @@ html {
   color: $nagtive;
 }
 
+.opacity2{
+  opacity: $opacity2;
+}
+.opacity4{
+  opacity: $opacity4;
+}
+
+// .handicap-list .opacity2{
+//   opacity: 0.5;
+// }
+
 .nagtive-light{
+  color: $nagtiveLight;
+}
+
+.nagtive-middle{
   color: $nagtiveLight;
 }
 
