@@ -24,7 +24,7 @@ export default function CurrentEntrust({ activePair = {} }) {
   useEffect(() => {
     const subscription = tableService.fetchTable$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
-  }, [tableService]);
+  }, [tableService, pairid]);
 
   return <RenderCurrentEntrust {...tableData} {...tableService} {...activePair} />;
 }
@@ -47,7 +47,7 @@ export function RenderCurrentEntrust({
         dataSource &&
         dataSource.map(data => {
           return {
-            key: data.id,
+            key: `${data.accountid}-${data.id}`,
             accountid: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.accountid} />,
             id: data.id,
             direction: <OrderDirection value={data.direction} />,

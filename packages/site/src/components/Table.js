@@ -19,5 +19,7 @@ export default function Table(_props) {
       }
     : false;
 
-  return <AntdTable {...props} pagination={pagination} />;
+  return (
+    <AntdTable {...props} rowClassName={(record, index) => (index % 2 === 0 ? "smoke" : "")} pagination={pagination} />
+  );
 }
