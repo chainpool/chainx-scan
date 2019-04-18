@@ -29,8 +29,12 @@ export default function DashBoard() {
       data: <NumberFormat value={data.transactions} />
     },
     {
-      label: "发行总量 (PCX)",
+      label: "发行总量(PCX)",
       data: <Amount value={data.pcx_issuance} hideSymbol />
+    },
+    {
+      label: "账户总数",
+      data: <NumberFormat value={data.account_count} />
     },
     {
       label: "验证节点选举届数",
@@ -45,7 +49,11 @@ export default function DashBoard() {
       )
     },
     {
-      label: "用户投票总数 (PCX)",
+      label: "节点抵押总数(PCX)",
+      data: <Amount value={data.selfvote_count} hideSymbol />
+    },
+    {
+      label: "用户投票总数(PCX)",
       data: <Amount value={data.votes} hideSymbol />
     }
   ];
