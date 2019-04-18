@@ -36,7 +36,8 @@ export function RenderHistoryEntrust({
   precision,
   dataSource = [],
   unit_precision,
-  currency_pair
+  currency_pair,
+  pairid
 }) {
   return (
     <Table
@@ -47,7 +48,7 @@ export function RenderHistoryEntrust({
         dataSource &&
         dataSource.map(data => {
           return {
-            key: data.id,
+            key: `${pairid}-${data.id}`,
             id: data.id,
             price: (
               <Amount

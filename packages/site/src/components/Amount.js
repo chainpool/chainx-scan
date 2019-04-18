@@ -1,6 +1,21 @@
 import React, { memo } from "react";
 import { useAppContext } from "./AppContext";
 
+function zeroSmoke(value) {
+  const str = value.toString();
+  const Reg = new RegExp(/0{4,}$/);
+  if (Reg.test(str)) {
+    return (
+      <>
+        {str.replace(Reg, "")}
+        <span className="opacity4">{str.match(Reg)[0]}</span>
+      </>
+    );
+  } else {
+    return value;
+  }
+}
+
 function numberToAmount(
   number,
   { symbol = "", minDigits, hideSymbol = false, precision = 0, unsetDigits = false, useGrouping = true } = {}
@@ -22,20 +37,6 @@ function numberToAmount(
   options.useGrouping = useGrouping;
 
   const value = new Intl.NumberFormat(undefined, options).format(number / Math.pow(10, precision));
-  const zeroSmoke = value => {
-    const str = value.toString();
-    const Reg = new RegExp(/0{6,}$/);
-    if (Reg.test(str)) {
-      return (
-        <>
-          {str.replace(Reg, "")}
-          <span className="nagtive-light">{str.match(Reg)[0]}</span>
-        </>
-      );
-    } else {
-      return value;
-    }
-  };
   if (!hideSymbol && symbol) {
     return (
       <>

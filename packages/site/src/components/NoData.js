@@ -9,7 +9,7 @@ export default function NoData({ id }) {
         <img className="no-data-item" src={NoDataImg} width={180} height={180} alt="" />
         <span className="no-data-item">"{id}"</span>
         <span className="nagtive no-data-item">暂时没有您要的信息</span>
-        <NavLink className="to-home no-data-item" to="/">
+        <NavLink className="to-home no-data-item btn-primary" to="/">
           返回首页
         </NavLink>
       </div>
