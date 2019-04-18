@@ -24,7 +24,7 @@ export default function CurrentEntrust({ activePair = {} }) {
   useEffect(() => {
     const subscription = tableService.fetchTable$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
-  }, [tableService, pairid]);
+  }, [tableService]);
 
   return <RenderCurrentEntrust {...tableData} {...tableService} {...activePair} />;
 }
