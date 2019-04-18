@@ -36,6 +36,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       vote_cycle: {
         type: DataTypes.BIGINT
+      },
+      selfvote_count: {
+        type: DataTypes.BIGINT
+      },
+      account_count: {
+        type: DataTypes.BIGINT
       }
     },
     {
