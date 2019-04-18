@@ -183,19 +183,19 @@ a:focus {
         color: #fff;
         font-size: 14px;
         &::-webkit-input-placeholder {
-          color: #fff;
+          color: #999;
         }
         &:-moz-placeholder {
           /* Mozilla Firefox 4 to 18 */
-          color: #fff;
+          color: #999;
         }
         &::-moz-placeholder {
           /* Mozilla Firefox 19+ */
-          color: #fff;
+          color: #999;
         }
         &:-ms-input-placeholder {
           /* Internet Explorer 10+ */
-          color: #fff;
+          color: #999;
         }
       }
     }
@@ -438,6 +438,7 @@ a:focus {
 
 .main-content {
   min-height: calc(100vh - 52px - 50px);
+  padding: 1.5rem;
 }
 
 /**

@@ -109,16 +109,6 @@ class Api {
         this.socket.closeHandler(name);
       };
     });
-    // return new Observable(observer => {
-    //   this.socket.connectHandler(name);
-    //   this.socket.on(eventName, data => {
-    //     observer.next(data);
-    //   });
-    //   return () => {
-    //     this.socket.removeListener(eventName);
-    //     this.socket.closeHandler(name);
-    //   };
-    // });
   };
 
   /**
@@ -235,7 +225,7 @@ class Api {
   /**
    * 获取事件列表
    */
-  fetchEvents$ = (params, { block }) => {
+  fetchEvents$ = (params, { block } = {}) => {
     return this.fetch$(`/events`, { ...params, block });
   };
 
