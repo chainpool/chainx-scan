@@ -109,16 +109,6 @@ class Api {
         this.socket.closeHandler(name);
       };
     });
-    // return new Observable(observer => {
-    //   this.socket.connectHandler(name);
-    //   this.socket.on(eventName, data => {
-    //     observer.next(data);
-    //   });
-    //   return () => {
-    //     this.socket.removeListener(eventName);
-    //     this.socket.closeHandler(name);
-    //   };
-    // });
   };
 
   /**
