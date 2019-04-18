@@ -11,18 +11,12 @@ class Socket {
   eventNames = [];
   handler = {};
   constructor() {
-    this.initConnect(true);
-  }
-  initConnect(init) {
     this.socket = io(process.env.REACT_APP_SERVER);
     this.socket.connect();
     this.socket.on("connect", data => this.connectHandler());
     this.socket.on("connect_error", data => this.reconnect(data));
     this.socket.on("disconnect", data => this.reconnect(data));
     this.socket.on("error", data => this.reconnect(data));
-    if (!init) {
-      this.on();
-    }
   }
   connectHandler(subscribeName = "") {
     if (!subscribeName) {
@@ -47,46 +41,9 @@ class Socket {
   }
   reconnect(e) {
     this.socket.close();
-    this.removeListener();
-    this.socket.removeListener("connect");
-    this.socket.removeListener("connect_error");
-    this.socket.removeListener("disconnect");
-    this.socket.removeListener("error");
-    this.socket = null;
     setTimeout(() => {
-      this.initConnect();
+      this.socket.connect();
     }, 3000);
-  }
-  removeListener(eventName = "") {
-    if (!eventName) {
-      for (let _eventName of this.eventNames) {
-        this.socket.removeListener(_eventName);
-      }
-    } else {
-      this.socket.removeListener(eventName);
-    }
-  }
-  listenEventName(eventName = "") {
-    if (!eventName) {
-      for (let _eventName of this.eventNames) {
-        this.socket.on(_eventName, this.handler[_eventName]);
-      }
-    } else {
-      this.socket.on(eventName, this.handler[eventName]);
-    }
-  }
-  on(eventName = "", handler) {
-    if (!eventName) {
-      for (let _eventName of this.eventNames) {
-        this.listenEventName(_eventName);
-      }
-    } else {
-      if (!(eventName in this.handler)) {
-        this.eventNames.push(eventName);
-        this.handler[eventName] = handler;
-        this.listenEventName(eventName);
-      }
-    }
   }
 }
 
@@ -144,14 +101,24 @@ class Api {
     }
     return new Observable(observer => {
       this.socket.connectHandler(name);
-      this.socket.on(eventName, data => {
+      this.socket.socket.on(eventName, data => {
         observer.next(data);
       });
       return () => {
-        this.socket.removeListener(eventName);
+        this.socket.socket.removeListener(eventName);
         this.socket.closeHandler(name);
       };
     });
+    // return new Observable(observer => {
+    //   this.socket.connectHandler(name);
+    //   this.socket.on(eventName, data => {
+    //     observer.next(data);
+    //   });
+    //   return () => {
+    //     this.socket.removeListener(eventName);
+    //     this.socket.closeHandler(name);
+    //   };
+    // });
   };
 
   /**

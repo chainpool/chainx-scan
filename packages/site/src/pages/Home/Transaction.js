@@ -34,8 +34,10 @@ const initChart = (name, data) => {
     title: {
       text: "交易量日线图",
       textStyle: {
-        color: "#3f3f3f"
-      }
+        color: "#3f3f3f",
+        fontSize: 14
+      },
+      top: 20
     },
     tooltip: {
       show: true,
