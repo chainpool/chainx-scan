@@ -169,24 +169,33 @@ a:focus {
         }
       }
     }
-    .navbar-end {
-      .navbar-item {
-        .input {
-          background-color: transparent;
+    .navbar-search {
+      position: relative;
+      .search{
+        position: absolute;
+        top: 5px;
+        right: 15px;
+        font-size: 20px;
+        color: $primary;
+      }
+      .input {
+        background-color: transparent;
+        color: #fff;
+        font-size: 14px;
+        &::-webkit-input-placeholder {
           color: #fff;
-          font-size: 14px;
-          &::-webkit-input-placeholder {
-            color: #fff;
-          }
-          &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-              color:    #fff;
-          }
-          &::-moz-placeholder { /* Mozilla Firefox 19+ */
-              color:    #fff;
-          }
-          &:-ms-input-placeholder { /* Internet Explorer 10+ */
-              color:    #fff;
-          }
+        }
+        &:-moz-placeholder {
+          /* Mozilla Firefox 4 to 18 */
+          color: #fff;
+        }
+        &::-moz-placeholder {
+          /* Mozilla Firefox 19+ */
+          color: #fff;
+        }
+        &:-ms-input-placeholder {
+          /* Internet Explorer 10+ */
+          color: #fff;
         }
       }
     }
