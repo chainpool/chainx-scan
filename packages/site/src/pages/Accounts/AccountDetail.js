@@ -2,7 +2,15 @@ import React, { useEffect, useState } from "react";
 import classnames from "classnames";
 
 import api from "../../services/api";
-import { AddressLink, Breadcrumb, ExternalLink, NumberFormat, PanelList } from "../../components";
+import {
+  AddressLink,
+  Breadcrumb,
+  ExternalLink,
+  NumberFormat,
+  PanelList,
+  AntSpinner as Spinner,
+  NoData
+} from "../../components";
 import AccountAsset from "./AccountAsset";
 import AccountNomination from "./AccountNomination";
 import AccountOrder from "./AccountOrder";
@@ -20,12 +28,23 @@ export default function Account(props) {
   const [activeKey, setActiveKey] = useState("nativeAsset");
 
   useEffect(() => {
-    const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data));
+    const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data), data => setDetail(data));
     return () => subscription.unsubscribe();
   }, [accountId]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/accounts", label: "账户列表" }, { label: "账户详情" }]} />;
-
+  if (!detail || (!detail.code && !detail.accountId)) {
+    return (
+      <>
+        {breadcrumb}
+        <div style={{ paddingTop: "30%" }}>
+          <Spinner />
+        </div>
+      </>
+    );
+  } else if (!!detail.code) {
+    return <NoData id={accountId} />;
+  }
   return (
     <>
       {breadcrumb}

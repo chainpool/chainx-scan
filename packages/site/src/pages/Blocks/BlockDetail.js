@@ -7,6 +7,7 @@ import { RenderTxsList } from "../Txs/TxsList";
 import Events from "../Events";
 import api from "../../services/api";
 import Icon from "antd/lib/icon";
+import { NoData } from "../../components";
 
 export default function BlockDetail(props) {
   const { match } = props;
@@ -46,14 +47,8 @@ export default function BlockDetail(props) {
         </div>
       </>
     );
-  } else if (data.code === 404) {
-    return (
-      <>
-        {breadcrumb}
-        {/* TODO 未找到模块样式 */}
-        <div style={{ padding: "10%", textAlign: "center" }}>未找到该区块</div>
-      </>
-    );
+  } else if (!!data.code) {
+    return <NoData id={blockId} />;
   }
 
   return (

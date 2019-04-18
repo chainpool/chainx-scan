@@ -9,7 +9,8 @@ import {
   PanelList,
   Breadcrumb,
   DateShow,
-  AntSpinner as Spinner
+  AntSpinner as Spinner,
+  NoData
 } from "../../components";
 import { RenderEvents } from "../Events";
 import api from "../../services/api";
@@ -25,7 +26,7 @@ export default function BlockDetail(props) {
   const txid = hexStripPrefix(match.params.txid);
 
   useEffect(() => {
-    const subscription = api.fetchTxDetail$(txid).subscribe(data => setData(data));
+    const subscription = api.fetchTxDetail$(txid).subscribe(data => setData(data), data => setData(data));
     return () => subscription.unsubscribe();
   }, [txid]);
 
@@ -39,7 +40,7 @@ export default function BlockDetail(props) {
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/txs", label: "交易列表" }, { label: "交易详情" }]} />;
 
-  if (!data || !data.number) {
+  if (!data || (!data.code && !data.number)) {
     return (
       <>
         {breadcrumb}
@@ -48,6 +49,8 @@ export default function BlockDetail(props) {
         </div>
       </>
     );
+  } else if (!!data.code) {
+    return <NoData id={txid} />;
   }
 
   return (

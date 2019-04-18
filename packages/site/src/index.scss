@@ -16,6 +16,8 @@ $primary: #f6c94a;
 $primary-hover: #e6b738;
 $link: #46aee2;
 $link-hover: #359acc;
+$nagtive: #959595;
+$nagtiveLight: #dedede;
 
 // 导航栏断点：
 $navbar-breakpoint: $tablet + (2 * $gap);
@@ -46,8 +48,16 @@ html {
   background-color: #f5f5f5;
 }
 
+.nagtive{
+  color: $nagtive;
+}
+
+.nagtive-light{
+  color: $nagtiveLight;
+}
+
 .forbidden {
-  color: #dbdbdb !important;
+  color: $nagtive !important;
 }
 
 .grecaptcha-badge {
@@ -131,7 +141,7 @@ a:focus {
   font-size: 13px;
   tbody > tr {
     padding: 1.35em;
-    background-color: hsl(0, 0%, 96%);
+    background-color: #f4f4f4;
   }
 
   thead th {
@@ -145,6 +155,7 @@ a:focus {
 
 .navbar {
   background-color: #3f3f3f;
+  min-height: 3.75rem;
   .navbar-brand {
     .navbar-item {
       padding: 0.5rem 1.125rem;
@@ -183,19 +194,19 @@ a:focus {
         color: #fff;
         font-size: 14px;
         &::-webkit-input-placeholder {
-          color: #999;
+          color: $nagtive;
         }
         &:-moz-placeholder {
           /* Mozilla Firefox 4 to 18 */
-          color: #999;
+          color: $nagtive;
         }
         &::-moz-placeholder {
           /* Mozilla Firefox 19+ */
-          color: #999;
+          color: $nagtive;
         }
         &:-ms-input-placeholder {
           /* Internet Explorer 10+ */
-          color: #999;
+          color: $nagtive;
         }
       }
     }
@@ -237,6 +248,21 @@ a:focus {
   }
 }
 
+.no-data{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .no-data-item{
+    margin-top: 20px;
+  }
+  .to-home{
+    padding: .5rem 1.5rem;
+    background-color: $primary;
+    color: #333;
+  }
+}
+
 /** align items start **/
 .align-start {
   align-items: flex-start;
@@ -264,7 +290,7 @@ a:focus {
 /**  退选标签 **/
 .table-tag-nagtive {
   margin-left: 5px;
-  color: #959595;
+  color: $nagtiveLight;
   font-size: 12px;
 }
 
@@ -275,7 +301,7 @@ a:focus {
   flex-direction: row;
   justify-content: flex-start;
   font-size: 16px;
-  color: #939393;
+  color: $nagtive;
 }
 
 /** 自定义标签样式 **/
@@ -295,7 +321,7 @@ a:focus {
       margin: 0.5em 1em 0;
       padding: 0 0 0.5em;
       border-width: 0;
-      color: #c1c1c1;
+      color: $nagtive;
       font-weight: bold;
     }
   }
@@ -357,7 +383,7 @@ a:focus {
 
 #chart {
   height: 264px;
-  border-left: 1px solid #dedede;
+  border-left: 1px solid $nagtiveLight;
   padding-left: 20px;
 }
 
@@ -365,7 +391,7 @@ a:focus {
   .btc_block {
     margin: 0;
     padding: 20px;
-    border: 1px solid #dedede;
+    border: 1px solid $nagtiveLight;
     border-top: none;
     border-bottom: none;
     .btc_status {
@@ -375,8 +401,8 @@ a:focus {
       justify-content: center;
       align-items: center;
       margin: 5px 10px;
-      border: 1px solid #dedede;
-      box-shadow: 0 0 10px rgb(222, 222, 222);
+      border: 1px solid $nagtiveLight;
+      box-shadow: 0 0 10px $nagtiveLight;
       .btc_title {
         white-space: nowrap;
         margin-bottom: 10px;
@@ -384,7 +410,7 @@ a:focus {
       }
       .btc_content {
         font-size: 16px;
-        color: #959595;
+        color: $nagtive;
       }
     }
   }
@@ -396,7 +422,7 @@ a:focus {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  box-shadow: 1px 1px 0 #dedede;
+  box-shadow: 1px 1px 0 $nagtiveLight;
 
   .dashboard-cell__title {
     font-size: 14px;
@@ -406,7 +432,7 @@ a:focus {
 
   .dashboard-cell__content {
     font-size: 16px;
-    color: #959595;
+    color: $nagtive;
   }
 }
 
@@ -425,7 +451,7 @@ a:focus {
     word-break: break-all;
     width: 75%;
     font-size: 12px;
-    color: #959595;
+    color: $nagtive;
   }
 }
 
