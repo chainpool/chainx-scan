@@ -62,12 +62,22 @@ class AccountController {
 
   async accountDetail(ctx) {
     const { accountId } = ctx.params;
+    if (!/^(0x)?[\da-f]{64}$/.test(accountId.toLowerCase())) {
+      ctx.status = 400;
+      return;
+    }
 
     const nonce = await ctx.db.AccountNonce.findOne({
       where: { accountid: accountId },
       attributes: ["nonce"],
       raw: true
     });
+    if (typeof nonce === "undefined" || nonce === null) {
+      ctx.status = 404;
+      ctx.body = { error: "not found" };
+      return;
+    }
+
     const addresses = await ctx.db.CrossChainAddressMap.findAll({
       where: { accountid: accountId, chain: "Bitcoin" },
       attributes: ["address"],
