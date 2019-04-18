@@ -149,10 +149,10 @@ class TradeController {
   }
 
   async filledOrdersByIds(ctx) {
-    const { id } = ctx.query;
-    if (!id) {
+    const { id, pair_id: pairId } = ctx.query;
+    if (!id || !pairId) {
       ctx.status = 400;
-      ctx.body = { error: "no id query param" };
+      ctx.body = { error: "no id or pair_id query param" };
       return;
     }
 
@@ -170,7 +170,8 @@ class TradeController {
       where: {
         id: {
           $in: ids
-        }
+        },
+        pairid: pairId
       },
       raw: true
     });

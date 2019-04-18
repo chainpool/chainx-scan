@@ -8,7 +8,8 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true
       },
       pairid: {
-        type: DataTypes.BIGINT
+        type: DataTypes.BIGINT,
+        primaryKey: true
       },
       price: {
         type: DataTypes.BIGINT
