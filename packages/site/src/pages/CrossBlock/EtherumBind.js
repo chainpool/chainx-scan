@@ -20,33 +20,35 @@ export function RenderEtherumBind({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = tableData;
 
   return (
-    <Table
-      loading={loading}
-      onChange={handleChange}
-      pagination={pagination}
-      dataSource={dataSource.map(data => {
-        return {
-          key: data.address,
-          address: <ExternalLink type="ethAddress" value={data.address} />,
-          accountid: <AddressLink value={data.accountid} />,
-          channel: <ValidatorLink value={data.channel} />
-        };
-      })}
-      columns={[
-        {
-          title: "Etherum地址",
-          dataIndex: "address"
-        },
-        {
-          title: "ChainX发送地址",
-          dataIndex: "accountid"
-        },
-        {
-          title: "渠道的节点名称",
-          dataIndex: "channel"
-        }
-      ]}
-      {...tableProps}
-    />
+    <div className="box">
+      <Table
+        loading={loading}
+        onChange={handleChange}
+        pagination={pagination}
+        dataSource={dataSource.map(data => {
+          return {
+            key: data.address,
+            address: <ExternalLink type="ethAddress" value={data.address} />,
+            accountid: <AddressLink value={data.accountid} />,
+            channel: <ValidatorLink value={data.channel} />
+          };
+        })}
+        columns={[
+          {
+            title: "Etherum地址",
+            dataIndex: "address"
+          },
+          {
+            title: "ChainX发送地址",
+            dataIndex: "accountid"
+          },
+          {
+            title: "渠道的节点名称",
+            dataIndex: "channel"
+          }
+        ]}
+        {...tableProps}
+      />
+    </div>
   );
 }

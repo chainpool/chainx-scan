@@ -19,51 +19,53 @@ export default function DepositsMine() {
 
 export function RenderDepositsMine({ dataSource, loading }) {
   return (
-    <Table
-      loading={loading}
-      pagination={false}
-      dataSource={dataSource.map(data => {
-        return {
-          key: data.address,
-          id: data.id,
-          circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
-          power: <Amount value={data.power} hideSymbol />,
-          vote: <Amount value={(data.power * data.circulation) / Math.pow(10, 8)} hideSymbol />,
-          jackpot: <Amount value={data.jackpot} hideSymbol />,
-          lastTotalDepositWeightUpdate: data.lastTotalDepositWeightUpdate,
-          lastTotalDepositWeight: <Amount value={data.lastTotalDepositWeight} hideSymbol />
-        };
-      })}
-      columns={[
-        {
-          title: "资产种类",
-          dataIndex: "id"
-        },
-        {
-          title: "全链总余额",
-          dataIndex: "circulation"
-        },
-        {
-          title: "挖矿算力(PCX)",
-          dataIndex: "power"
-        },
-        {
-          title: "折合投票数(PCX)",
-          dataIndex: "vote"
-        },
-        {
-          title: "奖池金额(PCX)",
-          dataIndex: "jackpot"
-        },
-        {
-          title: "奖池更新高度",
-          dataIndex: "lastTotalDepositWeightUpdate"
-        },
-        {
-          title: "历史总票龄",
-          dataIndex: "lastTotalDepositWeight"
-        }
-      ]}
-    />
+    <div className="box">
+      <Table
+        loading={loading}
+        pagination={false}
+        dataSource={dataSource.map(data => {
+          return {
+            key: data.address,
+            id: data.id,
+            circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
+            power: <Amount value={data.power} hideSymbol />,
+            vote: <Amount value={(data.power * data.circulation) / Math.pow(10, 8)} hideSymbol />,
+            jackpot: <Amount value={data.jackpot} hideSymbol />,
+            lastTotalDepositWeightUpdate: data.lastTotalDepositWeightUpdate,
+            lastTotalDepositWeight: <Amount value={data.lastTotalDepositWeight} hideSymbol />
+          };
+        })}
+        columns={[
+          {
+            title: "资产种类",
+            dataIndex: "id"
+          },
+          {
+            title: "全链总余额",
+            dataIndex: "circulation"
+          },
+          {
+            title: "挖矿算力(PCX)",
+            dataIndex: "power"
+          },
+          {
+            title: "折合投票数(PCX)",
+            dataIndex: "vote"
+          },
+          {
+            title: "奖池金额(PCX)",
+            dataIndex: "jackpot"
+          },
+          {
+            title: "奖池更新高度",
+            dataIndex: "lastTotalDepositWeightUpdate"
+          },
+          {
+            title: "历史总票龄",
+            dataIndex: "lastTotalDepositWeight"
+          }
+        ]}
+      />
+    </div>
   );
 }

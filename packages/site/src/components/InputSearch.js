@@ -1,4 +1,5 @@
 import React, { useState, useCallback } from "react";
+import Icon from "antd/lib/icon";
 
 import api from "../services/api";
 
@@ -21,18 +22,21 @@ export default function InputSearch(props) {
   );
 
   return (
-    <input
-      value={str}
-      onChange={e => setStr(e.target.value)}
-      onKeyPress={event => {
-        if (event.key === "Enter") {
-          search(str);
-        }
-      }}
-      style={{ minWidth: 350 }}
-      className="input is-rounded"
-      type="text"
-      placeholder="搜索区块高度/区块哈希/交易哈希/账户地址"
-    />
+    <span className="navbar-search">
+      <input
+        value={str}
+        onChange={e => setStr(e.target.value)}
+        onKeyPress={event => {
+          if (event.key === "Enter") {
+            search(str);
+          }
+        }}
+        style={{ minWidth: 350 }}
+        className="input is-rounded"
+        type="text"
+        placeholder="搜索区块高度/区块哈希/交易哈希/账户地址"
+      />
+      <Icon type="search" className="search" />
+    </span>
   );
 }
