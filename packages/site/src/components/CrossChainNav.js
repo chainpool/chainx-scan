@@ -25,6 +25,9 @@ export default function BlockChain(props) {
         <li className={classnames({ "is-active": activeKey === "crosshost" })}>
           <NavLink to="/crossblocks/bitcoin/crosshost">托管地址列表</NavLink>
         </li>
+        <li className={classnames({ "is-active": activeKey === "claim" })}>
+          <NavLink to="/crossblocks/bitcoin/claim">充值未认领列表</NavLink>
+        </li>
       </ul>
     </div>
   );

@@ -147,6 +147,13 @@ class Api {
   };
 
   /**
+   * 获取托管地址列表
+   */
+  fetchDepositClaim$ = () => {
+    return this.fetch$(`/btc/pending_deposits`);
+  };
+
+  /**
    * 获取账户跨链资产列表
    */
   fetchAccountBalance$ = accountId => {

@@ -12,6 +12,7 @@ import CrossBind from "./CrossBind";
 import CrossHost from "./CrossHost";
 import CrossDeposits from "./CrossDeposits";
 import CrossWithdrawals from "./CrossWithdrawals";
+import CrossClaim from "./CrossClaim";
 import EtherumBind from "./EtherumBind";
 import DepositsMine from "./DepositsMine";
 
@@ -67,6 +68,7 @@ export default function CrossBlock(props) {
                     {list === "crosshost" && <CrossHost {...props} />}
                     {list === "deposits" && <CrossDeposits {...props} />}
                     {list === "withdrawals" && <CrossWithdrawals {...props} />}
+                    {list === "claim" && <CrossClaim {...props} />}
                   </div>
                 )}
               </>
