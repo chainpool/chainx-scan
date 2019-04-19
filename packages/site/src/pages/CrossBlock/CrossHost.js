@@ -22,7 +22,7 @@ export default function CrossHost() {
           return {
             key: index,
             id: data.id,
-            trustee: <ValidatorLink value={data.trustee} name={data.name} />,
+            trustee: <ValidatorLink value={data.trustee} />,
             hotAddress: <ExternalLink value={data.hotAddress} type="btcAddress" />,
             coldAddress: <ExternalLink value={data.coldAddress} type="btcAddress" />
           };
