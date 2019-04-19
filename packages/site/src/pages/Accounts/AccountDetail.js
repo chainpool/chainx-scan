@@ -33,7 +33,7 @@ export default function Account(props) {
   }, [accountId]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/accounts", label: "账户列表" }, { label: "账户详情" }]} />;
-  if (!detail || (!detail.code && !detail.accountId)) {
+  if (!detail.code && !detail.accountId) {
     return (
       <>
         {breadcrumb}
