@@ -85,3 +85,14 @@ const callNameMap = {
 export function getCallName(call) {
   return callNameMap[call] || call;
 }
+
+const txType = {
+  Deposit: "充值",
+  Withdraw: "提现",
+  Bind: "绑定",
+  BindAndDeposit: "绑定并充值"
+};
+
+export function getTxType(type) {
+  return txType[type] || type;
+}
