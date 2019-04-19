@@ -46,6 +46,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       height: {
         type: DataTypes.BIGINT
+      },
+      fill_aver: {
+        type: DataTypes.BIGINT
       }
     },
     {
