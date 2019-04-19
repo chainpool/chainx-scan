@@ -1,5 +1,5 @@
 const { extractPage } = require("../utils");
-const { toBtcAddress, pubKeyToAddress, hashToBtcAdress } = require("./address");
+const { toBtcAddress, pubKeyToAddress, hashToBtcAdress, normalizeTxHash } = require("./address");
 
 class BtcController {
   async status(ctx) {
@@ -100,7 +100,7 @@ class BtcController {
       const address = hashToBtcAdress(addrItem.hash, addrItem.kind, addrItem.network);
 
       const txs = JSON.parse(deposit.txid_balance).map(tx => {
-        return { ...tx, address, height: deposit.height };
+        return { ...tx, address, height: deposit.height, txid: normalizeTxHash(tx.txid) };
       });
 
       return result.concat(txs);

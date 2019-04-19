@@ -2,6 +2,20 @@ const Address = require("btc-address");
 const binConv = require("binstring");
 const bitcoin = require("bitcoinjs-lib");
 
+function bytesToRIHex(uint8arr) {
+  if (!uint8arr) {
+    return "";
+  }
+  var hexStr = "";
+  for (var i = 0; i < uint8arr.length; i++) {
+    var hex = (uint8arr[i] & 0xff).toString(16);
+    hex = hex.length === 1 ? "0" + hex : hex;
+    hexStr = hex + hexStr;
+  }
+
+  return hexStr.toLowerCase();
+}
+
 function hexToBytes(str) {
   if (!str) {
     return [];
@@ -96,8 +110,14 @@ function hashToBtcAdress(hash, kind, network) {
   return address.toString();
 }
 
+function normalizeTxHash(hash) {
+  return bytesToRIHex(hexToBytes(hash));
+}
+
 module.exports = {
   toBtcAddress,
   pubKeyToAddress,
-  hashToBtcAdress
+  hashToBtcAdress,
+  bytesToRIHex,
+  normalizeTxHash
 };
