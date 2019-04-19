@@ -63,7 +63,41 @@ function pubKeyToAddress(pubKey) {
   return address;
 }
 
+function hashToBtcAdress(hash, kind, network) {
+  let h = hexToBytes(hash);
+  let n = "testnet";
+  let t = "pubkeyhash";
+
+  switch (kind) {
+    case "P2SH":
+      t = "scripthash";
+      break;
+    default:
+      t = "pubkeyhash";
+      break;
+  }
+  switch (network) {
+    case "Mainnet":
+      n = "mainnet";
+      break;
+    default:
+      n = "testnet";
+      break;
+  }
+
+  var address = new Address(
+    binConv(h, {
+      in: "hex",
+      out: "bytes"
+    }),
+    t,
+    n
+  );
+  return address.toString();
+}
+
 module.exports = {
   toBtcAddress,
-  pubKeyToAddress
+  pubKeyToAddress,
+  hashToBtcAdress
 };

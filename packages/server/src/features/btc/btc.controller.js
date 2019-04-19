@@ -1,5 +1,5 @@
 const { extractPage } = require("../utils");
-const { toBtcAddress, pubKeyToAddress } = require("./address");
+const { toBtcAddress, pubKeyToAddress, hashToBtcAdress } = require("./address");
 
 class BtcController {
   async status(ctx) {
@@ -87,6 +87,26 @@ class BtcController {
       pageSize,
       total: count
     };
+  }
+
+  async pendingDeposits(ctx) {
+    const deposits = await ctx.db.PendingDeposit.findAll({
+      order: [["height", "ASC"]],
+      raw: true
+    });
+
+    const result = deposits.reduce((result, deposit) => {
+      const addrItem = JSON.parse(deposit.address);
+      const address = hashToBtcAdress(addrItem.hash, addrItem.kind, addrItem.network);
+
+      const txs = JSON.parse(deposit.txid_balance).map(tx => {
+        return { ...tx, address, height: deposit.height };
+      });
+
+      return result.concat(txs);
+    }, []);
+
+    ctx.body = result;
   }
 
   async deposits(ctx) {
