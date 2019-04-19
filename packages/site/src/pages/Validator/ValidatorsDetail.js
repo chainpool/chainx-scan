@@ -10,13 +10,14 @@ import {
   Breadcrumb,
   AntSpinner as Spinner,
   Amount,
-  NumberFormat
+  NumberFormat,
+  NoData
 } from "../../components";
 import NominationsList from "./NominationsList";
 import SettingList from "./SettingList";
 import api from "../../services/api";
 
-export default function BlockDetail(props) {
+export default function ValidatorsDetail(props) {
   const {
     match: {
       params: { node }
@@ -25,16 +26,20 @@ export default function BlockDetail(props) {
 
   const [data, setData] = useState({});
   const [activeKey, setActiveKey] = useState("trust");
-  const nodeId = /^\d*$/.test(node) ? node : hexAddPrefix(node);
+  let nodeId = void 0;
+  try {
+    nodeId = hexAddPrefix(node);
+  } catch {}
 
   useEffect(() => {
-    const subscription = api.fetchValidatorDetail$(nodeId).subscribe(data => setData(data));
-    return () => subscription.unsubscribe();
+    if (!!nodeId) {
+      const subscription = api.fetchValidatorDetail$(nodeId).subscribe(data => setData(data), data => setData(data));
+      return () => subscription.unsubscribe();
+    }
   }, [nodeId]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
-
-  if (!data || data.name === undefined) {
+  if (!!nodeId && !data.code && data.name === undefined) {
     return (
       <>
         {breadcrumb}
@@ -43,6 +48,10 @@ export default function BlockDetail(props) {
         </div>
       </>
     );
+  } else if (!nodeId) {
+    return <NoData id={node} />;
+  } else if (!!data.code) {
+    return <NoData id={nodeId} />;
   }
 
   return (

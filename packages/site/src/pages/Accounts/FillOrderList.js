@@ -41,7 +41,7 @@ export default function FillOrderList(props) {
             time: <DateShow value={data["block.time"]} />,
             amount: <Amount value={data.amount} symbol={data["pair.currency_pair"][0]} hideSymbol />,
             setPrice: <Amount value={data.set_price} symbol={data["pair.currency_pair"][0]} hideSymbol />,
-            price: <Amount value={data.price} symbol={data["pair.currency_pair"][0]} hideSymbol />,
+            fill_aver: <Amount value={data.fill_aver} symbol={data["pair.currency_pair"][0]} hideSymbol />,
             hasFillAmount: (
               <HasFill fill={data.hasfill_amount} total={data.amount} symbol={data["pair.currency_pair"][0]} />
             ),
@@ -70,10 +70,10 @@ export default function FillOrderList(props) {
           title: "数量",
           dataIndex: "amount"
         },
-        // {
-        //   title: "成交均价",
-        //   dataIndex: "price"
-        // },
+        {
+          title: "成交均价",
+          dataIndex: "fill_aver"
+        },
         {
           title: "成交数量/成交率",
           dataIndex: "hasFillAmount"

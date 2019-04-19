@@ -16,29 +16,42 @@ export default function BlockDetail(props) {
   const [txsData, setTxsData] = useState({});
   const [activeKey, setActiveKey] = useState("txs");
   const [txsLoading, setTxsLoading] = useState(true);
-  const blockId = /^\d*$/.test(match.params.block) ? match.params.block : hexAddPrefix(match.params.block);
+  let blockId = void 0;
+  if (/^\d*$/.test(match.params.block)) {
+    blockId = match.params.block;
+  } else {
+    try {
+      blockId = hexAddPrefix(match.params.block);
+    } catch {}
+  }
   const blockNumber = data.number;
   const hasNext = blocks.length > 0 && data.number && blocks[0].number >= data.number + 1;
   useEffect(() => {
-    const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data), data => setData(data));
-    return () => subscription.unsubscribe();
+    if (!!blockId) {
+      const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data), data => setData(data));
+      return () => subscription.unsubscribe();
+    }
   }, [blockId]);
 
   useEffect(() => {
-    const subscription = api.fetchLatestBlocks$(blockId).subscribe(blocks => setBlock(blocks));
-    return () => subscription.unsubscribe();
+    if (!!blockId) {
+      const subscription = api.fetchLatestBlocks$(blockId).subscribe(blocks => setBlock(blocks));
+      return () => subscription.unsubscribe();
+    }
   }, []);
 
   useEffect(() => {
-    const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
-      setTxsLoading(false);
-      setTxsData({ dataSource: items });
-    });
-    return () => subscription.unsubscribe();
+    if (!!blockNumber) {
+      const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
+        setTxsLoading(false);
+        setTxsData({ dataSource: items });
+      });
+      return () => subscription.unsubscribe();
+    }
   }, [blockNumber]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/blocks", label: "区块列表" }, { label: "区块详情" }]} />;
-  if (!data || (!data.code && !data.number)) {
+  if (!!blockId && !data.code && !data.number) {
     return (
       <>
         {breadcrumb}
@@ -47,6 +60,8 @@ export default function BlockDetail(props) {
         </div>
       </>
     );
+  } else if (!blockId) {
+    return <NoData id={match.params.block} />;
   } else if (!!data.code) {
     return <NoData id={blockId} />;
   }
@@ -59,7 +74,7 @@ export default function BlockDetail(props) {
           <Icon type="double-left" />
         </NavLink>
         区块高度:{!!data && data.number}
-        <NavLink to={hasNext ? `/blocks/${!!data && data.number + 1}` : false}>
+        <NavLink to={hasNext ? `/blocks/${!!data && data.number + 1}` : `/blocks/${!!data && data.number}`}>
           <Icon className={classnames({ forbidden: !hasNext })} type="double-right" />
         </NavLink>
       </div>

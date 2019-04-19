@@ -23,24 +23,31 @@ export default function BlockDetail(props) {
   const [eventLoading, setEventLoading] = useState(true);
 
   const blockNumber = data.number;
-  const txid = hexStripPrefix(match.params.txid);
+  let txid = void 0;
+  try {
+    txid = hexStripPrefix(match.params.txid);
+  } catch {}
 
   useEffect(() => {
-    const subscription = api.fetchTxDetail$(txid).subscribe(data => setData(data), data => setData(data));
-    return () => subscription.unsubscribe();
+    if (!!txid) {
+      const subscription = api.fetchTxDetail$(txid).subscribe(data => setData(data), data => setData(data));
+      return () => subscription.unsubscribe();
+    }
   }, [txid]);
 
   useEffect(() => {
-    const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ items }) => {
-      setEventLoading(false);
-      setEventsData({ dataSource: items });
-    });
-    return () => subscription.unsubscribe();
+    if (!!txid) {
+      const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ items }) => {
+        setEventLoading(false);
+        setEventsData({ dataSource: items });
+      });
+      return () => subscription.unsubscribe();
+    }
   }, [blockNumber]);
 
   const breadcrumb = <Breadcrumb dataSource={[{ to: "/txs", label: "交易列表" }, { label: "交易详情" }]} />;
 
-  if (!data || (!data.code && !data.number)) {
+  if (!!txid && !data.code && !data.number) {
     return (
       <>
         {breadcrumb}
@@ -49,6 +56,8 @@ export default function BlockDetail(props) {
         </div>
       </>
     );
+  } else if (!txid) {
+    return <NoData id={match.params.txid} />;
   } else if (!!data.code) {
     return <NoData id={txid} />;
   }
