@@ -5,6 +5,7 @@ import { BlockLink, NumberFormat, AntSpinner as Spinner, ValidatorLink } from ".
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
+import { FormattedMessage } from "react-intl";
 
 export default function BestBlocks() {
   const [{ blocks }, setState] = useRedux("bestBlocks", { blocks: [] });
@@ -23,14 +24,22 @@ export default function BestBlocks() {
 
   return (
     <section className="panel">
-      <div className="panel-heading">最新区块</div>
+      <div className="panel-heading">
+        <FormattedMessage id="newestBlock" />
+      </div>
       <div className="panel-block">
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>块高</th>
-              <th>验证人</th>
-              <th className="has-text-right">交易数</th>
+              <th>
+                <FormattedMessage id="block" />
+              </th>
+              <th>
+                <FormattedMessage id="validator" />
+              </th>
+              <th className="has-text-right">
+                <FormattedMessage id="transactionCount" />
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -54,7 +63,7 @@ export default function BestBlocks() {
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/blocks">
-          查看全部
+          <FormattedMessage id="showAll" />
           <IconChevronRight />
         </NavLink>
       </div>

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
+import { FormattedMessage } from "react-intl";
+
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { Amount, NumberFormat, AntSpinner as Spinner } from "../../components";
@@ -17,27 +19,31 @@ export default function DashBoard() {
 
   const dataSource = [
     {
-      label: "最新高度",
+      label: <FormattedMessage id="latestBlock" />,
       data: <NumberFormat value={data.best} />
     },
     {
-      label: "确认高度",
+      label: <FormattedMessage id="confirmBlock" />,
       data: <NumberFormat value={data.finalized} />
     },
     {
-      label: "ChainX交易总数",
+      label: (
+        <>
+          Chainx <FormattedMessage id="transactionCount" />
+        </>
+      ),
       data: <NumberFormat value={data.transactions} />
     },
     {
-      label: "账户总数",
+      label: <FormattedMessage id="accountCount" />,
       data: <NumberFormat value={data.account_count} />
     },
     {
-      label: "验证节点选举届数",
+      label: <FormattedMessage id="validatorVoteSession" />,
       data: <NumberFormat value={data.vote_cycle} />
     },
     {
-      label: "验证节点数",
+      label: <FormattedMessage id="validators" />,
       data: (
         <NavLink to={`/validators`} className="nav-link">
           <NumberFormat value={data.validators} />
@@ -45,15 +51,15 @@ export default function DashBoard() {
       )
     },
     {
-      label: "发行总量(PCX)",
+      label: <FormattedMessage id="releaseCount" />,
       data: <Amount value={data.pcx_issuance} hideSymbol />
     },
     {
-      label: "节点抵押总数(PCX)",
+      label: <FormattedMessage id="mortgageCount" />,
       data: <Amount value={data.selfvote_count} hideSymbol />
     },
     {
-      label: "用户投票总数(PCX)",
+      label: <FormattedMessage id="userVoteCount" />,
       data: <Amount value={data.votes} hideSymbol />
     }
   ];
@@ -68,7 +74,7 @@ export default function DashBoard() {
     <section className="panel">
       <div className="panel-heading">
         <img src={PCX} alt="pcx" className="panel-heading-icon" />
-        链状态
+        <FormattedMessage id="chainStatus" />
       </div>
       <div className="panel-block flex-reverse align-start" style={{ padding: 0 }}>
         <Transaction style={{ width: "40%" }} />
