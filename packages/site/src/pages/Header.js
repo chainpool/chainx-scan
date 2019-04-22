@@ -20,27 +20,27 @@ export default withRouter(function Header(props) {
   const navBarStart = (
     <div className="navbar-start">
       <NavLink exact className="navbar-item is-tab" activeClassName="is-active" to="/">
-        <FormattedMessage id="MENU.HOME" />
+        <FormattedMessage id="HOME" />
       </NavLink>
       <NavLink
         className={classnames("navbar-item is-tab", { "is-active": isMatchBlocks })}
         activeClassName="is-active"
         to="/blocks"
       >
-        <FormattedMessage id="MENU.BLOCKS" />
+        <FormattedMessage id="BLOCKS" />
       </NavLink>
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/validators">
-        <FormattedMessage id="MENU.VALIDATORS" />
+        <FormattedMessage id="VALIDATORS" />
       </NavLink>
       <NavLink
         className={classnames("navbar-item is-tab", { "is-active": isMatchCross })}
         activeClassName="is-active"
         to="/crossblocks"
       >
-        <FormattedMessage id="MENU.CROSSBLOCKS" />
+        <FormattedMessage id="CROSSBLOCKS" />
       </NavLink>
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/dapp">
-        <FormattedMessage id="MENU.DEPOSITEAPP" />
+        <FormattedMessage id="DEPOSITEAPP" />
       </NavLink>
     </div>
   );

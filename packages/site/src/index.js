@@ -13,12 +13,12 @@ import en from "react-intl/locale-data/en";
 import zh from "react-intl/locale-data/zh";
 const local = navigator.language;
 const i18n = {
-  "zh-CN": zh_CN,
-  "en-US": en_US
+  zh: zh_CN,
+  en: en_US
 };
 addLocaleData([...en, ...zh]); // 引入多语言环境的数据
 ReactDOM.render(
-  <IntlProvider locale={local} messages={i18n[local]}>
+  <IntlProvider locale={local} messages={i18n[local.split("-")[0]]}>
     <App />
   </IntlProvider>,
   document.getElementById("root")

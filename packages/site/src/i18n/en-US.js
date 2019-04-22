@@ -1,0 +1,10 @@
+export const MENU = {
+  HOME: "HOME",
+  BLOCKS: "BLOCKS",
+  VALIDATORS: "VALIDATORS",
+  CROSSBLOCKS: "CROSSBLOCKS",
+  DEPOSITEAPP: "DEPOSITEAPP"
+};
+export default {
+  ...MENU
+};
