@@ -17,18 +17,21 @@ const initChart = (name, data) => {
   data.pop();
   //处理数据
   const xAxis = data.reduce((pre, cre) => {
-    return pre.concat([dayjs(cre.day * 1000).format("M.D")]);
+    return pre.concat([dayjs(cre.day * 1000).format("YYYY-MM-DD")]);
   }, []);
   const yAxis = data.reduce((pre, cre) => {
     return pre.concat([cre.num]);
   }, []);
+  data = xAxis.map((item, index) => ({
+    value: [item, yAxis[index]]
+  }));
   const max_num = Math.max(...yAxis);
   const min_num = Math.min(...yAxis);
   const max_length = max_num.toString().length;
   const min_length = min_num.toString().length;
   const max = parseInt(max_num / Math.pow(10, max_length - 2) + 1) * Math.pow(10, max_length - 2);
   const min = parseInt(min_num / Math.pow(10, min_length - 2) - 10) * Math.pow(10, min_length - 2);
-  const interval = parseInt(((max - min) / Math.pow(10, max_length - 2)) * Math.pow(10, max_length - 2)) / 4;
+  const interval = parseInt(((max - min) / Math.pow(10, max_length - 2)) * Math.pow(10, max_length - 2)) / 3;
   // 绘制图表
   myChart.setOption({
     title: {
@@ -44,18 +47,24 @@ const initChart = (name, data) => {
       show: true,
       trigger: "axis",
       padding: 10,
-      formatter: "{b0}<br />交易量 {c0}"
+      formatter: value => `${value[0].value[0]}<br />交易量 ${value[0].value[1]}`
     },
     xAxis: {
-      type: "category",
-      data: xAxis,
-      splitNumber: 2,
+      type: "time",
+      // data: xAxis,
       axisTick: {
         show: false,
         alignWithLabel: true
       },
       axisLine: {
         show: false
+      },
+      splitLine: {
+        show: false
+      },
+      interval: new Date(1000 * 3600 * 24 * 3).getTime(),
+      axisLabel: {
+        formatter: value => dayjs(value).format("M.D")
       }
     },
     yAxis: {
@@ -89,7 +98,7 @@ const initChart = (name, data) => {
       }
     },
     series: {
-      data: yAxis,
+      data,
       type: "line",
       smooth: true,
       showSymbol: false,
