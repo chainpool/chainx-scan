@@ -7,14 +7,14 @@ import { AppContextProvider } from "../components/AppContext";
 
 export default function App() {
   return (
-    <AppContextProvider>
-      <Router>
-        <React.Fragment>
-          <Header />
+    <Router>
+      <React.Fragment>
+        <Header />
+        <AppContextProvider>
           <Main />
-          <Footer />
-        </React.Fragment>
-      </Router>
-    </AppContextProvider>
+        </AppContextProvider>
+        <Footer />
+      </React.Fragment>
+    </Router>
   );
 }

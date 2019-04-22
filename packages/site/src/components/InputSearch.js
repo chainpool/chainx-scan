@@ -31,12 +31,12 @@ export default function InputSearch(props) {
             search(str);
           }
         }}
-        style={{ minWidth: 350 }}
+        style={{ width: 350, paddingRight: 50 }}
         className="input is-rounded"
         type="text"
         placeholder="搜索区块高度/区块哈希/交易哈希/账户地址"
       />
-      <Icon type="search" className="search" />
+      <Icon type="search" className="search" onClick={() => search(str)} />
     </span>
   );
 }
