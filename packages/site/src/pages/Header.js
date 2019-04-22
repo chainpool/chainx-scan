@@ -3,6 +3,8 @@ import classnames from "classnames";
 import { NavLink, withRouter } from "react-router-dom";
 import { matchPath } from "react-router";
 
+import { FormattedMessage } from "react-intl";
+
 import ChainxLogo from "../assets/chainxLogo.png";
 import { InputSearch } from "../components";
 
@@ -18,27 +20,27 @@ export default withRouter(function Header(props) {
   const navBarStart = (
     <div className="navbar-start">
       <NavLink exact className="navbar-item is-tab" activeClassName="is-active" to="/">
-        首页
+        <FormattedMessage id="MENU.HOME" />
       </NavLink>
       <NavLink
         className={classnames("navbar-item is-tab", { "is-active": isMatchBlocks })}
         activeClassName="is-active"
         to="/blocks"
       >
-        区块链
+        <FormattedMessage id="MENU.BLOCKS" />
       </NavLink>
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/validators">
-        验证节点
+        <FormattedMessage id="MENU.VALIDATORS" />
       </NavLink>
       <NavLink
         className={classnames("navbar-item is-tab", { "is-active": isMatchCross })}
         activeClassName="is-active"
         to="/crossblocks"
       >
-        跨链轻节点
+        <FormattedMessage id="MENU.CROSSBLOCKS" />
       </NavLink>
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/dapp">
-        币币交易
+        <FormattedMessage id="MENU.DEPOSITEAPP" />
       </NavLink>
     </div>
   );
