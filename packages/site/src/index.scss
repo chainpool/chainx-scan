@@ -138,15 +138,32 @@ a:focus {
 
 .ant-pagination.mini {
   .ant-pagination-item {
-    @extend .btn-primary;
     border-color: transparent;
+    &:not(.ant-pagination-item-active) {
+      border: 1px solid $nagtive-light;
+      margin: 0 2px;
+    }
+    &:hover {
+      background-color: $primary;
+      border-color: transparent;
+      a {
+        color: #fff;
+      }
+    }
     a {
       color: $color-block;
     }
   }
   .ant-pagination-item-active {
+    @extend .btn-primary;
+    margin: 0 2px;
     a {
       color: #fff;
+    }
+  }
+  .ant-pagination-item-link {
+    &:hover {
+      color: $primary-hover;
     }
   }
   .ant-pagination-item-link-icon {
@@ -159,6 +176,7 @@ a:focus {
 
 .ant-table {
   font-size: 13px;
+  border: none;
   .ant-table-thead {
     font-weight: bold;
     font-size: 13px;
@@ -192,6 +210,15 @@ a:focus {
 
   tbody td {
     word-break: break-all;
+  }
+  tr {
+    td,
+    th {
+      text-align: left;
+      &:last-child {
+        text-align: right;
+      }
+    }
   }
 }
 
@@ -369,6 +396,11 @@ a:focus {
 }
 
 /** 自定义标签样式 **/
+.box {
+  .tabs {
+    margin-bottom: 1rem;
+  }
+}
 .tabs {
   li {
     &.is-active {
@@ -378,6 +410,7 @@ a:focus {
         border-bottom-color: $primary;
         color: #3f3f3f;
         border-width: 3px;
+        opacity: 1;
       }
     }
 
@@ -387,6 +420,10 @@ a:focus {
       border-width: 0;
       color: $nagtive;
       font-weight: bold;
+      opacity: 0.6;
+      &:hover {
+        opacity: 1;
+      }
     }
   }
 }
@@ -473,7 +510,8 @@ a:focus {
         font-size: 14px;
       }
       .btc_content {
-        font-size: 16px;
+        font-size: 15px;
+        font-weight: bold;
         color: $nagtive;
       }
     }
@@ -538,8 +576,8 @@ a:focus {
 .page-footer {
   border-top: 3px solid rgba(246, 201, 74, 0.65);
   height: 50px;
-  background: #fafafa;
-  color: rgba(74, 74, 108, 0.65);
+  background: #fff;
+  color: #777;
   font-size: 12px;
   display: flex;
   align-items: center;

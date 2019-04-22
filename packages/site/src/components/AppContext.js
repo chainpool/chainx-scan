@@ -1,5 +1,6 @@
 import React, { useContext, useReducer, useEffect } from "react";
 import api from "../services/api";
+import { AntSpinner as Spinner } from "./index";
 
 const AppContext = React.createContext();
 
@@ -20,18 +21,35 @@ export function AppContextProvider(props) {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
-    const token = api.fetchTokens$().subscribe(result => {
-      dispatch({ type: "setToken", payload: result });
-    });
-    const intentions = api.fetchIntentions$({ pageSize: 200 }).subscribe(result => {
-      dispatch({ type: "setIntentions", payload: result && result.items ? result.items : [] });
-    });
+    const token = api.fetchTokens$().subscribe(
+      result => {
+        dispatch({ type: "setToken", payload: result });
+      },
+      () => {
+        dispatch({ type: "setToken", payload: [] });
+      }
+    );
+    const intentions = api.fetchIntentions$({ pageSize: 200 }).subscribe(
+      result => {
+        dispatch({ type: "setIntentions", payload: result && result.items ? result.items : [] });
+      },
+      () => {
+        dispatch({ type: "setIntentions", payload: [] });
+      }
+    );
     return () => {
       token.unsubcription();
       intentions.unsubcription();
     };
   }, [api]);
-
+  const { tokens = [], intentions = [] } = state;
+  if (!tokens.length || !intentions.length) {
+    return (
+      <div className="container" style={{ padding: "25%" }}>
+        <Spinner />
+      </div>
+    );
+  }
   return <AppContext.Provider value={[state, dispatch]}>{props.children}</AppContext.Provider>;
 }
 
