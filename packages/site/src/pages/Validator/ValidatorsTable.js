@@ -10,7 +10,7 @@ const indexExtend = (index, trust) => (
 );
 
 export default function ValidatorsTable(props) {
-  const { dataSource = [], pagination = {}, handleChange, loading } = props;
+  const { dataSource = [], pagination = {}, handleChange, loading, tabFilter } = props;
   return (
     <Table
       loading={loading}
@@ -23,7 +23,7 @@ export default function ValidatorsTable(props) {
           return {
             key: `${data.accountid}`,
             index: indexExtend(_index, data.isTrustee),
-            name: <ValidatorLink name={data.name} value={data.accountid} isActive={data.isActive} />,
+            name: <ValidatorLink name={data.name} value={data.accountid} isActive={data.isActive} filter={tabFilter} />,
             url: <ExternalLink value={data.url} />,
             address: (
               <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />

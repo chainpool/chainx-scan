@@ -29,7 +29,7 @@ export default function Main() {
             )}
           />
           <Route path="/accounts" component={Accounts} />
-          <Route path="/validators" component={Validator} />
+          <Route path="/validators/:filter?/:node?" component={Validator} />
           <Route path="/crossblocks" component={CrossBlock} />
           <Route path="/dapp" component={Dapp} />
           <Redirect to="/" />

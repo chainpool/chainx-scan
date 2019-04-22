@@ -27,6 +27,7 @@ export default function Validators(props) {
 
   return (
     <ValidatorsTable
+      tabFilter={tabFilter}
       loading={tableData.loading}
       dataSource={tableData.dataSource}
       pagination={tableData.pagination}
