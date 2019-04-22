@@ -76,7 +76,10 @@ class TradeController {
 
     const { page, pageSize } = extractPage(ctx);
     const where = { accountid: accountId };
-    const { status } = ctx.query;
+    const { status, pairid } = ctx.query;
+    if (typeof pairid !== "undefined" && pairid !== null) {
+      Object.assign(where, { pairid });
+    }
 
     /**
      * 0: 零成交或部分成交
