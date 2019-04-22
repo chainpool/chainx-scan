@@ -20,7 +20,7 @@ import api from "../../services/api";
 export default function ValidatorsDetail(props) {
   const {
     match: {
-      params: { node }
+      params: { node, filter }
     }
   } = props;
 
@@ -38,11 +38,31 @@ export default function ValidatorsDetail(props) {
     }
   }, [nodeId]);
 
-  const breadcrumb = <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
+  const breadcrumb = () => {
+    if (!!nodeId && !!data) {
+      if (filter === "unsettled") {
+        return <Breadcrumb dataSource={[{ to: "/validators/unsettled", label: "候选节点" }, { label: "节点详情" }]} />;
+      } else if (filter === "all") {
+        return <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
+      } else if (filter === "detail") {
+        if (!data.isValidator) {
+          return (
+            <Breadcrumb dataSource={[{ to: "/validators/unsettled", label: "候选节点" }, { label: "节点详情" }]} />
+          );
+        } else {
+          return <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
+        }
+      } else {
+        return <Breadcrumb dataSource={[{ to: `/validators/${filter}`, label: "信托节点" }, { label: "节点详情" }]} />;
+      }
+    } else {
+      return <></>;
+    }
+  };
   if (!!nodeId && !data.code && data.name === undefined) {
     return (
       <>
-        {breadcrumb}
+        {breadcrumb()}
         <div style={{ paddingTop: "30%" }}>
           <Spinner />
         </div>
@@ -56,16 +76,26 @@ export default function ValidatorsDetail(props) {
 
   return (
     <div>
-      {breadcrumb}
+      {breadcrumb()}
       <PanelList
         dataSource={[
           {
             label: "排名",
-            data: <ValidatorIndex value={data.name} />
+            data: (
+              <>
+                <ValidatorIndex value={data.name} />
+                {!!data.isTrustee && data.isTrustee.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
+              </>
+            )
           },
           {
             label: "名称",
-            data: data.name
+            data: (
+              <>
+                {data.name}
+                {!data.isActive && <span className="table-tag-nagtive">(已退选)</span>}
+              </>
+            )
           },
           {
             label: "网站",
