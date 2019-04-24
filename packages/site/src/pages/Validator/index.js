@@ -22,7 +22,7 @@ export default function Validator(props) {
             <div className="tabs">
               <ul>
                 {tabs.map((tab, index) => (
-                  <li className={classnames({ "is-active": tab.filter === filter }, "tab-item")} key={index}>
+                  <li className={classnames({ "is-active": tab.filter === filter }, "tab-item")} key={tab.filter}>
                     <NavLink to={`/validators/${tab.filter}`}>{tab.text}</NavLink>
                   </li>
                 ))}

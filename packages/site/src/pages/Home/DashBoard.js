@@ -80,8 +80,8 @@ export default function DashBoard() {
         <Transaction style={{ width: "40%" }} />
         <div className="columns is-multiline is-gapless" style={{ width: "60%" }}>
           {dataSource && data && data.best
-            ? dataSource.map(item => (
-                <div key={item.label} className="column is-4 dashboard-cell">
+            ? dataSource.map((item, index) => (
+                <div key={index} className="column is-4 dashboard-cell">
                   <div className="dashboard-cell__title">{item.label}</div>
                   <div className="dashboard-cell__content">{item.data}</div>
                 </div>

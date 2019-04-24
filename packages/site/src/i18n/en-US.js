@@ -1,38 +1,53 @@
 export const MENU = {
-  HOME: "HOME",
-  BLOCKS: "BLOCKS",
-  VALIDATORS: "VALIDATORS",
-  CROSSBLOCKS: "CROSSBLOCKS",
-  DEPOSITEAPP: "DEPOSITEAPP"
+  home: "Home",
+  blocks: "Chain",
+  validators: "Trustee Node",
+  crossBlocks: "Cross-chain Light Client",
+  DAPP: "DEX"
 };
 export const DASHBOARD = {
-  chainStatus: "Chain Status",
+  chainStatus: "Chain Statistics",
   latestBlock: "Latest Block",
-  confirmBlock: "Confirm Block",
-  TransactionCount: "Transaction Count",
-  accountCount: "Account Count",
-  validatorVoteSession: "Validator Vote Session",
-  validators: "Validators",
-  releaseCount: "Release Count(PCX)",
-  mortgageCount: "Mortgage Count(PCX)",
-  userVoteCount: "User Vote Count(PCX)"
+  confirmBlock: "Finalized Block",
+  transactionCount: "Total Extrinsics",
+  accountCount: "Total Accounts",
+  validatorVoteSession: "Validator Elections",
+  validators: "Total Validators",
+  releaseCount: "Total Issuance(PCX)",
+  mortgageCount: "Total Intention-Bonded(PCX)",
+  userVoteCount: "Total Bonded(PCX)"
 };
 export const NEWESTBLOCK = {
-  newestBlock: "Newest Block",
+  newestBlock: "Latest Block",
   block: "Block",
   validator: "Validator",
-  transactionCount: "Transaction Count",
-  showAll: "Show All"
+  showAll: "See All"
 };
 export const NEWESTTRANSACTION = {
-  newestTransaction: "Newest Transaction",
-  transactionHash: "Transaction Hash",
+  newestTransaction: "Latest Extrinsic",
+  transactionHash: "Extrinsic Hash",
   sender: "Sender",
-  operation: "Operation"
+  operation: "Action"
+};
+export const BITCOIN = {
+  trusteeVoteSession: "Trustee Elections",
+  multiSigTrusteeBalance: "MultiSig Balance",
+  hotAddress: "Hot Address",
+  coldAddress: "Cold Address",
+  DepositeTransactionCount: "Total Deposit Extrinsics",
+  withdrawalTransactionCount: "Total Withdrawal Extrinsics",
+  crossBindAddressCount: "Binded Addresses",
+  blockHash: "Block Hash",
+  blockTime: "Block Time",
+  crossTransaction: " Total Cross-chain Extrinsics",
+  trunkTransactionHash: " Relay Extrinsic Hash",
+  trunkTransactioner: " Relay Extrinsic Hash",
+  trunkTransactionTime: " Relay Extrinsic Hash"
 };
 export default {
   ...MENU,
   ...DASHBOARD,
   ...NEWESTBLOCK,
-  ...NEWESTTRANSACTION
+  ...NEWESTTRANSACTION,
+  ...BITCOIN
 };

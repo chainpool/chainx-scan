@@ -15,6 +15,7 @@ import {
 } from "../../components";
 import Bitcoin from "../../assets/tokens/btc.png";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
+import { FormattedMessage } from "react-intl";
 
 export default function BtcStatus() {
   const [{ data }, setState] = useRedux("btcStatus", { data: [] });
@@ -50,11 +51,15 @@ export default function BtcStatus() {
       </div>
       <div className="columns btc_block">
         <div className="column btc_status">
-          <div className="btc_title">信托节点选举届数</div>
+          <div className="btc_title">
+            <FormattedMessage id="trusteeVoteSession" />
+          </div>
           <div className="btc_content">{status.trustee_session}</div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">多签托管余额 (热地址)</div>
+          <div className="btc_title">
+            <FormattedMessage id="multiSigTrusteeBalance" /> (<FormattedMessage id="hotAddress" />)
+          </div>
           <div className="btc_content">
             <ExternalLink
               value={status.hot_address}
@@ -64,7 +69,9 @@ export default function BtcStatus() {
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">多签托管余额 (冷地址)</div>
+          <div className="btc_title">
+            <FormattedMessage id="multiSigTrusteeBalance" /> (<FormattedMessage id="coldAddress" />)
+          </div>
           <div className="btc_content">
             <ExternalLink
               value={status.cold_address}
@@ -74,19 +81,25 @@ export default function BtcStatus() {
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">充值交易总数</div>
+          <div className="btc_title">
+            <FormattedMessage id="DepositeTransactionCount" />
+          </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/deposits">{status.deposit_count}</NavLink>
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">提现交易总数</div>
+          <div className="btc_title">
+            <FormattedMessage id="withdrawalTransactionCount" />
+          </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/withdrawals">{status.withdraw_count}</NavLink>
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">跨链绑定地址数</div>
+          <div className="btc_title">
+            <FormattedMessage id="crossBindAddressCount" />
+          </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/crossbind">{status.bind_count}</NavLink>
           </div>
@@ -96,14 +109,34 @@ export default function BtcStatus() {
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>Bitcoin块高</th>
-              <th>Bitcoin区块哈希</th>
-              <th>Bitcoin出块时间</th>
+              <th>
+                Bitcoin
+                <FormattedMessage id="block" />
+              </th>
+              <th>
+                Bitcoin
+                <FormattedMessage id="blockHash" />
+              </th>
+              <th>
+                Bitcoin
+                <FormattedMessage id="blockTime" />
+              </th>
               <th>nonce</th>
-              <th>跨链交易数</th>
-              <th>ChainX中继交易哈希</th>
-              <th>ChainX中继人</th>
-              <th>ChainX中继时间</th>
+              <th>
+                <FormattedMessage id="crossTransaction" />
+              </th>
+              <th>
+                ChainX
+                <FormattedMessage id="trunkTransactionHash" />
+              </th>
+              <th>
+                ChainX
+                <FormattedMessage id="trunkTransactioner" />
+              </th>
+              <th>
+                ChainX
+                <FormattedMessage id="trunkTransactionTime" />
+              </th>
             </tr>
           </thead>
           <tbody>

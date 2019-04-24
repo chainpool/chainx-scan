@@ -1,9 +1,9 @@
 export const MENU = {
-  HOME: "首页",
-  BLOCKS: "区块链",
-  VALIDATORS: "验证节点",
-  CROSSBLOCKS: "跨链轻节点",
-  DEPOSITEAPP: "币币交易"
+  home: "首页",
+  blocks: "区块链",
+  validators: "验证节点",
+  crossBlocks: "跨链轻节点",
+  DAPP: "币币交易"
 };
 export const DASHBOARD = {
   chainStatus: "链状态",
@@ -41,11 +41,20 @@ export const BITCOIN = {
   blockHash: "区块哈希",
   blockTime: "出块时间",
   crossTransaction: "跨链交易数",
-  trunkTransactionHash: "中继交易哈希"
+  trunkTransactionHash: "中继交易哈希",
+  trunkTransactioner: "中继人",
+  trunkTransactionTime: "中继时间"
+};
+export const BLOCKCHAIN = {
+  blockList: "区块列表",
+  extrinsicsList: "交易列表",
+  eventList: "事件列表",
+  accountList: "账户列表"
 };
 export default {
   ...MENU,
   ...DASHBOARD,
   ...NEWESTBLOCK,
-  ...NEWESTTRANSACTION
+  ...NEWESTTRANSACTION,
+  ...BITCOIN
 };
