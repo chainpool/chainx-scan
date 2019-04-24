@@ -23,7 +23,7 @@ class KlineController {
     volume
     from kline as k
     where type=${type} AND pairid=${pairid} AND time <= ${endDate} AND time >= ${startDate}
-    ORDER BY time DESC;`,
+    ORDER BY time ASC;`,
       {
         type: ctx.db.sequelize.QueryTypes.SELECT
       }

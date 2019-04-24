@@ -89,14 +89,14 @@ class TradeController {
      * 没有指定status，则返回所有
      */
     if (status === "0") {
-      Object.assign(where, { $or: [{ status: "ZeroExecuted" }, { status: "ParitialExecuted" }] });
+      Object.assign(where, { $or: [{ status: "ZeroFill" }, { status: "ParitialFill" }] });
     } else if (status === "1") {
-      Object.assign(where, { $or: [{ status: "AllExecuted" }, { status: "ParitialExecuted" }] });
+      Object.assign(where, { $or: [{ status: "Filled" }, { status: "ParitialFill" }] });
     } else if (status === "2") {
-      Object.assign(where, { status: "AllExecuted" });
+      Object.assign(where, { status: "Filled" });
     } else if (status === "3") {
       Object.assign(where, {
-        $or: [{ status: "AllExecuted" }, { status: "Canceled" }, { status: "ParitialExecutedAndCanceled" }]
+        $or: [{ status: "Filled" }, { status: "Canceled" }, { status: "ParitialFillAndCanceled" }]
       });
     }
     const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
@@ -182,7 +182,7 @@ class TradeController {
     const { page, pageSize } = extractPage(ctx);
 
     const { rows: items, count: total } = await ctx.db.Order.findAndCountAll({
-      where: { pairid: pairId, $or: [{ status: "ZeroExecuted" }, { status: "ParitialExecuted" }] },
+      where: { pairid: pairId, $or: [{ status: "ZeroFill" }, { status: "ParitialFill" }] },
       include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       attributes: { exclude: ["pairid"] },
       order: [["create_time", "DESC"]],
