@@ -1,10 +1,10 @@
 import React, { memo } from "react";
 
 const Status = {
-  ZeroExecuted: "未成交",
-  ParitialExecuted: "部分成交",
-  AllExecuted: "全部成交",
-  ParitialExecutedAndCanceled: "部分成交已取消",
+  ZeroFill: "未成交",
+  ParitialFill: "部分成交",
+  Filled: "全部成交",
+  ParitialFillAndCanceled: "部分成交已取消",
   Canceled: "已取消"
 };
 

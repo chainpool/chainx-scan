@@ -482,7 +482,7 @@ a:focus {
   }
 }
 
-#chart {
+.echarts-for-react  {
   height: 264px;
   border-left: 1px solid $nagtive-light;
   padding-left: 20px;
@@ -583,11 +583,11 @@ a:focus {
   align-items: center;
 
   a {
-    color: rgba(74, 74, 108, 0.65);
+    color: #777;
   }
 
   a:hover {
-    color: rgba(74, 74, 108, 0.65);
+    color: #666;
   }
 
   .container {
