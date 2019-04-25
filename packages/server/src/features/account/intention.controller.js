@@ -66,6 +66,8 @@ class AccountController {
       attributes: { exclude: ["accountid"] },
       where: { accountid: accountId },
       order: [["height", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize,
       raw: true
     });
 
