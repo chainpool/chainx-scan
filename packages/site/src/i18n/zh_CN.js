@@ -54,6 +54,7 @@ export const BLOCKCHAIN = {
   HEIGHT: "区块高度",
   EVENTNUMBER: "事件序号",
   EXTRINSICSNUMBER: "交易序号",
+  EVENTPARAMETERS: "事件参数",
   PHRASE: "阶段",
   CATEGORY: "类别",
   FREEBALANCE: "可用余额",
@@ -75,11 +76,20 @@ export const BLOCKCHAIN = {
   CREATEAT: "创建时间",
   LASTUPDATE: "最后更新时间"
 };
+export const FOOTER = {
+  WALLET: "钱包"
+};
+export const VALIDATOR = {
+  TRUSTEENODE: "Trustee Node",
+  STANDBYNODE: "Standby Node"
+};
 export default {
   ...MENU,
   ...DASHBOARD,
   ...NEWESTBLOCK,
   ...NEWESTTRANSACTION,
   ...BITCOIN,
-  ...BLOCKCHAIN
+  ...BLOCKCHAIN,
+  ...FOOTER,
+  ...VALIDATOR
 };

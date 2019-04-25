@@ -53,6 +53,7 @@ export const BLOCKCHAIN = {
   HEIGHT: "Block Height",
   EVENTNUMBER: "Event Number",
   EXTRINSICSNUMBER: "Extrinsic Number",
+  EVENTPARAMETERS: "Event Parameters",
   PHRASE: "Phrase",
   CATEGORY: "Category",
   TOTALBALANCE: "TOTAL Balance",
@@ -74,10 +75,14 @@ export const BLOCKCHAIN = {
   CREATEAT: "AT",
   LASTUPDATE: "Last Update"
 };
+export const FOOTER = {
+  WALLET: "Wallet"
+};
 export default {
   ...MENU,
   ...DASHBOARD,
   ...NEWESTBLOCK,
   ...NEWESTTRANSACTION,
-  ...BITCOIN
+  ...BITCOIN,
+  ...FOOTER
 };
