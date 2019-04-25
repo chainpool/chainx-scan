@@ -39,6 +39,21 @@ class AccountController {
     });
   }
 
+  async intentionMissedBlocks(ctx) {
+    const maxHeight = await ctx.db.Block.max("number");
+    const latestPeriodHeight = maxHeight - (maxHeight % 150);
+    let startHeight = latestPeriodHeight - 150 * 9;
+    startHeight = startHeight > 0 ? startHeight : 0;
+
+    const rows = await ctx.db.MissedBlocks.findAll({
+      where: { height: { $gte: startHeight } },
+      order: [["height", "DESC"]],
+      raw: true
+    });
+
+    ctx.body = rows;
+  }
+
   async missedBlocks(ctx) {
     const { page, pageSize } = extractPage(ctx);
     const { accountId } = ctx.params;
