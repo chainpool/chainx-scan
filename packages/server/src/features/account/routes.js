@@ -15,5 +15,6 @@ router.get("/account/:accountId/detail", accountController.accountDetail);
 router.get("/account/:accountId/txs", accountController.txs);
 router.get("/account/:accountId/binds", accountController.bindAddresses);
 router.get("/account/:accountId/fill_orders", accountController.fillOrders);
+router.get("/account/:accountId/missed_blocks", intentionController.missedBlocks);
 
 module.exports = router;

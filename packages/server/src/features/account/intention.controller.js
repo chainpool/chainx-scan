@@ -1,3 +1,5 @@
+const { extractPage } = require("../utils");
+
 class AccountController {
   async intention(ctx) {
     const { accountId } = ctx.params;
@@ -35,6 +37,28 @@ class AccountController {
         hot_entity: hot_entity[chain]
       };
     });
+  }
+
+  async missedBlocks(ctx) {
+    const { page, pageSize } = extractPage(ctx);
+    const { accountId } = ctx.params;
+
+    const { rows, count: total } = await ctx.db.MissedBlocks.findAndCountAll({
+      attributes: { exclude: ["accountid"] },
+      where: { accountid: accountId },
+      order: [["height", "DESC"]],
+      raw: true
+    });
+
+    ctx.body = {
+      items: rows.map(row => ({
+        missed: row.missed,
+        period: Math.floor(row.height / 150)
+      })),
+      pageSize,
+      page,
+      total
+    };
   }
 }
 
