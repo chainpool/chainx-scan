@@ -26,20 +26,20 @@ export default function BestTransactions() {
   return (
     <section className="panel">
       <div className="panel-heading">
-        <FormattedMessage id="newestTransaction" />
+        <FormattedMessage id="NEWESTTRANSACTION" />
       </div>
       <div className="panel-block">
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
               <th>
-                <FormattedMessage id="transactionHash" />
+                <FormattedMessage id="TRANSACTIONHASH" />
               </th>
               <th>
-                <FormattedMessage id="sender" />
+                <FormattedMessage id="SENDER" />
               </th>
               <th className="has-text-right">
-                <FormattedMessage id="operation" />
+                <FormattedMessage id="ACTION" />
               </th>
             </tr>
           </thead>
@@ -64,7 +64,7 @@ export default function BestTransactions() {
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/txs">
-          <FormattedMessage id="showAll" />
+          <FormattedMessage id="SHOWALL" />
           <IconChevronRight />
         </NavLink>
       </div>

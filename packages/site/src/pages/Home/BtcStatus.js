@@ -52,13 +52,13 @@ export default function BtcStatus() {
       <div className="columns btc_block">
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="trusteeVoteSession" />
+            <FormattedMessage id="TRUSTEEVOTESESSION" />
           </div>
           <div className="btc_content">{status.trustee_session}</div>
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="multiSigTrusteeBalance" /> (<FormattedMessage id="hotAddress" />)
+            <FormattedMessage id="MULTISIGTRUSTEEBALANCE" /> (<FormattedMessage id="HOTADDRESS" />)
           </div>
           <div className="btc_content">
             <ExternalLink
@@ -70,7 +70,7 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="multiSigTrusteeBalance" /> (<FormattedMessage id="coldAddress" />)
+            <FormattedMessage id="MULTISIGTRUSTEEBALANCE" /> (<FormattedMessage id="COLDADDRESS" />)
           </div>
           <div className="btc_content">
             <ExternalLink
@@ -82,7 +82,7 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="DepositeTransactionCount" />
+            <FormattedMessage id="DEPOSITETRANSACTIONCOUNT" />
           </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/deposits">{status.deposit_count}</NavLink>
@@ -90,7 +90,7 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="withdrawalTransactionCount" />
+            <FormattedMessage id="WIDTHDRAWALTRANSACTIONCOUNT" />
           </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/withdrawals">{status.withdraw_count}</NavLink>
@@ -98,7 +98,7 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="crossBindAddressCount" />
+            <FormattedMessage id="CROSSBINDADDRESSCOUNT" />
           </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/crossbind">{status.bind_count}</NavLink>
@@ -111,31 +111,31 @@ export default function BtcStatus() {
             <tr>
               <th>
                 Bitcoin
-                <FormattedMessage id="block" />
+                <FormattedMessage id="BLOCK" />
               </th>
               <th>
                 Bitcoin
-                <FormattedMessage id="blockHash" />
+                <FormattedMessage id="BLOCKHASH" />
               </th>
               <th>
                 Bitcoin
-                <FormattedMessage id="blockTime" />
+                <FormattedMessage id="BLOCKTIME" />
               </th>
               <th>nonce</th>
               <th>
-                <FormattedMessage id="crossTransaction" />
+                <FormattedMessage id="CROSSTRANSACTION" />
               </th>
               <th>
                 ChainX
-                <FormattedMessage id="trunkTransactionHash" />
+                <FormattedMessage id="TRUNKTRANSACTIONHASH" />
               </th>
               <th>
                 ChainX
-                <FormattedMessage id="trunkTransactioner" />
+                <FormattedMessage id="TRUNKTRANSACTIONER" />
               </th>
               <th>
                 ChainX
-                <FormattedMessage id="trunkTransactionTime" />
+                <FormattedMessage id="TRUNKTRANSACTIONTIME" />
               </th>
             </tr>
           </thead>

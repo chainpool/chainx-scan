@@ -1,48 +1,78 @@
 export const MENU = {
-  home: "Home",
-  blocks: "Chain",
-  validators: "Trustee Node",
-  crossBlocks: "Cross-chain Light Client",
+  HOME: "Home",
+  CHAIN: "Chain",
+  VALIDTORS: "Trustee Node",
+  CROSSBLOCKS: "Cross-chain Light Client",
   DAPP: "DEX"
 };
 export const DASHBOARD = {
-  chainStatus: "Chain Statistics",
-  latestBlock: "Latest Block",
-  confirmBlock: "Finalized Block",
-  transactionCount: "Total Extrinsics",
-  accountCount: "Total Accounts",
-  validatorVoteSession: "Validator Elections",
-  validators: "Total Validators",
-  releaseCount: "Total Issuance(PCX)",
-  mortgageCount: "Total Intention-Bonded(PCX)",
-  userVoteCount: "Total Bonded(PCX)"
+  CHAINSTATUS: "Chain Statistics",
+  LATESTBLOCK: "Latest Block",
+  CONFIRMBLOCK: "Finalized Block",
+  TRANSACTIONCOUNT: "Total Extrinsics",
+  ACCOUNTCOUNT: "Total Accounts",
+  VALIDATORVOTESESSION: "Validator Elections",
+  VALIDATORS: "Total Validators",
+  RELEASECOUNT: "Total Issuance(PCX)",
+  MORTGAGECOUNT: "Total Intention-Bonded(PCX)",
+  USERVOTECOUNT: "Total Bonded(PCX)"
 };
 export const NEWESTBLOCK = {
-  newestBlock: "Latest Block",
-  block: "Block",
-  validator: "Validator",
-  showAll: "See All"
+  NEWESTBLOCK: "Latest Block",
+  BLOCKHEIGHT: "Block Height",
+  VALIDATOR: "Validator",
+  SHOWALL: "See All"
 };
 export const NEWESTTRANSACTION = {
-  newestTransaction: "Latest Extrinsic",
-  transactionHash: "Extrinsic Hash",
-  sender: "Sender",
-  operation: "Action"
+  NEWESTTRANSACTION: "Latest Extrinsic",
+  TRANSACTIONHASH: "Extrinsic Hash",
+  SENDER: "Sender",
+  ACTION: "Action"
 };
 export const BITCOIN = {
-  trusteeVoteSession: "Trustee Elections",
-  multiSigTrusteeBalance: "MultiSig Balance",
-  hotAddress: "Hot Address",
-  coldAddress: "Cold Address",
-  DepositeTransactionCount: "Total Deposit Extrinsics",
-  withdrawalTransactionCount: "Total Withdrawal Extrinsics",
-  crossBindAddressCount: "Binded Addresses",
-  blockHash: "Block Hash",
-  blockTime: "Block Time",
-  crossTransaction: " Total Cross-chain Extrinsics",
-  trunkTransactionHash: " Relay Extrinsic Hash",
-  trunkTransactioner: " Relay Extrinsic Hash",
-  trunkTransactionTime: " Relay Extrinsic Hash"
+  TRUSTEEVOTESESSION: "Trustee Elections",
+  MULTISIGTRUSTEEBALANCE: "MultiSig Balance",
+  HOTADDRESS: "Hot Address",
+  COLDADDRESS: "Cold Address",
+  DEPOSITETRANSACTIONCOUNT: "Total Deposit Extrinsics",
+  WIDTHDRAWALTRANSACTIONCOUNT: "Total Withdrawal Extrinsics",
+  CROSSBINDADDRESSCOUNT: "Binded Addresses",
+  BLOCKHASH: "Block Hash",
+  BLOCKTIME: "Block Time",
+  CROSSTRANSACTION: " Total Cross-chain Extrinsics",
+  TRUNKTRANSACTIONHASH: " Relay Extrinsic Hash",
+  TRUNKTRANSACTIONER: " Relay Extrinsic Hash",
+  TRUNKTRANSACTIONTIME: " Relay Extrinsic Hash"
+};
+export const BLOCKCHAIN = {
+  BLOCKS: "Blocks",
+  EVENTS: "Events",
+  EVENTSCOUNT: "Events  Count",
+  EXTRINSICS: "Extrinsics",
+  ACCOUNTS: "Accounts",
+  HEIGHT: "Block Height",
+  EVENTNUMBER: "Event Number",
+  EXTRINSICSNUMBER: "Extrinsic Number",
+  PHRASE: "Phrase",
+  CATEGORY: "Category",
+  TOTALBALANCE: "TOTAL Balance",
+  FREEBALANCE: "Free Balance",
+  BLOCKDETAILS: "Block Details",
+  EXTRINSICDetails: "Extrinsic Details",
+  ACCOUNTDetails: "Account Details",
+  PARENTHASH: "Parent Hash",
+  TRIEROOT: "Trie Root",
+  EXTRINSICROOT: "Extrinsic Root",
+  VERSION: "Version",
+  DEPOSITADDRESS: "Deposit Address",
+  ASSETNAME: "Asset Name",
+  INTENSIONNAME: "Intention Name",
+  UPDATEWEIGHT: "Last Vote Weight Update",
+  WEIGHT: "Last Total Vote Weight",
+  BONDED: "Bonded",
+  ORDERNUMBER: "Order Number",
+  CREATEAT: "AT",
+  LASTUPDATE: "Last Update"
 };
 export default {
   ...MENU,

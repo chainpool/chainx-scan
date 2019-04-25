@@ -25,20 +25,20 @@ export default function BestBlocks() {
   return (
     <section className="panel">
       <div className="panel-heading">
-        <FormattedMessage id="newestBlock" />
+        <FormattedMessage id="NEWESTBLOCK" />
       </div>
       <div className="panel-block">
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
               <th>
-                <FormattedMessage id="block" />
+                <FormattedMessage id="BLOCKHEIGHT" />
               </th>
               <th>
-                <FormattedMessage id="validator" />
+                <FormattedMessage id="VALIDATOR" />
               </th>
               <th className="has-text-right">
-                <FormattedMessage id="transactionCount" />
+                <FormattedMessage id="TRANSACTIONCOUNT" />
               </th>
             </tr>
           </thead>
@@ -63,7 +63,7 @@ export default function BestBlocks() {
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/blocks">
-          <FormattedMessage id="showAll" />
+          <FormattedMessage id="SHOWALL" />
           <IconChevronRight />
         </NavLink>
       </div>

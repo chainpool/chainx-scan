@@ -19,31 +19,31 @@ export default function DashBoard() {
 
   const dataSource = [
     {
-      label: <FormattedMessage id="latestBlock" />,
+      label: <FormattedMessage id="LATESTBLOCK" />,
       data: <NumberFormat value={data.best} />
     },
     {
-      label: <FormattedMessage id="confirmBlock" />,
+      label: <FormattedMessage id="CONFIRMBLOCK" />,
       data: <NumberFormat value={data.finalized} />
     },
     {
       label: (
         <>
-          Chainx <FormattedMessage id="transactionCount" />
+          Chainx <FormattedMessage id="TRANSACTIONCOUNT" />
         </>
       ),
       data: <NumberFormat value={data.transactions} />
     },
     {
-      label: <FormattedMessage id="accountCount" />,
+      label: <FormattedMessage id="ACCOUNTCOUNT" />,
       data: <NumberFormat value={data.account_count} />
     },
     {
-      label: <FormattedMessage id="validatorVoteSession" />,
+      label: <FormattedMessage id="VALIDATORVOTESESSION" />,
       data: <NumberFormat value={data.vote_cycle} />
     },
     {
-      label: <FormattedMessage id="validators" />,
+      label: <FormattedMessage id="VALIDATORS" />,
       data: (
         <NavLink to={`/validators`} className="nav-link">
           <NumberFormat value={data.validators} />
@@ -51,15 +51,15 @@ export default function DashBoard() {
       )
     },
     {
-      label: <FormattedMessage id="releaseCount" />,
+      label: <FormattedMessage id="RELEASECOUNT" />,
       data: <Amount value={data.pcx_issuance} hideSymbol />
     },
     {
-      label: <FormattedMessage id="mortgageCount" />,
+      label: <FormattedMessage id="MORTGAGECOUNT" />,
       data: <Amount value={data.selfvote_count} hideSymbol />
     },
     {
-      label: <FormattedMessage id="userVoteCount" />,
+      label: <FormattedMessage id="USERVOTECOUNT" />,
       data: <Amount value={data.votes} hideSymbol />
     }
   ];
@@ -74,7 +74,7 @@ export default function DashBoard() {
     <section className="panel">
       <div className="panel-heading">
         <img src={PCX} alt="pcx" className="panel-heading-icon" />
-        <FormattedMessage id="chainStatus" />
+        <FormattedMessage id="CHAINSTATUS" />
       </div>
       <div className="panel-block flex-reverse align-start" style={{ padding: 0 }}>
         <Transaction style={{ width: "40%" }} />
