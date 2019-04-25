@@ -4,13 +4,22 @@ import classnames from "classnames";
 import Validators from "./Validators";
 import ValidatorsDetail from "./ValidatorsDetail";
 import { NavLink } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export default function Validator(props) {
   const filter = props.match.params.filter || "all";
   const tabs = [
-    { text: "验证节点", filter: "all" },
-    { text: "候选节点", filter: "unsettled" },
-    { text: "信托节点(Bitcoin)", filter: "Bitcoin" }
+    { text: <FormattedMessage id="TRUSTEENODE" />, filter: "all" },
+    { text: <FormattedMessage id="STANDBYNODE" />, filter: "unsettled" },
+    {
+      text: (
+        <>
+          <FormattedMessage id="TRUSTEE" />
+          (Bitcoin)
+        </>
+      ),
+      filter: "Bitcoin"
+    }
   ];
   return (
     <Switch>

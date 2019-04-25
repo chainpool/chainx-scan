@@ -16,6 +16,7 @@ import {
 import NominationsList from "./NominationsList";
 import SettingList from "./SettingList";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function ValidatorsDetail(props) {
   const {

@@ -1,6 +1,6 @@
 export const MENU = {
   HOME: "Home",
-  CHAIN: "Chain",
+  BLOCKCHAIN: "Chain",
   VALIDTORS: "Trustee Node",
   CROSSBLOCKS: "Cross-chain Light Client",
   DAPP: "DEX"

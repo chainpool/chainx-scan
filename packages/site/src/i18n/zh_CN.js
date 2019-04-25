@@ -1,6 +1,6 @@
 export const MENU = {
   HOME: "首页",
-  CHAIN: "区块链",
+  BLOCKCHAIN: "区块链",
   VALIDTORS: "验证节点",
   CROSSBLOCKS: "跨链轻节点",
   DAPP: "币币交易"
@@ -60,8 +60,8 @@ export const BLOCKCHAIN = {
   FREEBALANCE: "可用余额",
   TOTALBALANCE: "总余额",
   BLOCKDETAILS: "区块详情",
-  EXTRINSICDetails: "交易详情",
-  ACCOUNTDetails: "账户详情",
+  EXTRINSICDETAILS: "交易详情",
+  ACCOUNTDETAILS: "账户详情",
   PARENTHASH: "父哈希",
   TRIEROOT: "状态根",
   EXTRINSICROOT: "交易根",
@@ -80,8 +80,18 @@ export const FOOTER = {
   WALLET: "钱包"
 };
 export const VALIDATOR = {
-  TRUSTEENODE: "Trustee Node",
-  STANDBYNODE: "Standby Node"
+  TRUSTEENODE: "验证节点",
+  STANDBYNODE: "候选节点",
+  TRUSTEE: "信托节点",
+  ACCOUNTADDRESS: "账户地址",
+  UNFREEZERESERVED: "赎回冻结",
+  CHAIN: "链",
+  HOTKEY: "热公钥",
+  COLDKEY: "冷公钥",
+  RANKING: "排名",
+  TOTALNOMINATION: "总得票数",
+  JACKPOTBALANCE: "奖池金额",
+  TRUSTEESETTINGS: "信托设置"
 };
 export default {
   ...MENU,

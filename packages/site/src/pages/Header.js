@@ -27,7 +27,7 @@ export default withRouter(function Header(props) {
         activeClassName="is-active"
         to="/blocks"
       >
-        <FormattedMessage id="CHAIN" />
+        <FormattedMessage id="BLOCKCHAIN" />
       </NavLink>
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/validators">
         <FormattedMessage id="VALIDTORS" />
