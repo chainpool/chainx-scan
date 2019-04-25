@@ -51,7 +51,11 @@ class AccountController {
       raw: true
     });
 
-    ctx.body = rows;
+    ctx.body = rows.map(row => ({
+      accountid: row.accountid,
+      missed: row.missed,
+      period: Math.floor(row.height / 150)
+    }));
   }
 
   async missedBlocks(ctx) {
