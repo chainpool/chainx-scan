@@ -139,7 +139,8 @@ export const ACCOUNT = {
   FILLHISTORY: "Trade History",
   ORDERHISTORY: "Order History",
   LATEST: "Latest",
-  UNSETTLEAVERAGE: "Average"
+  UNSETTLEAVERAGE: "Average",
+  PUBLICKEY: "Public Key"
 };
 export const CROSSBLOCK = {
   ASSET: "Asset",
