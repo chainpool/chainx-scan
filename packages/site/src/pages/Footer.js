@@ -1,7 +1,54 @@
-import React from "react";
+import React, { useState } from "react";
 
 import weixin from "../assets/weixin.jpg";
+import Icon from "antd/lib/icon";
+import classnames from "classnames";
 import { FormattedMessage } from "react-intl";
+import { useRedux } from "../shared";
+
+export const LangChanger = function() {
+  const languages = ["中文", "English"];
+  const [{ local }, setLocal] = useRedux("locale");
+  let activeLang = languages[0];
+  if (!!local) {
+    if (local === "zh-CN") {
+      activeLang = "中文";
+    } else {
+      activeLang = "English";
+    }
+  }
+  const [language, setLanguage] = useState(activeLang);
+  const [active, setActive] = useState(false);
+  const handleChange = language => {
+    setLanguage(language);
+    if (language === "中文") {
+      localStorage.setItem("locale", "zh-CN");
+      setLocal({ local: "zh-CN" });
+    } else {
+      localStorage.setItem("locale", "en");
+      setLocal({ local: "en" });
+    }
+    setActive(false);
+  };
+  return (
+    <div className="lang-selector">
+      <div className="show-lang" onClick={() => setActive(true)}>
+        {language} <Icon type="up" />
+      </div>
+      <ul className={classnames("selector", { active })}>
+        {languages.map(item => (
+          <li
+            className={classnames("select-item", { active: item === language })}
+            onClick={() => handleChange(item)}
+            key={item}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default function Footer() {
   return (
@@ -43,7 +90,10 @@ export default function Footer() {
             <a href="mailto:hi@chainx.org">hi@chainx.org</a>
           </li>
         </ul>
-        <div className="footer-end">Copyright © 2019 ChainX</div>
+        <div className="footer-end">
+          <LangChanger />
+          Copyright © 2019 ChainX
+        </div>
       </div>
     </div>
   );
