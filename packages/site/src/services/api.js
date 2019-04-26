@@ -79,7 +79,7 @@ class Api {
     });
   };
 
-  fetch$ = (path, params = {}, options) => {
+  fetch$ = (path, params = {}, options = {}) => {
     return from(this.fetch(path, params, options)).pipe(
       map(({ result, error }) => {
         if (!error) {
@@ -213,6 +213,20 @@ class Api {
         return result;
       })
     );
+  };
+
+  /**
+   * 获取漏块统计
+   */
+  fetchIntendtionMissed$ = () => {
+    return this.fetch$(`/intention_missed_blocks`);
+  };
+
+  /**
+   * 获取验证详情漏块统计
+   */
+  fetchDetailMissed$ = (params, { nodeId }) => {
+    return this.fetch$(`/intention/${nodeId}/missed_blocks`, params);
   };
 
   /**

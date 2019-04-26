@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
-import { hexAddPrefix } from "@polkadot/util";
+import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
 
 import {
   ExternalLink,
@@ -14,6 +14,7 @@ import {
   NoData
 } from "../../components";
 import NominationsList from "./NominationsList";
+import DetailMissedBlock from "./DetailMissedBlock";
 import SettingList from "./SettingList";
 import api from "../../services/api";
 
@@ -160,11 +161,15 @@ export default function ValidatorsDetail(props) {
             <li onClick={() => setActiveKey("vote")} className={classnames({ "is-active": activeKey === "vote" })}>
               <a>投票用户列表</a>
             </li>
+            <li onClick={() => setActiveKey("miss")} className={classnames({ "is-active": activeKey === "miss" })}>
+              <a>漏块列表</a>
+            </li>
           </ul>
         </div>
         <>
           {activeKey === "trust" && <SettingList nodeID={nodeId} />}
           {activeKey === "vote" && <NominationsList nodeID={nodeId} />}
+          {activeKey === "miss" && <DetailMissedBlock nodeId={hexStripPrefix(data.accountid)} />}
         </>
       </div>
     </div>
