@@ -11,7 +11,7 @@ import en_US from "./i18n/en-US";
 import { addLocaleData, IntlProvider } from "react-intl";
 import en from "react-intl/locale-data/en";
 import zh from "react-intl/locale-data/zh";
-const local = "en"; //navigator.language;//
+const local = navigator.language; //"en"; //
 const i18n = {
   zh: zh_CN,
   en: en_US
