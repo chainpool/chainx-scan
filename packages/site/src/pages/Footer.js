@@ -1,6 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 
 import weixin from "../assets/weixin.jpg";
+import Icon from "antd/lib/icon";
+import classnames from "classnames";
+
+export const LangChanger = function() {
+  const languages = ["中文", "English"];
+  const [language, setLanguage] = useState(languages[0]);
+  const [active, setActive] = useState(false);
+  const handleChange = language => {
+    setLanguage(language);
+    setActive(false);
+  };
+  return (
+    <div className="lang-selector">
+      <div className="show-lang" onClick={() => setActive(true)}>
+        {language} <Icon type="up" />
+      </div>
+      <ul className={classnames("selector", { active })}>
+        {languages.map(item => (
+          <li
+            className={classnames("select-item", { active: item === language })}
+            onClick={() => handleChange(item)}
+            key={item}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default function Footer() {
   return (
@@ -42,7 +72,10 @@ export default function Footer() {
             <a href="mailto:hi@chainx.org">hi@chainx.org</a>
           </li>
         </ul>
-        <div className="footer-end">Copyright © 2019 ChainX</div>
+        <div className="footer-end">
+          <LangChanger />
+          Copyright © 2019 ChainX
+        </div>
       </div>
     </div>
   );

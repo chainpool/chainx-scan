@@ -136,6 +136,46 @@ a:focus {
   }
 }
 
+.lang-selector {
+  position: relative;
+  margin-right: 15px;
+  display: inline-block;
+  .show-lang {
+    width: 88px;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid $nagtive-light;
+    border-radius: 1px;
+  }
+  .anticon{
+    float: right;
+    margin-top: 5px;
+    color: $nagtive-shallow;
+  }
+  .selector{
+    position: absolute;
+    display: none;
+    bottom: 30px;
+    background-color: #fff;
+    border: 1px solid $nagtive-light;
+    border-radius: 1px;
+    &.active{
+      display: block;
+    }
+    .select-item{
+      width: 100%;
+      line-height: 30px;
+      text-align: center;
+      &.active{
+        background-color: $nagtive-shallow-light;
+      }
+      &:hover{
+        background-color: $nagtive-shallow-light;
+      }
+    }
+  }
+}
+
 .ant-pagination.mini {
   .ant-pagination-item {
     border-color: transparent;
@@ -482,7 +522,7 @@ a:focus {
   }
 }
 
-.echarts-for-react  {
+.echarts-for-react {
   height: 264px;
   border-left: 1px solid $nagtive-light;
   padding-left: 20px;
