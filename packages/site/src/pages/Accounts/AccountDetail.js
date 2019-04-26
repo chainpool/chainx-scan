@@ -63,6 +63,10 @@ export default function Account(props) {
             data: <AddressLink value={detail.accountId} />
           },
           {
+            label: <FormattedMessage id="PUBLICKEY" />,
+            data: detail.accountId
+          },
+          {
             label: <FormattedMessage id="TRANSACTIONCOUNT" />,
             data: <NumberFormat value={detail.txCount} />
           },

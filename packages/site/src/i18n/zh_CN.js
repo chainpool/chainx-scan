@@ -139,7 +139,8 @@ export const ACCOUNT = {
   ORDERHISTORY: "历史委托列表",
   FILLHISTORY: "历史成交列表",
   LATEST: "最新成交价",
-  UNSETTLEAVERAGE: "移动平均价"
+  UNSETTLEAVERAGE: "移动平均价",
+  PUBLICKEY: "账户公钥"
 };
 export const CROSSBLOCK = {
   ASSET: "资产",
