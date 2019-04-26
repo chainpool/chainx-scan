@@ -4,6 +4,7 @@ import { AddressLink, Amount, NumberFormat, Table } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function AccountsList() {
   const [{ tableData }, setState] = useRedux("accountsList", { tableData: {} });
@@ -35,31 +36,51 @@ export default function AccountsList() {
       }
       columns={[
         {
-          title: "账户地址",
+          title: <FormattedMessage id="ACCOUNTADDRESS" />,
           dataIndex: "accountid"
         },
         {
-          title: "PCX可用余额",
+          title: (
+            <>
+              PCX
+              <FormattedMessage id="FREEBALANCE" />
+            </>
+          ),
           dataIndex: "pcxFree",
           align: "right"
         },
         {
-          title: "PCX总余额",
+          title: (
+            <>
+              PCX
+              <FormattedMessage id="TOTALBALANCE" />
+            </>
+          ),
           dataIndex: "pcx",
           align: "right"
         },
         {
-          title: "BTC总余额",
+          title: (
+            <>
+              BTC
+              <FormattedMessage id="TOTALBALANCE" />
+            </>
+          ),
           dataIndex: "btc",
           align: "right"
         },
         {
-          title: "SDOT总余额",
+          title: (
+            <>
+              SDOT
+              <FormattedMessage id="TOTALBALANCE" />
+            </>
+          ),
           dataIndex: "sdot",
           align: "right"
         },
         {
-          title: "交易数",
+          title: <FormattedMessage id="TRANSACTIONCOUNT" />,
           dataIndex: "nonce",
           align: "right"
         }

@@ -4,6 +4,7 @@ import { Amount, DateShow, OrderClass, OrderDirection, OrderStatus, Table, HasFi
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
+import { FormattedMessage } from "react-intl";
 
 export default function AccountOrder(props) {
   const [{ tableData }, setTableData] = useRedux(`accountOrder`, {
@@ -52,43 +53,47 @@ export default function AccountOrder(props) {
       }
       columns={[
         {
-          title: "委托编号",
+          title: <FormattedMessage id="ORDERNUMBER" />,
           dataIndex: "id"
         },
         {
-          title: "交易对",
+          title: <FormattedMessage id="TRADINGPAIR" />,
           dataIndex: "pair"
         },
         {
-          title: "价格",
+          title: <FormattedMessage id="PRICE" />,
           dataIndex: "price"
         },
         {
-          title: "类型",
+          title: <FormattedMessage id="CATEGORY" />,
           dataIndex: "class"
         },
         {
-          title: "方向",
+          title: <FormattedMessage id="TYPE" />,
           dataIndex: "direction"
         },
         {
-          title: "数量",
+          title: <FormattedMessage id="AMOUNT" />,
           dataIndex: "amount"
         },
         {
-          title: "已成交数量/成交率",
+          title: (
+            <>
+              <FormattedMessage id="FILLED" />/<FormattedMessage id="FILLEDPERCENT" />
+            </>
+          ),
           dataIndex: "hasFillAmount"
         },
         {
-          title: "状态",
+          title: <FormattedMessage id="STATUS" />,
           dataIndex: "status"
         },
         {
-          title: "创建时间",
+          title: <FormattedMessage id="CREATEAT" />,
           dataIndex: "createTime"
         },
         {
-          title: "最后更新时间",
+          title: <FormattedMessage id="LASTUPDATE" />,
           dataIndex: "updateTime"
         }
       ]}

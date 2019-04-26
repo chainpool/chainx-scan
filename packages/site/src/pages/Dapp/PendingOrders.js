@@ -2,6 +2,7 @@ import React from "react";
 import classnames from "classnames";
 
 import { Amount, AntSpinner as Spinner } from "../../components";
+import { FormattedMessage } from "react-intl";
 
 export default function PendingOrders(props) {
   const { loading, handicap = { asks: [], bids: [] }, activePair } = props;
@@ -10,13 +11,21 @@ export default function PendingOrders(props) {
   const max = Math.max(...totalConcatArr);
   return (
     <section className="panel">
-      <div className="panel-heading">挂单列表</div>
+      <div className="panel-heading">
+        <FormattedMessage id="ORDERS" />
+      </div>
       <div className="panel-block handicap" style={{ minHeight: 365 }}>
         <dl className="handicap-list">
           <dt className="handicap-header">
-            <span className="price">价格({currencyPair ? currencyPair[1] : "-"})</span>
-            <span className="amount">数量({currencyPair ? currencyPair[0] : "-"})</span>
-            <span className="total">累计深度({currencyPair ? currencyPair[0] : "-"})</span>
+            <span className="price">
+              <FormattedMessage id="PRICE" />({currencyPair ? currencyPair[1] : "-"})
+            </span>
+            <span className="amount">
+              <FormattedMessage id="AMOUNT" />({currencyPair ? currencyPair[0] : "-"})
+            </span>
+            <span className="total">
+              <FormattedMessage id="ACCUMULATIVEDEPTH" />({currencyPair ? currencyPair[0] : "-"})
+            </span>
           </dt>
           <dd className="handicap-content">
             {!loading ? (

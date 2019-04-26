@@ -8,6 +8,7 @@ import Events from "../Events";
 import api from "../../services/api";
 import Icon from "antd/lib/icon";
 import { NoData } from "../../components";
+import { FormattedMessage } from "react-intl";
 
 export default function BlockDetail(props) {
   const { match } = props;
@@ -50,7 +51,14 @@ export default function BlockDetail(props) {
     }
   }, [blockNumber]);
 
-  const breadcrumb = <Breadcrumb dataSource={[{ to: "/blocks", label: "区块列表" }, { label: "区块详情" }]} />;
+  const breadcrumb = (
+    <Breadcrumb
+      dataSource={[
+        { to: "/blocks", label: <FormattedMessage id="BLOCKS" /> },
+        { label: <FormattedMessage id="BLOCKDETAILS" /> }
+      ]}
+    />
+  );
   if (!!blockId && !data.code && !data.number) {
     return (
       <>
@@ -73,7 +81,7 @@ export default function BlockDetail(props) {
         <NavLink to={`/blocks/${!!data && data.number - 1}`}>
           <Icon type="double-left" />
         </NavLink>
-        区块高度:{!!data && data.number}
+        <FormattedMessage id="HEIGHT" />:{!!data && data.number}
         <NavLink to={hasNext ? `/blocks/${!!data && data.number + 1}` : `/blocks/${!!data && data.number}`}>
           <Icon className={classnames({ forbidden: !hasNext })} type="double-right" />
         </NavLink>
@@ -81,31 +89,31 @@ export default function BlockDetail(props) {
       <PanelList
         dataSource={[
           {
-            label: "区块高度",
+            label: <FormattedMessage id="HEIGHT" />,
             data: <BlockLink value={data.number} />
           },
           {
-            label: "区块哈希",
+            label: <FormattedMessage id="BLOCKHASH" />,
             data: <BlockLink value={data.hash} />
           },
           {
-            label: "父哈希",
+            label: <FormattedMessage id="PARENTHASH" />,
             data: <BlockLink value={data.parent_hash} />
           },
           {
-            label: "状态根",
+            label: <FormattedMessage id="TRIEROOT" />,
             data: data.state_root
           },
           {
-            label: "交易根",
+            label: <FormattedMessage id="EXTRINSICROOT" />,
             data: data.extrinsics_root
           },
           {
-            label: "出块时间",
+            label: <FormattedMessage id="BLOCKTIME" />,
             data: <DateShow value={data.time} format="YYYY-MM-DD HH:mm:ss" />
           },
           {
-            label: "验证人",
+            label: <FormattedMessage id="VALIDATOR" />,
             data: <ValidatorLink value={data.producer} />
           }
         ]}
@@ -114,10 +122,14 @@ export default function BlockDetail(props) {
         <div className="tabs">
           <ul>
             <li onClick={() => setActiveKey("txs")} className={classnames({ "is-active": activeKey === "txs" })}>
-              <a>交易列表</a>
+              <a>
+                <FormattedMessage id="EXTRINSICS" />
+              </a>
             </li>
             <li onClick={() => setActiveKey("events")} className={classnames({ "is-active": activeKey === "events" })}>
-              <a>事件列表</a>
+              <a>
+                <FormattedMessage id="EVENTS" />
+              </a>
             </li>
           </ul>
         </div>

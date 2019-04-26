@@ -4,6 +4,7 @@ import { Table, BlockLink, DateShow, NumberFormat, ValidatorLink } from "../../c
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
+import { FormattedMessage } from "react-intl";
 
 export default function BlocksList() {
   const [{ tableData }, setState] = useRedux("blocksList", { tableData: {} });
@@ -36,27 +37,27 @@ export default function BlocksList() {
       }
       columns={[
         {
-          title: "区块高度",
+          title: <FormattedMessage id="HEIGHT" />,
           dataIndex: "number"
         },
         {
-          title: "区块哈希",
+          title: <FormattedMessage id="BLOCKHASH" />,
           dataIndex: "hash"
         },
         {
-          title: "出块时间",
+          title: <FormattedMessage id="BLOCKTIME" />,
           dataIndex: "time"
         },
         {
-          title: "验证节点",
+          title: <FormattedMessage id="VALIDTORS" />,
           dataIndex: "producer"
         },
         {
-          title: "交易数",
+          title: <FormattedMessage id="TRANSACTIONCOUNT" />,
           dataIndex: "extrinsics"
         },
         {
-          title: "事件数",
+          title: <FormattedMessage id="EVENTSCOUNT" />,
           dataIndex: "eventCount"
         }
       ]}

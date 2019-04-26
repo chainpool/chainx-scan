@@ -4,6 +4,7 @@ import classnames from "classnames";
 
 import { hexAddPrefix } from "@polkadot/util";
 import { useAppContext } from "./AppContext";
+import { FormattedMessage } from "react-intl";
 
 export default function VilidatorLink({
   value,
@@ -27,7 +28,11 @@ export default function VilidatorLink({
       <NavLink to={`/validators/${filter}/${hexValue}`} style={style} className={classnames("nav-link", className)}>
         {name}
       </NavLink>
-      {!isActive && <span className="table-tag-nagtive">(已退选)</span>}
+      {!isActive && (
+        <span className="table-tag-nagtive">
+          (<FormattedMessage id="INACTIVE" />)
+        </span>
+      )}
     </span>
   );
 }

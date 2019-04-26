@@ -49,6 +49,10 @@ $navbar-tab-active-border-bottom-color: $primary;
 html {
   -webkit-font-smoothing: auto;
 }
+.container {
+  min-width: 1280px;
+  width: 1280px;
+}
 
 .btn-primary {
   color: $color-block;

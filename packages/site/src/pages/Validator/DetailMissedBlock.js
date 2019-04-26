@@ -3,6 +3,7 @@ import { NumberFormat, Table } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function DetailMissedBlock({ nodeId }) {
   const [{ tableData }, setState] = useRedux("detailMissed", { tableData: {} });
@@ -32,11 +33,11 @@ export function RenderDetailMissedBlock({ tableProps, tableData, handleChange })
       }
       columns={[
         {
-          title: "届数",
+          title: <FormattedMessage id="ERA" />,
           dataIndex: "period"
         },
         {
-          title: "漏块数",
+          title: <FormattedMessage id="MISSEDBLOCKS" />,
           dataIndex: "missed"
         }
       ]}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import api from "../../services/api";
 import { Table, ValidatorLink, ExternalLink } from "../../components";
+import { FormattedMessage } from "react-intl";
 
 export default function BindAddressList(props) {
   const [tableData, setTableData] = useState([]);
@@ -38,15 +39,15 @@ export default function BindAddressList(props) {
       }
       columns={[
         {
-          title: "链",
+          title: <FormattedMessage id="CHAIN" />,
           dataIndex: "chain"
         },
         {
-          title: "地址",
+          title: <FormattedMessage id="ADDRESS" />,
           dataIndex: "address"
         },
         {
-          title: "渠道的节点名称",
+          title: <FormattedMessage id="CHANELNAME" />,
           dataIndex: "channel"
         }
       ]}

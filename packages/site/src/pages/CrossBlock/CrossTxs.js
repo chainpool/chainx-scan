@@ -1,11 +1,12 @@
 import React, { useEffect, useMemo } from "react";
 
 import { AddressLink, Amount, DateShow, ExternalLink, Hash, Table, TxLink } from "../../components";
-import { useRedux, getTxType } from "../../shared";
+import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
+import { FormattedMessage, injectIntl } from "react-intl";
 
-export default function CrossTxs() {
+export default injectIntl(function CrossTxs({ intl: { messages } }) {
   const [{ tableData }, setState] = useRedux("crossTxs", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchBtcTxs$, tableData), []);
 
@@ -14,10 +15,10 @@ export default function CrossTxs() {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  return <RenderCrossTxs {...{ tableData, handleChange: tableService.handleChange }} />;
-}
+  return <RenderCrossTxs {...{ tableData, handleChange: tableService.handleChange, messages }} />;
+});
 
-export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
+export function RenderCrossTxs({ tableProps, tableData, handleChange, messages }) {
   const { pagination, dataSource = [], loading } = tableData;
 
   return (
@@ -46,7 +47,7 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
               }}
             />
           ),
-          txType: getTxType(data.tx_type),
+          txType: messages.txType[data.tx_type],
           blockTime: <DateShow value={data["block.time"]} />,
           relay: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.relay} />,
           value: <Amount value={data.value} precision={8} symbol={"BTC"} />,
@@ -55,31 +56,55 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange }) {
       })}
       columns={[
         {
-          title: "Bitcoin区块哈希",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="BLOCKHASH" />
+            </>
+          ),
           dataIndex: "hash"
         },
         {
-          title: "Bitcoin交易哈希",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="TRANSACTIONHASH" />
+            </>
+          ),
           dataIndex: "txid"
         },
         {
-          title: "交易类型",
+          title: <FormattedMessage id="EXTRINSICSTYPE" />,
           dataIndex: "txType"
         },
         {
-          title: "金额",
+          title: <FormattedMessage id="BALANCE" />,
           dataIndex: "value"
         },
         {
-          title: "ChainX中继交易哈希",
+          title: (
+            <>
+              ChainX <FormattedMessage id="TRUNKTRANSACTIONHASH" />
+            </>
+          ),
           dataIndex: "chainxHash"
         },
         {
-          title: "ChainX中继人",
+          title: (
+            <>
+              ChainX
+              <FormattedMessage id="TRUNKTRANSACTIONER" />
+            </>
+          ),
           dataIndex: "relay"
         },
         {
-          title: "ChainX中继时间",
+          title: (
+            <>
+              ChainX
+              <FormattedMessage id="TRUNKTRANSACTIONTIME" />
+            </>
+          ),
           dataIndex: "blockTime"
         }
       ]}

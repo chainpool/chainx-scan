@@ -4,6 +4,7 @@ import classnames from "classnames";
 import { Amount, AntSpinner as Spinner } from "../../components";
 import PCX from "../../assets/tokens/pcx_circle.jpg";
 import SDOT from "../../assets/tokens/sdot.jpg";
+import { FormattedMessage } from "react-intl";
 
 const pairMap = {
   SDOT,
@@ -15,7 +16,9 @@ export default function PairList(props) {
 
   return (
     <section className="panel">
-      <div className="panel-heading">交易对</div>
+      <div className="panel-heading">
+        <FormattedMessage id="TRADINGPAIR" />
+      </div>
       <div className="panel-block pairs" style={{ minHeight: 365 }}>
         {activePair ? (
           <>
@@ -39,7 +42,9 @@ export default function PairList(props) {
             </div>
             <div className="pairs-content">
               <div className="pairs-content-item">
-                <div className="pairs-content-item__label">最新成交价</div>
+                <div className="pairs-content-item__label">
+                  <FormattedMessage id="LATEST" />
+                </div>
                 <div className="pairs-content-item__value" style={{ fontSize: 24 }}>
                   <Amount
                     value={activePair.price && activePair.price.last_price}
@@ -50,11 +55,15 @@ export default function PairList(props) {
                 </div>
               </div>
               <div className="pairs-content-item">
-                <div className="pairs-content-item__label">涨幅</div>
+                <div className="pairs-content-item__label">
+                  <FormattedMessage id="CHANGE" />
+                </div>
                 <div className="pairs-content-item__value">-</div>
               </div>
               <div className="pairs-content-item">
-                <div className="pairs-content-item__label">移动平均价</div>
+                <div className="pairs-content-item__label">
+                  <FormattedMessage id="UNSETTLEAVERAGE" />
+                </div>
                 <div className="pairs-content-item__value">
                   <Amount
                     value={activePair.price && activePair.price.aver_price}

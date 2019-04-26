@@ -15,6 +15,7 @@ import {
 } from "../../components";
 import Bitcoin from "../../assets/tokens/btc.png";
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
+import { FormattedMessage } from "react-intl";
 
 export default function BtcStatus() {
   const [{ data }, setState] = useRedux("btcStatus", { data: [] });
@@ -50,11 +51,15 @@ export default function BtcStatus() {
       </div>
       <div className="columns btc_block">
         <div className="column btc_status">
-          <div className="btc_title">信托节点选举届数</div>
+          <div className="btc_title">
+            <FormattedMessage id="TRUSTEEVOTESESSION" />
+          </div>
           <div className="btc_content">{status.trustee_session}</div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">多签热地址余额 (BTC)</div>
+          <div className="btc_title">
+            <FormattedMessage id="MULTISIGTRUSTEEHOTBALANCE" />
+          </div>
           <div className="btc_content">
             <ExternalLink
               value={status.hot_address}
@@ -64,7 +69,9 @@ export default function BtcStatus() {
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">多签冷地址余额 (BTC)</div>
+          <div className="btc_title">
+            <FormattedMessage id="MULTISIGTRUSTEECOLDBALANCE" />
+          </div>
           <div className="btc_content">
             <ExternalLink
               value={status.cold_address}
@@ -74,19 +81,25 @@ export default function BtcStatus() {
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">充值交易总数</div>
+          <div className="btc_title">
+            <FormattedMessage id="DEPOSITETRANSACTIONCOUNT" />
+          </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/deposits">{status.deposit_count}</NavLink>
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">提现交易总数</div>
+          <div className="btc_title">
+            <FormattedMessage id="WIDTHDRAWALTRANSACTIONCOUNT" />
+          </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/withdrawals">{status.withdraw_count}</NavLink>
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">跨链绑定地址数</div>
+          <div className="btc_title">
+            <FormattedMessage id="CROSSBINDADDRESSCOUNT" />
+          </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/crossbind">{status.bind_count}</NavLink>
           </div>
@@ -96,14 +109,34 @@ export default function BtcStatus() {
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>Bitcoin块高</th>
-              <th>Bitcoin区块哈希</th>
-              <th>Bitcoin出块时间</th>
+              <th>
+                Bitcoin
+                <FormattedMessage id="HEIGHT" />
+              </th>
+              <th>
+                Bitcoin
+                <FormattedMessage id="BLOCKHASH" />
+              </th>
+              <th>
+                Bitcoin
+                <FormattedMessage id="BLOCKTIME" />
+              </th>
               <th>nonce</th>
-              <th>跨链交易数</th>
-              <th>ChainX中继交易哈希</th>
-              <th>ChainX中继人</th>
-              <th>ChainX中继时间</th>
+              <th>
+                <FormattedMessage id="CROSSTRANSACTION" />
+              </th>
+              <th>
+                ChainX
+                <FormattedMessage id="TRUNKTRANSACTIONHASH" />
+              </th>
+              <th>
+                ChainX
+                <FormattedMessage id="TRUNKTRANSACTIONER" />
+              </th>
+              <th>
+                ChainX
+                <FormattedMessage id="TRUNKTRANSACTIONTIME" />
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -150,7 +183,7 @@ export default function BtcStatus() {
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/crossblocks">
-          查看全部
+          <FormattedMessage id="SHOWALL" />
           <IconChevronRight />
         </NavLink>
       </div>

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Table } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function SettingList({ nodeID, ...props }) {
   const [{ dataSource }, setState] = useRedux(`settingList-${nodeID}`, { dataSource: [] });
@@ -16,15 +17,15 @@ export default function SettingList({ nodeID, ...props }) {
   }, [nodeID]);
   const columns = [
     {
-      title: "链",
+      title: <FormattedMessage id="CHAIN" />,
       dataIndex: "chain"
     },
     {
-      title: "热公钥",
+      title: <FormattedMessage id="HOTKEY" />,
       dataIndex: "hot_entity"
     },
     {
-      title: "冷公钥",
+      title: <FormattedMessage id="COLDKEY" />,
       dataIndex: "cold_entity"
     }
   ];

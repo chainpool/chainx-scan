@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Amount, ExternalLink, Hash, Table } from "../../components";
 import api from "../../services/api";
 import { hexStripPrefix } from "@polkadot/util";
+import { FormattedMessage } from "react-intl";
 
 export default function CrossClaim() {
   const [{ dataSource, loading }, setState] = useState({ dataSource: [], loading: true });
@@ -32,15 +33,25 @@ export default function CrossClaim() {
       })}
       columns={[
         {
-          title: "Bitcoin交易哈希",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="BLOCKHASH" />
+            </>
+          ),
           dataIndex: "hash"
         },
         {
-          title: "Bitcoin来源地址",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="BITCOINADDRESS" />
+            </>
+          ),
           dataIndex: "address"
         },
         {
-          title: "金额",
+          title: <FormattedMessage id="BALANCE" />,
           dataIndex: "balance"
         }
       ]}

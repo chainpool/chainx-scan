@@ -4,6 +4,7 @@ import { Table, DateShow, Hash, ExternalLink, AddressLink, TxLink, Amount } from
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function CrossDeposits() {
   const [{ tableData }, setState] = useRedux("crossDeposits", { tableData: {} });
@@ -48,23 +49,38 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
       })}
       columns={[
         {
-          title: "Bitcoin交易哈希",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="BLOCKHASH" />
+            </>
+          ),
           dataIndex: "txid"
         },
         {
-          title: "Bitcoin来源地址",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="BITCOINADDRESS" />
+            </>
+          ),
           dataIndex: "address"
         },
         {
-          title: "ChainX发放地址",
+          title: (
+            <>
+              ChainX
+              <FormattedMessage id="ISSUEADDRESS" />
+            </>
+          ),
           dataIndex: "accountid"
         },
         {
-          title: "资产",
+          title: <FormattedMessage id="ASSET" />,
           dataIndex: "token"
         },
         {
-          title: "金额",
+          title: <FormattedMessage id="BALANCE" />,
           dataIndex: "balance"
         }
       ]}

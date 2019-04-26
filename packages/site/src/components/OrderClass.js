@@ -1,16 +1,17 @@
 import React, { memo } from "react";
 
-const DIRECTION = {
-  SELL: "卖出",
-  BUY: "买入",
-  LIMIT: "限价单"
-};
+import { injectIntl } from "react-intl";
 
-export default memo(function OrderDirection(props) {
-  const { value } = props;
-  if (!value || typeof value !== "string") return "";
+export default injectIntl(
+  memo(function OrderDirection(props) {
+    const {
+      value,
+      intl: { messages }
+    } = props;
+    if (!value || typeof value !== "string") return "";
 
-  const text = DIRECTION[value.toUpperCase()] || value;
+    const text = messages.DIRECTION[value.toUpperCase()] || value;
 
-  return <div>{text}</div>;
-});
+    return <div>{text}</div>;
+  })
+);

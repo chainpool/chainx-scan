@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Table, ValidatorLink, ExternalLink } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function CrossHost() {
   const [{ dataSource, loading }, setState] = useRedux("crossHost", { dataSource: [], loading: true });
@@ -29,19 +30,19 @@ export default function CrossHost() {
         })}
         columns={[
           {
-            title: "届数",
+            title: <FormattedMessage id="ERA" />,
             dataIndex: "id"
           },
           {
-            title: "信托节点",
+            title: <FormattedMessage id="TRUSTEES" />,
             dataIndex: "trustee"
           },
           {
-            title: "热地址",
+            title: <FormattedMessage id="HOTADDRESS" />,
             dataIndex: "hotAddress"
           },
           {
-            title: "冷地址",
+            title: <FormattedMessage id="COLDADDRESS" />,
             dataIndex: "coldAddress"
           }
         ]}

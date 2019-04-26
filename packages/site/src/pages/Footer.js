@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import weixin from "../assets/weixin.jpg";
 import Icon from "antd/lib/icon";
 import classnames from "classnames";
+import { FormattedMessage } from "react-intl";
 
 export const LangChanger = function() {
   const languages = ["中文", "English"];
@@ -39,12 +40,12 @@ export default function Footer() {
         <ul className="footer-start">
           <li>
             <a href="https://chainx.org" target="_blank" rel="noopener noreferrer">
-              ChainX 官网
+              ChainX <FormattedMessage id="HOME" />
             </a>
           </li>
           <li>
             <a href="https://wallet.chainx.org" target="_blank" rel="noopener noreferrer">
-              钱包
+              <FormattedMessage id="WALLET" />
             </a>
           </li>
           <li>
