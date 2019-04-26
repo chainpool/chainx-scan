@@ -71,7 +71,7 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
           title: (
             <>
               Bitcoin
-              <FormattedMessage id="BLOCKHEIGHT" />
+              <FormattedMessage id="HEIGHT" />
             </>
           ),
           dataIndex: "height"

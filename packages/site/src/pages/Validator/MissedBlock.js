@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { AddressLink, NumberFormat, Table } from "../../components";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function MissedBlock() {
   const [{ dataSource, loading }, setState] = useState({ dataSource: [], loading: true });
@@ -32,15 +33,15 @@ export function RenderMissedBlock(props) {
       }
       columns={[
         {
-          title: "届数",
+          title: <FormattedMessage id="ERA" />,
           dataIndex: "period"
         },
         {
-          title: "验证人",
+          title: <FormattedMessage id="VALIDATOR" />,
           dataIndex: "accountid"
         },
         {
-          title: "漏块数",
+          title: <FormattedMessage id="MISSEDBLOCKS" />,
           dataIndex: "missed"
         }
       ]}

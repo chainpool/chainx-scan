@@ -30,7 +30,7 @@ export default function BlockChain(props) {
         </li>
         <li className={classnames({ "is-active": activeKey === "withdrawals" })}>
           <NavLink to="/crossblocks/bitcoin/withdrawals">
-            <FormattedMessage id="BINDEDADDRESSES" />
+            <FormattedMessage id="WITHDRAWALS" />
           </NavLink>
         </li>
         <li className={classnames({ "is-active": activeKey === "crosshost" })}>

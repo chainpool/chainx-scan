@@ -36,15 +36,13 @@ export default function CrossBlock(props) {
           >
             <NavLink to="/crossblocks/bitcoin">
               <img className="tab-img" src={Bitcoin} alt="Bitcoin转接桥" />
-              Bitcoin
-              <FormattedMessage id="BRIDGE" />
+              <FormattedMessage id="BTCBRIDGE" />
             </NavLink>
           </li>
           <li className={classnames({ "is-active": activeKey === "/crossblocks/etherum" })}>
             <NavLink to="/crossblocks/etherum">
               <img className="tab-img" src={Etherum} alt="Etherum转接桥" />
-              Etherum
-              <FormattedMessage id="BRIDGE" />
+              <FormattedMessage id="ETHBRIDGE" />
             </NavLink>
           </li>
         </ul>

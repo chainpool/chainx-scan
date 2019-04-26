@@ -107,7 +107,6 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange, me
         {
           title: (
             <>
-              Bitcoin
               <FormattedMessage id="TARGETADDRESS" />
             </>
           ),

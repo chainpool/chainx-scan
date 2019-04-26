@@ -4,7 +4,8 @@ export const MENU = {
   VALIDTORS: "验证节点",
   CROSSBLOCKS: "跨链轻节点",
   DAPP: "币币交易",
-  SEARCH: "搜索"
+  SEARCH: "搜索",
+  HASH: "哈希"
 };
 export const DASHBOARD = {
   CHAINSTATUS: "链状态",
@@ -33,7 +34,8 @@ export const NEWESTTRANSACTION = {
 };
 export const BITCOIN = {
   TRUSTEEVOTESESSION: "信托节点选举届数",
-  MULTISIGTRUSTEEBALANCE: "多签托管余额",
+  MULTISIGTRUSTEEHOTBALANCE: "多签热地址余额 (BTC)",
+  MULTISIGTRUSTEECOLDBALANCE: "多签冷地址余额 (BTC)",
   HOTADDRESS: "热地址",
   COLDADDRESS: "冷地址",
   DEPOSITETRANSACTIONCOUNT: "充值交易总数",
@@ -112,7 +114,9 @@ export const VALIDATOR = {
   TOTALAUTHOREDBLOCKS: "累计出块总数",
   AUTHOREDBLOCKS: "出块总数",
   TRUSTEE: "信托",
-  NOMINATORS: "投票用户列表"
+  NOMINATORS: "投票用户列表",
+  MISSEDBLOCKSTATISTIC: "漏块统计",
+  CHANELNAME: "渠道节点名称"
 };
 export const ACCOUNT = {
   STAKINGRESERVED: "投票冻结",
@@ -151,9 +155,10 @@ export const CROSSBLOCK = {
   ISSUEADDRESS: "发放地址",
   APPLICATIONEXTRINSICHASH: "申请交易哈希",
   APPLICATIONADDRESS: "申请地址",
-  TARGETADDRESS: "目标地址",
+  TARGETADDRESS: "提现地址",
   WITHDRAWALSTATUS: "提现状态",
   ERA: "届数",
+  WITHDRAWALS: "提现列表",
   MININGPOWER: "挖矿算力",
   EQUIVALENTNOMINATIONS: "折合投票数",
   JACKPOTLASTUPDATE: "奖池更新高度",
@@ -161,7 +166,8 @@ export const CROSSBLOCK = {
   ADDRESS: "地址",
   SENDADDRESS: "发送地址",
   TOTALBALANCE: "全链总余额",
-  BRIDGE: "转接桥",
+  ETHBRIDGE: "Etherum转接桥",
+  BTCBRIDGE: "Bitcoin转接桥",
   DEPOSITSMINING: "充值挖矿",
   WITHDRAWALLIST: "提现列表",
   DEPOSITELIST: "充值列表"
@@ -291,7 +297,9 @@ export const DICT = {
 };
 export const OTHERS = {
   NODATA: "暂时没有您要的信息",
-  TOHOME: "返回首页"
+  TOHOME: "返回首页",
+  DAILYTRADINGVOLUMEMAP: "交易量日线图",
+  TRADINGVOLUME: "交易量"
 };
 
 export default {
@@ -302,6 +310,7 @@ export default {
   ...BITCOIN,
   ...BLOCKCHAIN,
   ...FOOTER,
+  ...TX,
   ...VALIDATOR,
   ...ACCOUNT,
   ...CROSSBLOCK,

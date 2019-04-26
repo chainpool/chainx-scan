@@ -38,9 +38,7 @@ export default injectIntl(function InputSearch(props) {
         style={{ width: 350, paddingRight: 50 }}
         className="input is-rounded"
         type="text"
-        placeholder={`${messages.SEARCH} ${messages.HEIGHT}/${messages.BLOCKHASH}/${messages.TRANSACTIONHASH}/${
-          messages.ACCOUNTADDRESS
-        }`}
+        placeholder={`${messages.SEARCH}${messages.HEIGHT}/${messages.HASH}/${messages.ACCOUNTADDRESS}`}
       />
       <Icon type="search" className="search" onClick={() => search(str)} />
     </span>

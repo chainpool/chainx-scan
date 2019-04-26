@@ -25,7 +25,6 @@ export default function Validator(props) {
       text: (
         <>
           <FormattedMessage id="MISSEDBLOCKSTATISTIC" />
-          (Bitcoin)
         </>
       ),
       filter: "missed"

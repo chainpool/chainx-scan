@@ -49,7 +49,7 @@ export function RenderCurrentEntrust({
         dataSource.map(data => {
           return {
             key: `${data.accountid}-${data.id}`,
-            accountid: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.accountid} />,
+            accountid: <AddressLink style={{ maxWidth: 136 }} className="text-truncate" value={data.accountid} />,
             id: data.id,
             direction: <OrderDirection value={data.direction} />,
             price: (

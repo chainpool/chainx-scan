@@ -1,10 +1,11 @@
 export const MENU = {
   HOME: "Home",
   BLOCKCHAIN: "Chain",
-  VALIDTORS: "Trustee Node",
-  CROSSBLOCKS: "Cross-chain Light Client",
+  VALIDTORS: "Validators",
+  CROSSBLOCKS: "Light Client",
   DAPP: "DEX",
-  SEARCH: "search"
+  SEARCH: "search",
+  HASH: "Hash"
 };
 export const DASHBOARD = {
   CHAINSTATUS: "Chain Statistics",
@@ -26,24 +27,26 @@ export const NEWESTBLOCK = {
 };
 export const NEWESTTRANSACTION = {
   NEWESTTRANSACTION: "Latest Extrinsic",
-  TRANSACTIONHASH: "Extrinsic Hash",
+  TRANSACTIONHASH: " Extrinsic Hash",
   SENDER: "Sender",
   ACTION: "Action"
 };
 export const BITCOIN = {
   TRUSTEEVOTESESSION: "Trustee Elections",
   MULTISIGTRUSTEEBALANCE: "MultiSig Balance",
+  MULTISIGTRUSTEEHOTBALANCE: "MultiSig Hot Balance (BTC)",
+  MULTISIGTRUSTEECOLDBALANCE: "MultiSig Cold Balance (BTC)",
   HOTADDRESS: "Hot Address",
   COLDADDRESS: "Cold Address",
-  DEPOSITETRANSACTIONCOUNT: "Total Deposit Extrinsics",
-  WIDTHDRAWALTRANSACTIONCOUNT: "Total Withdrawal Extrinsics",
+  DEPOSITETRANSACTIONCOUNT: "Deposit Txs",
+  WIDTHDRAWALTRANSACTIONCOUNT: "Withdrawal Txs",
   CROSSBINDADDRESSCOUNT: "Binded Addresses",
   BLOCKHASH: " Block Hash",
   BLOCKTIME: " Block Time",
-  CROSSTRANSACTION: " Total Cross-chain Extrinsics",
-  TRUNKTRANSACTIONHASH: " Relay Extrinsic Hash",
-  TRUNKTRANSACTIONER: " Relay Extrinsic Hash",
-  TRUNKTRANSACTIONTIME: " Relay Extrinsic Hash"
+  CROSSTRANSACTION: "Cross-chain Tx",
+  TRUNKTRANSACTIONHASH: " Relay Tx Hash",
+  TRUNKTRANSACTIONER: " Relayer",
+  TRUNKTRANSACTIONTIME: " Relay Time"
 };
 export const BLOCKCHAIN = {
   BLOCKS: "Blocks",
@@ -51,7 +54,7 @@ export const BLOCKCHAIN = {
   EVENTSCOUNT: "Events  Count",
   EXTRINSICS: "Extrinsics",
   ACCOUNTS: "Accounts",
-  HEIGHT: "Block Height",
+  HEIGHT: " Height",
   EVENTNUMBER: "Event Number",
   EXTRINSICSNUMBER: "Extrinsic Number",
   EVENTPARAMETERS: "Event Parameters",
@@ -60,8 +63,8 @@ export const BLOCKCHAIN = {
   TOTALBALANCE: "TOTAL Balance",
   FREEBALANCE: "Free Balance",
   BLOCKDETAILS: "Block Details",
-  EXTRINSICDetails: "Extrinsic Details",
-  ACCOUNTDetails: "Account Details",
+  EXTRINSICDETAILS: "Extrinsic Details",
+  ACCOUNTDETAILS: "Account Details",
   PARENTHASH: "Parent Hash",
   TRIEROOT: "Trie Root",
   EXTRINSICROOT: "Extrinsic Root",
@@ -72,7 +75,7 @@ export const BLOCKCHAIN = {
   UPDATEWEIGHT: "Last Vote Weight Update",
   WEIGHT: "Last Total Vote Weight",
   BONDED: "Bonded",
-  ORDERNUMBER: "Order Number",
+  ORDERNUMBER: " ID",
   CREATEAT: "AT",
   LASTUPDATE: "Last Update"
 };
@@ -87,17 +90,17 @@ export const TX = {
   ACCELERATE: "Accelerate"
 };
 export const VALIDATOR = {
-  TRUSTEENODE: "Trustee Node",
-  STANDBYNODE: "Standby Node",
+  TRUSTEENODE: "Validators",
+  STANDBYNODE: "Standby",
   TRUSTEES: "Trustees",
-  ACCOUNTADDRESS: "Account Address",
+  ACCOUNTADDRESS: "Address",
   UNFREEZERESERVED: "Unfreeze Reserved",
   NAME: "Name",
   CHAIN: "Chain",
   HOTKEY: " Hot Public Key",
   COLDKEY: "Cold Public Key",
   RANKING: "Ranking",
-  TOTALNOMINATION: "Total Nomination",
+  TOTALNOMINATION: "Total Bonded", //"Total Nomination",
   JACKPOTBALANCE: "Jackpot Balance",
   TRUSTEESETTINGS: "Trustee Settings",
   TOTALNOMINATIONS: "Total Nominations",
@@ -108,10 +111,12 @@ export const VALIDATOR = {
   JACKPOTADDRESS: "Jackpot Address",
   SELFBONDED: "Self-Bonded",
   MISSEDBLOCKS: "Missed Blocks",
-  TOTALAUTHOREDBLOCKS: "Total Authored Blocks",
+  TOTALAUTHOREDBLOCKS: "Authored Blocks",
   AUTHOREDBLOCKS: "Authored Blocks",
   TRUSTEE: "Trustee",
-  NOMINATORS: "Nominators"
+  NOMINATORS: "Nominators",
+  MISSEDBLOCKSTATISTIC: "Missed Blocks",
+  CHANELNAME: "Chanel Name"
 };
 export const ACCOUNT = {
   STAKINGRESERVED: "Staking Reserved",
@@ -124,14 +129,14 @@ export const ACCOUNT = {
   FILLED: "Filled",
   FILLEDPERCENT: "%",
   STATUS: "Status",
-  ORDERPRICE: "Order Price",
+  ORDERPRICE: "Price",
   AVERAGE: "Average",
   TIME: "Time",
   ASSETS: "Assets",
   CROSSCHAINASSETS: "Cross-chain Assets",
   NOMINATIONS: "Nominations",
   OPENORDERS: "Open Orders",
-  FILLHISTORY: "Fill History",
+  FILLHISTORY: "Trade History",
   ORDERHISTORY: "Order History",
   LATEST: "Latest",
   UNSETTLEAVERAGE: "Average"
@@ -148,10 +153,11 @@ export const CROSSBLOCK = {
   CHANNELNAME: "Channel Name",
   BITCOINADDRESS: "Address",
   ISSUEADDRESS: "Issue Address",
-  APPLICATIONEXTRINSICHASH: "Application Extrinsic Hash",
-  APPLICATIONADDRESS: "Application Address",
-  TARGETADDRESS: "Target Address",
-  WITHDRAWALSTATUS: "Withdrawal Status",
+  APPLICATIONEXTRINSICHASH: " Application Tx Hash",
+  APPLICATIONADDRESS: " Application Address",
+  TARGETADDRESS: " Withdrawals Address",
+  WITHDRAWALSTATUS: "Status",
+  WITHDRAWALS: "Withdrawals",
   ERA: "Era",
   MININGPOWER: "Mining Power",
   EQUIVALENTNOMINATIONS: "Equivalent Nominations",
@@ -160,19 +166,21 @@ export const CROSSBLOCK = {
   ADDRESS: "Address",
   SENDADDRESS: "Send Address",
   TOTALBALANCE: "Total Balance",
-  BRIDGE: "Bridge",
+  BRIDGE: " Bridge",
+  ETHBRIDGE: "Etherum Bridge",
+  BTCBRIDGE: "Bitcoin Bridge",
   DEPOSITSMINING: "Deposits Mining",
   WITHDRAWALLIST: "Withdrawal List",
-  DEPOSITELIST: "Deposit List"
+  DEPOSITELIST: "Deposits"
 };
 export const DAPP = {
-  ACCUMULATIVEDEPTH: "Accumulative Depth",
+  ACCUMULATIVEDEPTH: "Accumulative",
   DISCRETIONARYACCOUNT: "Discretionary Account",
-  ORDERAMOUNT: "Discretionary Amount",
+  ORDERAMOUNT: " Amount",
   INORDER: "In order",
-  ACCOUNT: "Account",
+  ACCOUNT: " Account",
   CHANGE: "Change",
-  FILL: "Fill ",
+  FILL: " ",
   ORDERS: "Orders"
 };
 export const PROCESSTXSTATE = {
@@ -292,7 +300,9 @@ export const DICT = {
 };
 export const OTHERS = {
   NODATA: "No Data",
-  TOHOME: "To Home"
+  TOHOME: "To Home",
+  TRADINGVOLUME: "Volume Of Business",
+  DAILYTRADINGVOLUMEMAP: "Daily Trading Volume Map"
 };
 
 export default {
@@ -305,6 +315,7 @@ export default {
   ...FOOTER,
   ...VALIDATOR,
   ...ACCOUNT,
+  ...TX,
   ...CROSSBLOCK,
   ...DAPP,
   ...PROCESSTXSTATE,

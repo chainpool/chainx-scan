@@ -58,7 +58,7 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="MULTISIGTRUSTEEHOTBALANCE" /> (<FormattedMessage id="HOTADDRESS" />)
+            <FormattedMessage id="MULTISIGTRUSTEEHOTBALANCE" />
           </div>
           <div className="btc_content">
             <ExternalLink
@@ -70,7 +70,7 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="MULTISIGTRUSTEECOLDBALANCE" /> (<FormattedMessage id="COLDADDRESS" />)
+            <FormattedMessage id="MULTISIGTRUSTEECOLDBALANCE" />
           </div>
           <div className="btc_content">
             <ExternalLink
@@ -111,7 +111,7 @@ export default function BtcStatus() {
             <tr>
               <th>
                 Bitcoin
-                <FormattedMessage id="BLOCKHEIGHT" />
+                <FormattedMessage id="HEIGHT" />
               </th>
               <th>
                 Bitcoin
