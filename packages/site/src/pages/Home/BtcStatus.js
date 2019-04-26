@@ -58,25 +58,25 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="MULTISIGTRUSTEEBALANCE" /> (<FormattedMessage id="HOTADDRESS" />)
+            <FormattedMessage id="MULTISIGTRUSTEEHOTBALANCE" /> (<FormattedMessage id="HOTADDRESS" />)
           </div>
           <div className="btc_content">
             <ExternalLink
               value={status.hot_address}
               type="btcAddress"
-              render={() => <Amount value={status.hot_balance} symbol="BTC" />}
+              render={() => <Amount value={status.hot_balance} symbol="BTC" hideSymbol />}
             />
           </div>
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="MULTISIGTRUSTEEBALANCE" /> (<FormattedMessage id="COLDADDRESS" />)
+            <FormattedMessage id="MULTISIGTRUSTEECOLDBALANCE" /> (<FormattedMessage id="COLDADDRESS" />)
           </div>
           <div className="btc_content">
             <ExternalLink
               value={status.cold_address}
               type="btcAddress"
-              render={() => <Amount value={status.cold_balance} symbol="BTC" />}
+              render={() => <Amount value={status.cold_balance} symbol="BTC" hideSymbol />}
             />
           </div>
         </div>

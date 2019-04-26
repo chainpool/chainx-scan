@@ -8,7 +8,6 @@ import { encodeAddress } from "../shared";
 export default memo(function AddressLink(props) {
   const { value, className, style } = props;
   const hexValue = hexAddPrefix(value);
-
   let showValue = "";
 
   if (hexValue !== "0x") {

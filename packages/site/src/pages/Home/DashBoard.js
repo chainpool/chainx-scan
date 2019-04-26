@@ -77,7 +77,7 @@ export default function DashBoard() {
         <FormattedMessage id="CHAINSTATUS" />
       </div>
       <div className="panel-block flex-reverse align-start" style={{ padding: 0 }}>
-        <Transaction style={{ width: "40%" }} />
+        <Transaction style={{ width: "40%", height: "264px" }} />
         <div className="columns is-multiline is-gapless" style={{ width: "60%" }}>
           {dataSource && data && data.best
             ? dataSource.map((item, index) => (

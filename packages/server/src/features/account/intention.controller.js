@@ -1,3 +1,5 @@
+const { extractPage } = require("../utils");
+
 class AccountController {
   async intention(ctx) {
     const { accountId } = ctx.params;
@@ -35,6 +37,49 @@ class AccountController {
         hot_entity: hot_entity[chain]
       };
     });
+  }
+
+  async intentionMissedBlocks(ctx) {
+    const maxHeight = await ctx.db.Block.max("number");
+    const latestPeriodHeight = maxHeight - (maxHeight % 150);
+    let startHeight = latestPeriodHeight - 150 * 9;
+    startHeight = startHeight > 0 ? startHeight : 0;
+
+    const rows = await ctx.db.MissedBlocks.findAll({
+      where: { height: { $gte: startHeight } },
+      order: [["height", "DESC"]],
+      raw: true
+    });
+
+    ctx.body = rows.map(row => ({
+      accountid: row.accountid,
+      missed: row.missed,
+      period: Math.floor(row.height / 150)
+    }));
+  }
+
+  async missedBlocks(ctx) {
+    const { page, pageSize } = extractPage(ctx);
+    const { accountId } = ctx.params;
+
+    const { rows, count: total } = await ctx.db.MissedBlocks.findAndCountAll({
+      attributes: { exclude: ["accountid"] },
+      where: { accountid: accountId },
+      order: [["height", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize,
+      raw: true
+    });
+
+    ctx.body = {
+      items: rows.map(row => ({
+        missed: row.missed,
+        period: Math.floor(row.height / 150)
+      })),
+      pageSize,
+      page,
+      total
+    };
   }
 }
 

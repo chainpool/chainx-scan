@@ -32,9 +32,7 @@ export default function ValidatorsTable(props) {
             index: indexExtend(_index, data.isTrustee),
             name: <ValidatorLink name={data.name} value={data.accountid} isActive={data.isActive} filter={tabFilter} />,
             url: <ExternalLink value={data.url} />,
-            address: (
-              <AddressLink value={data.accountid} isActive style={{ maxWidth: 136 }} className="text-truncate" />
-            ),
+            address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
             missedBlocks: (
               <span>
                 <NumberFormat value={data.missedBlocks} />

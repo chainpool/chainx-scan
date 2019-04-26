@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 import classnames from "classnames";
 import Validators from "./Validators";
+import MissedBlock from "./MissedBlock";
 import ValidatorsDetail from "./ValidatorsDetail";
 import { NavLink } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
@@ -19,6 +20,15 @@ export default function Validator(props) {
         </>
       ),
       filter: "Bitcoin"
+    },
+    {
+      text: (
+        <>
+          <FormattedMessage id="MISSEDBLOCKSTATISTIC" />
+          (Bitcoin)
+        </>
+      ),
+      filter: "missed"
     }
   ];
   return (
@@ -38,8 +48,13 @@ export default function Validator(props) {
               </ul>
             </div>
             {tabs.map((tab, index) => {
-              if (tab.filter === filter) return <Validators key={index} {...props} tabFilter={tab.filter} />;
-              else return null;
+              if (tab.filter === filter) {
+                if (tab.filter !== "missed") {
+                  return <Validators key={index} {...props} tabFilter={tab.filter} />;
+                } else {
+                  return <MissedBlock key={index} />;
+                }
+              } else return null;
             })}
           </div>
         )}
