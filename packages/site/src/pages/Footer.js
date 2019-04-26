@@ -4,13 +4,30 @@ import weixin from "../assets/weixin.jpg";
 import Icon from "antd/lib/icon";
 import classnames from "classnames";
 import { FormattedMessage } from "react-intl";
+import { useRedux } from "../shared";
 
 export const LangChanger = function() {
   const languages = ["中文", "English"];
-  const [language, setLanguage] = useState(languages[0]);
+  const [{ local }, setLocal] = useRedux("locale");
+  let activeLang = languages[0];
+  if (!!local) {
+    if (local === "zh-CN") {
+      activeLang = "中文";
+    } else {
+      activeLang = "English";
+    }
+  }
+  const [language, setLanguage] = useState(activeLang);
   const [active, setActive] = useState(false);
   const handleChange = language => {
     setLanguage(language);
+    if (language === "中文") {
+      localStorage.setItem("locale", "zh-CN");
+      setLocal({ local: "zh-CN" });
+    } else {
+      localStorage.setItem("locale", "en");
+      setLocal({ local: "en" });
+    }
     setActive(false);
   };
   return (
