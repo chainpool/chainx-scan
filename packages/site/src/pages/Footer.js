@@ -1,6 +1,7 @@
 import React from "react";
 
 import weixin from "../assets/weixin.jpg";
+import { FormattedMessage } from "react-intl";
 
 export default function Footer() {
   return (
@@ -9,12 +10,12 @@ export default function Footer() {
         <ul className="footer-start">
           <li>
             <a href="https://chainx.org" target="_blank" rel="noopener noreferrer">
-              ChainX 官网
+              ChainX <FormattedMessage id="HOME" />
             </a>
           </li>
           <li>
             <a href="https://wallet.chainx.org" target="_blank" rel="noopener noreferrer">
-              钱包
+              <FormattedMessage id="WALLET" />
             </a>
           </li>
           <li>

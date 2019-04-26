@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Table, Amount, ValidatorLink, NumberFormat } from "../../components";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function AccountNomination(props) {
   const [list, setList] = useState([]);
@@ -40,23 +41,33 @@ export default function AccountNomination(props) {
       }
       columns={[
         {
-          title: "节点名",
+          title: <FormattedMessage id="INTENSIONNAME" />,
           dataIndex: "nominee"
         },
         {
-          title: "票龄更新高度",
+          title: <FormattedMessage id="UPDATEWEIGHT" />,
           dataIndex: "updateHeight"
         },
         {
-          title: "历史总票龄",
+          title: <FormattedMessage id="WEIGHT" />,
           dataIndex: "weight"
         },
         {
-          title: "投票金额 (PCX)",
+          title: (
+            <>
+              <FormattedMessage id="BONDED" />
+              (PCX)
+            </>
+          ),
           dataIndex: "nomination"
         },
         {
-          title: "赎回冻结 (PCX)",
+          title: (
+            <>
+              <FormattedMessage id="UNFREEZERESERVED" />
+              (PCX)
+            </>
+          ),
           dataIndex: "revocations",
           align: "right"
         }

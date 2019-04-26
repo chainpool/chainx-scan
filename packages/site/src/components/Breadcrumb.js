@@ -10,13 +10,13 @@ export default function Breadcrumb(props) {
         {dataSource.map((item, index) => {
           if (index !== dataSource.length - 1) {
             return (
-              <li key={item.label}>
+              <li key={index}>
                 <NavLink to={item.to}>{item.label}</NavLink>
               </li>
             );
           }
           return (
-            <li key={item.label} className="is-active">
+            <li key={index} className="is-active">
               <a href="#">{item.label}</a>
             </li>
           );

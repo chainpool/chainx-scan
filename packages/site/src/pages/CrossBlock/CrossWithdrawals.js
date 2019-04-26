@@ -4,8 +4,9 @@ import { Table, Hash, ExternalLink, AddressLink, Amount, TxLink } from "../../co
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
+import { injectIntl, FormattedMessage } from "react-intl";
 
-export default function CrossWithdrawals() {
+export default injectIntl(function CrossWithdrawals({ intl: { messages } }) {
   const [{ tableData }, setState] = useRedux("crossWithdrawals", { tableData: {} });
 
   const tableService = useMemo(() => new TableService(api.fetchBtcWithdrawals$, tableData), []);
@@ -15,36 +16,36 @@ export default function CrossWithdrawals() {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  return <RenderCrossWithdrawals {...{ tableData, handleChange: tableService.handleChange }} />;
-}
+  return <RenderCrossWithdrawals {...{ tableData, handleChange: tableService.handleChange, messages }} />;
+});
 
-export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) {
+export function RenderCrossWithdrawals({ tableProps, tableData, handleChange, messages }) {
   const { pagination, dataSource = [], loading } = tableData;
   const processTxState = txstate => {
     switch (txstate) {
       case "0":
       case "NotApplying":
-        return "未申请";
+        return <FormattedMessage id="NOTAPPLYING" />;
       case "1":
       case "Applying":
-        return "申请中";
+        return <FormattedMessage id="APPLYING" />;
       case "2":
       case "Signing":
-        return "签名中";
+        return <FormattedMessage id="SIGNING" />;
       case "3":
       case "Broadcasting":
-        return "广播中";
+        return <FormattedMessage id="BROADCASTING" />;
       case "4":
       case "Processing":
-        return "处理中";
+        return <FormattedMessage id="PROCESSING" />;
       case "5":
       case "Confirming":
-        return "确认中";
+        return <FormattedMessage id="CONFIRMING" />;
       case "6":
       case "Confirmed":
-        return "已确认";
+        return <FormattedMessage id="CONFIRMED" />;
       default:
-        return "未知";
+        return <FormattedMessage id="UNKNOWN" />;
     }
   };
   return (
@@ -77,35 +78,54 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange }) 
       })}
       columns={[
         {
-          title: "ChainX申请交易哈希",
+          title: (
+            <>
+              ChainX
+              <FormattedMessage id="APPLICATIONEXTRINSICHASH" />
+            </>
+          ),
           dataIndex: "chainx_tx"
         },
         {
-          title: "ChainX申请地址",
+          title: (
+            <>
+              ChainX
+              <FormattedMessage id="APPLICATIONADDRESS" />
+            </>
+          ),
           dataIndex: "accountid"
         },
         {
-          title: "Bitcoin交易哈希",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="TRANSACTIONHASH" />
+            </>
+          ),
           dataIndex: "txid"
         },
         {
-          title: "Bitcoin目标地址",
+          title: (
+            <>
+              <FormattedMessage id="TARGETADDRESS" />
+            </>
+          ),
           dataIndex: "address"
         },
         {
-          title: "资产",
+          title: <FormattedMessage id="ASSET" />,
           dataIndex: "token"
         },
         {
-          title: "金额",
+          title: <FormattedMessage id="BALANCE" />,
           dataIndex: "balance"
         },
         {
-          title: "提现状态",
+          title: <FormattedMessage id="WITHDRAWALSTATUS" />,
           dataIndex: "txstate"
         },
         {
-          title: "备注",
+          title: <FormattedMessage id="MEMO" />,
           dataIndex: "memo"
         }
       ]}

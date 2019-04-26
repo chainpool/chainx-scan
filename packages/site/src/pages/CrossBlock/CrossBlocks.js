@@ -4,6 +4,7 @@ import { Table, DateShow, Hash, ExternalLink, NumberFormat, AddressLink, TxLink 
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function CrossBlocks() {
   const [{ tableData }, setState] = useRedux("crossBlocks", { tableData: {} });
@@ -67,15 +68,30 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
       })}
       columns={[
         {
-          title: "Bitcoin块高",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="HEIGHT" />
+            </>
+          ),
           dataIndex: "height"
         },
         {
-          title: "Bitcoin区块哈希",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="BLOCKHASH" />
+            </>
+          ),
           dataIndex: "hash"
         },
         {
-          title: "Bitcoin出块时间",
+          title: (
+            <>
+              Bitcoin
+              <FormattedMessage id="BLOCKTIME" />
+            </>
+          ),
           dataIndex: "time"
         },
         {
@@ -83,19 +99,33 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
           dataIndex: "nonce"
         },
         {
-          title: "跨链交易数",
+          title: <FormattedMessage id="CROSSTRANSACTION" />,
           dataIndex: "txid"
         },
         {
-          title: "ChainX中继交易哈希",
+          title: (
+            <>
+              ChainX <FormattedMessage id="TRUNKTRANSACTIONHASH" />
+            </>
+          ),
           dataIndex: "chainx_tx"
         },
         {
-          title: "ChainX中继人",
+          title: (
+            <>
+              ChainX
+              <FormattedMessage id="TRUNKTRANSACTIONER" />
+            </>
+          ),
           dataIndex: "relay"
         },
         {
-          title: "ChainX中继时间",
+          title: (
+            <>
+              ChainX
+              <FormattedMessage id="TRUNKTRANSACTIONTIME" />
+            </>
+          ),
           dataIndex: "blockTime"
         }
       ]}

@@ -5,14 +5,30 @@ import Validators from "./Validators";
 import MissedBlock from "./MissedBlock";
 import ValidatorsDetail from "./ValidatorsDetail";
 import { NavLink } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 
 export default function Validator(props) {
   const filter = props.match.params.filter || "all";
   const tabs = [
-    { text: "验证节点", filter: "all" },
-    { text: "候选节点", filter: "unsettled" },
-    { text: "信托节点(Bitcoin)", filter: "Bitcoin" },
-    { text: "漏块统计", filter: "missed" }
+    { text: <FormattedMessage id="TRUSTEENODE" />, filter: "all" },
+    { text: <FormattedMessage id="STANDBYNODE" />, filter: "unsettled" },
+    {
+      text: (
+        <>
+          <FormattedMessage id="TRUSTEES" />
+          (Bitcoin)
+        </>
+      ),
+      filter: "Bitcoin"
+    },
+    {
+      text: (
+        <>
+          <FormattedMessage id="MISSEDBLOCKSTATISTIC" />
+        </>
+      ),
+      filter: "missed"
+    }
   ];
   return (
     <Switch>
@@ -24,7 +40,7 @@ export default function Validator(props) {
             <div className="tabs">
               <ul>
                 {tabs.map((tab, index) => (
-                  <li className={classnames({ "is-active": tab.filter === filter }, "tab-item")} key={index}>
+                  <li className={classnames({ "is-active": tab.filter === filter }, "tab-item")} key={tab.filter}>
                     <NavLink to={`/validators/${tab.filter}`}>{tab.text}</NavLink>
                   </li>
                 ))}

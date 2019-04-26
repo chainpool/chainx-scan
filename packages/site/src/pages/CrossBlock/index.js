@@ -15,6 +15,7 @@ import CrossWithdrawals from "./CrossWithdrawals";
 import CrossClaim from "./CrossClaim";
 import EtherumBind from "./EtherumBind";
 import DepositsMine from "./DepositsMine";
+import { FormattedMessage } from "react-intl";
 
 export default function CrossBlock(props) {
   const activeKey = props.location.pathname;
@@ -25,7 +26,7 @@ export default function CrossBlock(props) {
           <li className={classnames({ "is-active": activeKey === "/crossblocks/depositMine" })}>
             <NavLink to="/crossblocks/depositMine">
               <img className="tab-img" src={DepositMine} alt="充值挖矿" />
-              充值挖矿
+              <FormattedMessage id="DEPOSITSMINING" />
             </NavLink>
           </li>
           <li
@@ -35,13 +36,13 @@ export default function CrossBlock(props) {
           >
             <NavLink to="/crossblocks/bitcoin">
               <img className="tab-img" src={Bitcoin} alt="Bitcoin转接桥" />
-              Bitcoin转接桥
+              <FormattedMessage id="BTCBRIDGE" />
             </NavLink>
           </li>
           <li className={classnames({ "is-active": activeKey === "/crossblocks/etherum" })}>
             <NavLink to="/crossblocks/etherum">
               <img className="tab-img" src={Etherum} alt="Etherum转接桥" />
-              Etherum转接桥
+              <FormattedMessage id="ETHBRIDGE" />
             </NavLink>
           </li>
         </ul>

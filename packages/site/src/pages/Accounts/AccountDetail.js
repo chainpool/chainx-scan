@@ -17,6 +17,7 @@ import AccountOrder from "./AccountOrder";
 import AccountTrade from "./AccountTrade";
 import BindAddressList from "./BindAddressList";
 import FillOrderList from "./FillOrderList";
+import { FormattedMessage } from "react-intl";
 
 export default function Account(props) {
   const { match } = props;
@@ -32,7 +33,14 @@ export default function Account(props) {
     return () => subscription.unsubscribe();
   }, [accountId]);
 
-  const breadcrumb = <Breadcrumb dataSource={[{ to: "/accounts", label: "账户列表" }, { label: "账户详情" }]} />;
+  const breadcrumb = (
+    <Breadcrumb
+      dataSource={[
+        { to: "/accounts", label: <FormattedMessage id="ACCOUNTS" /> },
+        { label: <FormattedMessage id="ACCOUNTDETAILS" /> }
+      ]}
+    />
+  );
   if (!detail.code && !detail.accountId) {
     return (
       <>
@@ -51,15 +59,20 @@ export default function Account(props) {
       <PanelList
         dataSource={[
           {
-            label: "账户地址",
+            label: <FormattedMessage id="ACCOUNTADDRESS" />,
             data: <AddressLink value={detail.accountId} />
           },
           {
-            label: "交易数",
+            label: <FormattedMessage id="TRANSACTIONCOUNT" />,
             data: <NumberFormat value={detail.txCount} />
           },
           {
-            label: "BTC 充值地址",
+            label: (
+              <>
+                BTC
+                <FormattedMessage id="DEPOSITADDRESS" />
+              </>
+            ),
             data: (
               <>
                 {detail.btcAddresses &&
@@ -80,43 +93,57 @@ export default function Account(props) {
               onClick={() => setActiveKey("nativeAsset")}
               className={classnames({ "is-active": activeKey === "nativeAsset" })}
             >
-              <a>ChainX 资产列表</a>
+              <a>
+                ChainX <FormattedMessage id="ASSETS" />
+              </a>
             </li>
             <li
               onClick={() => setActiveKey("crossAsset")}
               className={classnames({ "is-active": activeKey === "crossAsset" })}
             >
-              <a>跨链资产列表</a>
+              <a>
+                <FormattedMessage id="CROSSCHAINASSETS" />
+              </a>
             </li>
             <li
               onClick={() => setActiveKey("nomination")}
               className={classnames({ "is-active": activeKey === "nomination" })}
             >
-              <a>投票列表</a>
+              <a>
+                <FormattedMessage id="NOMINATIONS" />
+              </a>
             </li>
             <li
               onClick={() => setActiveKey("orderList")}
               className={classnames({ "is-active": activeKey === "orderList" })}
             >
-              <a>当前委托列表</a>
+              <a>
+                <FormattedMessage id="OPENORDERS" />
+              </a>
             </li>
             <li
               onClick={() => setActiveKey("fillOrderList")}
               className={classnames({ "is-active": activeKey === "fillOrderList" })}
             >
-              <a>历史委托列表</a>
+              <a>
+                <FormattedMessage id="ORDERHISTORY" />
+              </a>
             </li>
             <li
               onClick={() => setActiveKey("accountTrade")}
               className={classnames({ "is-active": activeKey === "accountTrade" })}
             >
-              <a>交易列表</a>
+              <a>
+                <FormattedMessage id="EXTRINSICS" />
+              </a>
             </li>
             <li
               onClick={() => setActiveKey("bindAddresses")}
               className={classnames({ "is-active": activeKey === "bindAddresses" })}
             >
-              <a>地址绑定列表</a>
+              <a>
+                <FormattedMessage id="BINDEDADDRESSES" />
+              </a>
             </li>
           </ul>
         </div>

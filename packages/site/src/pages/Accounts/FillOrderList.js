@@ -4,6 +4,7 @@ import { DateShow, Amount, OrderDirection, Table, HasFill, OrderStatus } from ".
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
+import { FormattedMessage } from "react-intl";
 
 // TODO: add pagination
 export default function FillOrderList(props) {
@@ -51,39 +52,43 @@ export default function FillOrderList(props) {
       }
       columns={[
         {
-          title: "委托编号",
+          title: <FormattedMessage id="ORDERNUMBER" />,
           dataIndex: "id"
         },
         {
-          title: "交易对",
+          title: <FormattedMessage id="TRADINGPAIR" />,
           dataIndex: "pair"
         },
         {
-          title: "方向",
+          title: <FormattedMessage id="TYPE" />,
           dataIndex: "direction"
         },
         {
-          title: "委托价格",
+          title: <FormattedMessage id="ORDERPRICE" />,
           dataIndex: "price"
         },
         {
-          title: "数量",
+          title: <FormattedMessage id="AMOUNT" />,
           dataIndex: "amount"
         },
         {
-          title: "成交均价",
+          title: <FormattedMessage id="AVERAGE" />,
           dataIndex: "fillAver"
         },
         {
-          title: "成交数量/成交率",
+          title: (
+            <>
+              <FormattedMessage id="RANKING" />/<FormattedMessage id="FILLEDPERCENT" />
+            </>
+          ),
           dataIndex: "hasFillAmount"
         },
         {
-          title: "状态",
+          title: <FormattedMessage id="STATUS" />,
           dataIndex: "status"
         },
         {
-          title: "时间",
+          title: <FormattedMessage id="TIME" />,
           dataIndex: "time"
         }
       ]}

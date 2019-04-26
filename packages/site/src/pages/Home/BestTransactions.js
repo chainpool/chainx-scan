@@ -5,6 +5,7 @@ import { TxLink, AddressLink, TxAction, AntSpinner as Spinner } from "../../comp
 import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
 import api from "../../services/api";
 import { useRedux } from "../../shared";
+import { FormattedMessage } from "react-intl";
 
 export default function BestTransactions() {
   const [{ txs }, setState] = useRedux("bestTransactions", { txs: [] });
@@ -24,14 +25,22 @@ export default function BestTransactions() {
 
   return (
     <section className="panel">
-      <div className="panel-heading">最新交易</div>
+      <div className="panel-heading">
+        <FormattedMessage id="NEWESTTRANSACTION" />
+      </div>
       <div className="panel-block">
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>交易哈希</th>
-              <th>发送人</th>
-              <th className="has-text-right">操作</th>
+              <th>
+                <FormattedMessage id="TRANSACTIONHASH" />
+              </th>
+              <th>
+                <FormattedMessage id="SENDER" />
+              </th>
+              <th className="has-text-right">
+                <FormattedMessage id="ACTION" />
+              </th>
             </tr>
           </thead>
           <tbody>
@@ -55,7 +64,7 @@ export default function BestTransactions() {
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/txs">
-          查看全部
+          <FormattedMessage id="SHOWALL" />
           <IconChevronRight />
         </NavLink>
       </div>

@@ -1,11 +1,18 @@
 import React from "react";
 
 import { Table, AddressLink, ValidatorLink, ExternalLink, Amount, NumberFormat } from "../../components";
+import { FormattedMessage } from "react-intl";
 
 const indexExtend = (index, trust) => (
   <span className="nowrap">
     {index}
-    {!!trust && trust.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
+    {!!trust && trust.length <= 0 ? (
+      ""
+    ) : (
+      <span className="table-tag-trust">
+        <FormattedMessage id="TRUSTEE" />
+      </span>
+    )}
   </span>
 );
 
@@ -24,7 +31,7 @@ export default function ValidatorsTable(props) {
             key: `${data.accountid}`,
             index: indexExtend(_index, data.isTrustee),
             name: <ValidatorLink name={data.name} value={data.accountid} isActive={data.isActive} filter={tabFilter} />,
-            url: <ExternalLink value={data.url} />,
+            url: <ExternalLink style={{ maxWidth: 136 }} className="text-truncate" value={data.url} />,
             address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
             missedBlocks: (
               <span>
@@ -44,42 +51,57 @@ export default function ValidatorsTable(props) {
       }
       columns={[
         {
-          title: "排名",
+          title: <FormattedMessage id="RANKING" />,
           dataIndex: "index"
         },
         {
-          title: "名称",
+          title: <FormattedMessage id="NAME" />,
           dataIndex: "name"
         },
         {
-          title: "网址",
+          title: <FormattedMessage id="WEBSITE" />,
           dataIndex: "url"
         },
         {
-          title: "账户地址",
+          title: <FormattedMessage id="ACCOUNTADDRESS" />,
           dataIndex: "address"
         },
         {
-          title: "自抵押数(PCX)",
+          title: (
+            <>
+              <FormattedMessage id="SELFBONDED" />
+              (PCX)
+            </>
+          ),
           dataIndex: "selfVote",
           align: "right"
         },
         {
-          title: "总得票数(PCX)",
+          title: (
+            <>
+              <FormattedMessage id="TOTALNOMINATION" />
+              (PCX)
+            </>
+          ),
           dataIndex: "totalNomination",
           align: "right"
         },
         {
-          title: "奖池金额(PCX)",
+          title: (
+            <>
+              <FormattedMessage id="JACKPOTBALANCE" />
+              (PCX)
+            </>
+          ),
           dataIndex: "jackpot",
           align: "right"
         },
         {
-          title: "漏块总数",
+          title: <FormattedMessage id="MISSEDBLOCKS" />,
           dataIndex: "missedBlocks"
         },
         {
-          title: "累计出块总数",
+          title: <FormattedMessage id="TOTALAUTHOREDBLOCKS" />,
           dataIndex: "blocks",
           align: "right"
         }

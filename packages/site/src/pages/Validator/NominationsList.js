@@ -4,6 +4,7 @@ import { AddressLink, NumberFormat, Table, Amount } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function NominationsList({ nodeID, ...props }) {
   const [{ tableData }, setState] = useRedux(`nominationsList-${nodeID}`, { tableData: {} });
@@ -21,7 +22,7 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = { ...tableData, ...tableProps };
   const columns = [
     {
-      title: "账户地址",
+      title: <FormattedMessage id="ACCOUNTADDRESS" />,
       dataIndex: "nominator"
     },
     {
@@ -29,15 +30,20 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
       dataIndex: "nomination"
     },
     {
-      title: "赎回冻结(PCX)",
+      title: (
+        <>
+          <FormattedMessage id="UNFREEZERESERVED" />
+          (PCX)
+        </>
+      ),
       dataIndex: "revocations"
     },
     {
-      title: "票龄更新高度",
+      title: <FormattedMessage id="UPDATEWEIGHT" />,
       dataIndex: "last_vote_weight_update"
     },
     {
-      title: "历史总票数",
+      title: <FormattedMessage id="WEIGHT" />,
       dataIndex: "last_vote_weight"
     }
   ];

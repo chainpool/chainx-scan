@@ -4,6 +4,7 @@ import { DateShow, BlockLink, Phase, Table, TxAction, TxLink } from "../componen
 import { useRedux } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function Events({ tableProps, block }) {
   const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
@@ -21,30 +22,30 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
 
   const optionalColumns = [
     {
-      title: "区块高度",
+      title: <FormattedMessage id="HEIGHT" />,
       dataIndex: "number"
     },
     {
-      title: "出块时间",
+      title: <FormattedMessage id="BLOCKTIME" />,
       dataIndex: "time"
     }
   ];
   const columns = [
     ...(simpleMode ? [] : optionalColumns),
     {
-      title: "事件序号",
+      title: <FormattedMessage id="EVENTNUMBER" />,
       dataIndex: "index"
     },
     {
-      title: "交易哈希",
+      title: <FormattedMessage id="TRANSACTIONHASH" />,
       dataIndex: "hash"
     },
     {
-      title: "阶段",
+      title: <FormattedMessage id="PHRASE" />,
       dataIndex: "event"
     },
     {
-      title: "类别",
+      title: <FormattedMessage id="CATEGORY" />,
       dataIndex: "action"
     }
   ];
@@ -53,7 +54,9 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
       loading={loading}
       expandedRowRender={data => (
         <div>
-          <span>事件参数：</span>
+          <span>
+            <FormattedMessage id="CATEGORY" />：
+          </span>
           <span>{data.args}</span>
         </div>
       )}
