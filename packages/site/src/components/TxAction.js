@@ -1,12 +1,18 @@
 import React from "react";
 import classnames from "classnames";
-import { getModuleName, getCallName } from "../shared";
+import { injectIntl } from "react-intl";
 
-export default function TxAction(props) {
-  const { module, call, className, style } = props;
+export default injectIntl(function TxAction(props) {
+  const {
+    module,
+    call,
+    className,
+    style,
+    intl: { messages }
+  } = props;
   return (
-    <div className={classnames(className)} style={style}>{`${getModuleName(module)}${
-      call ? "(" + getCallName(call) + ")" : ""
+    <div className={classnames(className)} style={style}>{`${messages.moduleNameMap[module]}${
+      call ? "(" + messages.callNameMap[call] + ")" : ""
     }`}</div>
   );
-}
+});

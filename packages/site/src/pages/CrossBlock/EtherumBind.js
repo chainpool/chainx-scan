@@ -4,6 +4,7 @@ import { Table, AddressLink, ExternalLink, ValidatorLink } from "../../component
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function EtherumBind() {
   const [{ tableData }, setState] = useRedux("etherumBind", { tableData: {} });
@@ -35,15 +36,25 @@ export function RenderEtherumBind({ tableProps, tableData, handleChange }) {
         })}
         columns={[
           {
-            title: "Etherum地址",
+            title: (
+              <>
+                Etherum
+                <FormattedMessage id="ADDRESS" />
+              </>
+            ),
             dataIndex: "address"
           },
           {
-            title: "ChainX发送地址",
+            title: (
+              <>
+                ChainX
+                <FormattedMessage id="SENDADDRESS" />
+              </>
+            ),
             dataIndex: "accountid"
           },
           {
-            title: "渠道的节点名称",
+            title: <FormattedMessage id="CHANNELNAME" />,
             dataIndex: "channel"
           }
         ]}

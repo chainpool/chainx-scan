@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Table, Amount } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function DepositsMine() {
   const [{ dataSource, loading }, setState] = useRedux("depositsMine", { dataSource: [], loading: true });
@@ -25,7 +26,7 @@ export function RenderDepositsMine({ dataSource, loading }) {
         pagination={false}
         dataSource={dataSource.map(data => {
           return {
-            key: data.address,
+            key: data.id,
             id: data.id,
             circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
             power: <Amount value={data.power} hideSymbol />,
@@ -37,31 +38,46 @@ export function RenderDepositsMine({ dataSource, loading }) {
         })}
         columns={[
           {
-            title: "资产种类",
+            title: <FormattedMessage id="ASSETTYPE" />,
             dataIndex: "id"
           },
           {
-            title: "全链总余额",
+            title: <FormattedMessage id="TOTALBALANCE" />,
             dataIndex: "circulation"
           },
           {
-            title: "挖矿算力(PCX)",
+            title: (
+              <>
+                <FormattedMessage id="MININGPOWER" />
+                (PCX)
+              </>
+            ),
             dataIndex: "power"
           },
           {
-            title: "折合投票数(PCX)",
+            title: (
+              <>
+                <FormattedMessage id="EQUIVALENTNOMINATIONS" />
+                (PCX)
+              </>
+            ),
             dataIndex: "vote"
           },
           {
-            title: "奖池金额(PCX)",
+            title: (
+              <>
+                <FormattedMessage id="JACKPOTBALANCE" />
+                (PCX)
+              </>
+            ),
             dataIndex: "jackpot"
           },
           {
-            title: "奖池更新高度",
+            title: <FormattedMessage id="JACKPOTLASTUPDATE" />,
             dataIndex: "lastTotalDepositWeightUpdate"
           },
           {
-            title: "历史总票龄",
+            title: <FormattedMessage id="WEIGHT" />,
             dataIndex: "lastTotalDepositWeight"
           }
         ]}

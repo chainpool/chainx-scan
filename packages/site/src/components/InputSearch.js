@@ -1,10 +1,14 @@
 import React, { useState, useCallback } from "react";
 import Icon from "antd/lib/icon";
+import { injectIntl } from "react-intl";
 
 import api from "../services/api";
 
-export default function InputSearch(props) {
-  const { history } = props;
+export default injectIntl(function InputSearch(props) {
+  const {
+    history,
+    intl: { messages }
+  } = props;
 
   const [str, setStr] = useState("");
 
@@ -34,9 +38,11 @@ export default function InputSearch(props) {
         style={{ width: 350, paddingRight: 50 }}
         className="input is-rounded"
         type="text"
-        placeholder="搜索区块高度/区块哈希/交易哈希/账户地址"
+        placeholder={`${messages.SEARCH} ${messages.HEIGHT}/${messages.BLOCKHASH}/${messages.TRANSACTIONHASH}/${
+          messages.ACCOUNTADDRESS
+        }`}
       />
       <Icon type="search" className="search" onClick={() => search(str)} />
     </span>
   );
-}
+});

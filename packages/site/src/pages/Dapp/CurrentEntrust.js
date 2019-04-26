@@ -3,6 +3,7 @@ import { AddressLink, Amount, DateShow, OrderDirection, OrderStatus, Table, HasF
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
+import { FormattedMessage } from "react-intl";
 
 export default function CurrentEntrust({ activePair = {} }) {
   const { pairid } = activePair;
@@ -70,39 +71,55 @@ export function RenderCurrentEntrust({
       }
       columns={[
         {
-          title: "委托账户",
+          title: <FormattedMessage id="DISCRETIONARYACCOUNT" />,
           dataIndex: "accountid"
         },
         {
-          title: "委托编号",
+          title: <FormattedMessage id="ORDERNUMBER" />,
           dataIndex: "id"
         },
         {
-          title: "方向",
+          title: <FormattedMessage id="TYPE" />,
           dataIndex: "direction"
         },
         {
-          title: `委托价格(${currency_pair ? currency_pair[1] : "-"})`,
+          title: (
+            <>
+              <FormattedMessage id="ORDERPRICE" />({currency_pair ? currency_pair[1] : "-"})
+            </>
+          ),
           dataIndex: "price"
         },
         {
-          title: `委托数量(${currency_pair ? currency_pair[0] : "-"})`,
+          title: (
+            <>
+              <FormattedMessage id="ORDERAMOUNT" />({currency_pair ? currency_pair[0] : "-"})
+            </>
+          ),
           dataIndex: "amount"
         },
         {
-          title: `冻结金额(${currency_pair ? currency_pair[0] : "-"})`,
+          title: (
+            <>
+              <FormattedMessage id="INORDER" />({currency_pair ? currency_pair[0] : "-"})
+            </>
+          ),
           dataIndex: "reserve_last"
         },
         {
-          title: "已成交数量/成交率",
+          title: (
+            <>
+              <FormattedMessage id="FILLED" />/<FormattedMessage id="FILLEDPERCENT" />
+            </>
+          ),
           dataIndex: "hasFillAmount"
         },
         {
-          title: "状态",
+          title: <FormattedMessage id="STATUS" />,
           dataIndex: "status"
         },
         {
-          title: "时间",
+          title: <FormattedMessage id="TIME" />,
           dataIndex: "createTime"
         }
       ]}

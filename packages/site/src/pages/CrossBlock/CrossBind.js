@@ -4,6 +4,7 @@ import { Table, AddressLink, ExternalLink, ValidatorLink } from "../../component
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function CrossBind() {
   const [{ tableData }, setState] = useRedux("crossBind", { tableData: {} });
@@ -43,15 +44,25 @@ export function RenderCrossBind({ tableProps, tableData, handleChange }) {
         })}
         columns={[
           {
-            title: "Bitcoin地址",
+            title: (
+              <>
+                Bitcoin
+                <FormattedMessage id="ADDRESS" />
+              </>
+            ),
             dataIndex: "btcAddress"
           },
           {
-            title: "Chainx地址",
+            title: (
+              <>
+                ChainX
+                <FormattedMessage id="ADDRESS" />
+              </>
+            ),
             dataIndex: "pcxAddress"
           },
           {
-            title: "渠道的节点名称",
+            title: <FormattedMessage id="CHANNELNAME" />,
             dataIndex: "channel"
           }
         ]}

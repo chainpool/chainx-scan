@@ -1,9 +1,9 @@
-const dict = {
-  ApplyExtrinsic: "交易执行",
-  Finalization: "交易完成"
-};
+import { injectIntl } from "react-intl";
 
-export default function Phase(props) {
-  const { phase } = props;
-  return dict[phase] || phase;
-}
+export default injectIntl(function Phase(props) {
+  const {
+    phase,
+    intl: { messages }
+  } = props;
+  return messages.DICT[phase] || phase;
+});

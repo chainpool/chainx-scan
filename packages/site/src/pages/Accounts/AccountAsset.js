@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import { Table, Amount, TokenName } from "../../components";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function AccountAsset(props) {
   const [list, setList] = useState([]);
@@ -17,31 +18,31 @@ export default function AccountAsset(props) {
 
   const nativeColumns = [
     {
-      title: "资产名称",
+      title: <FormattedMessage id="ASSETNAME" />,
       dataIndex: "token"
     },
     {
-      title: "可用余额",
+      title: <FormattedMessage id="FREEBALANCE" />,
       dataIndex: "free",
       align: "right"
     },
     {
-      title: "投票冻结",
+      title: <FormattedMessage id="STAKINGRESERVED" />,
       dataIndex: "reservedStaking",
       align: "right"
     },
     {
-      title: "赎回冻结",
+      title: <FormattedMessage id="UNFREEZERESERVED" />,
       dataIndex: "reservedStakingRevocation",
       align: "right"
     },
     {
-      title: "交易冻结",
+      title: <FormattedMessage id="DEXRESERVED" />,
       dataIndex: "reservedDexSpot",
       align: "right"
     },
     {
-      title: "总余额",
+      title: <FormattedMessage id="TOTALBALANCE" />,
       dataIndex: "total",
       align: "right"
     }
@@ -49,31 +50,31 @@ export default function AccountAsset(props) {
 
   const crossColumns = [
     {
-      title: "资产名称",
+      title: <FormattedMessage id="ASSETNAME" />,
       dataIndex: "token"
     },
     {
-      title: "可用余额",
+      title: <FormattedMessage id="FREEBALANCE" />,
       dataIndex: "free",
       align: "right"
     },
     {
-      title: "提现冻结",
+      title: <FormattedMessage id="WITHDRAWALRESERVED" />,
       dataIndex: "reservedWithdrawal",
       align: "right"
     },
     {
-      title: "赎回冻结",
+      title: <FormattedMessage id="UNFREEZERESERVED" />,
       dataIndex: "reservedStakingRevocation",
       align: "right"
     },
     {
-      title: "交易冻结",
+      title: <FormattedMessage id="DEXRESERVED" />,
       dataIndex: "reservedDexSpot",
       align: "right"
     },
     {
-      title: "总余额",
+      title: <FormattedMessage id="TOTALBALANCE" />,
       dataIndex: "total",
       align: "right"
     }

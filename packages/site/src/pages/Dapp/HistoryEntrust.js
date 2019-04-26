@@ -3,6 +3,7 @@ import { AddressLink, Amount, DateShow, Table } from "../../components";
 import api from "../../services/api";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
+import { FormattedMessage } from "react-intl";
 
 export default function HistoryEntrust({ activePair = {} }) {
   const { pairid } = activePair;
@@ -70,35 +71,68 @@ export function RenderHistoryEntrust({
       }
       columns={[
         {
-          title: "成交ID",
+          title: (
+            <>
+              <FormattedMessage id="FILL" />
+              ID
+            </>
+          ),
           dataIndex: "id"
         },
         {
-          title: `价格(${currency_pair ? currency_pair[0] : "-"})`,
+          title: (
+            <>
+              <FormattedMessage id="PRICE" />({currency_pair ? currency_pair[0] : "-"})
+            </>
+          ),
           dataIndex: "price"
         },
         {
-          title: `数量(${currency_pair ? currency_pair[1] : "-"})`,
+          title: (
+            <>
+              <FormattedMessage id="AMOUNT" />({currency_pair ? currency_pair[0] : "-"})
+            </>
+          ),
           dataIndex: "amount"
         },
         {
-          title: "maker账户",
+          title: (
+            <>
+              maker
+              <FormattedMessage id="ACCOUNT" />
+            </>
+          ),
           dataIndex: "maker_user"
         },
         {
-          title: "maker委托编号",
+          title: (
+            <>
+              maker
+              <FormattedMessage id="ORDERNUMBER" />
+            </>
+          ),
           dataIndex: "maker_user_order_index"
         },
         {
-          title: "taker账户",
+          title: (
+            <>
+              taker
+              <FormattedMessage id="ACCOUNT" />
+            </>
+          ),
           dataIndex: "taker_user"
         },
         {
-          title: "taker委托编号",
+          title: (
+            <>
+              taker
+              <FormattedMessage id="ORDERNUMBER" />
+            </>
+          ),
           dataIndex: "taker_user_order_index"
         },
         {
-          title: "时间",
+          title: <FormattedMessage id="TIME" />,
           dataIndex: "createTime"
         }
       ]}

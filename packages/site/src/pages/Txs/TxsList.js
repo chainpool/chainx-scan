@@ -4,6 +4,7 @@ import { AddressLink, BlockLink, DateShow, NumberFormat, Table, TxAction, TxLink
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function TxsList() {
   const [{ tableData }, setState] = useRedux("txsList", { tableData: {} });
@@ -24,34 +25,34 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
 
   const optionalColumns = [
     {
-      title: "区块高度",
+      title: <FormattedMessage id="HEIGHT" />,
       dataIndex: "number"
     },
     {
-      title: "出块时间",
+      title: <FormattedMessage id="BLOCKTIME" />,
       dataIndex: "time"
     }
   ];
   const columns = [
     ...(simpleMode ? [] : optionalColumns),
     {
-      title: "交易序号",
+      title: <FormattedMessage id="EXTRINSICSNUMBER" />,
       dataIndex: "index"
     },
     {
-      title: "交易哈希",
+      title: <FormattedMessage id="TRANSACTIONHASH" />,
       dataIndex: "hash"
     },
     ...(showSigned
       ? [
           {
-            title: "发送人",
+            title: <FormattedMessage id="SENDER" />,
             dataIndex: "signed"
           }
         ]
       : []),
     {
-      title: "操作",
+      title: <FormattedMessage id="ACTION" />,
       dataIndex: "action"
     }
   ];
@@ -60,7 +61,9 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
       loading={loading}
       expandedRowRender={data => (
         <div>
-          <span>参数：</span>
+          <span>
+            <FormattedMessage id="PARAMETER" />：
+          </span>
           <span>{data.args}</span>
         </div>
       )}

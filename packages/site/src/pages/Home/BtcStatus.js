@@ -111,7 +111,7 @@ export default function BtcStatus() {
             <tr>
               <th>
                 Bitcoin
-                <FormattedMessage id="BLOCK" />
+                <FormattedMessage id="BLOCKHEIGHT" />
               </th>
               <th>
                 Bitcoin
@@ -183,7 +183,7 @@ export default function BtcStatus() {
       </div>
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/crossblocks">
-          查看全部
+          <FormattedMessage id="SHOWALL" />
           <IconChevronRight />
         </NavLink>
       </div>

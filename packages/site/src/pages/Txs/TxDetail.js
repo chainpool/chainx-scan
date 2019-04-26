@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { hexStripPrefix } from "@polkadot/util";
+import { FormattedMessage } from "react-intl";
 
 import {
   BlockLink,
@@ -45,7 +46,14 @@ export default function BlockDetail(props) {
     }
   }, [blockNumber]);
 
-  const breadcrumb = <Breadcrumb dataSource={[{ to: "/txs", label: "交易列表" }, { label: "交易详情" }]} />;
+  const breadcrumb = (
+    <Breadcrumb
+      dataSource={[
+        { to: "/txs", label: <FormattedMessage id="EXTRINSICS" /> },
+        { label: <FormattedMessage id="EXTRINSICDETAILS" /> }
+      ]}
+    />
+  );
 
   if (!!txid && !data.code && !data.number) {
     return (
@@ -68,43 +76,43 @@ export default function BlockDetail(props) {
       <PanelList
         dataSource={[
           {
-            label: "区块高度",
+            label: <FormattedMessage id="HEIGHT" />,
             data: <BlockLink value={data.number} />
           },
           {
-            label: "出块时间",
+            label: <FormattedMessage id="BLOCKTIME" />,
             data: <DateShow value={data.time} />
           },
           {
-            label: "序号",
+            label: <FormattedMessage id="NUMBER" />,
             data: data.index
           },
           {
-            label: "交易哈希",
+            label: <FormattedMessage id="TRANSACTIONHASH" />,
             data: <TxLink value={data.hash} />
           },
           {
-            label: "发送人",
+            label: <FormattedMessage id="SENDER" />,
             data: <AddressLink value={data.signed} />
           },
           {
-            label: "操作",
+            label: <FormattedMessage id="ACTION" />,
             data: <TxAction module={data.module} call={data.call} />
           },
           {
-            label: "参数",
+            label: <FormattedMessage id="PARAMETER" />,
             data: JSON.stringify(data.args)
           },
           {
-            label: "签名",
+            label: <FormattedMessage id="PARAMETER" />,
             data: data.signature
           },
           {
-            label: "版本",
+            label: <FormattedMessage id="VERSION" />,
             data: data.version
           },
           {
-            label: "加速",
+            label: <FormattedMessage id="ACCELERATE" />,
             data: data.acceleration
           },
           {
@@ -117,7 +125,9 @@ export default function BlockDetail(props) {
         <div className="tabs">
           <ul>
             <li className="is-active">
-              <a>事件列表</a>
+              <a>
+                <FormattedMessage id="EVENTS" />
+              </a>
             </li>
           </ul>
         </div>

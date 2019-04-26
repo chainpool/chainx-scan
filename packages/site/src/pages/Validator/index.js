@@ -14,7 +14,7 @@ export default function Validator(props) {
     {
       text: (
         <>
-          <FormattedMessage id="TRUSTEE" />
+          <FormattedMessage id="TRUSTEES" />
           (Bitcoin)
         </>
       ),

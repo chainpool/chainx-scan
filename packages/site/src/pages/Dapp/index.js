@@ -7,6 +7,7 @@ import CurrentEntrust, { RenderCurrentEntrust } from "./CurrentEntrust";
 import HistoryEntrust, { RenderHistoryEntrust } from "./HistoryEntrust";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
+import { FormattedMessage } from "react-intl";
 
 export default function Dapp() {
   const [activeKey, setActiveKey] = useState("currentEntrust");
@@ -82,13 +83,17 @@ export default function Dapp() {
               onClick={() => setActiveKey("currentEntrust")}
               className={classnames({ "is-active": activeKey === "currentEntrust" })}
             >
-              <a>当前委托列表</a>
+              <a>
+                <FormattedMessage id="OPENORDERS" />
+              </a>
             </li>
             <li
               onClick={() => setActiveKey("historyEntrust")}
               className={classnames({ "is-active": activeKey === "historyEntrust" })}
             >
-              <a>历史成交列表</a>
+              <a>
+                <FormattedMessage id="FILLHISTORY" />
+              </a>
             </li>
           </ul>
         </div>

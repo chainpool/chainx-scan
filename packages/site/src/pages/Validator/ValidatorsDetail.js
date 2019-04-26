@@ -42,19 +42,52 @@ export default function ValidatorsDetail(props) {
   const breadcrumb = () => {
     if (!!nodeId && !!data) {
       if (filter === "unsettled") {
-        return <Breadcrumb dataSource={[{ to: "/validators/unsettled", label: "候选节点" }, { label: "节点详情" }]} />;
+        return (
+          <Breadcrumb
+            dataSource={[
+              { to: "/validators/unsettled", label: <FormattedMessage id="STANDBYNODE" /> },
+              { label: <FormattedMessage id="INTENTIONDETAILS" /> }
+            ]}
+          />
+        );
       } else if (filter === "all") {
-        return <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
+        return (
+          <Breadcrumb
+            dataSource={[
+              { to: "/validators", label: <FormattedMessage id="TRUSTEENODE" /> },
+              { label: <FormattedMessage id="INTENTIONDETAILS" /> }
+            ]}
+          />
+        );
       } else if (filter === "detail") {
         if (!data.isValidator) {
           return (
-            <Breadcrumb dataSource={[{ to: "/validators/unsettled", label: "候选节点" }, { label: "节点详情" }]} />
+            <Breadcrumb
+              dataSource={[
+                { to: "/validators/unsettled", label: <FormattedMessage id="STANDBYNODE" /> },
+                { label: <FormattedMessage id="INTENTIONDETAILS" /> }
+              ]}
+            />
           );
         } else {
-          return <Breadcrumb dataSource={[{ to: "/validators", label: "验证节点" }, { label: "节点详情" }]} />;
+          return (
+            <Breadcrumb
+              dataSource={[
+                { to: "/validators", label: <FormattedMessage id="TRUSTEENODE" /> },
+                { label: <FormattedMessage id="INTENTIONDETAILS" /> }
+              ]}
+            />
+          );
         }
       } else {
-        return <Breadcrumb dataSource={[{ to: `/validators/${filter}`, label: "信托节点" }, { label: "节点详情" }]} />;
+        return (
+          <Breadcrumb
+            dataSource={[
+              { to: `/validators/${filter}`, label: <FormattedMessage id="TRUSTEE" /> },
+              { label: <FormattedMessage id="INTENTIONDETAILS" /> }
+            ]}
+          />
+        );
       }
     } else {
       return <></>;
@@ -81,53 +114,63 @@ export default function ValidatorsDetail(props) {
       <PanelList
         dataSource={[
           {
-            label: "排名",
+            label: <FormattedMessage id="RANKING" />,
             data: (
               <>
                 <ValidatorIndex value={data.name} />
-                {!!data.isTrustee && data.isTrustee.length <= 0 ? "" : <span className="table-tag-trust">信托</span>}
+                {!!data.isTrustee && data.isTrustee.length <= 0 ? (
+                  ""
+                ) : (
+                  <span className="table-tag-trust">
+                    <FormattedMessage id="TRUSTEE" />
+                  </span>
+                )}
               </>
             )
           },
           {
-            label: "名称",
+            label: <FormattedMessage id="NAME" />,
             data: (
               <>
                 {data.name}
-                {!data.isActive && <span className="table-tag-nagtive">(已退选)</span>}
+                {!data.isActive && (
+                  <span className="table-tag-nagtive">
+                    (<FormattedMessage id="INACTIVE" />)
+                  </span>
+                )}
               </>
             )
           },
           {
-            label: "网站",
+            label: <FormattedMessage id="WEBSITE" />,
             data: <ExternalLink value={data.url} />
           },
           {
-            label: "账户地址",
+            label: <FormattedMessage id="ACCOUNTADDRESS" />,
             data: <AddressLink value={data.accountid} isActive className="text-truncate" />
           },
           {
-            label: "出块地址",
+            label: <FormattedMessage id="BLOCKAUTHORINGADDRESS" />,
             data: <AddressLink value={data.sessionKey} isActive className="text-truncate" />
           },
           {
-            label: "奖池地址",
+            label: <FormattedMessage id="JACKPOTADDRESS" />,
             data: <AddressLink value={data.jackpotAddress} isActive className="text-truncate" />
           },
           {
-            label: "自抵押数",
+            label: <FormattedMessage id="SELFBONDED" />,
             data: <Amount value={data.selfVote} />
           },
           {
-            label: "总得票数",
+            label: <FormattedMessage id="TOTALNOMINATION" />,
             data: <Amount value={data.totalNomination} />
           },
           {
-            label: "奖池金额",
+            label: <FormattedMessage id="JACKPOTBALANCE" />,
             data: <Amount value={data.jackpot} />
           },
           {
-            label: "漏块总数",
+            label: <FormattedMessage id="MISSEDBLOCKS" />,
             data: (
               <span>
                 <NumberFormat value={data.missedBlocks} />
@@ -139,15 +182,15 @@ export default function ValidatorsDetail(props) {
             )
           },
           {
-            label: "出块总数",
+            label: <FormattedMessage id="AUTHOREDBLOCKS" />,
             data: <NumberFormat value={data.blocks} />
           },
           {
-            label: "票龄最新高度",
+            label: <FormattedMessage id="VOTEWEIGHTLATESTUPDATE" />,
             data: data.lastTotalVoteWeightUpdate
           },
           {
-            label: "历史总票龄",
+            label: <FormattedMessage id="WEIGHT" />,
             data: data.lastTotalVoteWeight
           }
         ]}
@@ -156,10 +199,14 @@ export default function ValidatorsDetail(props) {
         <div className="tabs">
           <ul>
             <li onClick={() => setActiveKey("trust")} className={classnames({ "is-active": activeKey === "trust" })}>
-              <a>信托设置</a>
+              <a>
+                <FormattedMessage id="TRUSTEESETTINGS" />
+              </a>
             </li>
             <li onClick={() => setActiveKey("vote")} className={classnames({ "is-active": activeKey === "vote" })}>
-              <a>投票用户列表</a>
+              <a>
+                <FormattedMessage id="NOMINATORS" />
+              </a>
             </li>
           </ul>
         </div>
