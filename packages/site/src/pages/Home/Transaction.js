@@ -80,7 +80,7 @@ export default memo(
           },
           axisLabel: {
             formatter: (value, index) => {
-              const length = value.toString().length;
+              const length = value.toString().split(".")[0].length;
               switch (true) {
                 case length > 9:
                   return parseInt(value / Math.pow(10, 9)) + "b";

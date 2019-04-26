@@ -54,22 +54,22 @@ export default function BtcStatus() {
           <div className="btc_content">{status.trustee_session}</div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">多签托管余额 (热地址)</div>
+          <div className="btc_title">多签热地址余额 (BTC)</div>
           <div className="btc_content">
             <ExternalLink
               value={status.hot_address}
               type="btcAddress"
-              render={() => <Amount value={status.hot_balance} symbol="BTC" />}
+              render={() => <Amount value={status.hot_balance} symbol="BTC" hideSymbol />}
             />
           </div>
         </div>
         <div className="column btc_status">
-          <div className="btc_title">多签托管余额 (冷地址)</div>
+          <div className="btc_title">多签冷地址余额 (BTC)</div>
           <div className="btc_content">
             <ExternalLink
               value={status.cold_address}
               type="btcAddress"
-              render={() => <Amount value={status.cold_balance} symbol="BTC" />}
+              render={() => <Amount value={status.cold_balance} symbol="BTC" hideSymbol />}
             />
           </div>
         </div>
