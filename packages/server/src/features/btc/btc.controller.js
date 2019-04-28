@@ -4,7 +4,7 @@ const { toBtcAddress, pubKeyToAddress, hashToBtcAdress, normalizeTxHash } = requ
 class BtcController {
   async status(ctx) {
     const rows = await ctx.db.BtcStatus.findAll({
-      order: [["height", "DESC"]],
+      order: [["trustee_session", "DESC"]],
       limit: 1,
       raw: true
     });
