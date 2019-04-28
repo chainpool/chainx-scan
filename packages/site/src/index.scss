@@ -117,8 +117,9 @@ a:focus {
   align-items: center;
 
   svg {
-    width: 18px;
-    height: 18px;
+    margin-left: 10px;
+    width: 10px;
+    height: 10px;
     color: #c2c2c2;
   }
 }
@@ -152,10 +153,14 @@ a:focus {
     border: 1px solid $nagtive-light;
     border-radius: 1px;
   }
-  .anticon {
+  .select-arrow {
     float: right;
     margin-top: 5px;
     color: $nagtive-shallow;
+    transition: all .4s;
+    &.active {
+      transform: rotate(180deg)
+    }
   }
   .selector {
     position: absolute;

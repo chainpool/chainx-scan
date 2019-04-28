@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 import { BlockLink, NumberFormat, AntSpinner as Spinner, ValidatorLink } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
-import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
+import { ReactComponent as Right } from "../../assets/right.svg";
 import { FormattedMessage } from "react-intl";
 
 export default function BestBlocks() {
@@ -64,7 +64,7 @@ export default function BestBlocks() {
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/blocks">
           <FormattedMessage id="SHOWALL" />
-          <IconChevronRight />
+          <Right className="right" />
         </NavLink>
       </div>
     </section>

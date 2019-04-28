@@ -14,7 +14,7 @@ import {
   AntSpinner as Spinner
 } from "../../components";
 import Bitcoin from "../../assets/tokens/btc.png";
-import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
+import { ReactComponent as Right } from "../../assets/right.svg";
 import { FormattedMessage } from "react-intl";
 
 export default function BtcStatus() {
@@ -184,7 +184,7 @@ export default function BtcStatus() {
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/crossblocks">
           <FormattedMessage id="SHOWALL" />
-          <IconChevronRight />
+          <Right className="right" />
         </NavLink>
       </div>
     </section>
