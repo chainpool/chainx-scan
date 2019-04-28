@@ -211,7 +211,8 @@ export const moduleNameMap = {
   GrandpaFinality: "Grandpa Finality",
   DepositorReward: "Depositor Reward",
   XAssetsRecords: "XAssets Records",
-  Indices: "Indices"
+  Indices: "Indices",
+  XMultiSig: "Multisig"
 };
 
 export const callNameMap = {
@@ -271,7 +272,19 @@ export const callNameMap = {
   NewSession: "New Session",
   FeeForJackpot: "Jackpot Fee",
   FeeForProducer: "Producer Fee",
-  FeeForCouncil: "Council Fee"
+  FeeForCouncil: "Council Fee",
+  deploy: "Deploy",
+  execute: "Execute",
+  confirm: "Confirm",
+  is_owner_for: "Check MultiSig Owner",
+  remove_multi_sig_for: "Remove MultiSig",
+  transition_trustee_session: "New Trustee Set",
+  ExecMultiSig: "Execute MultiSig",
+  Confirm: "Confirm MultiSig",
+  RemoveMultiSigIdFor: "Remove MultiSig",
+  SetDeployFee: "Set Deploy Fee",
+  SetExecFee: "Set Execution Fee",
+  SetConfirmFee: "Set Confirmation Fee"
 };
 
 export const txType = {
