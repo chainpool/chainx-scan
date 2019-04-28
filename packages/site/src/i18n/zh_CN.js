@@ -110,7 +110,7 @@ export const VALIDATOR = {
   BLOCKAUTHORINGADDRESS: "出块地址",
   JACKPOTADDRESS: "奖池地址",
   SELFBONDED: "自抵押数",
-  MISSEDBLOCKS: "漏块总数",
+  MISSEDBLOCKS: "漏块数量",
   TOTALAUTHOREDBLOCKS: "累计出块总数",
   AUTHOREDBLOCKS: "出块总数",
   TRUSTEE: "信托",

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { AddressLink, NumberFormat, Table } from "../../components";
+import { ValidatorLink, NumberFormat, Table } from "../../components";
 import api from "../../services/api";
 import { FormattedMessage } from "react-intl";
 
@@ -26,7 +26,7 @@ export function RenderMissedBlock(props) {
           return {
             key: `${data.accountid}-${data.period}`,
             missed: data.missed,
-            accountid: <AddressLink value={data.accountid} />,
+            accountid: <ValidatorLink value={data.accountid} />,
             period: <NumberFormat value={data.period} />
           };
         })
