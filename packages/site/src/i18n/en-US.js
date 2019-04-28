@@ -211,7 +211,8 @@ export const moduleNameMap = {
   GrandpaFinality: "Grandpa Finality",
   DepositorReward: "Depositor Reward",
   XAssetsRecords: "XAssets Records",
-  Indices: "Indices"
+  Indices: "Indices",
+  XMultiSig: "Multisig"
 };
 
 export const callNameMap = {
@@ -271,7 +272,19 @@ export const callNameMap = {
   NewSession: "New Session",
   FeeForJackpot: "Jackpot Fee",
   FeeForProducer: "Producer Fee",
-  FeeForCouncil: "Council Fee"
+  FeeForCouncil: "Council Fee",
+  deploy: "部署",
+  execute: "执行",
+  confirm: "确认",
+  is_owner_for: "判断拥有者",
+  remove_multi_sig_for: "删除多签",
+  transition_trustee_session: "信托换届",
+  ExecMultiSig: "执行多签",
+  Confirm: "确认多签",
+  RemoveMultiSigIdFor: "移除多签",
+  SetDeployFee: "设置部署手续费",
+  SetExecFee: "设置执行手续费",
+  SetConfirmFee: "设置确认手续费"
 };
 
 export const txType = {

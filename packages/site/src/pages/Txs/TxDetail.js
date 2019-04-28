@@ -104,7 +104,7 @@ export default function BlockDetail(props) {
             data: JSON.stringify(data.args)
           },
           {
-            label: <FormattedMessage id="PARAMETER" />,
+            label: <FormattedMessage id="SIGN" />,
             data: data.signature
           },
           {

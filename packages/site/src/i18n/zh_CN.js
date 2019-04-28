@@ -210,7 +210,8 @@ export const moduleNameMap = {
   GrandpaFinality: "共识确认",
   DepositorReward: "充值奖励",
   XAssetsRecords: "资产记录",
-  Indices: "索引"
+  Indices: "索引",
+  XMultiSig: "多签"
 };
 
 export const callNameMap = {
@@ -244,7 +245,6 @@ export const callNameMap = {
   Unnominate: "撤票",
   WithdrawalFatalErr: "提现错误",
   NewAuthorities: "新验证人",
-  DeployMultiSig: "部署多签账户",
   ExtrinsicSuccess: "交易完全成功",
   FillOrder: "成交订单",
   NewTrustees: "更新信托节点",
@@ -270,7 +270,20 @@ export const callNameMap = {
   NewSession: "开始新的 session",
   FeeForJackpot: "奖池手续费",
   FeeForProducer: "验证人手续费",
-  FeeForCouncil: "议会手续费"
+  FeeForCouncil: "议会手续费",
+  deploy: "部署",
+  execute: "执行",
+  confirm: "确认",
+  is_owner_for: "判断拥有者",
+  remove_multi_sig_for: "删除多签",
+  transition_trustee_session: "信托换届",
+  DeployMultiSig: "部署多签",
+  ExecMultiSig: "执行多签",
+  Confirm: "确认多签",
+  RemoveMultiSigIdFor: "移除多签",
+  SetDeployFee: "设置部署手续费",
+  SetExecFee: "设置执行手续费",
+  SetConfirmFee: "设置确认手续费"
 };
 
 export const txType = {
