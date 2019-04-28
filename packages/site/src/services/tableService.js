@@ -77,7 +77,7 @@ export default class tableService {
   };
 
   handleChange = ({ current, pageSize }) => {
-    this.fetchTable$({ current, pageSize }, this.peddingData);
+    this.fetchTable$({ current, pageSize });
   };
 
   setState = value => {

@@ -21,7 +21,6 @@ addLocaleData([...en, ...zh]); // 引入多语言环境的数据
 
 export default function App() {
   const [{ local }] = useRedux("locale", { local: locale || navigator.language });
-  console.log(local);
   return (
     <IntlProvider locale={local} messages={i18n[local.split("-")[0]]}>
       <Router>

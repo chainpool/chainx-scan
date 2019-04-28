@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 import { TxLink, AddressLink, TxAction, AntSpinner as Spinner } from "../../components";
-import { ReactComponent as IconChevronRight } from "../../assets/IconChevronRight.svg";
+import { ReactComponent as Right } from "../../assets/right.svg";
 import api from "../../services/api";
 import { useRedux } from "../../shared";
 import { FormattedMessage } from "react-intl";
@@ -65,7 +65,7 @@ export default function BestTransactions() {
       <div className="panel-block panel-footer-link" style={{ justifyContent: "center" }}>
         <NavLink className="view-more" to="/txs">
           <FormattedMessage id="SHOWALL" />
-          <IconChevronRight />
+          <Right className="right" />
         </NavLink>
       </div>
     </section>

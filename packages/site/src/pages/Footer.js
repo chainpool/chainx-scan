@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 
 import weixin from "../assets/weixin.jpg";
-import Icon from "antd/lib/icon";
 import classnames from "classnames";
 import { FormattedMessage } from "react-intl";
 import { useRedux } from "../shared";
+import { ReactComponent as Up } from "../assets/open.svg";
 
 export const LangChanger = function() {
   const languages = ["中文", "English"];
@@ -32,16 +32,12 @@ export const LangChanger = function() {
   };
   return (
     <div className="lang-selector">
-      <div className="show-lang" onClick={() => setActive(true)}>
-        {language} <Icon type="up" />
+      <div className="show-lang" onClick={() => setActive(!active)}>
+        {language} <Up className={classnames("select-arrow", { active })} />
       </div>
       <ul className={classnames("selector", { active })}>
         {languages.map(item => (
-          <li
-            className={classnames("select-item", { active: item === language })}
-            onClick={() => handleChange(item)}
-            key={item}
-          >
+          <li className={classnames("select-item")} onClick={() => handleChange(item)} key={item}>
             {item}
           </li>
         ))}
