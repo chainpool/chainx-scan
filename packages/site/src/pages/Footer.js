@@ -32,16 +32,12 @@ export const LangChanger = function() {
   };
   return (
     <div className="lang-selector">
-      <div className="show-lang" onClick={() => setActive(true)}>
+      <div className="show-lang" onClick={() => setActive(!active)}>
         {language} <Icon type="up" />
       </div>
       <ul className={classnames("selector", { active })}>
         {languages.map(item => (
-          <li
-            className={classnames("select-item", { active: item === language })}
-            onClick={() => handleChange(item)}
-            key={item}
-          >
+          <li className={classnames("select-item")} onClick={() => handleChange(item)} key={item}>
             {item}
           </li>
         ))}

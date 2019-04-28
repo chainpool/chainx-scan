@@ -42,15 +42,22 @@ export default injectIntl(
             top: 20,
             left: 10
           },
+          grid: {
+            left: 0,
+            bottom: 0,
+            right: 0
+          },
           tooltip: {
             show: true,
             trigger: "axis",
             padding: 10,
-            formatter: value => `${value[0].value[0]}<br />${messages.OTHERS.TRADINGVOLUME} ${value[0].value[1]}`
+            backgroundColor: "#d89601",
+            formatter: value => `${value[0].value[0]}<br />${value[0].value[1]} PCX`
           },
           xAxis: {
-            type: "time",
-            // data: xAxis,
+            type: "category",
+            boundaryGap: false,
+            // data: xAxis
             axisTick: {
               show: false,
               alignWithLabel: true
@@ -63,6 +70,7 @@ export default injectIntl(
             },
             interval: new Date(1000 * 3600 * 24 * 3).getTime(),
             axisLabel: {
+              show: false,
               formatter: value => dayjs(value).format("M.D")
             }
           },
@@ -81,6 +89,7 @@ export default injectIntl(
               show: false
             },
             axisLabel: {
+              show: false,
               formatter: (value, index) => {
                 const length = value.toString().split(".")[0].length;
                 switch (true) {
@@ -100,9 +109,31 @@ export default injectIntl(
             data,
             type: "line",
             smooth: true,
+            color: "#d89601",
+            symbolSize: 6,
+            areaStyle: {
+              color: {
+                type: "linear",
+                x: 0,
+                y: 0,
+                x2: 0,
+                y2: 1,
+                colorStops: [
+                  {
+                    offset: 0,
+                    color: "rgba(255,215,104,1)" // 0% 处的颜色
+                  },
+                  {
+                    offset: 1,
+                    color: "rgba(255,250,234,1)" // 100% 处的颜色
+                  }
+                ],
+                global: false // 缺省为 false
+              }
+            },
             showSymbol: false,
             lineStyle: {
-              color: "#979797",
+              // color: "#d89601",
               width: 3
             }
           }

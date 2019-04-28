@@ -140,9 +140,10 @@ a:focus {
   }
 }
 
+/** 语言切换器 **/
 .lang-selector {
   position: relative;
-  margin-right: 15px;
+  margin-right: 32px;
   display: inline-block;
   .show-lang {
     width: 88px;
@@ -151,30 +152,36 @@ a:focus {
     border: 1px solid $nagtive-light;
     border-radius: 1px;
   }
-  .anticon{
+  .anticon {
     float: right;
     margin-top: 5px;
     color: $nagtive-shallow;
   }
-  .selector{
+  .selector {
     position: absolute;
     display: none;
     bottom: 30px;
+    right: 0;
+    width: 113px;
     background-color: #fff;
     border: 1px solid $nagtive-light;
-    border-radius: 1px;
-    &.active{
+    border-radius: 5px;
+    padding: 5px 0;
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.16);
+    &.active {
       display: block;
     }
-    .select-item{
+    .select-item {
       width: 100%;
       line-height: 30px;
-      text-align: center;
-      &.active{
-        background-color: $nagtive-shallow-light;
+      text-align: left;
+      text-indent: 23px;
+      color: #555;
+      &.active {
+        background-color: $primary;
       }
-      &:hover{
-        background-color: $nagtive-shallow-light;
+      &:hover {
+        background-color: $primary;
       }
     }
   }
@@ -529,7 +536,7 @@ a:focus {
 .echarts-for-react {
   height: 264px;
   border-left: 1px solid $nagtive-light;
-  padding-left: 20px;
+  // padding-left: 20px;
 }
 
 .blockTransaction {
@@ -566,12 +573,14 @@ a:focus {
   height: 88px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
+  text-indent: 20px;
   justify-content: center;
   box-shadow: 1px 1px 0 $nagtive-light;
 
   .dashboard-cell__title {
-    font-size: 14px;
+    font-size: 13px;
+    font-weight: bold;
     color: #3f3f3f;
     margin-bottom: 5px;
   }
@@ -579,6 +588,9 @@ a:focus {
   .dashboard-cell__content {
     font-size: 16px;
     color: $nagtive;
+    .nav-link{
+      text-indent: 0;
+    }
   }
 }
 
@@ -625,7 +637,9 @@ a:focus {
   font-size: 12px;
   display: flex;
   align-items: center;
-
+  .footer-start {
+    align-items: center;
+  }
   a {
     color: #777;
   }
