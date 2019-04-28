@@ -12,25 +12,19 @@ export default injectIntl(
     function Transaction({ style, intl: { messages } }) {
       const [data, setData] = useState([]);
       const getOption = (data = []) => {
+        let Transaction_list = [...data];
         //处理数据
-        data.reverse();
-        data.pop();
-        const xAxis = data.reduce((pre, cre) => {
+        Transaction_list.reverse();
+        Transaction_list.pop();
+        const xAxis = Transaction_list.reduce((pre, cre) => {
           return pre.concat([dayjs(cre.day * 1000).format("YYYY-MM-DD")]);
         }, []);
-        const yAxis = data.reduce((pre, cre) => {
+        const yAxis = Transaction_list.reduce((pre, cre) => {
           return pre.concat([cre.num]);
         }, []);
-        data = xAxis.map((item, index) => ({
+        Transaction_list = xAxis.map((item, index) => ({
           value: [item, yAxis[index]]
         }));
-        const max_num = Math.max(...yAxis);
-        const min_num = Math.min(...yAxis);
-        const max_length = max_num.toString().length;
-        const min_length = min_num.toString().length;
-        const max = parseInt(max_num / Math.pow(10, max_length - 2) + 1) * Math.pow(10, max_length - 2);
-        const min = parseInt(min_num / Math.pow(10, min_length - 2) - 10) * Math.pow(10, min_length - 2);
-        const interval = parseInt(((max - min) / Math.pow(10, max_length - 2)) * Math.pow(10, max_length - 2)) / 3;
         // 绘制图表
         return {
           title: {
@@ -57,7 +51,7 @@ export default injectIntl(
           xAxis: {
             type: "category",
             boundaryGap: false,
-            // data: xAxis
+            // Transaction_list: xAxis
             axisTick: {
               show: false,
               alignWithLabel: true
@@ -68,17 +62,12 @@ export default injectIntl(
             splitLine: {
               show: false
             },
-            interval: new Date(1000 * 3600 * 24 * 3).getTime(),
             axisLabel: {
-              show: false,
-              formatter: value => dayjs(value).format("M.D")
+              show: false
             }
           },
           yAxis: {
             type: "value",
-            max,
-            min,
-            interval,
             axisLine: {
               show: false
             },
@@ -89,24 +78,11 @@ export default injectIntl(
               show: false
             },
             axisLabel: {
-              show: false,
-              formatter: (value, index) => {
-                const length = value.toString().split(".")[0].length;
-                switch (true) {
-                  case length > 9:
-                    return parseInt(value / Math.pow(10, 9)) + "b";
-                  case length > 6:
-                    return parseInt(value / Math.pow(10, 6)) + "m";
-                  case length > 3:
-                    return parseInt(value / Math.pow(10, 3)) + "k";
-                  default:
-                    return value;
-                }
-              }
+              show: false
             }
           },
           series: {
-            data,
+            data: Transaction_list,
             type: "line",
             smooth: true,
             color: "#d89601",
