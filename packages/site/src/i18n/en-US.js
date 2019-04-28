@@ -273,18 +273,18 @@ export const callNameMap = {
   FeeForJackpot: "Jackpot Fee",
   FeeForProducer: "Producer Fee",
   FeeForCouncil: "Council Fee",
-  deploy: "部署",
-  execute: "执行",
-  confirm: "确认",
-  is_owner_for: "判断拥有者",
-  remove_multi_sig_for: "删除多签",
-  transition_trustee_session: "信托换届",
-  ExecMultiSig: "执行多签",
-  Confirm: "确认多签",
-  RemoveMultiSigIdFor: "移除多签",
-  SetDeployFee: "设置部署手续费",
-  SetExecFee: "设置执行手续费",
-  SetConfirmFee: "设置确认手续费"
+  deploy: "Deploy",
+  execute: "Execute",
+  confirm: "Confirm",
+  is_owner_for: "Check MultiSig Owner",
+  remove_multi_sig_for: "Remove MultiSig",
+  transition_trustee_session: "New Trustee Set",
+  ExecMultiSig: "Execute MultiSig",
+  Confirm: "Confirm MultiSig",
+  RemoveMultiSigIdFor: "Remove MultiSig",
+  SetDeployFee: "Set Deploy Fee",
+  SetExecFee: "Set Execution Fee",
+  SetConfirmFee: "Set Confirmation Fee"
 };
 
 export const txType = {
