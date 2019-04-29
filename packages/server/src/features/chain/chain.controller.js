@@ -1,4 +1,10 @@
 class ChainController {
+  async status(ctx) {
+    ctx.body = {
+      type: "testnet"
+    };
+  }
+
   async height(ctx) {
     const height = await ctx.db.Block.max("number", { raw: true });
     ctx.body = { height };
