@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import weixin from "../assets/weixin.jpg";
 import classnames from "classnames";
@@ -30,6 +30,13 @@ export const LangChanger = function() {
     }
     setActive(false);
   };
+  const setNagtive = e => {
+    if (e.toElement.className !== "show-lang") setActive(false);
+  };
+  useEffect(() => {
+    document.body.addEventListener("click", setNagtive);
+    return () => document.body.removeEventListener("click", setNagtive);
+  });
   return (
     <div className="lang-selector">
       <div className="show-lang" onClick={() => setActive(!active)}>

@@ -46,7 +46,7 @@ export default injectIntl(
             trigger: "axis",
             padding: 10,
             backgroundColor: "#d89601",
-            formatter: value => `${value[0].value[0]}<br />${value[0].value[1]} PCX`
+            formatter: value => `${value[0].value[0]}<br />${messages.OTHERS.TRADINGVOLUME}: ${value[0].value[1]}`
           },
           xAxis: {
             type: "category",
