@@ -54,7 +54,7 @@ class AccountController {
     ctx.body = rows.map(row => ({
       accountid: row.accountid,
       missed: row.missed,
-      period: Math.floor(row.height / 150)
+      period: Math.floor(row.height / 300)
     }));
   }
 
@@ -74,7 +74,7 @@ class AccountController {
     ctx.body = {
       items: rows.map(row => ({
         missed: row.missed,
-        period: Math.floor(row.height / 150)
+        period: Math.floor(row.height / 300)
       })),
       pageSize,
       page,
