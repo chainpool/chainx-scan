@@ -166,7 +166,7 @@ export const CROSSBLOCK = {
   VOTEWEIGHTLATESTUPDATE: "票龄最新高度",
   ADDRESS: "地址",
   SENDADDRESS: "发送地址",
-  TOTALBALANCE: "全链总余额",
+  CHAINTOTALBALANCE: "全链总余额",
   ETHBRIDGE: "Etherum转接桥",
   BTCBRIDGE: "Bitcoin转接桥",
   DEPOSITSMINING: "充值挖矿",
