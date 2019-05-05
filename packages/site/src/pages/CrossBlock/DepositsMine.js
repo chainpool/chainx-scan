@@ -42,7 +42,7 @@ export function RenderDepositsMine({ dataSource, loading }) {
             dataIndex: "id"
           },
           {
-            title: <FormattedMessage id="TOTALBALANCE" />,
+            title: <FormattedMessage id="CHAINTOTALBALANCE" />,
             dataIndex: "circulation"
           },
           {
