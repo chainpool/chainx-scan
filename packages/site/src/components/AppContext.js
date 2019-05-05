@@ -45,7 +45,7 @@ export function AppContextProvider(props) {
   const { tokens = [], intentions = [] } = state;
   if (!tokens.length || !intentions.length) {
     return (
-      <div className="container" style={{ padding: "25%" }}>
+      <div className="main-content" style={{ height: "100%", padding: "20% 0" }}>
         <Spinner />
       </div>
     );

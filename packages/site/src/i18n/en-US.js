@@ -152,11 +152,11 @@ export const CROSSBLOCK = {
   TRUSTEEADDRESSES: "Trustee Addresses",
   UNCLAIMEDDEPOSITS: "Unclaimed Deposits",
   CHANNELNAME: "Channel Name",
-  BITCOINADDRESS: "Address",
-  ISSUEADDRESS: "Issue Address",
+  BITCOINADDRESS: " Address",
+  ISSUEADDRESS: " Issue Address",
   APPLICATIONEXTRINSICHASH: " Application Tx Hash",
   APPLICATIONADDRESS: " Application Address",
-  TARGETADDRESS: " Withdrawals Address",
+  TARGETADDRESS: " Withdrawal Address",
   WITHDRAWALSTATUS: "Status",
   WITHDRAWALS: "Withdrawals",
   ERA: "Era",
@@ -164,8 +164,8 @@ export const CROSSBLOCK = {
   EQUIVALENTNOMINATIONS: "Equivalent Nominations",
   JACKPOTLASTUPDATE: "Jackpot Last Update",
   VOTEWEIGHTLATESTUPDATE: "Vote Weight Latest Update",
-  ADDRESS: "Address",
-  SENDADDRESS: "Send Address",
+  ADDRESS: " Address",
+  SENDADDRESS: " Binding Address",
   TOTALBALANCE: "Total Balance",
   BRIDGE: " Bridge",
   ETHBRIDGE: "Etherum Bridge",
@@ -176,7 +176,7 @@ export const CROSSBLOCK = {
 };
 export const DAPP = {
   ACCUMULATIVEDEPTH: "Sum",
-  DISCRETIONARYACCOUNT: "Discretionary Account",
+  DISCRETIONARYACCOUNT: "Agent",
   ORDERAMOUNT: " Amount",
   INORDER: "In order",
   ACCOUNT: " Account",
@@ -316,7 +316,11 @@ export const OTHERS = {
   NODATA: "No Data",
   TOHOME: "To Home",
   TRADINGVOLUME: "Volume Of Business",
-  DAILYTRADINGVOLUMEMAP: "Daily Trading Volume Map"
+  DAILYTRADINGVOLUMEMAP: "Daily Trading Volume Map",
+  TOTAL: "Total",
+  UNIT: "",
+  PRE: "Previous",
+  NEXT: "Next"
 };
 
 export default {

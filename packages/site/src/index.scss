@@ -62,6 +62,22 @@ html {
   }
 }
 
+.btn-border {
+  display: inline-block;
+  border: 1px solid #dedede;
+  margin: 0 2px;
+  padding: 0 10px;
+  min-width: 24px;
+  height: 34px;
+  line-height: 32px;
+  border-radius: 2px;
+  &:hover {
+    color: #fff;
+    border-color: transparent;
+    background-color: $primary;
+  }
+}
+
 #root {
   background-color: #f5f5f5;
 }
@@ -157,10 +173,10 @@ a:focus {
     float: right;
     margin-top: 5px;
     color: $nagtive-shallow;
-    transition: all .4s;
+    transition: all 0.4s;
     transform: rotate(180deg);
     &.active {
-      transform: rotate(0deg)
+      transform: rotate(0deg);
     }
   }
   .selector {
@@ -173,7 +189,7 @@ a:focus {
     border: 1px solid $nagtive-light;
     border-radius: 5px;
     padding: 5px 0;
-    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.16);
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.16);
     &.active {
       display: block;
     }
@@ -194,8 +210,23 @@ a:focus {
 }
 
 .ant-pagination.mini {
+  margin: 30px 8px 10px;
+  .ant-pagination-prev {
+    margin-left: 20px;
+    height: 34px;
+    line-height: 34px;
+  }
+  .ant-pagination-next {
+    height: 34px;
+    line-height: 34px;
+    margin-right: 20px;
+  }
   .ant-pagination-item {
     border-color: transparent;
+    height: 34px;
+    line-height: 34px;
+    min-width: 34px;
+    border-radius: 2px;
     &:not(.ant-pagination-item-active) {
       border: 1px solid $nagtive-light;
       margin: 0 2px;
@@ -228,6 +259,31 @@ a:focus {
   }
   .ant-pagination-item-ellipsis {
     color: $primary;
+  }
+  .btn-border {
+    &:hover {
+      border-color: transparent;
+    }
+  }
+  .ant-pagination-options-quick-jumper {
+    @extend .nagtive;
+    height: 34px;
+    input {
+      display: inline-block;
+      border-radius: 2px;
+      width: 50px;
+      height: 34px;
+      line-height: 32px;
+      text-align: center;
+      &:hover{
+        border-color: $nagtive-light;
+        box-shadow: none;
+      }
+      &:focus{
+        border-color: $nagtive-light;
+        box-shadow: none;
+      }
+    }
   }
 }
 
@@ -594,7 +650,7 @@ a:focus {
   .dashboard-cell__content {
     font-size: 16px;
     color: $nagtive;
-    .nav-link{
+    .nav-link {
       text-indent: 0;
     }
   }
@@ -627,7 +683,7 @@ a:focus {
 }
 
 .main-content {
-  min-height: calc(100vh - 52px - 50px);
+  min-height: calc(100vh - 53px - 60px);
   padding: 1.5rem;
 }
 

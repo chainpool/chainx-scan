@@ -165,7 +165,7 @@ export const CROSSBLOCK = {
   JACKPOTLASTUPDATE: "奖池更新高度",
   VOTEWEIGHTLATESTUPDATE: "票龄最新高度",
   ADDRESS: "地址",
-  SENDADDRESS: "发送地址",
+  SENDADDRESS: "绑定地址",
   TOTALBALANCE: "全链总余额",
   ETHBRIDGE: "Etherum转接桥",
   BTCBRIDGE: "Bitcoin转接桥",
@@ -313,7 +313,11 @@ export const OTHERS = {
   NODATA: "暂时没有您要的信息",
   TOHOME: "返回首页",
   DAILYTRADINGVOLUMEMAP: "交易量日线图",
-  TRADINGVOLUME: "交易"
+  TRADINGVOLUME: "交易",
+  TOTAL: "共",
+  UNIT: "个",
+  PRE: "上一页",
+  NEXT: "下一页"
 };
 
 export default {

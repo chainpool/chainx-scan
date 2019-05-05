@@ -75,7 +75,7 @@ export default function Footer() {
           </li>
           <li>
             <a href="https://github.com/chainx-org/ChainX" target="_blank" rel="noopener noreferrer">
-              Github
+              GitHub
             </a>
           </li>
           <li>
