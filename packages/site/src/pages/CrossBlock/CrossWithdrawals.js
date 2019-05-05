@@ -44,6 +44,7 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange, me
       case "6":
       case "Confirmed":
         return <FormattedMessage id="CONFIRMED" />;
+      case "Unknown":
       default:
         return <FormattedMessage id="UNKNOWN" />;
     }
