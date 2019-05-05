@@ -313,7 +313,11 @@ export const OTHERS = {
   NODATA: "暂时没有您要的信息",
   TOHOME: "返回首页",
   DAILYTRADINGVOLUMEMAP: "交易量日线图",
-  TRADINGVOLUME: "交易"
+  TRADINGVOLUME: "交易",
+  TOTAL: "共",
+  UNIT: "个",
+  PRE: "上一页",
+  NEXT: "下一页"
 };
 
 export default {

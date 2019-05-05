@@ -316,7 +316,11 @@ export const OTHERS = {
   NODATA: "No Data",
   TOHOME: "To Home",
   TRADINGVOLUME: "Volume Of Business",
-  DAILYTRADINGVOLUMEMAP: "Daily Trading Volume Map"
+  DAILYTRADINGVOLUMEMAP: "Daily Trading Volume Map",
+  TOTAL: "Total",
+  UNIT: "",
+  PRE: "Previous",
+  NEXT: "Next"
 };
 
 export default {
