@@ -24,13 +24,13 @@ export default injectIntl(function Table(_props) {
             return <a className="btn-border">{messages.OTHERS.PRE}</a>;
           }
           if (type === "jump-prev") {
-            return <span>...</span>;
+            return <span onClick={e => e.stopPropagation()}>...</span>;
           }
           if (type === "next") {
             return <a className="btn-border">{messages.OTHERS.NEXT}</a>;
           }
           if (type === "jump-next") {
-            return <span>...</span>;
+            return <span onClick={e => e.stopPropagation()}>...</span>;
           }
           return originalElement;
         },
