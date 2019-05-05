@@ -1,4 +1,4 @@
-const { extractPage } = require("../utils");
+const { extractPage, normalizeTransaction } = require("../utils");
 const { toBtcAddress } = require("../btc/address");
 
 class AccountController {
@@ -97,7 +97,6 @@ class AccountController {
     const { page, pageSize } = extractPage(ctx);
     const order = [["number", "DESC"], ["index", "DESC"]];
     const { rows: items, count } = await ctx.db.Transaction.findAndCountAll({
-      attributes: ["number", "index", "signed", "hash", "module", "call", "time"],
       where: { signed: accountId },
       order,
       limit: pageSize,
@@ -106,7 +105,7 @@ class AccountController {
     });
 
     ctx.body = {
-      items,
+      items: items.map(normalizeTransaction),
       page,
       pageSize,
       total: count
