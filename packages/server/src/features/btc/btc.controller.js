@@ -149,7 +149,6 @@ class BtcController {
 
   async sessionTrustees(ctx) {
     const rows = await ctx.db.SessionTrusteeInfo.findAll({
-      where: { chain: "Bitcoin" },
       attributes: { exclude: ["chain", "height"] },
       order: [["id", "DESC"]],
       limit: 5,
