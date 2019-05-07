@@ -68,10 +68,9 @@ class BtcController {
   async addresses(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const { rows, count } = await ctx.db.CrossChainAddressMap.findAndCountAll({
+    const { rows, count } = await ctx.db.BtcCrossChainAddressMap.findAndCountAll({
       include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
       attributes: { exclude: ["chain", "height"] },
-      where: { chain: "Bitcoin" },
       order: [["height", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
