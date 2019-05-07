@@ -8,10 +8,6 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         primaryKey: true
       },
-      chain: {
-        type: DataTypes.STRING,
-        primaryKey: true
-      },
       about: {
         type: DataTypes.STRING
       },
@@ -28,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "XAccounts_TrusteeIntentionPropertiesOf"
+      tableName: "XBridgeFeatures_BitcoinTrusteeIntentionProps"
     }
   );
 

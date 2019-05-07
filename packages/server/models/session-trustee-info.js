@@ -3,10 +3,6 @@ module.exports = (sequelize, DataTypes) => {
   const SessionTrusteeInfo = sequelize.define(
     "SessionTrusteeInfo",
     {
-      chain: {
-        type: DataTypes.STRING,
-        primaryKey: true
-      },
       id: {
         type: DataTypes.BIGINT,
         primaryKey: true
@@ -27,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "XAccounts_TrusteeSessionInfoOf"
+      tableName: "XBridgeFeatures_BitcoinTrusteeSessionInfoOf"
     }
   );
 
