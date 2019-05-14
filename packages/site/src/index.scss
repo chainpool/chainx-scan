@@ -172,7 +172,7 @@ a:focus {
   margin-right: 32px;
   display: inline-block;
   .show-lang {
-    width: 88px;
+    width: 112px;
     height: 30px;
     padding: 5px 10px;
     border: 1px solid $nagtive-light;
@@ -611,10 +611,20 @@ a:focus {
 .echarts-for-react {
   height: 264px;
   border-left: 1px solid $nagtive-light;
-  // padding-left: 20px;
 }
 
 .blockTransaction {
+  > .panel:not(:last-child) {
+    margin-bottom: 1.25rem;
+  }
+  > .columns {
+    margin-left: -0.625rem;
+    margin-right: -0.625rem;
+    margin-top: -0.625rem;
+    > .column {
+      padding: 0.625rem;
+    }
+  }
   .btc_block {
     margin: 0;
     padding: 12px;
@@ -630,6 +640,12 @@ a:focus {
       margin: 5px 10px;
       border: 1px solid $nagtive-light;
       box-shadow: 0 0 10px $nagtive-light;
+      &:first-child(){
+        margin-left: 0;
+      }
+      &:last-child(){
+        margin-right: 0;
+      }
       .btc_title {
         white-space: nowrap;
         margin-bottom: 10px;
