@@ -68,6 +68,7 @@ class Api {
         resolve({
           error: {
             code: resp.status,
+            url: path,
             message: "api is not online"
           }
         });
