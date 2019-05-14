@@ -61,7 +61,7 @@ export const BLOCKCHAIN = {
   PHRASE: "阶段",
   CATEGORY: "类别",
   FREEBALANCE: "可用余额",
-  TOTALBALANCE: "总余额",
+  BLOCKTOTALBALANCE: "总余额",
   BLOCKDETAILS: "区块详情",
   EXTRINSICDETAILS: "交易详情",
   ACCOUNTDETAILS: "账户详情",

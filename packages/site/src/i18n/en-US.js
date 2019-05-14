@@ -60,7 +60,7 @@ export const BLOCKCHAIN = {
   EVENTPARAMETERS: "Event Parameters",
   PHRASE: "Phrase",
   CATEGORY: "Category",
-  TOTALBALANCE: "TOTAL Balance",
+  BLOCKTOTALBALANCE: "TOTAL Balance",
   FREEBALANCE: "Free Balance",
   BLOCKDETAILS: "Block Details",
   EXTRINSICDETAILS: "Extrinsic Details",
