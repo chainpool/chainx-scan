@@ -29,7 +29,8 @@ export default function DashBoard() {
     {
       label: (
         <>
-          Chainx <FormattedMessage id="TRANSACTIONCOUNT" />
+          Chainx
+          <FormattedMessage id="TRANSACTIONCOUNT" />
         </>
       ),
       data: <NumberFormat value={data.transactions} />

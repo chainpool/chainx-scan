@@ -416,6 +416,9 @@ class Api {
    */
   search = async (input = "") => {
     input = input.trim();
+    if (input === "") {
+      return { result: `/blocks/您的输入为空` };
+    }
     if (isNaN(input) && /^[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]{48,}$/.test(input)) {
       try {
         const address = decodeAddress(input);

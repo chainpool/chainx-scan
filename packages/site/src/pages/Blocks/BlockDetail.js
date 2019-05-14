@@ -18,7 +18,7 @@ export default function BlockDetail(props) {
   const [activeKey, setActiveKey] = useState("txs");
   const [txsLoading, setTxsLoading] = useState(true);
   let blockId = void 0;
-  if (/^\d*$/.test(match.params.block)) {
+  if (/^\d*$/.test(match.params.block) || /^\D*$/.test(match.params.block)) {
     blockId = match.params.block;
   } else {
     try {
