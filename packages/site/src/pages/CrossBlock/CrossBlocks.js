@@ -105,7 +105,8 @@ export function RenderCrossBlocks({ tableProps, tableData, handleChange }) {
         {
           title: (
             <>
-              ChainX <FormattedMessage id="TRUNKTRANSACTIONHASH" />
+              ChainX
+              <FormattedMessage id="TRUNKTRANSACTIONHASH" />
             </>
           ),
           dataIndex: "chainx_tx"

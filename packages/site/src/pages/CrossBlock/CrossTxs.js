@@ -84,7 +84,8 @@ export function RenderCrossTxs({ tableProps, tableData, handleChange, messages }
         {
           title: (
             <>
-              ChainX <FormattedMessage id="TRUNKTRANSACTIONHASH" />
+              ChainX
+              <FormattedMessage id="TRUNKTRANSACTIONHASH" />
             </>
           ),
           dataIndex: "chainxHash"

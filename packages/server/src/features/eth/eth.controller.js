@@ -4,9 +4,8 @@ class EthController {
   async addresses(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const { rows, count } = await ctx.db.CrossChainAddressMap.findAndCountAll({
+    const { rows, count } = await ctx.db.EthCrossChainAddressMap.findAndCountAll({
       attributes: { exclude: ["chain", "height"] },
-      where: { chain: "Ethereum" },
       order: [["height", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,

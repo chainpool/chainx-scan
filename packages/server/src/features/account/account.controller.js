@@ -78,8 +78,8 @@ class AccountController {
     //   return;
     // }
 
-    const addresses = await ctx.db.CrossChainAddressMap.findAll({
-      where: { accountid: accountId, chain: "Bitcoin" },
+    const addresses = await ctx.db.BtcCrossChainAddressMap.findAll({
+      where: { accountid: accountId },
       attributes: ["address"],
       raw: true
     });
@@ -115,17 +115,32 @@ class AccountController {
   async bindAddresses(ctx) {
     const { accountId } = ctx.params;
 
-    const rows = await ctx.db.CrossChainAddressMap.findAll({
+    const btcRows = await ctx.db.BtcCrossChainAddressMap.findAll({
       include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
       attributes: { exclude: ["height"] },
       where: { accountid: accountId },
       raw: true
     });
 
-    ctx.body = rows.map(row => ({
-      ...row,
-      address: row.chain === "Bitcoin" ? toBtcAddress(row.address) : row.address
-    }));
+    const ethRows = await ctx.db.EthCrossChainAddressMap.findAll({
+      include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
+      attributes: { exclude: ["height"] },
+      where: { accountid: accountId },
+      raw: true
+    });
+
+    ctx.body = btcRows
+      .map(row => ({
+        ...row,
+        chain: "Bitcoin",
+        address: toBtcAddress(row.address)
+      }))
+      .concat(
+        ethRows.map(row => ({
+          ...row,
+          chain: "Ethereum"
+        }))
+      );
   }
 
   async fillOrders(ctx) {

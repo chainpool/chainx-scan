@@ -73,7 +73,7 @@ function toBtcAddress(btc_layout) {
 }
 
 function pubKeyToAddress(pubKey) {
-  const { address } = bitcoin.payments.p2pkh({ pubkey: Buffer.from(pubKey, "hex"), network: bitcoin.networks.testnet });
+  const { address } = bitcoin.payments.p2pkh({ pubkey: Buffer.from(pubKey, "hex"), network: bitcoin.networks.bitcoin });
   return address;
 }
 

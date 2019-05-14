@@ -1,5 +1,5 @@
 const { extractPage } = require("../utils");
-const { toBtcAddress, pubKeyToAddress, hashToBtcAdress, normalizeTxHash } = require("./address");
+const { pubKeyToAddress, hashToBtcAdress, normalizeTxHash } = require("./address");
 
 class BtcController {
   async status(ctx) {
@@ -68,10 +68,9 @@ class BtcController {
   async addresses(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const { rows, count } = await ctx.db.CrossChainAddressMap.findAndCountAll({
+    const { rows, count } = await ctx.db.BtcCrossChainAddressMap.findAndCountAll({
       include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
       attributes: { exclude: ["chain", "height"] },
-      where: { chain: "Bitcoin" },
       order: [["height", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
@@ -79,10 +78,13 @@ class BtcController {
     });
 
     ctx.body = {
-      items: rows.map(row => ({
-        ...row,
-        address: toBtcAddress(row.address)
-      })),
+      items: rows.map(row => {
+        const address = JSON.parse(row.address);
+        return {
+          ...row,
+          address: hashToBtcAdress(address.hash, address.kind, address.network)
+        };
+      }),
       page,
       pageSize,
       total: count
@@ -113,7 +115,6 @@ class BtcController {
     const { page, pageSize } = extractPage(ctx);
 
     const { rows, count } = await ctx.db.Deposit.findAndCountAll({
-      where: { chain: "1" }, // '1' 代表btc chain
       include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
@@ -151,7 +152,6 @@ class BtcController {
 
   async sessionTrustees(ctx) {
     const rows = await ctx.db.SessionTrusteeInfo.findAll({
-      where: { chain: "Bitcoin" },
       attributes: { exclude: ["chain", "height"] },
       order: [["id", "DESC"]],
       limit: 5,

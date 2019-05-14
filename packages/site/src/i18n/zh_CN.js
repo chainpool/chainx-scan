@@ -34,8 +34,8 @@ export const NEWESTTRANSACTION = {
 };
 export const BITCOIN = {
   TRUSTEEVOTESESSION: "信托节点选举届数",
-  MULTISIGTRUSTEEHOTBALANCE: "多签热地址余额 (BTC)",
-  MULTISIGTRUSTEECOLDBALANCE: "多签冷地址余额 (BTC)",
+  MULTISIGTRUSTEEHOTBALANCE: "多签热地址余额(BTC)",
+  MULTISIGTRUSTEECOLDBALANCE: "多签冷地址余额(BTC)",
   HOTADDRESS: "热地址",
   COLDADDRESS: "冷地址",
   DEPOSITETRANSACTIONCOUNT: "充值交易总数",
@@ -212,7 +212,8 @@ export const moduleNameMap = {
   DepositorReward: "充值奖励",
   XAssetsRecords: "资产记录",
   Indices: "索引",
-  XMultiSig: "多签"
+  XMultiSig: "多签",
+  "xbridge-features": "桥特性集"
 };
 
 export const callNameMap = {
@@ -284,7 +285,12 @@ export const callNameMap = {
   RemoveMultiSigIdFor: "移除多签",
   SetDeployFee: "设置部署手续费",
   SetExecFee: "设置执行手续费",
-  SetConfirmFee: "设置确认手续费"
+  SetConfirmFee: "设置确认手续费",
+  SetBitcoinTrusteeProps: "设置比特币信托",
+  BitcoinNewTrustees: "比特币信托换届",
+  setup_bitcoin_trustee: "设置比特币信托",
+  transition_trustee_session_by_root: "信托换届(root)",
+  set_trustee_info_config: "设置信托配置"
 };
 
 export const txType = {
