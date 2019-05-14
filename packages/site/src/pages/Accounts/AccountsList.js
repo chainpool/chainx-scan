@@ -53,7 +53,7 @@ export default function AccountsList() {
           title: (
             <>
               PCX
-              <FormattedMessage id="TOTALBALANCE" />
+              <FormattedMessage id="BLOCKTOTALBALANCE" />
             </>
           ),
           dataIndex: "pcx",
@@ -63,7 +63,7 @@ export default function AccountsList() {
           title: (
             <>
               BTC
-              <FormattedMessage id="TOTALBALANCE" />
+              <FormattedMessage id="BLOCKTOTALBALANCE" />
             </>
           ),
           dataIndex: "btc",
@@ -73,7 +73,7 @@ export default function AccountsList() {
           title: (
             <>
               SDOT
-              <FormattedMessage id="TOTALBALANCE" />
+              <FormattedMessage id="BLOCKTOTALBALANCE" />
             </>
           ),
           dataIndex: "sdot",
