@@ -42,7 +42,7 @@ export default function AccountAsset(props) {
       align: "right"
     },
     {
-      title: <FormattedMessage id="TOTALBALANCE" />,
+      title: <FormattedMessage id="BLOCKTOTALBALANCE" />,
       dataIndex: "total",
       align: "right"
     }
@@ -74,7 +74,7 @@ export default function AccountAsset(props) {
       align: "right"
     },
     {
-      title: <FormattedMessage id="TOTALBALANCE" />,
+      title: <FormattedMessage id="BLOCKTOTALBALANCE" />,
       dataIndex: "total",
       align: "right"
     }
