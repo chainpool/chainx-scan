@@ -212,7 +212,8 @@ export const moduleNameMap = {
   DepositorReward: "Depositor Reward",
   XAssetsRecords: "XAssets Records",
   Indices: "Indices",
-  XMultiSig: "Multisig"
+  XMultiSig: "Multisig",
+  "xbridge-features": "Bridge Features"
 };
 
 export const callNameMap = {
@@ -284,7 +285,12 @@ export const callNameMap = {
   RemoveMultiSigIdFor: "Remove MultiSig",
   SetDeployFee: "Set Deploy Fee",
   SetExecFee: "Set Execution Fee",
-  SetConfirmFee: "Set Confirmation Fee"
+  SetConfirmFee: "Set Confirmation Fee",
+  SetBitcoinTrusteeProps: "New Bitcoin Trustee Set",
+  BitcoinNewTrustees: "New Bitcoin Trustee Set",
+  setup_bitcoin_trustee: "Setup Bitcoin Trustee",
+  transition_trustee_session_by_root: "New Trustee Set via Root",
+  set_trustee_info_config: "Set Trustee Info"
 };
 
 export const txType = {
