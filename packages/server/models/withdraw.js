@@ -3,9 +3,12 @@ module.exports = (sequelize, DataTypes) => {
   const Withdraw = sequelize.define(
     "Withdraw",
     {
-      accountid: {
+      id: {
         type: DataTypes.STRING,
         primaryKey: true
+      },
+      accountid: {
+        type: DataTypes.STRING
       },
       token: {
         type: DataTypes.STRING
