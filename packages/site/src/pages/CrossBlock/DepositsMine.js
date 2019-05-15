@@ -4,6 +4,7 @@ import { Table, Amount } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { FormattedMessage } from "react-intl";
+import { useAppContext } from "../../components/AppContext";
 
 export default function DepositsMine() {
   const [{ dataSource, loading }, setState] = useRedux("depositsMine", { dataSource: [], loading: true });
@@ -30,7 +31,14 @@ export function RenderDepositsMine({ dataSource, loading }) {
             id: data.id,
             circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
             power: <Amount value={data.power} hideSymbol />,
-            vote: <Amount value={(data.power * data.circulation) / Math.pow(10, 8)} hideSymbol />,
+            vote: (
+              <Amount
+                value={
+                  (data.power * data.circulation) / Math.pow(10, tokens.find(item => item.token === data.id).precision)
+                }
+                hideSymbol
+              />
+            ),
             jackpot: <Amount value={data.jackpot} hideSymbol />,
             lastTotalDepositWeightUpdate: data.lastTotalDepositWeightUpdate,
             lastTotalDepositWeight: <Amount value={data.lastTotalDepositWeight} hideSymbol />
