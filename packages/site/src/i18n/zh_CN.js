@@ -290,7 +290,10 @@ export const callNameMap = {
   BitcoinNewTrustees: "比特币信托换届",
   setup_bitcoin_trustee: "设置比特币信托",
   transition_trustee_session_by_root: "信托换届(root)",
-  set_trustee_info_config: "设置信托配置"
+  set_trustee_info_config: "设置信托配置",
+  SignWithdrawalProposal: "签署提现提议",
+  DropWithdrawalProposal: "删除提现提议",
+  revoke_withdraw: "撤销提现"
 };
 
 export const txType = {

@@ -4,6 +4,15 @@
 @import "~bulma/sass/base/_all.sass";
 
 @font-face {
+  font-family: "iconfont"; /* project id 1193043 */
+  src: url("https://at.alicdn.com/t/font_1193043_khmeke3zvzo.eot");
+  src: url("https://at.alicdn.com/t/font_1193043_khmeke3zvzo.eot?#iefix") format("embedded-opentype"),
+    url("https://at.alicdn.com/t/font_1193043_khmeke3zvzo.woff2") format("woff2"),
+    url("https://at.alicdn.com/t/font_1193043_khmeke3zvzo.woff") format("woff"),
+    url("https://at.alicdn.com/t/font_1193043_khmeke3zvzo.ttf") format("truetype"),
+    url("https://at.alicdn.com/t/font_1193043_khmeke3zvzo.svg#iconfont") format("svg");
+}
+@font-face {
   font-family: Droid Sans Mono;
   font-style: normal;
   font-weight: 400;
@@ -46,6 +55,29 @@ $navbar-tab-active-border-bottom-color: $primary;
 
 @import "~bulma/bulma";
 
+.iconfont {
+  font-family: "iconfont";
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+.icon-left{
+  &::before{
+    content: "\e94e"
+  }
+}
+.icon-right{
+  &::before{
+    content: "\e94d"
+  }
+}
+.icon-search{
+  &::before{
+    content: "\e61f"
+  }
+}
 html {
   -webkit-font-smoothing: auto;
 }
@@ -122,9 +154,9 @@ a:focus {
   }
 }
 
-.blockTransaction{
-  .column{
-    padding: .5rem;
+.blockTransaction {
+  .column {
+    padding: 0.5rem;
   }
 }
 
@@ -375,10 +407,11 @@ a:focus {
       position: relative;
       .search {
         position: absolute;
-        top: 5px;
+        top: 1px;
         right: 15px;
         font-size: 20px;
         color: $primary;
+        cursor: pointer;
       }
       .input {
         background-color: transparent;
@@ -603,8 +636,11 @@ a:focus {
   height: 0px;
   text-align: center;
   font-size: 24px;
-  .anticon {
+  .iconfont {
+    margin: 0 10px;
     color: #daa718;
+    font-size: 24px;
+    cursor: pointer;
   }
 }
 
@@ -622,7 +658,7 @@ a:focus {
     margin-right: -0.625rem;
     margin-top: -0.625rem;
     > .column {
-      padding: 0.625rem;
+      padding: 0.5rem;
     }
   }
   .btc_block {
@@ -640,10 +676,10 @@ a:focus {
       margin: 5px 10px;
       border: 1px solid $nagtive-light;
       box-shadow: 0 0 10px $nagtive-light;
-      &:first-child(){
+      &:first-child() {
         margin-left: 0;
       }
-      &:last-child(){
+      &:last-child() {
         margin-right: 0;
       }
       .btc_title {
