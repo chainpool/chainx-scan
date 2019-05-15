@@ -27,7 +27,6 @@ export function RenderEtherumBind({ tableProps, tableData, handleChange }) {
         onChange={handleChange}
         pagination={pagination}
         dataSource={dataSource.map(data => {
-          console.log(data);
           return {
             key: data.address,
             address: <ExternalLink type="ethAddress" value={data.address} />,
