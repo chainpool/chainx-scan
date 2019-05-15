@@ -1,5 +1,5 @@
 export const MENU = {
-  HOME: "Home",
+  HOME: " Home",
   BLOCKCHAIN: "Chain",
   VALIDTORS: "Validators",
   CROSSBLOCKS: "Light Client",

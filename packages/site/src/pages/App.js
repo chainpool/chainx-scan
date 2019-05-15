@@ -23,7 +23,7 @@ export default function App() {
   const [{ local }] = useRedux("locale", { local: locale || navigator.language });
   return (
     <IntlProvider locale={local} messages={i18n[local.split("-")[0]]}>
-      <Router>
+      <Router onUpdate={() => window.screenTop(0, 0)}>
         <React.Fragment>
           <Header />
           <AppContextProvider>

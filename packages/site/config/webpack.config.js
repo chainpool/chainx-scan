@@ -42,7 +42,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
-module.exports = function(webpackEnv) {
+module.exports = function(webpackEnv, report) {
   const isEnvDevelopment = webpackEnv === "development";
   const isEnvProduction = webpackEnv === "production";
 
@@ -106,7 +106,7 @@ module.exports = function(webpackEnv) {
     return loaders;
   };
 
-  return {
+  const webpackConfig = {
     mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
     // Stop compilation early in production
     bail: isEnvProduction,
@@ -150,6 +150,11 @@ module.exports = function(webpackEnv) {
       devtoolModuleFilenameTemplate: isEnvProduction
         ? info => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, "/")
         : isEnvDevelopment && (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"))
+    },
+    externals: {
+      react: "React",
+      "react-dom": "ReactDOM"
+      // "react-router": "ReactRouter"
     },
     optimization: {
       minimize: isEnvProduction,
@@ -266,6 +271,7 @@ module.exports = function(webpackEnv) {
         PnpWebpackPlugin.moduleLoader(module)
       ]
     },
+    target: "web",
     module: {
       strictExportPresence: true,
       rules: [
@@ -578,4 +584,9 @@ module.exports = function(webpackEnv) {
     // our own hints via the FileSizeReporter
     performance: false
   };
+  if (report) {
+    const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
+    webpackConfig.plugins.push(new BundleAnalyzerPlugin({ analyzerPort: 4000 }));
+  }
+  return webpackConfig;
 };
