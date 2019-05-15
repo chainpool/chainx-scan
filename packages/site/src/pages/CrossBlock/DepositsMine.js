@@ -20,6 +20,7 @@ export default function DepositsMine() {
 }
 
 export function RenderDepositsMine({ dataSource, loading }) {
+  const [{ tokens }] = useAppContext();
   return (
     <div className="box">
       <Table
