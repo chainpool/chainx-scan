@@ -23,27 +23,18 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange, me
   const { pagination, dataSource = [], loading } = tableData;
   const processTxState = txstate => {
     switch (txstate) {
-      case "0":
-      case "NotApplying":
-        return <FormattedMessage id="NOTAPPLYING" />;
-      case "1":
       case "Applying":
         return <FormattedMessage id="APPLYING" />;
-      case "2":
-      case "Signing":
-        return <FormattedMessage id="SIGNING" />;
-      case "3":
-      case "Broadcasting":
-        return <FormattedMessage id="BROADCASTING" />;
-      case "4":
+      case "NormalFinish":
+        return <FormattedMessage id="NORMALFINISH" />;
+      case "RootFinish":
+        return <FormattedMessage id="ROOTFINISH" />;
       case "Processing":
         return <FormattedMessage id="PROCESSING" />;
-      case "5":
-      case "Confirming":
-        return <FormattedMessage id="CONFIRMING" />;
-      case "6":
-      case "Confirmed":
-        return <FormattedMessage id="CONFIRMED" />;
+      case "NormalCancel":
+        return <FormattedMessage id="NORMALCANCEL" />;
+      case "RootCancel":
+        return <FormattedMessage id="ROOTCANCEL" />;
       case "Unknown":
       default:
         return <FormattedMessage id="UNKNOWN" />;

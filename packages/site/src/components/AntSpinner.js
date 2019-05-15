@@ -1,10 +1,10 @@
 import React from "react";
-import Spin from "antd/lib/spin";
+import Loading from "../assets/loading.gif";
 
 export default function Spinner() {
   return (
     <div className="spinner-wrap">
-      <Spin />
+      <img src={Loading} alt="loading" />
     </div>
   );
 }

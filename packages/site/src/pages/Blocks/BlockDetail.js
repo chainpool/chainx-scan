@@ -6,7 +6,6 @@ import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner a
 import { RenderTxsList } from "../Txs/TxsList";
 import Events from "../Events";
 import api from "../../services/api";
-import Icon from "antd/lib/icon";
 import { NoData } from "../../components";
 import { FormattedMessage } from "react-intl";
 
@@ -79,11 +78,11 @@ export default function BlockDetail(props) {
       {breadcrumb}
       <div className="switch-block">
         <NavLink to={`/blocks/${!!data && data.number - 1}`}>
-          <Icon type="double-left" />
+          <i className="iconfont icon-left" />
         </NavLink>
         <FormattedMessage id="HEIGHT" />:{!!data && data.number}
         <NavLink to={hasNext ? `/blocks/${!!data && data.number + 1}` : `/blocks/${!!data && data.number}`}>
-          <Icon className={classnames({ forbidden: !hasNext })} type="double-right" />
+          <i className={classnames({ forbidden: !hasNext }, "iconfont icon-right")} />
         </NavLink>
       </div>
       <PanelList

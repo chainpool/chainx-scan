@@ -52,7 +52,7 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
           title: (
             <>
               Bitcoin
-              <FormattedMessage id="BLOCKHASH" />
+              <FormattedMessage id="TRANSACTIONHASH" />
             </>
           ),
           dataIndex: "txid"

@@ -185,13 +185,12 @@ export const DAPP = {
   ORDERS: "挂单列表"
 };
 export const PROCESSTXSTATE = {
-  NOTAPPLYING: "未申请",
   APPLYING: "申请中",
-  SIGNING: "签名中",
-  BROADCASTING: "广播中",
-  CONFIRMING: "确认中",
+  NORMALFINISH: "完成",
+  ROOTFINISH: "系统结束",
+  NORMALCANCEL: "取消",
   PROCESSING: "处理中",
-  CONFIRMED: "已确认",
+  ROOTCANCEL: "系统取消",
   UNKNOWN: "未知"
 };
 export const moduleNameMap = {
@@ -290,7 +289,10 @@ export const callNameMap = {
   BitcoinNewTrustees: "比特币信托换届",
   setup_bitcoin_trustee: "设置比特币信托",
   transition_trustee_session_by_root: "信托换届(root)",
-  set_trustee_info_config: "设置信托配置"
+  set_trustee_info_config: "设置信托配置",
+  SignWithdrawalProposal: "签署提现提议",
+  DropWithdrawalProposal: "删除提现提议",
+  revoke_withdraw: "撤销提现"
 };
 
 export const txType = {

@@ -1,5 +1,5 @@
 export const MENU = {
-  HOME: "Home",
+  HOME: " Home",
   BLOCKCHAIN: "Chain",
   VALIDTORS: "Validators",
   CROSSBLOCKS: "Light Client",
@@ -185,13 +185,12 @@ export const DAPP = {
   ORDERS: "Orders"
 };
 export const PROCESSTXSTATE = {
-  NOTAPPLYING: "Not Applying",
+  NORMALCANCEL: "Canceled",
+  ROOTCANCEL: "System Canceled",
   APPLYING: "Applying",
-  SIGNING: "Signing",
-  BROADCASTING: "Broadcasting",
-  CONFIRMING: "Confirming",
+  NORMALFINISH: "Finished",
+  ROOTFINISH: "System Finished",
   PROCESSING: "Processing",
-  CONFIRMED: "Confirmed",
   UNKNOWN: "Unknown"
 };
 export const moduleNameMap = {
@@ -290,7 +289,10 @@ export const callNameMap = {
   BitcoinNewTrustees: "New Bitcoin Trustee Set",
   setup_bitcoin_trustee: "Setup Bitcoin Trustee",
   transition_trustee_session_by_root: "New Trustee Set via Root",
-  set_trustee_info_config: "Set Trustee Info"
+  set_trustee_info_config: "Set Trustee Info",
+  SignWithdrawalProposal: "Sign Withdrawal Proposal",
+  DropWithdrawalProposal: "Drop Withdrawal Proposal",
+  revoke_withdraw: "cancel withdraw"
 };
 
 export const txType = {

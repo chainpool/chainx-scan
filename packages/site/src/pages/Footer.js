@@ -60,7 +60,8 @@ export default function Footer() {
         <ul className="footer-start">
           <li>
             <a href="https://chainx.org" target="_blank" rel="noopener noreferrer">
-              ChainX <FormattedMessage id="HOME" />
+              ChainX
+              <FormattedMessage id="HOME" />
             </a>
           </li>
           <li>

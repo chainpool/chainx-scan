@@ -1,7 +1,10 @@
 import React, { useEffect, useState, memo } from "react";
 // 引入 ECharts 主模块
-import ReactEcharts from "echarts-for-react";
-import "echarts";
+import ReactEchartsCore from "echarts-for-react/lib/core";
+import echarts from "echarts/lib/echarts";
+import "echarts/lib/chart/line";
+import "echarts/lib/component/tooltip";
+import "echarts/lib/component/title";
 import api from "../../services/api";
 import dayjs from "dayjs";
 import { isEqual } from "lodash";
@@ -81,38 +84,38 @@ export default injectIntl(
               show: false
             }
           },
-          series: {
-            data: Transaction_list,
-            type: "line",
-            smooth: true,
-            color: "#d89601",
-            symbolSize: 6,
-            areaStyle: {
-              color: {
-                type: "linear",
-                x: 0,
-                y: 0,
-                x2: 0,
-                y2: 1,
-                colorStops: [
-                  {
-                    offset: 0,
-                    color: "rgba(255,215,104,1)" // 0% 处的颜色
-                  },
-                  {
-                    offset: 1,
-                    color: "rgba(255,250,234,1)" // 100% 处的颜色
-                  }
-                ],
-                global: false // 缺省为 false
+          series: [
+            {
+              data: Transaction_list,
+              type: "line",
+              smooth: true,
+              color: "#d89601",
+              symbolSize: 6,
+              areaStyle: {
+                color: {
+                  type: "linear",
+                  x: 0,
+                  y: 0,
+                  x2: 0,
+                  y2: 1,
+                  colorStops: [
+                    {
+                      offset: 0,
+                      color: "rgba(255,215,104,1)" // 0% 处的颜色
+                    },
+                    {
+                      offset: 1,
+                      color: "rgba(255,250,234,1)" // 100% 处的颜色
+                    }
+                  ]
+                }
+              },
+              showSymbol: false,
+              lineStyle: {
+                width: 3
               }
-            },
-            showSymbol: false,
-            lineStyle: {
-              // color: "#d89601",
-              width: 3
             }
-          }
+          ]
         };
       };
 
@@ -122,7 +125,9 @@ export default injectIntl(
         });
         return () => subscription.unsubscribe();
       }, []);
-      return <ReactEcharts option={getOption(data)} notMerge={true} lazyUpdate={true} style={style} />;
+      return (
+        <ReactEchartsCore echarts={echarts} option={getOption(data)} notMerge={true} lazyUpdate={true} style={style} />
+      );
     },
     (pre, cre) => {
       return isEqual(pre, cre);

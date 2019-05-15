@@ -23,6 +23,8 @@ const getClientEnvironment = require("./env");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin-alt");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
+const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
+
 const common = require("./webpack.config.common");
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
@@ -42,7 +44,7 @@ const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
-module.exports = function(webpackEnv) {
+module.exports = function(webpackEnv, report) {
   const isEnvDevelopment = webpackEnv === "development";
   const isEnvProduction = webpackEnv === "production";
 
@@ -58,6 +60,7 @@ module.exports = function(webpackEnv) {
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
   // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
   const publicUrl = isEnvProduction ? publicPath.slice(0, -1) : isEnvDevelopment && "";
+  const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
@@ -106,7 +109,7 @@ module.exports = function(webpackEnv) {
     return loaders;
   };
 
-  return {
+  const webpackConfig = {
     mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
     // Stop compilation early in production
     bail: isEnvProduction,
@@ -150,6 +153,10 @@ module.exports = function(webpackEnv) {
       devtoolModuleFilenameTemplate: isEnvProduction
         ? info => path.relative(paths.appSrc, info.absoluteResourcePath).replace(/\\/g, "/")
         : isEnvDevelopment && (info => path.resolve(info.absoluteResourcePath).replace(/\\/g, "/"))
+    },
+    externals: {
+      react: "React",
+      "react-dom": "ReactDOM"
     },
     optimization: {
       minimize: isEnvProduction,
@@ -266,6 +273,7 @@ module.exports = function(webpackEnv) {
         PnpWebpackPlugin.moduleLoader(module)
       ]
     },
+    target: "web",
     module: {
       strictExportPresence: true,
       rules: [
@@ -467,6 +475,8 @@ module.exports = function(webpackEnv) {
             : undefined
         )
       ),
+      new UglifyJSPlugin(),
+      new webpack.optimize.ModuleConcatenationPlugin(),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
       isEnvProduction && shouldInlineRuntimeChunk && new InlineChunkHtmlPlugin(HtmlWebpackPlugin, [/runtime~.+[.]js/]),
@@ -561,7 +571,8 @@ module.exports = function(webpackEnv) {
           watch: paths.appSrc,
           silent: true,
           formatter: typescriptFormatter
-        })
+        }),
+      report && new BundleAnalyzerPlugin({ analyzerPort: 4000 })
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.
@@ -578,4 +589,5 @@ module.exports = function(webpackEnv) {
     // our own hints via the FileSizeReporter
     performance: false
   };
+  return webpackConfig;
 };
