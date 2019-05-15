@@ -185,13 +185,12 @@ export const DAPP = {
   ORDERS: "Orders"
 };
 export const PROCESSTXSTATE = {
-  NOTAPPLYING: "Not Applying",
+  NORMALCANCEL: "Canceled",
+  ROOTCANCEL: "System Canceled",
   APPLYING: "Applying",
-  SIGNING: "Signing",
-  BROADCASTING: "Broadcasting",
-  CONFIRMING: "Confirming",
+  NORMALFINISH: "Finished",
+  ROOTFINISH: "System Finished",
   PROCESSING: "Processing",
-  CONFIRMED: "Confirmed",
   UNKNOWN: "Unknown"
 };
 export const moduleNameMap = {

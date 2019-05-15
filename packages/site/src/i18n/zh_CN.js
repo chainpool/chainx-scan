@@ -185,13 +185,12 @@ export const DAPP = {
   ORDERS: "挂单列表"
 };
 export const PROCESSTXSTATE = {
-  NOTAPPLYING: "未申请",
   APPLYING: "申请中",
-  SIGNING: "签名中",
-  BROADCASTING: "广播中",
-  CONFIRMING: "确认中",
+  NORMALFINISH: "完成",
+  ROOTFINISH: "系统结束",
+  NORMALCANCEL: "取消",
   PROCESSING: "处理中",
-  CONFIRMED: "已确认",
+  ROOTCANCEL: "系统取消",
   UNKNOWN: "未知"
 };
 export const moduleNameMap = {
