@@ -117,7 +117,7 @@ export const VALIDATOR = {
   TRUSTEE: "Trustee",
   NOMINATORS: "Nominators",
   MISSEDBLOCKSTATISTIC: "Missed Blocks",
-  SHAREERA: "Session",
+  SHAREERA: "Session Period",
   CHANELNAME: "Chanel Name"
 };
 export const ACCOUNT = {
