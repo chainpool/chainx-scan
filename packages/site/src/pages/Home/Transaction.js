@@ -7,7 +7,7 @@ import "echarts/lib/component/tooltip";
 import "echarts/lib/component/title";
 import api from "../../services/api";
 import dayjs from "dayjs";
-import { isEqual } from "lodash";
+import isEqual from "lodash/isEqual";
 import { injectIntl } from "react-intl";
 
 export default injectIntl(

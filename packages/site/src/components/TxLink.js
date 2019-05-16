@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import classnames from "classnames";
 
-import { hexAddPrefix } from "@polkadot/util";
+import hexAddPrefix from "@polkadot/util/hex/hasPrefix";
 import { NavLink } from "react-router-dom";
 
 export default memo(function TxLink(props) {

@@ -2,7 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 
-import { hexAddPrefix } from "@polkadot/util";
+import hexAddPrefix from "@polkadot/util/hex/hasPrefix";
 import { useAppContext } from "./AppContext";
 import { FormattedMessage } from "react-intl";
 
