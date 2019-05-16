@@ -12,7 +12,6 @@ import Dapp from "./Dapp";
 import { BlockChainNav } from "../components";
 
 export default function Main() {
-  useEffect(() => window.scrollTo(0, 0), [window.location.pathname]);
   return (
     <div className="section main-content">
       <section className="container">
