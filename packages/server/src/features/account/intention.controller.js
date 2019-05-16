@@ -73,7 +73,7 @@ class AccountController {
     ctx.body = {
       items: rows.map(row => ({
         missed: row.missed,
-        period: Math.floor(row.height / 1800)
+        period: Math.floor(row.height / 150)
       })),
       pageSize,
       page,
