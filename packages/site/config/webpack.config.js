@@ -23,7 +23,6 @@ const getClientEnvironment = require("./env");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin-alt");
 const typescriptFormatter = require("react-dev-utils/typescriptFormatter");
-const UglifyJSPlugin = require("uglifyjs-webpack-plugin");
 
 const common = require("./webpack.config.common");
 
@@ -475,7 +474,6 @@ module.exports = function(webpackEnv, report) {
             : undefined
         )
       ),
-      new UglifyJSPlugin(),
       new webpack.optimize.ModuleConcatenationPlugin(),
       // Inlines the webpack runtime script. This script is too small to warrant
       // a network request.
