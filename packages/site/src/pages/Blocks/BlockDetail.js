@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
-import hexAddPrefix from "@polkadot/util/hex/hasPrefix";
+import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 import { NavLink } from "react-router-dom";
 import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";

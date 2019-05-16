@@ -64,7 +64,9 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           <span>
             <FormattedMessage id="PARAMETER" />：
           </span>
-          <span>{data.args}</span>
+          <span>
+            {Array.isArray(data.args) ? data.args.reduce((result, c) => result.concat({ [c.name]: c.data }), []) : ""}
+          </span>
         </div>
       )}
       onChange={handleChange}

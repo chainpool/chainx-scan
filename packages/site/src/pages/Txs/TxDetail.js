@@ -101,7 +101,7 @@ export default function BlockDetail(props) {
           },
           {
             label: <FormattedMessage id="PARAMETER" />,
-            data: JSON.stringify(data.args)
+            data: JSON.stringify(data.args.reduce((result, c) => result.concat({ [c.name]: c.data }), []))
           },
           {
             label: <FormattedMessage id="SIGN" />,

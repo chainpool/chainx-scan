@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import classnames from "classnames";
 
-import hexAddPrefix from "@polkadot/util/hex/hasPrefix";
+import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 
 export default memo(function Hash(props) {
   const { value, className, style } = props;
