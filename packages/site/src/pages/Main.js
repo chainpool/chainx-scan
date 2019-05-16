@@ -9,13 +9,13 @@ import Accounts from "./Accounts";
 import Validator from "./Validator";
 import CrossBlock from "./CrossBlock";
 import Dapp from "./Dapp";
-import { BlockChainNav } from "../components";
+import { BlockChainNav, ScrollTop } from "../components";
 
 export default function Main() {
-  window.scrollTo(0, 0);
   return (
     <div className="section main-content">
       <section className="container">
+        <ScrollTop />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/blocks" component={Blocks} />
