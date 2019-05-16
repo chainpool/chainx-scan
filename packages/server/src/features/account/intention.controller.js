@@ -32,6 +32,7 @@ class AccountController {
       const hot_entity = JSON.parse(profile.hot_entity);
       return {
         ...profile,
+        chain: "BTC",
         cold_entity: cold_entity["Compressed"],
         hot_entity: hot_entity["Compressed"]
       };
