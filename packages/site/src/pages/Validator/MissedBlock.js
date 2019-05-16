@@ -33,7 +33,7 @@ export function RenderMissedBlock(props) {
       }
       columns={[
         {
-          title: <FormattedMessage id="ERA" />,
+          title: <FormattedMessage id="SHAREERA" />,
           dataIndex: "period"
         },
         {

@@ -111,11 +111,13 @@ export const VALIDATOR = {
   JACKPOTADDRESS: "Jackpot Address",
   SELFBONDED: "Self-Bonded",
   MISSEDBLOCKS: "Missed Blocks",
+  MISSEDLISTS: "Misseds",
   TOTALAUTHOREDBLOCKS: "Authored Blocks",
   AUTHOREDBLOCKS: "Authored Blocks",
   TRUSTEE: "Trustee",
   NOMINATORS: "Nominators",
   MISSEDBLOCKSTATISTIC: "Missed Blocks",
+  SHAREERA: "Session",
   CHANELNAME: "Chanel Name"
 };
 export const ACCOUNT = {
