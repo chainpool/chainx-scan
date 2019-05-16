@@ -210,7 +210,9 @@ export default function ValidatorsDetail(props) {
               </a>
             </li>
             <li onClick={() => setActiveKey("miss")} className={classnames({ "is-active": activeKey === "miss" })}>
-              <a>漏块列表</a>
+              <a>
+                <FormattedMessage id="MISSEDLISTS" />
+              </a>
             </li>
           </ul>
         </div>

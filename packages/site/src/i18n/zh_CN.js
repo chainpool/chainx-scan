@@ -111,11 +111,13 @@ export const VALIDATOR = {
   JACKPOTADDRESS: "奖池地址",
   SELFBONDED: "自抵押数",
   MISSEDBLOCKS: "漏块数量",
+  MISSEDLISTS: "漏块列表",
   TOTALAUTHOREDBLOCKS: "累计出块总数",
   AUTHOREDBLOCKS: "出块总数",
   TRUSTEE: "信托",
   NOMINATORS: "投票用户列表",
   MISSEDBLOCKSTATISTIC: "漏块统计",
+  SHAREERA: "分红届数",
   CHANELNAME: "渠道节点名称"
 };
 export const ACCOUNT = {
@@ -158,7 +160,7 @@ export const CROSSBLOCK = {
   APPLICATIONADDRESS: "申请地址",
   TARGETADDRESS: "提现地址",
   WITHDRAWALSTATUS: "提现状态",
-  ERA: "届数",
+  ERA: "分红届数",
   WITHDRAWALS: "提现列表",
   MININGPOWER: "挖矿算力",
   EQUIVALENTNOMINATIONS: "折合投票数",
