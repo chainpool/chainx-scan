@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       freezeTableName: true,
-      tableName: "XBridgeFeatures_BitcoinTrusteeIntentionProps"
+      tableName: "XBridgeFeatures_BitcoinTrusteeIntentionPropertiesOf"
     }
   );
 

@@ -30,11 +30,10 @@ class AccountController {
     ctx.body = profiles.map(profile => {
       const cold_entity = JSON.parse(profile.cold_entity);
       const hot_entity = JSON.parse(profile.hot_entity);
-      const chain = profile.chain;
       return {
         ...profile,
-        cold_entity: cold_entity[chain],
-        hot_entity: hot_entity[chain]
+        cold_entity: cold_entity["Compressed"],
+        hot_entity: hot_entity["Compressed"]
       };
     });
   }
