@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { BrowserRouter as Router } from "react-router-dom";
 import Header from "./Header";
 import Main from "./Main";
@@ -21,7 +21,6 @@ addLocaleData([...en, ...zh]); // 引入多语言环境的数据
 
 export default function App() {
   const [{ local }] = useRedux("locale", { local: locale || navigator.language });
-  useCallback(() => window.scrollTo(0, 0), window.location.pathname);
   return (
     <IntlProvider locale={local} messages={i18n[local.split("-")[0]]}>
       <Router>
