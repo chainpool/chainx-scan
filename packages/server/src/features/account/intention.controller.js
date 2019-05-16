@@ -1,5 +1,7 @@
 const { extractPage } = require("../utils");
 
+const session = 150;
+
 class AccountController {
   async intention(ctx) {
     const { accountId } = ctx.params;
@@ -54,7 +56,7 @@ class AccountController {
     ctx.body = rows.map(row => ({
       accountid: row.accountid,
       missed: row.missed,
-      period: Math.floor(row.height / 300)
+      period: Math.floor(row.height / session)
     }));
   }
 
@@ -74,7 +76,7 @@ class AccountController {
     ctx.body = {
       items: rows.map(row => ({
         missed: row.missed,
-        period: Math.floor(row.height / 150)
+        period: Math.floor(row.height / session)
       })),
       pageSize,
       page,
