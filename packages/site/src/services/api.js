@@ -241,8 +241,8 @@ class Api {
   /**
    * 获取交易列表
    */
-  fetchTxs$ = params => {
-    return this.fetch$(`/txs`, params);
+  fetchTxs$ = (params, { block } = {}) => {
+    return this.fetch$(`/txs`, { ...params, block });
   };
 
   /**
