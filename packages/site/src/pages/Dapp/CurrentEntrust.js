@@ -104,11 +104,7 @@ export function RenderCurrentEntrust({
           dataIndex: "amount"
         },
         {
-          title: (
-            <>
-              <FormattedMessage id="INORDER" />
-            </>
-          ),
+          title: <FormattedMessage id="INORDER" />,
           dataIndex: "reserve_last"
         },
         {
