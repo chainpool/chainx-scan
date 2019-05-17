@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { hexStripPrefix } from "@polkadot/util";
+import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 import { FormattedMessage } from "react-intl";
 
 import {
@@ -101,7 +101,7 @@ export default function BlockDetail(props) {
           },
           {
             label: <FormattedMessage id="PARAMETER" />,
-            data: JSON.stringify(data.args)
+            data: JSON.stringify(data.args.reduce((result, c) => Object.assign(result, { [c.name]: c.data }), {}))
           },
           {
             label: <FormattedMessage id="SIGN" />,

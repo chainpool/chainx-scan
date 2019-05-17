@@ -77,7 +77,7 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
           time: <DateShow value={data.time} />,
           action: <TxAction module={data.module} call={data.call} />,
-          args: JSON.stringify(data.args),
+          args: JSON.stringify(data.args.reduce((result, c) => Object.assign(result, { [c.name]: c.data }), {})),
           signed: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />
         };
       })}

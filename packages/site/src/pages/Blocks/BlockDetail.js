@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import classnames from "classnames";
-import { hexAddPrefix } from "@polkadot/util";
+import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 import { NavLink } from "react-router-dom";
 import { BlockLink, ValidatorLink, DateShow, PanelList, Breadcrumb, AntSpinner as Spinner } from "../../components";
 import { RenderTxsList } from "../Txs/TxsList";
@@ -8,14 +8,15 @@ import Events from "../Events";
 import api from "../../services/api";
 import { NoData } from "../../components";
 import { FormattedMessage } from "react-intl";
+import { useRedux } from "../../shared";
+import TableService from "../../services/tableService";
 
 export default function BlockDetail(props) {
   const { match } = props;
   const [blocks, setBlock] = useState([]);
   const [data, setData] = useState({});
-  const [txsData, setTxsData] = useState({});
+
   const [activeKey, setActiveKey] = useState("txs");
-  const [txsLoading, setTxsLoading] = useState(true);
   let blockId = void 0;
   if (/^\d*$/.test(match.params.block) || /^\D*$/.test(match.params.block)) {
     blockId = match.params.block;
@@ -26,6 +27,19 @@ export default function BlockDetail(props) {
   }
   const blockNumber = data.number;
   const hasNext = blocks.length > 0 && data.number && blocks[0].number >= data.number + 1;
+  const [{ tableData: txsTableData }, setTxsData] = useRedux(`txs_${blockId}`, {
+    tableData: {
+      loading: true,
+      pagination: {
+        current: 1,
+        pageSize: 10,
+        total: 0
+      }
+    }
+  });
+  const txTableService = useMemo(() => new TableService(api.fetchTxs$, txsTableData, { block: blockNumber }), [
+    blockNumber
+  ]);
   useEffect(() => {
     if (!!blockId) {
       const subscription = api.fetchBlockDetail$(blockId).subscribe(data => setData(data), data => setData(data));
@@ -42,14 +56,12 @@ export default function BlockDetail(props) {
 
   useEffect(() => {
     if (!!blockNumber) {
-      const subscription = api.fetchTxs$({ block: blockNumber }).subscribe(({ items }) => {
-        setTxsLoading(false);
-        setTxsData({ dataSource: items });
+      const subscription = txTableService.fetchTable$().subscribe(data => {
+        setTxsData({ tableData: data });
       });
       return () => subscription.unsubscribe();
     }
   }, [blockNumber]);
-
   const breadcrumb = (
     <Breadcrumb
       dataSource={[
@@ -72,7 +84,6 @@ export default function BlockDetail(props) {
   } else if (!!data.code) {
     return <NoData id={blockId} />;
   }
-
   return (
     <div>
       {breadcrumb}
@@ -134,8 +145,9 @@ export default function BlockDetail(props) {
         </div>
         {data && data.number && activeKey === "txs" && (
           <RenderTxsList
-            tableData={{ ...txsData, loading: txsLoading }}
-            tableProps={{ pagination: false, simpleMode: true }}
+            handleChange={txTableService.handleChange}
+            tableData={{ ...txsTableData }}
+            tableProps={{ pagination: txsTableData.pagination, simpleMode: true, loading: txsTableData.loading }}
           />
         )}
         {data && data.number && activeKey === "events" && (

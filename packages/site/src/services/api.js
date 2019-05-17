@@ -1,7 +1,8 @@
 import io from "socket.io-client";
 import { from, throwError, Observable } from "rxjs";
 import { catchError, map } from "rxjs/operators";
-import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
+import hexAddPrefix from "@polkadot/util/hex/addPrefix";
+import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 
 import { decodeAddress } from "../shared";
 
@@ -240,8 +241,8 @@ class Api {
   /**
    * 获取交易列表
    */
-  fetchTxs$ = params => {
-    return this.fetch$(`/txs`, params);
+  fetchTxs$ = (params, { block } = {}) => {
+    return this.fetch$(`/txs`, { ...params, block });
   };
 
   /**

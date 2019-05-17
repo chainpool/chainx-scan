@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Amount, ExternalLink, Hash, Table } from "../../components";
 import api from "../../services/api";
-import { hexStripPrefix } from "@polkadot/util";
+import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 import { FormattedMessage } from "react-intl";
 
 export default function CrossClaim() {

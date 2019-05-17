@@ -1,5 +1,6 @@
-import { encodeAddress, setAddressPrefix } from "@polkadot/keyring/address";
-import { hexAddPrefix } from "@polkadot/util";
+import encodeAddress from "@polkadot/keyring/address/encode";
+import setAddressPrefix from "@polkadot/keyring/address/setPrefix";
+import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 
 setAddressPrefix(44);
 

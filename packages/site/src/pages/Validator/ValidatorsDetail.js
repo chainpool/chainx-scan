@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import classnames from "classnames";
-import { hexAddPrefix, hexStripPrefix } from "@polkadot/util";
+import hexAddPrefix from "@polkadot/util/hex/addPrefix";
+import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 
 import {
   ExternalLink,
