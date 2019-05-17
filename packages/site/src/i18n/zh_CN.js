@@ -160,7 +160,7 @@ export const CROSSBLOCK = {
   APPLICATIONADDRESS: "申请地址",
   TARGETADDRESS: "提现地址",
   WITHDRAWALSTATUS: "提现状态",
-  ERA: "分红届数",
+  ERA: "届数",
   WITHDRAWALS: "提现列表",
   MININGPOWER: "挖矿算力",
   EQUIVALENTNOMINATIONS: "折合投票数",
