@@ -214,7 +214,8 @@ export const moduleNameMap = {
   XAssetsRecords: "资产记录",
   Indices: "索引",
   XMultiSig: "多签",
-  "xbridge-features": "桥特性集"
+  "xbridge-features": "桥特性集",
+  Session: "会话"
 };
 
 export const callNameMap = {

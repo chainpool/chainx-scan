@@ -214,7 +214,8 @@ export const moduleNameMap = {
   XAssetsRecords: "XAssets Records",
   Indices: "Indices",
   XMultiSig: "Multisig",
-  "xbridge-features": "Bridge Features"
+  "xbridge-features": "Bridge Features",
+  Session: "Session"
 };
 
 export const callNameMap = {
