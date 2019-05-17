@@ -62,7 +62,12 @@ export function RenderCurrentEntrust({
               />
             ),
             amount: <Amount value={data.amount} symbol={currency_pair[1]} hideSymbol />,
-            reserve_last: <Amount value={data.reserve_last} symbol={currency_pair[1]} hideSymbol />,
+            reserve_last: (
+              <Amount
+                value={data.reserve_last}
+                symbol={data.direction === "Sell" ? currency_pair[0] : currency_pair[1]}
+              />
+            ),
             hasFillAmount: <HasFill fill={data.hasfill_amount} total={data.amount} symbol={currency_pair[0]} />,
             status: <OrderStatus value={data.status} />,
             createTime: <DateShow value={data["block.time"]} />
@@ -101,7 +106,7 @@ export function RenderCurrentEntrust({
         {
           title: (
             <>
-              <FormattedMessage id="INORDER" />({currency_pair ? currency_pair[0] : "-"})
+              <FormattedMessage id="INORDER" />
             </>
           ),
           dataIndex: "reserve_last"
