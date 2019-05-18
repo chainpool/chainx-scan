@@ -160,7 +160,7 @@ export const CROSSBLOCK = {
   APPLICATIONADDRESS: "申请地址",
   TARGETADDRESS: "提现地址",
   WITHDRAWALSTATUS: "提现状态",
-  ERA: "分红届数",
+  ERA: "届数",
   WITHDRAWALS: "提现列表",
   MININGPOWER: "挖矿算力",
   EQUIVALENTNOMINATIONS: "折合投票数",
@@ -169,7 +169,7 @@ export const CROSSBLOCK = {
   ADDRESS: "地址",
   SENDADDRESS: "绑定地址",
   CHAINTOTALBALANCE: "全链总余额",
-  TOTALBALANCE: "全链总余额",
+  TOTALBALANCE: "总余额",
   ETHBRIDGE: "Etherum转接桥",
   BTCBRIDGE: "Bitcoin转接桥",
   DEPOSITSMINING: "充值挖矿",
@@ -214,7 +214,8 @@ export const moduleNameMap = {
   XAssetsRecords: "资产记录",
   Indices: "索引",
   XMultiSig: "多签",
-  "xbridge-features": "桥特性集"
+  "xbridge-features": "桥特性集",
+  Session: "会话"
 };
 
 export const callNameMap = {

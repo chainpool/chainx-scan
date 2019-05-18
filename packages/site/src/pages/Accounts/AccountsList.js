@@ -42,8 +42,8 @@ export default function AccountsList() {
         {
           title: (
             <>
-              PCX
               <FormattedMessage id="FREEBALANCE" />
+              （PCX）
             </>
           ),
           dataIndex: "pcxFree",
@@ -52,8 +52,8 @@ export default function AccountsList() {
         {
           title: (
             <>
-              PCX
               <FormattedMessage id="BLOCKTOTALBALANCE" />
+              （PCX）
             </>
           ),
           dataIndex: "pcx",
@@ -62,8 +62,8 @@ export default function AccountsList() {
         {
           title: (
             <>
-              BTC
               <FormattedMessage id="BLOCKTOTALBALANCE" />
+              （BTC）
             </>
           ),
           dataIndex: "btc",
@@ -72,8 +72,8 @@ export default function AccountsList() {
         {
           title: (
             <>
-              SDOT
               <FormattedMessage id="BLOCKTOTALBALANCE" />
+              （SDOT）
             </>
           ),
           dataIndex: "sdot",

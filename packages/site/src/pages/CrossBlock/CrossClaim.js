@@ -36,7 +36,7 @@ export default function CrossClaim() {
           title: (
             <>
               Bitcoin
-              <FormattedMessage id="BLOCKHASH" />
+              <FormattedMessage id="TRANSACTIONHASH" />
             </>
           ),
           dataIndex: "hash"
