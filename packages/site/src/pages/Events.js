@@ -1,25 +1,28 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo, memo } from "react";
 
 import { DateShow, BlockLink, Phase, Table, TxAction, TxLink } from "../components";
-import { useRedux } from "../shared";
+import { useRedux, shallowEqual } from "../shared";
 import TableService from "../services/tableService";
 import api from "../services/api";
 import { FormattedMessage } from "react-intl";
 
-export default function Events({ tableProps, block }) {
-  const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
-  const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData, { block }), [block]);
-
-  useEffect(() => {
-    const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
-    return () => subscription.unsubscribe();
-  }, [tableService]);
-  return <RenderEvents {...{ tableData, handleChange: tableService.handleChange, tableProps }} />;
-}
+export default memo(
+  function Events({ tableProps, block }) {
+    const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
+    const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData, { block }), []);
+    useEffect(() => {
+      const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
+      return () => subscription.unsubscribe();
+    }, [tableService]);
+    return <RenderEvents {...{ tableData, handleChange: tableService.handleChange, tableProps }} />;
+  },
+  (pre, cre) => {
+    return shallowEqual(pre.block, cre.block);
+  }
+);
 
 export function RenderEvents({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], simpleMode = false, loading } = { ...tableProps, ...tableData };
-
   const optionalColumns = [
     {
       title: <FormattedMessage id="HEIGHT" />,
@@ -76,7 +79,6 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
         };
       })}
       columns={columns}
-      {...tableProps}
     />
   );
 }

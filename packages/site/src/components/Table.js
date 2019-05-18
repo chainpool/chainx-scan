@@ -6,11 +6,8 @@ import en_US from "antd/lib/locale-provider/en_US";
 import useRedux from "../shared/useRedux";
 import { injectIntl } from "react-intl";
 
-export default injectIntl(function Table(_props) {
+export default injectIntl(function Table({ intl: { messages }, ..._props }) {
   const [{ local }] = useRedux("locale");
-  const {
-    intl: { messages }
-  } = _props;
   const props = {
     size: "small",
     ..._props
@@ -42,7 +39,6 @@ export default injectIntl(function Table(_props) {
         ..._props.pagination
       }
     : false;
-
   return (
     <LocaleProvider locale={local === "zh-CN" ? zh_CN : en_US}>
       <AntdTable
