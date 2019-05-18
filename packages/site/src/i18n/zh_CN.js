@@ -169,7 +169,7 @@ export const CROSSBLOCK = {
   ADDRESS: "地址",
   SENDADDRESS: "绑定地址",
   CHAINTOTALBALANCE: "全链总余额",
-  TOTALBALANCE: "全链总余额",
+  TOTALBALANCE: "总余额",
   ETHBRIDGE: "Etherum转接桥",
   BTCBRIDGE: "Bitcoin转接桥",
   DEPOSITSMINING: "充值挖矿",

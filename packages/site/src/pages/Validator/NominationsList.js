@@ -26,7 +26,12 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
       dataIndex: "nominator"
     },
     {
-      title: "投票数量(PCX)",
+      title: (
+        <>
+          <FormattedMessage id="TOTALNOMINATIONS" />
+          (PCX)
+        </>
+      ),
       dataIndex: "nomination"
     },
     {

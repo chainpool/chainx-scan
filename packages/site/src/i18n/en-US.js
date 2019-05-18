@@ -61,7 +61,7 @@ export const BLOCKCHAIN = {
   PHRASE: "Phrase",
   CATEGORY: "Category",
   BLOCKTOTALBALANCE: "TOTAL Balance",
-  FREEBALANCE: "Free Balance",
+  FREEBALANCE: " Free Balance",
   BLOCKDETAILS: "Block Details",
   EXTRINSICDETAILS: "Extrinsic Details",
   ACCOUNTDETAILS: "Account Details",
@@ -117,7 +117,7 @@ export const VALIDATOR = {
   TRUSTEE: "Trustee",
   NOMINATORS: "Nominators",
   MISSEDBLOCKSTATISTIC: "Missed Blocks",
-  SHAREERA: "Session Period",
+  SHAREERA: "Session Index",
   CHANELNAME: "Chanel Name"
 };
 export const ACCOUNT = {
@@ -168,7 +168,8 @@ export const CROSSBLOCK = {
   VOTEWEIGHTLATESTUPDATE: "Vote Weight Latest Update",
   ADDRESS: " Address",
   SENDADDRESS: " Binding Address",
-  TOTALBALANCE: "Total Balance",
+  TOTALBALANCE: " Total Balance",
+  CHAINTOTALBALANCE: "Total",
   BRIDGE: " Bridge",
   ETHBRIDGE: "Etherum Bridge",
   BTCBRIDGE: "Bitcoin Bridge",
