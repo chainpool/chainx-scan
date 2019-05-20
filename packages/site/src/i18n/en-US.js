@@ -165,7 +165,7 @@ export const CROSSBLOCK = {
   MININGPOWER: "Mining Power",
   EQUIVALENTNOMINATIONS: "Equivalent Nominations",
   JACKPOTLASTUPDATE: "Jackpot Last Update",
-  VOTEWEIGHTLATESTUPDATE: "Vote Weight Latest Update",
+  VOTEWEIGHTLATESTUPDATE: "Vote Weight Last Update",
   ADDRESS: " Address",
   SENDADDRESS: " Binding Address",
   TOTALBALANCE: " Total Balance",
