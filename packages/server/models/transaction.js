@@ -49,6 +49,9 @@ module.exports = (sequelize, DataTypes) => {
       },
       time: {
         type: DataTypes.BIGINT
+      },
+      status: {
+        type: DataTypes.STRING
       }
     },
     {
