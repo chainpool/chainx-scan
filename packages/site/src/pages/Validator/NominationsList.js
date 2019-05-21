@@ -56,6 +56,7 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
   const getRevocations = revocations => {
     return revocations.flat().reduce((a, b) => a + b, 0);
   };
+
   return (
     <Table
       loading={loading}

@@ -7,6 +7,7 @@ import { useRedux } from "../../shared";
 
 export default function Validators(props) {
   const { tabFilter } = props;
+
   const [{ tableData }, setState] = useRedux(`validators-${tabFilter}`, {
     tableData: {
       pagination: {
@@ -16,6 +17,7 @@ export default function Validators(props) {
       }
     }
   });
+
   const tableService = useMemo(() => new TableService(api.fetchIntentions$, tableData, { tabFilter }), []);
 
   useEffect(() => {

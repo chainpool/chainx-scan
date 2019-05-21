@@ -18,6 +18,7 @@ export default function MissedBlock() {
 
 export function RenderMissedBlock(props) {
   const { dataSource = [], pagination = false, handleChange = null, loading = true } = props;
+
   return (
     <Table
       loading={loading}

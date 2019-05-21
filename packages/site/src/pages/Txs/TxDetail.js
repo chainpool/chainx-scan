@@ -25,6 +25,7 @@ export default function BlockDetail(props) {
 
   const blockNumber = data.number;
   let txid = void 0;
+
   try {
     txid = hexStripPrefix(match.params.txid);
   } catch {}

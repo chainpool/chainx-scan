@@ -15,6 +15,7 @@ export default function SettingList({ nodeID, ...props }) {
     });
     return () => subscription.unsubscribe();
   }, [nodeID]);
+
   const columns = [
     {
       title: <FormattedMessage id="CHAIN" />,
@@ -29,31 +30,30 @@ export default function SettingList({ nodeID, ...props }) {
       dataIndex: "cold_entity"
     }
   ];
+
   return (
-    <>
-      <Table
-        loading={loading}
-        dataSource={
-          !!dataSource &&
-          dataSource.map(data => {
-            return {
-              key: `${data.chain}`,
-              chain: data.chain,
-              hot_entity: (
-                <div className="text-truncate" style={{ maxWidth: 360 }} title={data.hot_entity}>
-                  {data.hot_entity}
-                </div>
-              ),
-              cold_entity: (
-                <div className="text-truncate" style={{ maxWidth: 360 }} title={data.cold_entity}>
-                  {data.cold_entity}
-                </div>
-              )
-            };
-          })
-        }
-        columns={columns}
-      />
-    </>
+    <Table
+      loading={loading}
+      dataSource={
+        !!dataSource &&
+        dataSource.map(data => {
+          return {
+            key: `${data.chain}`,
+            chain: data.chain,
+            hot_entity: (
+              <div className="text-truncate" style={{ maxWidth: 360 }} title={data.hot_entity}>
+                {data.hot_entity}
+              </div>
+            ),
+            cold_entity: (
+              <div className="text-truncate" style={{ maxWidth: 360 }} title={data.cold_entity}>
+                {data.cold_entity}
+              </div>
+            )
+          };
+        })
+      }
+      columns={columns}
+    />
   );
 }

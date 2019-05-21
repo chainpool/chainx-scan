@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo } from "react";
+import { FormattedMessage } from "react-intl";
 import { NumberFormat, Table } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
-import { FormattedMessage } from "react-intl";
 
 export default function DetailMissedBlock({ nodeId }) {
   const [{ tableData }, setState] = useRedux("detailMissed", { tableData: {} });
@@ -16,6 +16,7 @@ export default function DetailMissedBlock({ nodeId }) {
 
   return <RenderDetailMissedBlock {...{ tableData, handleChange: tableService.handleChange }} />;
 }
+
 export function RenderDetailMissedBlock({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = { ...tableData, ...tableProps };
 

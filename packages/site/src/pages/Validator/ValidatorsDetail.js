@@ -95,6 +95,7 @@ export default function ValidatorsDetail(props) {
       return <></>;
     }
   };
+
   if (!!nodeId && !data.code && data.name === undefined) {
     return (
       <>
@@ -217,11 +218,9 @@ export default function ValidatorsDetail(props) {
             </li>
           </ul>
         </div>
-        <>
-          {activeKey === "trust" && <SettingList nodeID={nodeId} />}
-          {activeKey === "vote" && <NominationsList nodeID={nodeId} />}
-          {activeKey === "miss" && <DetailMissedBlock nodeId={hexStripPrefix(data.accountid)} />}
-        </>
+        {activeKey === "trust" && <SettingList nodeID={nodeId} />}
+        {activeKey === "vote" && <NominationsList nodeID={nodeId} />}
+        {activeKey === "miss" && <DetailMissedBlock nodeId={hexStripPrefix(data.accountid)} />}
       </div>
     </div>
   );
