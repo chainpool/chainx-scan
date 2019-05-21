@@ -34,6 +34,7 @@ export default function FillOrderList(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
+          console.log(data);
           return {
             key: index,
             id: data.id,
@@ -42,11 +43,26 @@ export default function FillOrderList(props) {
             time: <DateShow value={data["block.time"]} />,
             amount: <Amount value={data.amount} symbol={data["pair.currency_pair"][0]} hideSymbol />,
             setPrice: <Amount value={data.set_price} symbol={data["pair.currency_pair"][0]} hideSymbol />,
-            fillAver: <Amount value={data.fill_aver} symbol={data["pair.currency_pair"][0]} hideSymbol />,
+            fillAver: (
+              <Amount
+                value={data.fill_aver}
+                precision={data["pair.precision"]}
+                symbol={data["pair.currency_pair"][0]}
+                hideSymbol
+              />
+            ),
             hasFillAmount: (
               <HasFill fill={data.hasfill_amount} total={data.amount} symbol={data["pair.currency_pair"][0]} />
             ),
-            status: <OrderStatus value={data.status} />
+            status: <OrderStatus value={data.status} />,
+            price: (
+              <Amount
+                value={data.price}
+                precision={data["pair.precision"]}
+                symbol={data["pair.currency_pair"][0]}
+                hideSymbol
+              />
+            )
           };
         })
       }
@@ -78,7 +94,7 @@ export default function FillOrderList(props) {
         {
           title: (
             <>
-              <FormattedMessage id="RANKING" />/<FormattedMessage id="FILLEDPERCENT" />
+              <FormattedMessage id="FILLED" />/<FormattedMessage id="FILLEDPERCENT" />
             </>
           ),
           dataIndex: "hasFillAmount"
