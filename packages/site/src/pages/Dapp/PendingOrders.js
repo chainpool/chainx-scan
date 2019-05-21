@@ -9,6 +9,7 @@ export default function PendingOrders(props) {
   const { precision, unit_precision: unitPrecision, currency_pair: currencyPair } = activePair || {};
   const totalConcatArr = [...handicap.asks, ...handicap.bids].map(item => item.total);
   const max = Math.max(...totalConcatArr);
+
   return (
     <section className="panel">
       <div className="panel-heading">

@@ -9,6 +9,7 @@ import { FormattedMessage } from "react-intl";
 
 export default function Validator(props) {
   const filter = props.match.params.filter || "all";
+
   const tabs = [
     { text: <FormattedMessage id="TRUSTEENODE" />, filter: "all" },
     { text: <FormattedMessage id="STANDBYNODE" />, filter: "unsettled" },
@@ -30,6 +31,7 @@ export default function Validator(props) {
       filter: "missed"
     }
   ];
+
   return (
     <Switch>
       <Route

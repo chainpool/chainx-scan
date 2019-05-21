@@ -16,6 +16,7 @@ export default function AccountOrder(props) {
       }
     }
   });
+
   const tableService = useMemo(
     () => new TableService(api.fetchAccountOrders$, tableData, { accountId: props.accountId, status: 0 }),
     []

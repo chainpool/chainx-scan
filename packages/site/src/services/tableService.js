@@ -12,6 +12,7 @@ export default class tableService {
         ...params.pagination
       }
     };
+
     this.initialize = initialize;
     this._peddingData = peddingData;
 

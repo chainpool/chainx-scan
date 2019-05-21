@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import classnames from "classnames";
 import { NavLink, withRouter } from "react-router-dom";
 import { matchPath } from "react-router";
-
 import { FormattedMessage } from "react-intl";
 
 import ChainxLogo from "../assets/chainxLogo.png";
@@ -13,6 +12,7 @@ export default withRouter(function Header(props) {
   const [showMenu, setShowMenu] = useState(false);
 
   const isMatchBlocks = ["/txs", "/events", "/accounts"].some(path => !!matchPath(location.pathname, { path }));
+
   const isMatchCross = ["/crossblocks", "/crosstxs", "/crossbind"].some(
     path => !!matchPath(location.pathname, { path })
   );

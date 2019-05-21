@@ -10,10 +10,12 @@ export default memo(
   function Events({ tableProps, block }) {
     const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
     const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData, { block }), []);
+
     useEffect(() => {
       const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
       return () => subscription.unsubscribe();
     }, [tableService]);
+
     return <RenderEvents {...{ tableData, handleChange: tableService.handleChange, tableProps }} />;
   },
   (pre, cre) => {
@@ -23,6 +25,7 @@ export default memo(
 
 export function RenderEvents({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], simpleMode = false, loading } = { ...tableProps, ...tableData };
+
   const optionalColumns = [
     {
       title: <FormattedMessage id="HEIGHT" />,
@@ -33,6 +36,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
       dataIndex: "time"
     }
   ];
+
   const columns = [
     ...(simpleMode ? [] : optionalColumns),
     {
@@ -52,6 +56,7 @@ export function RenderEvents({ tableProps, tableData, handleChange }) {
       dataIndex: "action"
     }
   ];
+
   return (
     <Table
       loading={loading}

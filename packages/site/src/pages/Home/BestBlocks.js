@@ -9,6 +9,7 @@ import { FormattedMessage } from "react-intl";
 
 export default function BestBlocks() {
   const [{ blocks }, setState] = useRedux("bestBlocks", { blocks: [] });
+
   useEffect(() => {
     const subscription = api.fetchLatestBlocks$().subscribe(data => setState({ blocks: data }));
     return () => subscription.unsubscribe();

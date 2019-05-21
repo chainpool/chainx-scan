@@ -9,7 +9,9 @@ import { ReactComponent as Up } from "../assets/open.svg";
 export const LangChanger = function() {
   const languages = ["中文", "English"];
   const [{ local }, setLocal] = useRedux("locale");
+
   let activeLang = languages[0];
+
   if (!!local) {
     if (local === "zh-CN") {
       activeLang = "中文";
@@ -17,8 +19,10 @@ export const LangChanger = function() {
       activeLang = "English";
     }
   }
+
   const [language, setLanguage] = useState(activeLang);
   const [active, setActive] = useState(false);
+
   const handleChange = language => {
     setLanguage(language);
     if (language === "中文") {
@@ -30,13 +34,16 @@ export const LangChanger = function() {
     }
     setActive(false);
   };
+
   const setNagtive = e => {
     if (e.toElement.className !== "show-lang") setActive(false);
   };
+
   useEffect(() => {
     document.body.addEventListener("click", setNagtive);
     return () => document.body.removeEventListener("click", setNagtive);
   });
+
   return (
     <div className="lang-selector">
       <div className="show-lang" onClick={() => setActive(!active)}>

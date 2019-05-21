@@ -14,6 +14,7 @@ export default function EtherumBind() {
     const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, [tableService]);
+
   return <RenderEtherumBind {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 

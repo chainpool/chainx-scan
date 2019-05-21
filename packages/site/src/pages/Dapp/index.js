@@ -97,12 +97,10 @@ export default function Dapp() {
             </li>
           </ul>
         </div>
-        <>
-          {activeKey === "currentEntrust" &&
-            (!activePair ? <RenderCurrentEntrust /> : <CurrentEntrust activePair={activePair} />)}
-          {activeKey === "historyEntrust" &&
-            (!activePair ? <RenderHistoryEntrust /> : <HistoryEntrust activePair={activePair} />)}
-        </>
+        {activeKey === "currentEntrust" &&
+          (!activePair ? <RenderCurrentEntrust /> : <CurrentEntrust activePair={activePair} />)}
+        {activeKey === "historyEntrust" &&
+          (!activePair ? <RenderHistoryEntrust /> : <HistoryEntrust activePair={activePair} />)}
       </div>
     </>
   );

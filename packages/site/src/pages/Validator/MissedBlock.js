@@ -5,14 +5,17 @@ import { FormattedMessage } from "react-intl";
 
 export default function MissedBlock() {
   const [{ dataSource, loading }, setState] = useState({ dataSource: [], loading: true });
+
   useEffect(() => {
     const subscription = api.fetchIntendtionMissed$().subscribe(data => {
       setState({ dataSource: data, loading: false });
     });
     return () => subscription.unsubscribe();
   }, []);
+
   return <RenderMissedBlock dataSource={dataSource} loading={loading} />;
 }
+
 export function RenderMissedBlock(props) {
   const { dataSource = [], pagination = false, handleChange = null, loading = true } = props;
   return (

@@ -8,14 +8,17 @@ import { FormattedMessage } from "react-intl";
 export default function DetailMissedBlock({ nodeId }) {
   const [{ tableData }, setState] = useRedux("detailMissed", { tableData: {} });
   const tableService = useMemo(() => new TableService(api.fetchDetailMissed$, tableData, { nodeId }), []);
+
   useEffect(() => {
     const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
     return () => subscription.unsubscribe();
   }, []);
+
   return <RenderDetailMissedBlock {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 export function RenderDetailMissedBlock({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = { ...tableData, ...tableProps };
+
   return (
     <Table
       loading={loading}
