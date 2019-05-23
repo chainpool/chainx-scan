@@ -210,15 +210,17 @@ export const moduleNameMap = {
   finality_tracker: "确认高度",
   XFeeManager: "手续费管理",
   GrandpaFinality: "共识确认",
-  DepositorReward: "充值奖励",
   XAssetsRecords: "资产记录",
   Indices: "索引",
   XMultiSig: "多签",
   "xbridge-features": "桥特性集",
-  Session: "会话"
+  Session: "会话",
+  XBridgeFeatures: "桥特性集"
 };
 
 export const callNameMap = {
+  DepositorReward: "充值奖励",
+  BitcoinBinding: "比特币绑定",
   unnominate: "撤销投票",
   sudo: "设置",
   set_block_producer: "设置出块人",
