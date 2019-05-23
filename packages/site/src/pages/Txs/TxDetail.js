@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 import { FormattedMessage } from "react-intl";
-
+import { ReactComponent as Success } from "../../assets/success.svg";
+import { ReactComponent as Error } from "../../assets/error.svg";
 import {
   BlockLink,
   AddressLink,
@@ -107,6 +108,23 @@ export default function BlockDetail(props) {
           {
             label: <FormattedMessage id="SIGN" />,
             data: data.signature
+          },
+          {
+            label: <FormattedMessage id="RESULT" />,
+            data: {
+              ExtrinsicSuccess: (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Success style={{ marginRight: 4, height: "1.2em" }} />
+                  <FormattedMessage id="ExtrinsicSuccess" />
+                </div>
+              ),
+              ExtrinsicFailed: (
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <Error style={{ marginRight: 4, height: "1.2em" }} />
+                  <FormattedMessage id="ExtrinsicFailed" />
+                </div>
+              )
+            }[data.status]
           },
           {
             label: <FormattedMessage id="VERSION" />,

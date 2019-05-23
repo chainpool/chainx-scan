@@ -86,8 +86,11 @@ export const TX = {
   NUMBER: "序号",
   PARAMETER: "参数",
   SIGN: "签名",
+  RESULT: "结果",
   VERSION: "版本",
-  ACCELERATE: "加速"
+  ACCELERATE: "加速",
+  ExtrinsicSuccess: "成功",
+  ExtrinsicFailed: "失败"
 };
 export const VALIDATOR = {
   TRUSTEENODE: "验证节点",

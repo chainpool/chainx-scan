@@ -86,8 +86,11 @@ export const TX = {
   NUMBER: "Number",
   PARAMETER: "Parameter",
   SIGN: "Sign",
+  RESULT: "Result",
   VERSION: "Version",
-  ACCELERATE: "Accelerate"
+  ACCELERATE: "Accelerate",
+  ExtrinsicSuccess: "success",
+  ExtrinsicFailed: "failed"
 };
 export const VALIDATOR = {
   TRUSTEENODE: "Validators",
@@ -216,10 +219,13 @@ export const moduleNameMap = {
   Indices: "Indices",
   XMultiSig: "Multisig",
   "xbridge-features": "Bridge Features",
-  Session: "Session"
+  Session: "Session",
+  XBridgeFeatures: "Bridge Features"
 };
 
 export const callNameMap = {
+  DepositorReward: "Depositor Reward",
+  BitcoinBinding: "Bitcoin Binding",
   unnominate: "Unnominate",
   sudo: "Sudo",
   set_block_producer: "Set Block Author",
