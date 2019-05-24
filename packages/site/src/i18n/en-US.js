@@ -309,9 +309,9 @@ export const txType = {
   Deposit: "Deposit",
   Withdraw: "Withdrawl",
   Bind: "Bind",
-  BindAndDeposit: "Bind And Deposit",
-  HotAndCold: "Hot And Cold",
-  TrusteeTransition: "Trustee Transition"
+  BindAndDeposit: "BindAndDeposit",
+  HotAndCold: "HotAndCold",
+  TrusteeTransition: "TrusteeTransition"
 };
 
 export const Status = {
