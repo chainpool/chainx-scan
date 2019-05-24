@@ -307,7 +307,9 @@ export const txType = {
   Deposit: "充值",
   Withdraw: "提现",
   Bind: "绑定",
-  BindAndDeposit: "绑定并充值"
+  BindAndDeposit: "绑定并充值",
+  HotAndCold: "热冷互转",
+  TrusteeTransition: "信托换届"
 };
 
 export const Status = {
