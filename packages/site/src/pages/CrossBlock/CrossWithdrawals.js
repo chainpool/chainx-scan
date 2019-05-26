@@ -35,6 +35,14 @@ export function RenderCrossWithdrawals({ tableProps, tableData, handleChange, me
         return <FormattedMessage id="NORMALCANCEL" />;
       case "RootCancel":
         return <FormattedMessage id="ROOTCANCEL" />;
+      case "Signing":
+        return <FormattedMessage id="Signing" />;
+      case "Broadcasting":
+        return <FormattedMessage id="Broadcasting" />;
+      case "Confirming":
+        return <FormattedMessage id="Confirming" />;
+      case "Confirmed":
+        return <FormattedMessage id="Confirmed" />;
       case "Unknown":
       default:
         return <FormattedMessage id="UNKNOWN" />;

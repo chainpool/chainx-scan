@@ -197,7 +197,11 @@ export const PROCESSTXSTATE = {
   NORMALFINISH: "Finished",
   ROOTFINISH: "System Finished",
   PROCESSING: "Processing",
-  UNKNOWN: "Unknown"
+  UNKNOWN: "Unknown",
+  Signing: "Signing",
+  Broadcasting: "Broadcasting",
+  Confirming: "Confirming",
+  Confirmed: "Confirmed"
 };
 export const moduleNameMap = {
   XTokens: "Deposits Mining",

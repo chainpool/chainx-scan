@@ -143,7 +143,12 @@ class BtcController {
     });
 
     ctx.body = {
-      items: rows,
+      items: rows.map(row => {
+        return {
+          ...row,
+          memo: Buffer.from(row.memo, "hex").toString()
+        };
+      }),
       page,
       pageSize,
       total: count

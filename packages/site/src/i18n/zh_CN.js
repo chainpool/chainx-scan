@@ -196,7 +196,11 @@ export const PROCESSTXSTATE = {
   NORMALCANCEL: "取消",
   PROCESSING: "处理中",
   ROOTCANCEL: "系统取消",
-  UNKNOWN: "未知"
+  UNKNOWN: "未知",
+  Signing: "签名中",
+  Broadcasting: "广播中",
+  Confirming: "确认中",
+  Confirmed: "已确认"
 };
 export const moduleNameMap = {
   XTokens: "充值挖矿",
