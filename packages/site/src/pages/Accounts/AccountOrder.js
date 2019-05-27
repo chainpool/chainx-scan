@@ -39,7 +39,15 @@ export default function AccountOrder(props) {
             key: data.id,
             id: data.id,
             pair: `${data["pair.currency_pair"][0]}/${data["pair.currency_pair"][1]}`,
-            price: <Amount value={data.price} symbol={data["pair.currency_pair"][0]} hideSymbol />,
+            price: (
+              <Amount
+                value={data.price}
+                precision={data["pair.precision"]}
+                minDigits={data["pair.precision"] - data["pair.unit_precision"]}
+                symbol={data["pair.currency_pair"][0]}
+                hideSymbol
+              />
+            ),
             class: <OrderClass value={data.class} />,
             direction: <OrderDirection value={data.direction} />,
             status: <OrderStatus value={data.status} />,
