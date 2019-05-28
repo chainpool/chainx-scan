@@ -5,7 +5,8 @@
     "database": "chainx",
     "host": "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
     "port": 3432,
-    "dialect": "postgres"
+    "dialect": "postgres",
+    "logging": false
   },
   "test": {
     "username": "root",
