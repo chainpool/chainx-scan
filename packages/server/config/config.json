@@ -6,7 +6,13 @@
     "host": "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
     "port": 3432,
     "dialect": "postgres",
-    "logging": false
+    "logging": false,
+    "pool": {
+      "max": 5,
+      "min": 2,
+      "idle": 30000,
+      "acquire": 60000
+    }
   },
   "test": {
     "username": "root",
@@ -22,6 +28,12 @@
     "host": "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
     "port": 3432,
     "dialect": "postgres",
-    "logging": false
+    "logging": false,
+    "pool": {
+      "max": 5,
+      "min": 2,
+      "idle": 30000,
+      "acquire": 60000
+    }
   }
 }
