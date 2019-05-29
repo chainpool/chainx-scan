@@ -29,7 +29,7 @@ export default function DashBoard() {
     {
       label: (
         <>
-          Chainx
+          ChainX
           <FormattedMessage id="TRANSACTIONCOUNT" />
         </>
       ),
