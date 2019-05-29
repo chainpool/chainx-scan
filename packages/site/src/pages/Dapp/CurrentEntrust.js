@@ -61,7 +61,7 @@ export function RenderCurrentEntrust({
                 hideSymbol
               />
             ),
-            amount: <Amount value={data.amount} symbol={currency_pair[1]} hideSymbol />,
+            amount: <Amount value={data.amount} symbol={currency_pair[0]} hideSymbol />,
             reserve_last: (
               <Amount
                 value={data.reserve_last}

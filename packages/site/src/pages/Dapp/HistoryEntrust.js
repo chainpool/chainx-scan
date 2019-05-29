@@ -60,7 +60,7 @@ export function RenderHistoryEntrust({
                 hideSymbol
               />
             ),
-            amount: <Amount value={data.amount} symbol={currency_pair[1]} hideSymbol />,
+            amount: <Amount value={data.amount} symbol={currency_pair[0]} hideSymbol />,
             maker_user: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.maker_user} />,
             maker_user_order_index: data.maker_user_order_index,
             taker_user: <AddressLink style={{ maxWidth: 220 }} className="text-truncate" value={data.taker_user} />,
