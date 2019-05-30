@@ -3,8 +3,8 @@
     "username": "chainx",
     "password": "ChainXorg123",
     "database": "chainx",
-    "host": "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
-    "port": 3432,
+    "host": "pgm-bp1xv1554jd4bsayao.pg.rds.aliyuncs.com",
+    "port": 3433,
     "dialect": "postgres",
     "logging": false,
     "pool": {
@@ -25,8 +25,8 @@
     "username": "chainx",
     "password": "ChainXorg123",
     "database": "chainx",
-    "host": "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
-    "port": 3432,
+    "host": "pgm-bp1xv1554jd4bsayao.pg.rds.aliyuncs.com",
+    "port": 3433,
     "dialect": "postgres",
     "logging": false,
     "pool": {
