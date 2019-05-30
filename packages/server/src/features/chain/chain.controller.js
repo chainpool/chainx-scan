@@ -5,6 +5,16 @@ class ChainController {
     };
   }
 
+  async chainStatus(ctx) {
+    const status = await ctx.db.Status.findOne({
+      order: [["best", "DESC"]],
+      limit: 1,
+      raw: true
+    });
+
+    ctx.body = status;
+  }
+
   async height(ctx) {
     const height = await ctx.db.Block.max("number", { raw: true });
     ctx.body = { height };
