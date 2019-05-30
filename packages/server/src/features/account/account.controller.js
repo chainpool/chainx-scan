@@ -1,5 +1,5 @@
 const { extractPage, normalizeTransaction } = require("../utils");
-const { toBtcAddress } = require("../btc/address");
+const { hashToBtcAdress } = require("../btc/address");
 
 class AccountController {
   async intentions(ctx) {
@@ -87,7 +87,10 @@ class AccountController {
     ctx.body = {
       accountId,
       txCount: nonce ? nonce.nonce : 0,
-      btcAddresses: addresses.map(address => toBtcAddress(address.address))
+      btcAddresses: addresses.map(address => {
+        const addr = JSON.parse(address.address);
+        return hashToBtcAdress(addr.hash, addr.kind, addr.network);
+      })
     };
   }
 
@@ -130,11 +133,15 @@ class AccountController {
     });
 
     ctx.body = btcRows
-      .map(row => ({
-        ...row,
-        chain: "Bitcoin",
-        address: toBtcAddress(row.address)
-      }))
+      .map(row => {
+        const addr = JSON.parse(row.address);
+
+        return {
+          ...row,
+          chain: "Bitcoin",
+          address: hashToBtcAdress(addr.hash, addr.kind, addr.network)
+        };
+      })
       .concat(
         ethRows.map(row => ({
           ...row,
