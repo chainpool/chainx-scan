@@ -69,7 +69,7 @@ export function RenderNominationsList({ tableProps, tableData, handleChange }) {
           revocations: <Amount value={getRevocations(data.revocations)} hideSymbol />,
           nomination: <Amount value={data.nomination} hideSymbol />,
           last_vote_weight_update: <NumberFormat value={data.last_vote_weight_update} />,
-          last_vote_weight: <Amount value={data.last_vote_weight} hideSymbol />
+          last_vote_weight: <Amount value={data.last_vote_weight} precision={0} hideSymbol />
         };
       })}
       columns={columns}
