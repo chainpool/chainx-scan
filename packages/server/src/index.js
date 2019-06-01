@@ -1,3 +1,4 @@
+require("dotenv").config();
 const Koa = require("koa");
 const bodyParser = require("koa-bodyparser");
 const logger = require("koa-logger");
@@ -5,7 +6,6 @@ const helmet = require("koa-helmet");
 const http = require("http");
 const db = require(__dirname + "/../models");
 const cors = require("@koa/cors");
-require("dotenv").config();
 const Socket = require("socket.io");
 
 const app = new Koa();
