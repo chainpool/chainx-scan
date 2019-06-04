@@ -47,7 +47,7 @@ class BlockController {
   async getBlock(ctx) {
     const { heightOrHash } = ctx.params;
 
-    const option = { raw: true };
+    const option = { attributes: { exclude: ["data"] }, raw: true };
     if (/^\d+$/.test(heightOrHash)) {
       Object.assign(option, { where: { number: heightOrHash } });
     } else if (/^0x[\da-fA-F]{64}$/.test(heightOrHash)) {
