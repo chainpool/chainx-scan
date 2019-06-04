@@ -17,6 +17,7 @@ import AccountOrder from "./AccountOrder";
 import AccountTrade from "./AccountTrade";
 import BindAddressList from "./BindAddressList";
 import FillOrderList from "./FillOrderList";
+import AccountTransfer from "./AccountTransfer";
 import { FormattedMessage } from "react-intl";
 
 export default function Account(props) {
@@ -110,6 +111,14 @@ export default function Account(props) {
               </a>
             </li>
             <li
+              onClick={() => setActiveKey("transfer")}
+              className={classnames({ "is-active": activeKey === "transfer" })}
+            >
+              <a>
+                <FormattedMessage id="TRANSFERS" />
+              </a>
+            </li>
+            <li
               onClick={() => setActiveKey("nomination")}
               className={classnames({ "is-active": activeKey === "nomination" })}
             >
@@ -157,6 +166,7 @@ export default function Account(props) {
         {detail && detail.accountId && activeKey === "crossAsset" && (
           <AccountAsset accountId={detail.accountId} isNative={false} />
         )}
+        {detail && detail.accountId && activeKey === "transfer" && <AccountTransfer accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "nomination" && <AccountNomination accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "orderList" && <AccountOrder accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "accountTrade" && <AccountTrade accountId={detail.accountId} />}

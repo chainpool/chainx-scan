@@ -1,8 +1,9 @@
-const { extractPage } = require("../utils");
+const { extractPage, remove0x } = require("../utils");
 
 class AccountTransferController {
   async transfers(ctx) {
-    const { accountId } = ctx.params;
+    let { accountId } = ctx.params;
+    accountId = remove0x(accountId);
 
     const { page, pageSize } = extractPage(ctx);
     const order = [["number", "DESC"], ["index", "DESC"]];

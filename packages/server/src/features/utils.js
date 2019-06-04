@@ -54,9 +54,17 @@ function normalizeTransaction(tx) {
   };
 }
 
+function remove0x(str) {
+  if (str.startsWith("0x")) {
+    return str.slice(2);
+  }
+  return str;
+}
+
 module.exports = {
   extractPage,
   trimFields,
   normalizeBlock,
-  normalizeTransaction
+  normalizeTransaction,
+  remove0x
 };

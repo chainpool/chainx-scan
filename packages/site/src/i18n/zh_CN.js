@@ -139,6 +139,7 @@ export const ACCOUNT = {
   TIME: "时间",
   ASSETS: "资产列表",
   CROSSCHAINASSETS: "跨链资产列表",
+  TRANSFERS: "转账列表",
   NOMINATIONS: "投票列表",
   OPENORDERS: "当前委托列表",
   ORDERHISTORY: "历史委托列表",
@@ -344,6 +345,11 @@ export const OTHERS = {
   NEXT: "下一页"
 };
 
+export const transfer = {
+  TO: "接收人",
+  TRANSFER_BALANCE: "金额"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -358,6 +364,7 @@ export default {
   ...CROSSBLOCK,
   ...DAPP,
   ...PROCESSTXSTATE,
+  ...transfer,
   moduleNameMap,
   callNameMap,
   txType,

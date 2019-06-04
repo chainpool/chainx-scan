@@ -309,6 +309,13 @@ class Api {
   };
 
   /**
+   * 获取账户转账列表
+   */
+  fetchAccountTransfers$ = (params, { accountId }) => {
+    return this.fetch$(`/account/${hexAddPrefix(accountId)}/transfers`, params);
+  };
+
+  /**
    * 获取账户成交列表
    */
   fetchAccountFillOrders$ = (params, { accountId }) => {

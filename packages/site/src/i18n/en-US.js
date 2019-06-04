@@ -139,6 +139,7 @@ export const ACCOUNT = {
   TIME: "Time",
   ASSETS: "Assets",
   CROSSCHAINASSETS: "Cross-chain Assets",
+  TRANSFERS: "Transfers",
   NOMINATIONS: "Nominations",
   OPENORDERS: "Open Orders",
   FILLHISTORY: "Trade History",
@@ -348,6 +349,11 @@ export const OTHERS = {
   NEXT: "Next"
 };
 
+export const transfer = {
+  TO: "接收人",
+  TRANSFER_BALANCE: "Balance"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -362,6 +368,7 @@ export default {
   ...CROSSBLOCK,
   ...DAPP,
   ...PROCESSTXSTATE,
+  ...transfer,
   moduleNameMap,
   callNameMap,
   txType,
