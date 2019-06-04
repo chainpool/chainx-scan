@@ -236,6 +236,7 @@ export const callNameMap = {
   push_header: "Submit Header",
   final_hint: "Final Hint",
   claim: "Claim",
+  renominate: "Renominate",
   set: "Setup",
   setup_trustee: "Setup Trustee",
   withdraw: "Withdrawal",

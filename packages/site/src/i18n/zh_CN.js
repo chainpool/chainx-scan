@@ -234,6 +234,7 @@ export const callNameMap = {
   push_header: "提交块头",
   final_hint: "设置",
   claim: "提息",
+  renominate: "切换投票",
   set: "设置",
   setup_trustee: "信托设置",
   withdraw: "提现",
