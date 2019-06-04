@@ -2,8 +2,9 @@ import React, { useEffect, useMemo } from "react";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
-import { AddressLink, Amount, DateShow, Table, TxLink } from "../../components";
+import { Address, AddressLink, Amount, DateShow, Table, TxLink } from "../../components";
 import { FormattedMessage } from "react-intl";
+import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 
 export default function AccountTransfer(props) {
   const [{ tableData }, setTableData] = useRedux(`transferList`, {
@@ -34,11 +35,24 @@ export default function AccountTransfer(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map(data => {
+          const from =
+            hexStripPrefix(props.accountId) === data.signed ? (
+              <Address style={{ width: 180 }} className="text-truncate" value={data.signed} />
+            ) : (
+              <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />
+            );
+          const to =
+            hexStripPrefix(props.accountId) === data.payee ? (
+              <Address style={{ width: 180 }} className="text-truncate" value={data.payee} />
+            ) : (
+              <AddressLink style={{ width: 180 }} className="text-truncate" value={data.payee} />
+            );
+
           return {
             ...data,
             key: data.hash,
-            from: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />,
-            to: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.payee} />,
+            from,
+            to,
             hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
             time: <DateShow value={data.time} />,
             value: <Amount value={data.value} symbol={data.token} />

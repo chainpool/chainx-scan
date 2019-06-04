@@ -25,3 +25,4 @@ export { default as Phase } from "./Phase";
 export { default as HasFill } from "./HasFill";
 export { default as NoData } from "./NoData";
 export { default as ScrollTop } from "./ScrollTop";
+export { default as Address } from "./Address";
