@@ -17,8 +17,8 @@ export default function AccountTransfer(props) {
   });
 
   const tableService = useMemo(
-    () => new TableService(api.fetchAccountTransfers$, tableData, { accountId: props.accountId, status: 3 }),
-    []
+    () => new TableService(api.fetchAccountTransfers$, tableData, { accountId: props.accountId }),
+    [props.accountId]
   );
 
   useEffect(() => {
@@ -36,6 +36,7 @@ export default function AccountTransfer(props) {
         tableData.dataSource.map(data => {
           return {
             ...data,
+            key: data.hash,
             from: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />,
             to: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.payee} />,
             hash: <TxLink style={{ width: 136 }} className="text-truncate" value={data.hash} />,
@@ -54,7 +55,7 @@ export default function AccountTransfer(props) {
           dataIndex: "time"
         },
         {
-          title: <FormattedMessage id="HASH" />,
+          title: <FormattedMessage id="TRANSACTIONHASH" />,
           dataIndex: "hash"
         },
         {
@@ -68,6 +69,10 @@ export default function AccountTransfer(props) {
         {
           title: <FormattedMessage id="TRANSFER_BALANCE" />,
           dataIndex: "value"
+        },
+        {
+          title: <FormattedMessage id="MEMO" />,
+          dataIndex: "memo"
         }
       ]}
     />
