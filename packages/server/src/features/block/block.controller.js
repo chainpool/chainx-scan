@@ -19,7 +19,8 @@ class BlockController {
     });
 
     const blocks = await ctx.db.sequelize.query(
-      `SELECT block.*, event.count as event_count FROM block
+      `SELECT block.number, block.hash, block.justification, block.extrinsics, block.time, block.producer,
+      event.count as event_count FROM block
     LEFT JOIN (select number, count(*) from event group by number order by number desc) as event
     on block.number=event.number
     ORDER BY block.number DESC
