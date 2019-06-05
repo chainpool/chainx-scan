@@ -46,7 +46,7 @@ export default function BlockDetail(props) {
       });
       return () => subscription.unsubscribe();
     }
-  }, [blockNumber]);
+  }, [txid]);
 
   const breadcrumb = (
     <Breadcrumb
