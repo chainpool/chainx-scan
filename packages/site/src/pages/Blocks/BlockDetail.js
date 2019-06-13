@@ -62,6 +62,7 @@ export default function BlockDetail(props) {
       return () => subscription.unsubscribe();
     }
   }, [blockNumber]);
+
   const breadcrumb = (
     <Breadcrumb
       dataSource={[

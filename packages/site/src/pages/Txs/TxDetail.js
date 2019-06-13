@@ -1,8 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 import { FormattedMessage } from "react-intl";
+
+import TableService from "../../services/tableService";
+import { useRedux } from "../../shared";
+
 import { ReactComponent as Success } from "../../assets/success.svg";
 import { ReactComponent as Error } from "../../assets/error.svg";
+
 import {
   BlockLink,
   AddressLink,
@@ -21,8 +26,16 @@ export default function BlockDetail(props) {
   const { match } = props;
 
   const [data, setData] = useState({});
-  const [eventsData, setEventsData] = useState({});
-  const [eventLoading, setEventLoading] = useState(true);
+
+  const [{ tableData: eventsData }, setEventsData] = useRedux(`TxEventData`, {
+    tableData: {
+      pagination: {
+        current: 1,
+        pageSize: 10,
+        total: 0
+      }
+    }
+  });
 
   const blockNumber = data.number;
   let txid = void 0;
@@ -38,12 +51,11 @@ export default function BlockDetail(props) {
     }
   }, [txid]);
 
+  const eventService = useMemo(() => new TableService(api.fetchEvents$, eventsData, { tx: txid }), [txid]);
+
   useEffect(() => {
     if (!!txid) {
-      const subscription = api.fetchEvents$({ tx: txid }).subscribe(({ items }) => {
-        setEventLoading(false);
-        setEventsData({ dataSource: items });
-      });
+      const subscription = eventService.fetchTable$().subscribe(data => setEventsData({ tableData: { ...data } }));
       return () => subscription.unsubscribe();
     }
   }, [txid]);
@@ -71,6 +83,8 @@ export default function BlockDetail(props) {
   } else if (!!data.code) {
     return <NoData id={txid} />;
   }
+
+  console.log(eventsData);
 
   return (
     <div>
@@ -152,8 +166,10 @@ export default function BlockDetail(props) {
         </div>
         {data && data.number && (
           <RenderEvents
-            tableData={{ ...eventsData, eventLoading }}
-            tableProps={{ pagination: false, simpleMode: true }}
+            handleChange={eventService.handleChange}
+            loading={eventsData.loading}
+            tableData={eventsData}
+            tableProps={{ pagination: true, simpleMode: true }}
           />
         )}
       </div>

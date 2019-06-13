@@ -15,10 +15,12 @@ export default function AccountTrade(props) {
       }
     }
   });
+
   const tableService = useMemo(
     () => new TableService(api.fetchAccountTxs$, tableData, { accountId: props.accountId }),
     []
   );
+
   useEffect(() => {
     const subscription = tableService.fetchTable$().subscribe(data => setTableData({ tableData: { ...data } }));
     return () => subscription.unsubscribe();
