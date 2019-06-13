@@ -94,7 +94,7 @@ export const TX = {
 };
 export const VALIDATOR = {
   TRUSTEENODE: "Validators",
-  STANDBYNODE: "Standby",
+  STANDBYNODE: "Sync node",
   TRUSTEES: "Trustees",
   ACCOUNTADDRESS: "Address",
   UNFREEZERESERVED: "Unfreeze Reserved",

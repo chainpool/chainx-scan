@@ -94,7 +94,7 @@ export const TX = {
 };
 export const VALIDATOR = {
   TRUSTEENODE: "验证节点",
-  STANDBYNODE: "候选节点",
+  STANDBYNODE: "同步节点",
   TRUSTEES: "信托节点",
   ACCOUNTADDRESS: "账户地址",
   UNFREEZERESERVED: "赎回冻结",
