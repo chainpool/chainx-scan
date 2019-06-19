@@ -212,6 +212,15 @@ class Api {
             break;
         }
         result.total = result.items.length;
+        result.items.sort((a, b) => {
+          if (a.isTrustee.length && !b.isTrustee.length) {
+            return -1;
+          } else if (!a.isTrustee.length && b.isTrustee.length) {
+            return 1;
+          } else {
+            return 0;
+          }
+        });
         return result;
       })
     );
