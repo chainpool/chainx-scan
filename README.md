@@ -33,3 +33,4 @@ Note: config the database in `package/server/config`
 5. Config nginx to the build directory.
 
 Note: For step 3, change the `http://localhost:3001` to your api server endpoint.
+
