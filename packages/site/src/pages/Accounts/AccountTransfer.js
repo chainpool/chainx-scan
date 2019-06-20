@@ -86,6 +86,7 @@ export default function AccountTransfer(props) {
         },
         {
           title: <FormattedMessage id="MEMO" />,
+          className: "limit-memo",
           dataIndex: "memo"
         }
       ]}
