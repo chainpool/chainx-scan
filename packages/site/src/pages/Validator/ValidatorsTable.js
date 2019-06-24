@@ -35,7 +35,7 @@ export default function ValidatorsTable(props) {
             address: <AddressLink value={data.accountid} style={{ maxWidth: 136 }} className="text-truncate" />,
             missedBlocks: (
               <span>
-                <NumberFormat value={data.missedBlocks} />
+                <NumberFormat value={data.missedBlocks} />/<NumberFormat value={data.blocks} />
                 <span className="table-tag-nagtive">{`(${(isNaN(data.missedBlocks / data.blocks)
                   ? 0
                   : (data.missedBlocks / data.blocks) * 100
@@ -44,17 +44,20 @@ export default function ValidatorsTable(props) {
             ),
             recentMissedBlocks: (
               <span>
-                {(isNaN(data.weekMissedBlocks / data.weekblocks)
-                  ? 0
-                  : (data.weekMissedBlocks / data.weekblocks) * 100
-                ).toFixed(2)}
-                %
+                <NumberFormat value={data.weekMissedBlocks} />/<NumberFormat value={data.weekblocks} />
+                <span className="table-tag-nagtive">
+                  (
+                  {(isNaN(data.weekMissedBlocks / data.weekblocks)
+                    ? 0
+                    : (data.weekMissedBlocks / data.weekblocks) * 100
+                  ).toFixed(2) + "%"}
+                  )
+                </span>
               </span>
             ),
             selfVote: <Amount value={data.selfVote} hideSymbol />,
             totalNomination: <Amount value={data.totalNomination} hideSymbol />,
-            jackpot: <Amount value={data.jackpot} hideSymbol />,
-            blocks: <NumberFormat value={data.blocks} />
+            jackpot: <Amount value={data.jackpot} hideSymbol />
           };
         })
       }
@@ -112,11 +115,6 @@ export default function ValidatorsTable(props) {
         {
           title: <FormattedMessage id="RECENTMISSEDBLOCKS" />,
           dataIndex: "recentMissedBlocks"
-        },
-        {
-          title: <FormattedMessage id="TOTALAUTHOREDBLOCKS" />,
-          dataIndex: "blocks",
-          align: "right"
         }
       ]}
     />
