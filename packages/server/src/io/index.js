@@ -83,6 +83,20 @@ async function feedChainStatus(io, db) {
       raw: true
     });
 
+    const { last_price } = await db.TradingPairPrice.findOne({
+      where: { pairid: 0 },
+      attributes: ["last_price"]
+    });
+
+    const powers = await db.PseduIntention.findAll({
+      raw: true,
+      attributes: ["id", "power"]
+    });
+
+    status.btc_power = powers.find(({ id }) => id === "BTC").power;
+    status.sdot_power = powers.find(({ id }) => id === "SDOT").power;
+    status.last_price = last_price;
+
     if (status && (preStatusHeight === null || status.best > preStatusHeight)) {
       io.to(chainStatusRoom).emit("chainStatus", status);
     }

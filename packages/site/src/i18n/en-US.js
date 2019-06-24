@@ -17,7 +17,11 @@ export const DASHBOARD = {
   VALIDATORS: "Total Validators",
   RELEASECOUNT: "Total Issuance(PCX)",
   MORTGAGECOUNT: "Total Intention-Bonded(PCX)",
-  USERVOTECOUNT: "Total Bonded(PCX)"
+  USERVOTECOUNT: "Total Bonded(PCX)",
+  ELECTIONRATE: "Election Rate",
+  TRADEPRICE: "Price",
+  BTCMINING: "BTC Power",
+  SDOTMINING: "SDOT Power"
 };
 export const NEWESTBLOCK = {
   NEWESTBLOCK: "Latest Block",

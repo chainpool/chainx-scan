@@ -17,7 +17,11 @@ export const DASHBOARD = {
   VALIDATORS: "验证节点数",
   RELEASECOUNT: "发行总量(PCX)",
   MORTGAGECOUNT: "节点抵押总数(PCX)",
-  USERVOTECOUNT: "用户投票总数(PCX)"
+  USERVOTECOUNT: "用户投票总数(PCX)",
+  ELECTIONRATE: "投票率",
+  TRADEPRICE: "价格",
+  BTCMINING: "BTC算力",
+  SDOTMINING: "SDOT算力"
 };
 export const NEWESTBLOCK = {
   NEWESTBLOCK: "最新块高",
