@@ -118,6 +118,8 @@ export const VALIDATOR = {
   JACKPOTADDRESS: "Jackpot Address",
   SELFBONDED: "Self-Bonded",
   MISSEDBLOCKS: "Missed Blocks",
+  MISSEDBLOCKSHISTORY: "Histroy Missed Blocks",
+  RECENTMISSEDBLOCKS: "Recent Week Missed Rate",
   MISSEDLISTS: "Misseds",
   TOTALAUTHOREDBLOCKS: "Authored Blocks",
   AUTHOREDBLOCKS: "Authored Blocks",

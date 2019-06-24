@@ -36,10 +36,19 @@ export default function ValidatorsTable(props) {
             missedBlocks: (
               <span>
                 <NumberFormat value={data.missedBlocks} />
-                <span className="table-tag-nagtive">{`(${(isNaN(data.missedBlocks / (data.missedBlocks + data.blocks))
+                <span className="table-tag-nagtive">{`(${(isNaN(data.missedBlocks / data.blocks)
                   ? 0
-                  : (data.missedBlocks / (data.missedBlocks + data.blocks)) * 100
+                  : (data.missedBlocks / data.blocks) * 100
                 ).toFixed(2)}%)`}</span>
+              </span>
+            ),
+            recentMissedBlocks: (
+              <span>
+                {(isNaN(data.weekMissedBlocks / data.weekblocks)
+                  ? 0
+                  : (data.weekMissedBlocks / data.weekblocks) * 100
+                ).toFixed(2)}
+                %
               </span>
             ),
             selfVote: <Amount value={data.selfVote} hideSymbol />,
@@ -97,8 +106,12 @@ export default function ValidatorsTable(props) {
           align: "right"
         },
         {
-          title: <FormattedMessage id="MISSEDBLOCKS" />,
+          title: <FormattedMessage id="MISSEDBLOCKSHISTORY" />,
           dataIndex: "missedBlocks"
+        },
+        {
+          title: <FormattedMessage id="RECENTMISSEDBLOCKS" />,
+          dataIndex: "recentMissedBlocks"
         },
         {
           title: <FormattedMessage id="TOTALAUTHOREDBLOCKS" />,

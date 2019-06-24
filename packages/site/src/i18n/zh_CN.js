@@ -118,6 +118,8 @@ export const VALIDATOR = {
   JACKPOTADDRESS: "奖池地址",
   SELFBONDED: "自抵押数",
   MISSEDBLOCKS: "漏块数量",
+  MISSEDBLOCKSHISTORY: "历史漏块数量",
+  RECENTMISSEDBLOCKS: "最近周漏块率",
   MISSEDLISTS: "漏块列表",
   TOTALAUTHOREDBLOCKS: "累计出块总数",
   AUTHOREDBLOCKS: "出块总数",
