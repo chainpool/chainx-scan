@@ -13,13 +13,13 @@ export const DASHBOARD = {
   CONFIRMBLOCK: "确认高度",
   TransactionCount: "交易总数",
   ACCOUNTCOUNT: "账户总数",
-  VALIDATORVOTESESSION: "验证节点选举届数",
+  VALIDATORVOTESESSION: "选举届数",
   VALIDATORS: "验证节点数",
   RELEASECOUNT: "发行总量(PCX)",
   MORTGAGECOUNT: "节点抵押总数(PCX)",
   USERVOTECOUNT: "用户投票总数(PCX)",
   ELECTIONRATE: "投票率",
-  TRADEPRICE: "价格",
+  TRADEPRICE: "价格(PCX/BTC)",
   BTCMINING: "BTC算力",
   SDOTMINING: "SDOT算力"
 };
@@ -27,7 +27,7 @@ export const NEWESTBLOCK = {
   NEWESTBLOCK: "最新块高",
   BLOCKHEIGHT: "块高",
   VALIDATOR: "验证人",
-  TRANSACTIONCOUNT: "交易数",
+  TRANSACTIONCOUNT: "交易总数",
   SHOWALL: "查看全部"
 };
 export const NEWESTTRANSACTION = {
