@@ -85,7 +85,7 @@ export default function DashBoard() {
     {
       label: <FormattedMessage id="TRADEPRICE" />,
       // 写死了精度 9
-      data: <Amount value={data.last_price} hideSymbol symbol="BTC" precision={9} />
+      data: <Amount value={data.last_price} hideSymbol symbol="BTC" precision={9} minDigits={7} />
     },
     {
       label: (
