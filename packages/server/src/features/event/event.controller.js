@@ -15,7 +15,7 @@ class EventController {
     };
     if (block && /^\d+$/.test(block)) {
       Object.assign(options, { where: { number: block } });
-    } else if (tx) {
+    } else if (tx && tx !== "undefined") {
       Object.assign(options, { where: { transaction_tx: tx } });
     }
     const { rows: transactions, count } = await ctx.db.Event.findAndCountAll(options);
