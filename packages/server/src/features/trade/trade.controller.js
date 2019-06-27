@@ -54,17 +54,15 @@ class TradeController {
     }
 
     const { count = 20 } = ctx.query;
-    const orders = await ctx.db.sequelize.query(
-      `
-    SELECT fill.*, o.direction FROM "event_xspot_FillsOf" AS fill
-    INNER JOIN "event_xspot_AccountOrder" AS o ON fill.taker_user=o.accountid AND fill.taker_user_order_index=o.id
-    WHERE fill.pairid=${pairId}
-    ORDER BY time desc OFFSET 0 limit ${count};
-    `,
-      {
-        type: ctx.db.sequelize.QueryTypes.SELECT
-      }
-    );
+    const where = { pairid: pairId };
+    const orders = await ctx.db.FilledOrder.findAll({
+      raw: true,
+      where,
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      order: [["time", "DESC"]],
+      limit: count,
+      offset: 0
+    });
     ctx.body = orders;
   }
 
