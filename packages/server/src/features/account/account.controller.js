@@ -96,11 +96,17 @@ class AccountController {
 
   async txs(ctx) {
     const { accountId } = ctx.params;
+    const { include_payee: includePayee } = ctx.query;
+
+    let where = { signed: accountId };
+    if (includePayee === "true") {
+      where = { $or: [{ signed: accountId }, { payee: accountId }] };
+    }
 
     const { page, pageSize } = extractPage(ctx);
     const order = [["number", "DESC"], ["index", "DESC"]];
     const { rows: items, count } = await ctx.db.Transaction.findAndCountAll({
-      where: { signed: accountId },
+      where,
       order,
       limit: pageSize,
       offset: page * pageSize,
