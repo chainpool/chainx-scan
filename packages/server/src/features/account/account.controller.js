@@ -5,8 +5,9 @@ class AccountController {
   async intentions(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
+    // TODO: use pageSize
     const { rows: intentions, count } = await ctx.db.Intention.findAndCountAll({
-      limit: pageSize,
+      limit: 10000,
       offset: page * pageSize,
       order: [["totalNomination", "DESC"]]
     });
