@@ -11,7 +11,17 @@ class AccountController {
       order: [["totalNomination", "DESC"]]
     });
 
-    const items = intentions.map(intention => {
+    const set = new Set();
+    const filtered = intentions.filter(intention => {
+      if (set.has(intention.accountid)) {
+        return false;
+      }
+
+      set.add(intention.accountid);
+      return true;
+    });
+
+    const items = filtered.map(intention => {
       Object.assign(intention.dataValues, {
         isActive: intention.dataValues.isActive === "true",
         isTrustee: JSON.parse(intention.dataValues.isTrustee),
