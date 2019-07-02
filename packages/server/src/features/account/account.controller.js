@@ -5,28 +5,26 @@ class AccountController {
   async intentions(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    // TODO: use pageSize
-    const { rows: intentions, count } = await ctx.db.Intention.findAndCountAll({
-      limit: 10000,
-      offset: page * pageSize,
-      order: [["totalNomination", "DESC"]]
-    });
-
-    const set = new Set();
-    const filtered = intentions.filter(intention => {
-      if (set.has(intention.accountid)) {
-        return false;
+    const rows = await ctx.db.sequelize.query(
+      `SELECT * FROM intentions as i INNER JOIN (
+        SELECT max(height) AS height, accountid FROM intentions GROUP BY accountid
+      ) AS h ON h.height=i.height AND h.accountid=i.accountid
+      ORDER BY i."totalNomination" DESC
+      LIMIT ${pageSize} OFFSET ${page * pageSize}`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
       }
+    );
 
-      set.add(intention.accountid);
-      return true;
+    const result = await ctx.db.sequelize.query(`SELECT COUNT(DISTINCT accountid) FROM "intentions"`, {
+      type: ctx.db.sequelize.QueryTypes.SELECT
     });
 
-    const items = filtered.map(intention => {
-      Object.assign(intention.dataValues, {
-        isActive: intention.dataValues.isActive === "true",
-        isTrustee: JSON.parse(intention.dataValues.isTrustee),
-        isValidator: intention.dataValues.isValidator === "true"
+    const items = rows.map(intention => {
+      Object.assign(intention, {
+        isActive: intention.isActive === "true",
+        isTrustee: JSON.parse(intention.isTrustee),
+        isValidator: intention.isValidator === "true"
       });
       return intention;
     });
@@ -35,7 +33,7 @@ class AccountController {
       items,
       pageSize,
       page,
-      total: count
+      total: result[0].count
     };
   }
 
