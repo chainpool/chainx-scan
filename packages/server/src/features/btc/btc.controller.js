@@ -65,6 +65,18 @@ class BtcController {
     };
   }
 
+  async address(ctx) {
+    const { address } = ctx.params;
+    const map = await ctx.db.BtcCrossChainAddressMap.findOne({
+      where: { display_address: address },
+      include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
+      attributes: { exclude: ["address", "chain", "height", "display_address"] },
+      raw: true
+    });
+
+    ctx.body = map;
+  }
+
   async addresses(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
