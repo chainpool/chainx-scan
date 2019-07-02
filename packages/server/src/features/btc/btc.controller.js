@@ -74,7 +74,7 @@ class BtcController {
       raw: true
     });
 
-    ctx.body = map;
+    ctx.body = map || {};
   }
 
   async addresses(ctx) {
