@@ -183,7 +183,7 @@ export const CROSSBLOCK = {
   BRIDGE: " Bridge",
   ETHBRIDGE: "Etherum Bridge",
   BTCBRIDGE: "Bitcoin Bridge",
-  DEPOSITSMINING: "Deposits Mining",
+  DEPOSITSMINING: "Crosschain Mining",
   WITHDRAWALLIST: "Withdrawal List",
   DEPOSITELIST: "Deposits"
 };
@@ -211,7 +211,7 @@ export const PROCESSTXSTATE = {
   Confirmed: "Confirmed"
 };
 export const moduleNameMap = {
-  XTokens: "Deposits Mining",
+  XTokens: "Crosschain Mining",
   Sudo: "Sudo",
   Withdrawal: "Withdrawal",
   XSpot: "DEX",
