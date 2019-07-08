@@ -182,7 +182,7 @@ export const CROSSBLOCK = {
   TOTALBALANCE: "总余额",
   ETHBRIDGE: "Etherum转接桥",
   BTCBRIDGE: "Bitcoin转接桥",
-  DEPOSITSMINING: "充值挖矿",
+  DEPOSITSMINING: "跨链挖矿",
   WITHDRAWALLIST: "提现列表",
   DEPOSITELIST: "充值列表"
 };
@@ -210,7 +210,7 @@ export const PROCESSTXSTATE = {
   Confirmed: "已确认"
 };
 export const moduleNameMap = {
-  XTokens: "充值挖矿",
+  XTokens: "跨链挖矿",
   Sudo: "超级权限",
   Withdrawal: "提现",
   XSpot: "币币交易",

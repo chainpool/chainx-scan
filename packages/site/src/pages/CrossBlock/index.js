@@ -25,7 +25,7 @@ export default function CrossBlock(props) {
         <ul>
           <li className={classnames({ "is-active": activeKey === "/crossblocks/depositMine" })}>
             <NavLink to="/crossblocks/depositMine">
-              <img className="tab-img" src={DepositMine} alt="充值挖矿" />
+              <img className="tab-img" src={DepositMine} alt="跨链挖矿" />
               <FormattedMessage id="DEPOSITSMINING" />
             </NavLink>
           </li>
