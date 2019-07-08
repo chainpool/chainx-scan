@@ -109,10 +109,6 @@ export default function ValidatorsTable(props) {
           align: "right"
         },
         {
-          title: <FormattedMessage id="MISSEDBLOCKSHISTORY" />,
-          dataIndex: "missedBlocks"
-        },
-        {
           title: <FormattedMessage id="RECENTMISSEDBLOCKS" />,
           dataIndex: "recentMissedBlocks"
         }
