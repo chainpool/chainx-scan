@@ -30,6 +30,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       height: {
         type: DataTypes.BIGINT
+      },
+      lockup_count: {
+        type: DataTypes.BIGINT
+      },
+      lockup_balance: {
+        type: DataTypes.BIGINT
       }
     },
     {
