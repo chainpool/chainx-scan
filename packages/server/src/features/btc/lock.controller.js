@@ -24,6 +24,32 @@ class BtcLockUpController {
       total: count
     };
   }
+
+  async accountLockStats(ctx) {
+    const { accountId: accountid } = ctx.params;
+    const records = await ctx.db.BtcLockUp.findAll({
+      where: { accountid },
+      order: [["lock_time", "DESC"]],
+      raw: true
+    });
+
+    const balances = records.reduce((result, record) => {
+      if (record.unlock_hash) {
+        return result;
+      }
+
+      const target = result.find(item => item.address === record.address);
+      if (target) {
+        target.value += record.value;
+      } else {
+        result.push({ address: record.address, value: record.value });
+      }
+
+      return result;
+    }, []);
+
+    ctx.body = balances;
+  }
 }
 
 module.exports = new BtcLockUpController();
