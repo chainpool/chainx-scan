@@ -27,34 +27,21 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
       loading={loading}
       onChange={handleChange}
       pagination={pagination}
-      expandedRowRender={data => (
-        <div>
-          {data.unlock_hash && (
+      expandedRowRender={data => {
+        return (
+          <div>
             <span>
-              <FormattedMessage id="unlocktxhash" />：
-              <ExternalLink
-                type="btcTxid"
-                value={data.unlock_hash}
-                render={() => {
-                  return <Hash style={{ width: 136 }} className="text-truncate" value={data.unlock_hash} />;
-                }}
-              />
-              ;
+              <FormattedMessage id="unlocktxhash" />： {data.unlockHash};
             </span>
-          )}
-          {data.input_index && (
             <span>
-              <FormattedMessage id="inputindex" />：{data.input_index};
+              <FormattedMessage id="inputindex" />：{data.inputIndex};
             </span>
-          )}
-          {data.unlock_chainx_relay && (
             <span>
-              <FormattedMessage id="unlockrelayhash" />
-              ：<TxLink style={{ width: 136 }} className="text-truncate" value={data.unlock_chainx_relay} />;
+              <FormattedMessage id="unlockrelayhash" />：{data.unlockChainxRelay};
             </span>
-          )}
-        </div>
-      )}
+          </div>
+        );
+      }}
       dataSource={dataSource.map((data, index) => {
         return {
           key: index,
@@ -75,7 +62,24 @@ export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
           locktxhashrelay: <TxLink style={{ width: 136 }} className="text-truncate" value={data.lock_chainx_relay} />,
           chainxaddr: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
           locktime: <DateShow value={data.lock_time} />,
-          unlocktime: <DateShow value={data.unlock_time} />
+          unlocktime: <DateShow value={data.unlock_time} />,
+          unlockHash: data.unlock_hash ? (
+            <ExternalLink
+              type="btcTxid"
+              value={data.unlock_hash}
+              render={() => {
+                return <Hash style={{ width: 136 }} className="text-truncate" value={data.unlock_hash} />;
+              }}
+            />
+          ) : (
+            "-"
+          ),
+          inputIndex: data.unlock_hash ? data.input_index : "-",
+          unlockChainxRelay: data.unlock_chainx_relay ? (
+            <TxLink style={{ width: 136 }} className="text-truncate" value={data.unlock_chainx_relay} />
+          ) : (
+            "-"
+          )
         };
       })}
       columns={[
