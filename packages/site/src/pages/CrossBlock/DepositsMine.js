@@ -28,7 +28,6 @@ export function RenderDepositsMine({ dataSource, loading }) {
         loading={loading}
         pagination={false}
         dataSource={dataSource.map(data => {
-          console.log(data, tokens);
           return {
             key: data.id,
             id: data.id,

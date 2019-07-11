@@ -34,7 +34,6 @@ export default function FillOrderList(props) {
       dataSource={
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
-          console.log(data);
           return {
             key: index,
             id: data.id,

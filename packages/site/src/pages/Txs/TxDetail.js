@@ -83,8 +83,6 @@ export default function BlockDetail(props) {
     return <NoData id={txid} />;
   }
 
-  console.log(eventsData);
-
   return (
     <div>
       {breadcrumb}

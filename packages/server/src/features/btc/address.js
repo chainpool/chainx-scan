@@ -59,7 +59,6 @@ function toBtcAddress(btc_layout) {
     default:
       break;
   }
-  //console.log(n,t)
 
   var address = new Address(
     binConv(h, {

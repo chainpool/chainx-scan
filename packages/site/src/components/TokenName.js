@@ -20,8 +20,6 @@ export default function TokenName(props) {
 
   const token = tokens.find(t => t.token === value);
 
-  console.log(token);
-
   return (
     <div>
       {findIcon ? (
