@@ -16,10 +16,10 @@ export default function BtcLockList() {
     return () => subscription.unsubscribe();
   }, [tableService]);
 
-  return <RenderCrossDeposits {...{ tableData, handleChange: tableService.handleChange }} />;
+  return <RenderBtcLockList {...{ tableData, handleChange: tableService.handleChange }} />;
 }
 
-export function RenderCrossDeposits({ tableProps, tableData, handleChange }) {
+export function RenderBtcLockList({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = tableData;
 
   return (
