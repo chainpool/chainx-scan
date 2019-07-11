@@ -12,13 +12,21 @@ class TransactionController {
       offset: page * pageSize,
       raw: true
     };
+
+    let transactions, count;
     if (block && /^\d+$/.test(block)) {
       Object.assign(options, { where: { number: block } });
+      const { rows: txs, count: cnt } = await ctx.db.Transaction.findAndCountAll(options);
+      transactions = txs;
+      count = cnt;
+    } else {
+      transactions = await ctx.db.Transaction.findAll(options);
+      const [{ count: cnt }] = await ctx.db.sequelize.query(`select sum(num) as count from "transaction_daily";`, {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      });
+
+      count = cnt;
     }
-    const transactions = await ctx.db.Transaction.findAll(options);
-    const [{ count: count }] = await ctx.db.sequelize.query(`select sum(num) as count from "transaction_daily";`, {
-      type: ctx.db.sequelize.QueryTypes.SELECT
-    });
 
     const items = transactions.map(normalizeTransaction);
 
