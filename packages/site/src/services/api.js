@@ -360,6 +360,20 @@ class Api {
   };
 
   /**
+   * BTC 锁仓列表
+   */
+  fetchBtcLock$ = params => {
+    return this.fetch$(`/btc/lock/records`, params);
+  };
+
+  /**
+   * 某一用户的锁仓列表
+   */
+  fetchAccountBtcLock$ = (params, accountId) => {
+    return this.fetch$(`/btc/lock/records`, { accountId: hexAddPrefix(accountId) });
+  };
+
+  /**
    * 跨链提现列表
    */
   fetchBtcWithdrawals$ = params => {

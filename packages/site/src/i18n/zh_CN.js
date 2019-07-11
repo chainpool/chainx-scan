@@ -187,7 +187,8 @@ export const CROSSBLOCK = {
   BTCBRIDGE: "Bitcoin转接桥",
   DEPOSITSMINING: "跨链挖矿",
   WITHDRAWALLIST: "提现列表",
-  DEPOSITELIST: "充值列表"
+  DEPOSITELIST: "充值列表",
+  LOCK_LIST: "锁仓列表"
 };
 export const DAPP = {
   ACCUMULATIVEDEPTH: "累计深度",
@@ -359,6 +360,26 @@ export const transfer = {
   TRANSFER_BALANCE: "金额"
 };
 
+export const btclocklist = {
+  txhash: "Bitcoin锁仓交易哈希",
+  outputindex: "Output Index",
+  baddr: "Bitcoin地址",
+  amount: "金额",
+  locktxhashrelay: "锁仓ChainX中继交易",
+  chainxaddr: "ChainX地址",
+  locktime: "锁仓时间",
+  unlocktime: "解锁时间",
+  unlocktxhash: "Bitcoin解锁交易哈希",
+  inputindex: "Input Index",
+  txhash: "Bitcoin锁仓交易哈希",
+  unlockrelayhash: "解锁ChainX中继交易",
+
+  btclockList: "锁仓地址列表",
+  chain: "链",
+  address: "地址",
+  nodename: "渠道的节点名称"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -374,6 +395,7 @@ export default {
   ...DAPP,
   ...PROCESSTXSTATE,
   ...transfer,
+  ...btclocklist,
   moduleNameMap,
   callNameMap,
   txType,

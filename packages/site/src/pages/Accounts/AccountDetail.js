@@ -18,6 +18,7 @@ import AccountTrade from "./AccountTrade";
 import BindAddressList from "./BindAddressList";
 import FillOrderList from "./FillOrderList";
 import AccountTransfer from "./AccountTransfer";
+import AccountBtcLock from "./AccountBtcLock";
 import { FormattedMessage } from "react-intl";
 
 export default function Account(props) {
@@ -147,6 +148,14 @@ export default function Account(props) {
                 <FormattedMessage id="BINDEDADDRESSES" />
               </a>
             </li>
+            <li
+              onClick={() => setActiveKey("btcLockAddr")}
+              className={classnames({ "is-active": activeKey === "btcLockAddr" })}
+            >
+              <a>
+                <FormattedMessage id="btclockList" />
+              </a>
+            </li>
           </ul>
         </div>
         {detail && detail.accountId && activeKey === "assets" && <AccountAsset accountId={detail.accountId} />}
@@ -158,6 +167,7 @@ export default function Account(props) {
         {detail && detail.accountId && activeKey === "bindAddresses" && (
           <BindAddressList accountId={detail.accountId} />
         )}
+        {detail && detail.accountId && activeKey === "btcLockAddr" && <AccountBtcLock accountId={detail.accountId} />}
       </div>
     </>
   );

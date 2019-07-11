@@ -188,7 +188,8 @@ export const CROSSBLOCK = {
   BTCBRIDGE: "Bitcoin Bridge",
   DEPOSITSMINING: "Crosschain Mining",
   WITHDRAWALLIST: "Withdrawal List",
-  DEPOSITELIST: "Deposits"
+  DEPOSITELIST: "Deposits",
+  LOCK_LIST: "LOCK LIST"
 };
 export const DAPP = {
   ACCUMULATIVEDEPTH: "Sum",
@@ -363,6 +364,26 @@ export const transfer = {
   TRANSFER_BALANCE: "Balance"
 };
 
+export const btclocklist = {
+  txhash: "Bitcoin Lock Tx",
+  outputindex: "Output Index",
+  baddr: "Bitcoin Addr",
+  amount: "Amount",
+  locktxhashrelay: "Lock ChainX Relay Tx",
+  chainxaddr: "ChainX Addr",
+  locktime: "Lock Time",
+  unlocktime: "Unlock Time",
+  unlocktxhash: "Bitcoin Unlock Tx",
+  inputindex: "Input Index",
+  txhash: "Bitcoin Lock tx hash",
+  unlockrelayhash: "Unlock ChainX Relay Tx",
+
+  btclockList: "Lock Addresses",
+  chain: "chain",
+  address: "address",
+  nodename: "channel name"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -378,6 +399,7 @@ export default {
   ...DAPP,
   ...PROCESSTXSTATE,
   ...transfer,
+  ...btclocklist,
   moduleNameMap,
   callNameMap,
   txType,
