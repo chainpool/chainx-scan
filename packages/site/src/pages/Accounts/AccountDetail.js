@@ -27,7 +27,7 @@ export default function Account(props) {
   } = match;
 
   const [detail, setDetail] = useState({});
-  const [activeKey, setActiveKey] = useState("nativeAsset");
+  const [activeKey, setActiveKey] = useState("assets");
 
   useEffect(() => {
     const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data), data => setDetail(data));
@@ -94,20 +94,9 @@ export default function Account(props) {
       <div className="box">
         <div className="tabs">
           <ul>
-            <li
-              onClick={() => setActiveKey("nativeAsset")}
-              className={classnames({ "is-active": activeKey === "nativeAsset" })}
-            >
+            <li onClick={() => setActiveKey("assets")} className={classnames({ "is-active": activeKey === "assets" })}>
               <a>
-                ChainX <FormattedMessage id="ASSETS" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("crossAsset")}
-              className={classnames({ "is-active": activeKey === "crossAsset" })}
-            >
-              <a>
-                <FormattedMessage id="CROSSCHAINASSETS" />
+                <FormattedMessage id="ASSETS" />
               </a>
             </li>
             <li
@@ -160,12 +149,7 @@ export default function Account(props) {
             </li>
           </ul>
         </div>
-        {detail && detail.accountId && activeKey === "nativeAsset" && (
-          <AccountAsset accountId={detail.accountId} isNative={true} />
-        )}
-        {detail && detail.accountId && activeKey === "crossAsset" && (
-          <AccountAsset accountId={detail.accountId} isNative={false} />
-        )}
+        {detail && detail.accountId && activeKey === "assets" && <AccountAsset accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "transfer" && <AccountTransfer accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "nomination" && <AccountNomination accountId={detail.accountId} />}
         {detail && detail.accountId && activeKey === "orderList" && <AccountOrder accountId={detail.accountId} />}

@@ -21,12 +21,14 @@ export default function DepositsMine() {
 
 export function RenderDepositsMine({ dataSource, loading }) {
   const [{ tokens }] = useAppContext();
+
   return (
     <div className="box">
       <Table
         loading={loading}
         pagination={false}
         dataSource={dataSource.map(data => {
+          console.log(data, tokens);
           return {
             key: data.id,
             id: data.id,
@@ -35,7 +37,8 @@ export function RenderDepositsMine({ dataSource, loading }) {
             vote: (
               <Amount
                 value={
-                  (data.power * data.circulation) / Math.pow(10, tokens.find(item => item.token === data.id).precision)
+                  (data.power * data.circulation) /
+                  Math.pow(10, tokens.find(item => item.token === data.id || item.token_name === data.id).precision)
                 }
                 hideSymbol
               />
