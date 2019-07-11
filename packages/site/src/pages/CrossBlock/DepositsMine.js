@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Table, Amount } from "../../components";
+import { Table, Amount, TokenName } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { FormattedMessage } from "react-intl";
@@ -30,7 +30,7 @@ export function RenderDepositsMine({ dataSource, loading }) {
         dataSource={dataSource.map(data => {
           return {
             key: data.id,
-            id: data.id,
+            id: <TokenName value={data.id} />,
             circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
             power: <Amount value={data.power} hideSymbol />,
             vote: (

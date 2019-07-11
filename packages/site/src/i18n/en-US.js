@@ -380,7 +380,7 @@ export const btclocklist = {
   inputindex: "Input Index",
   unlockrelayhash: "Unlock ChainX Relay Tx",
 
-  btclockList: "Lock Addresses",
+  btclockList: "Lock List",
   chain: "chain",
   address: "address",
   nodename: "channel name",
