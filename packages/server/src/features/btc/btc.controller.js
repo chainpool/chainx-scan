@@ -50,7 +50,10 @@ class BtcController {
       }
     );
     const rows = await ctx.db.sequelize.query(
-      `SELECT COUNT(*) FROM "XBridgeOfBTC_TxFor" AS tx WHERE tx.header IS NOT NULL`,
+      `SELECT count(*) FROM (SELECT tx.txid, tx.tx_type, tx.header, tx.chainx_tx, tx.relay, tx.value, transaction.time as "block.time" FROM "XBridgeOfBTC_TxFor" AS tx
+      INNER JOIN "XBridgeOfBTC_BlockHeaderFor" AS header on tx.header=header.header
+      INNER JOIN "transaction" ON transaction.hash=tx.chainx_tx
+      WHERE tx.header IS NOT NULL AND tx.chainx_tx IS NOT NULL) AS tx`,
       {
         type: ctx.db.sequelize.QueryTypes.SELECT
       }
