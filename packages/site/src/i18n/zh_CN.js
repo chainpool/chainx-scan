@@ -42,8 +42,9 @@ export const BITCOIN = {
   MULTISIGTRUSTEECOLDBALANCE: "多签冷地址余额(BTC)",
   HOTADDRESS: "热地址",
   COLDADDRESS: "冷地址",
-  DEPOSITETRANSACTIONCOUNT: "充值交易总数",
-  WIDTHDRAWALTRANSACTIONCOUNT: "提现交易总数",
+  DEPOSITETRANSACTIONCOUNT: "充值交易数",
+  WIDTHDRAWALTRANSACTIONCOUNT: "提现交易数",
+  LOCKACTIONCOUNT: "锁仓交易数",
   CROSSBINDADDRESSCOUNT: "跨链绑定地址数",
   BLOCKHASH: "区块哈希",
   BLOCKTIME: "出块时间",
@@ -371,13 +372,13 @@ export const btclocklist = {
   unlocktime: "解锁时间",
   unlocktxhash: "Bitcoin解锁交易哈希",
   inputindex: "Input Index",
-  txhash: "Bitcoin锁仓交易哈希",
   unlockrelayhash: "解锁ChainX中继交易",
 
   btclockList: "锁仓地址列表",
   chain: "链",
   address: "地址",
-  nodename: "渠道的节点名称"
+  nodename: "渠道的节点名称",
+  lockbtcstatusbalance: "锁仓金额(BTC)"
 };
 
 export default {

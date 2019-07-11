@@ -44,6 +44,7 @@ export const BITCOIN = {
   COLDADDRESS: "Cold Address",
   DEPOSITETRANSACTIONCOUNT: "Deposit Txs",
   WIDTHDRAWALTRANSACTIONCOUNT: "Withdrawal Txs",
+  LOCKACTIONCOUNT: "Lock Txs",
   CROSSBINDADDRESSCOUNT: "Binded Addresses",
   BLOCKHASH: " Block Hash",
   BLOCKTIME: " Block Time",
@@ -375,13 +376,13 @@ export const btclocklist = {
   unlocktime: "Unlock Time",
   unlocktxhash: "Bitcoin Unlock Tx",
   inputindex: "Input Index",
-  txhash: "Bitcoin Lock tx hash",
   unlockrelayhash: "Unlock ChainX Relay Tx",
 
   btclockList: "Lock Addresses",
   chain: "chain",
   address: "address",
-  nodename: "channel name"
+  nodename: "channel name",
+  lockbtcstatusbalance: "Lock Balance"
 };
 
 export default {
