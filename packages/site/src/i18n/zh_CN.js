@@ -319,7 +319,10 @@ export const callNameMap = {
   set_trustee_info_config: "设置信托配置",
   SignWithdrawalProposal: "签署提现提议",
   DropWithdrawalProposal: "删除提现提议",
-  revoke_withdraw: "撤销提现"
+  revoke_withdraw: "撤销提现",
+  Lock: "锁仓LBTC",
+  Unlock: "解锁LBTC",
+  UnlockedFromRoot: "议会解锁LBTC"
 };
 
 export const txType = {

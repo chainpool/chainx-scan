@@ -321,7 +321,10 @@ export const callNameMap = {
   set_trustee_info_config: "Set Trustee Info",
   SignWithdrawalProposal: "Sign Withdrawal Proposal",
   DropWithdrawalProposal: "Drop Withdrawal Proposal",
-  revoke_withdraw: "cancel withdraw"
+  revoke_withdraw: "cancel withdraw",
+  Lock: "Lock LBTC",
+  Unlock: "Unlock LBTC",
+  UnlockedFromRoot: "Council Unlock LBTC"
 };
 
 export const txType = {
