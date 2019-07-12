@@ -237,11 +237,12 @@ export const moduleNameMap = {
   XMultiSig: "Multisig",
   "xbridge-features": "Bridge Features",
   Session: "Session",
-  XBridgeFeatures: "Bridge Features"
+  XBridgeFeatures: "Bridge Features",
+  XBridgeCommon: "Bridge Common"
 };
 
 export const callNameMap = {
-  DepositorReward: "Depositor Reward",
+  DepositorReward: "Cross Chain Reward",
   BitcoinBinding: "Bitcoin Binding",
   unnominate: "Unnominate",
   sudo: "Sudo",
@@ -324,7 +325,8 @@ export const callNameMap = {
   revoke_withdraw: "cancel withdraw",
   Lock: "Lock LBTC",
   Unlock: "Unlock LBTC",
-  UnlockedFromRoot: "Council Unlock LBTC"
+  UnlockedFromRoot: "Council Unlock LBTC",
+  ChannelBinding: "Channel Binding"
 };
 
 export const txType = {

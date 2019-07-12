@@ -235,11 +235,12 @@ export const moduleNameMap = {
   XMultiSig: "多签",
   "xbridge-features": "桥特性集",
   Session: "会话",
-  XBridgeFeatures: "桥特性集"
+  XBridgeFeatures: "桥特性集",
+  XBridgeCommon: "桥基础"
 };
 
 export const callNameMap = {
-  DepositorReward: "充值奖励",
+  DepositorReward: "跨链奖励",
   BitcoinBinding: "比特币绑定",
   unnominate: "撤销投票",
   sudo: "设置",
@@ -322,7 +323,8 @@ export const callNameMap = {
   revoke_withdraw: "撤销提现",
   Lock: "锁仓LBTC",
   Unlock: "解锁LBTC",
-  UnlockedFromRoot: "议会解锁LBTC"
+  UnlockedFromRoot: "议会解锁LBTC",
+  ChannelBinding: "渠道绑定"
 };
 
 export const txType = {
