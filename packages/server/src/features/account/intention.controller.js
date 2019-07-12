@@ -89,7 +89,7 @@ class AccountController {
       "bihodl",
       "bitcat",
       "buildlinks",
-      "chain",
+      "cha.in",
       "exinpool",
       "hashquark",
       "hlt",
