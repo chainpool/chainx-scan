@@ -97,7 +97,8 @@ class AccountController {
       "liebipool",
       "mathwallet",
       "nodeasy",
-      "sssnodes"
+      "sssnodes",
+      "laocius"
     ];
 
     ctx.body = keys.map(key => {
