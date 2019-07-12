@@ -16,7 +16,7 @@ const iconMap = {
 export default function TokenName(props) {
   const { value } = props;
   const findIcon = iconMap[value.toUpperCase()];
-  console.log(value);
+
   const [{ tokens }] = useAppContext();
 
   const token = tokens.find(t => t.token === value || t.token_name === value);
