@@ -65,7 +65,7 @@ export function RenderBtcLockList({ tableProps, tableData, handleChange }) {
           locktxhashrelay: <TxLink style={{ width: 136 }} className="text-truncate" value={data.lock_chainx_relay} />,
           chainxaddr: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
           locktime: <DateShow value={data.lock_time} />,
-          unlocktime: <DateShow value={data.unlock_time} />,
+          unlocktime: data.unlock_time ? <DateShow value={data.unlock_time} /> : "-",
           unlockHash: data.unlock_hash ? (
             <ExternalLink
               type="btcTxid"
