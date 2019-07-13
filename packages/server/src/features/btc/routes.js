@@ -13,6 +13,7 @@ router.get("/btc/pending_deposits", btcController.pendingDeposits);
 router.get("/btc/withdrawals", btcController.withdrawals);
 router.get("/btc/session_trustees", btcController.sessionTrustees);
 router.get("/btc/lock/records", lockUpController.allRecords);
+router.get("/account/:accountId/btc/lock/records", lockUpController.accountRecords);
 router.get("/account/:accountId/btc/lock/balances", lockUpController.accountLockStats);
 
 module.exports = router;
