@@ -34,13 +34,10 @@ export function RenderBtcLockList({ tableProps, tableData, handleChange }) {
         return (
           <div>
             <span>
-              <FormattedMessage id="unlocktxhash" />： {data.unlockHash};
+              <FormattedMessage id="locktxhash" />： {data.locktxhash};
             </span>
             <span>
-              <FormattedMessage id="inputindex" />：{data.inputIndex};
-            </span>
-            <span>
-              <FormattedMessage id="unlockrelayhash" />：{data.unlockChainxRelay};
+              <FormattedMessage id="outputindex" />：{data.outputindex};
             </span>
           </div>
         );
@@ -51,33 +48,37 @@ export function RenderBtcLockList({ tableProps, tableData, handleChange }) {
           txhash: (
             <ExternalLink
               type="btcTxid"
-              value={data.lock_hash}
+              value={data.hash}
               render={() => {
-                return <Hash style={{ width: 136 }} className="text-truncate" value={data.lock_hash} />;
+                return <Hash style={{ width: 136 }} className="text-truncate" value={data.hash} />;
               }}
             />
           ),
-          outputindex: data.output_index,
+          index: data.index,
           baddr: (
             <ExternalLink style={{ width: 136 }} type="btcAddress" className="text-truncate" value={data.address} />
           ),
-          amount: <Amount value={data.value} precision={8} hideSymbol />,
-          locktxhashrelay: <TxLink style={{ width: 136 }} className="text-truncate" value={data.lock_chainx_relay} />,
+          amount: (
+            <>
+              {data.type === 1 ? "-" : "+"}
+              <Amount value={data.value} precision={8} hideSymbol />
+            </>
+          ),
+          locktxhashrelay: <TxLink style={{ width: 136 }} className="text-truncate" value={data.relay_hash} />,
           chainxaddr: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
-          locktime: <DateShow value={data.lock_time} />,
-          unlocktime: data.unlock_time ? <DateShow value={data.unlock_time} /> : "-",
-          unlockHash: data.unlock_hash ? (
+          locktime: <DateShow value={data["block.time"]} />,
+          locktxhash: data.pre_hash ? (
             <ExternalLink
               type="btcTxid"
-              value={data.unlock_hash}
+              value={data.pre_hash}
               render={() => {
-                return <Hash style={{ width: 136 }} className="text-truncate" value={data.unlock_hash} />;
+                return <Hash style={{ width: 136 }} className="text-truncate" value={data.pre_hash} />;
               }}
             />
           ) : (
             "-"
           ),
-          inputIndex: data.unlock_hash ? data.input_index : "-",
+          outputindex: data.pre_hash ? data.pre_index : "-",
           unlockChainxRelay: data.unlock_chainx_relay ? (
             <TxLink style={{ width: 136 }} className="text-truncate" value={data.unlock_chainx_relay} />
           ) : (
@@ -92,8 +93,8 @@ export function RenderBtcLockList({ tableProps, tableData, handleChange }) {
           dataIndex: "txhash"
         },
         {
-          title: <FormattedMessage id="outputindex" />,
-          dataIndex: "outputindex"
+          title: <FormattedMessage id="index" />,
+          dataIndex: "index"
         },
         {
           title: <FormattedMessage id="baddr" />,
@@ -110,10 +111,6 @@ export function RenderBtcLockList({ tableProps, tableData, handleChange }) {
         {
           title: <FormattedMessage id="locktime" />,
           dataIndex: "locktime"
-        },
-        {
-          title: <FormattedMessage id="unlocktime" />,
-          dataIndex: "unlocktime"
         },
         {
           title: <FormattedMessage id="nodename" />,

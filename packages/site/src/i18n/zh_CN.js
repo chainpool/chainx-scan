@@ -369,18 +369,19 @@ export const transfer = {
 };
 
 export const btclocklist = {
-  txhash: "锁仓Bitcoin交易哈希",
+  txhash: "Bitcoin交易哈希",
   outputindex: "Output Index",
+  index: "Index",
   baddr: "Bitcoin地址",
   amount: "金额",
-  locktxhashrelay: "锁仓ChainX中继交易",
+  locktxhashrelay: "ChainX中继交易",
   chainxaddr: "ChainX地址",
-  locktime: "锁仓时间",
+  locktime: "时间",
   unlocktime: "解锁时间",
   unlocktxhash: "解锁Bitcoin交易哈希",
   inputindex: "Input Index",
   unlockrelayhash: "解锁ChainX中继交易",
-
+  locktxhash: "锁仓Bitcoin交易哈希",
   btclockList: "锁仓列表",
   chain: "链",
   address: "地址",

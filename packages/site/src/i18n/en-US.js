@@ -373,18 +373,18 @@ export const transfer = {
 };
 
 export const btclocklist = {
-  txhash: "Bitcoin Lock Tx",
-  outputindex: "Output Index",
+  txhash: "Bitcoin Tx",
+  outputindex: "Index",
+  index: "Index",
   baddr: "Bitcoin Addr",
   amount: "Amount",
-  locktxhashrelay: "Lock ChainX Relay Tx",
+  locktxhashrelay: "ChainX Relay Tx",
   chainxaddr: "ChainX Addr",
-  locktime: "Lock Time",
+  locktime: "Time",
   unlocktime: "Unlock Time",
   unlocktxhash: "Bitcoin Unlock Tx",
-  inputindex: "Input Index",
   unlockrelayhash: "Unlock ChainX Relay Tx",
-
+  locktxhash: "Lock Bitcoin Tx",
   btclockList: "Lock List",
   chain: "chain",
   address: "address",
