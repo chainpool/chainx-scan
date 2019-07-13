@@ -51,28 +51,14 @@ class BtcLockUpController {
 
   async accountLockStats(ctx) {
     const { accountId: accountid } = ctx.params;
-    const records = await ctx.db.BtcLockUp.findAll({
+    const records = await ctx.db.AccountLockBtcBalances.findAll({
       where: { accountid },
-      order: [["lock_time", "DESC"]],
+      attributes: { exclude: ["accountid"] },
+      order: [["height", "DESC"]],
       raw: true
     });
 
-    const balances = records.reduce((result, record) => {
-      if (record.unlock_hash) {
-        return result;
-      }
-
-      const target = result.find(item => item.address === record.address);
-      if (target) {
-        target.value += record.value;
-      } else {
-        result.push({ address: record.address, value: record.value });
-      }
-
-      return result;
-    }, []);
-
-    ctx.body = balances;
+    ctx.body = records;
   }
 }
 
