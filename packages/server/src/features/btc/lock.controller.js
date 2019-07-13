@@ -58,7 +58,10 @@ class BtcLockUpController {
       raw: true
     });
 
-    ctx.body = records;
+    ctx.body = records.map(record => ({
+      ...record,
+      value: parseInt(record.lock - record.unlock)
+    }));
   }
 }
 
