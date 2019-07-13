@@ -6,7 +6,8 @@ class BtcLockUpController {
     const { accountid } = ctx.query;
 
     const options = {
-      order: [["lock_time", "DESC"]],
+      include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
+      order: [["height", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
       raw: true
@@ -15,29 +16,10 @@ class BtcLockUpController {
       Object.assign(options, { where: { accountid } });
     }
 
-    let where = accountid ? `where l.accountid='${accountid}'` : "";
-
-    const baseSql = `select l.lock_hash, l.output_index, l.address, l.value, l.lock_chainx_relay, l.accountid, l.unlock_hash, l.input_index, l.unlock_chainx_relay, l.channel, lb.time as lock_time, u.time as unlock_time from "event_lockupbtc" as l
-      inner join block as lb on lb.number=l.lock_time
-      left join (
-      select l.unlock_time, ub.time from "event_lockupbtc" as l
-      inner join block as ub on ub.number=l.unlock_time
-      ) as u on u.unlock_time=l.unlock_time ${where}`;
-    const sql = `${baseSql} order by l.lock_time desc limit ${pageSize} offset ${page * pageSize};`;
-
-    const cntSql = `select count(*) from "event_lockupbtc" as l
-      inner join block as lb on lb.number=l.lock_time
-      left join (
-      select l.unlock_time, ub.time from "event_lockupbtc" as l
-      inner join block as ub on ub.number=l.unlock_time
-      ) as u on u.unlock_time=l.unlock_time ${where}`;
-
-    const records = await ctx.db.sequelize.query(sql, { type: ctx.db.sequelize.QueryTypes.SELECT });
-    const rows = await ctx.db.sequelize.query(cntSql, { type: ctx.db.sequelize.QueryTypes.SELECT });
-    const total = rows[0].count;
+    const { rows: items, count: total } = await ctx.db.BtcLockUp.findAndCountAll(options);
 
     ctx.body = {
-      items: records,
+      items,
       page,
       pageSize,
       total

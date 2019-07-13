@@ -3,44 +3,51 @@ module.exports = (sequelize, DataTypes) => {
   const BtcLockUp = sequelize.define(
     "BtcLockUp",
     {
-      lock_hash: {
+      hash: {
+        // Bitcoin交易哈希
         type: DataTypes.STRING,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false
       },
-      output_index: {
+      index: {
         type: DataTypes.BIGINT,
-        primaryKey: true
+        primaryKey: true,
+        allowNull: false
       },
       address: {
+        // Bitcoin地址
         type: DataTypes.STRING,
         allowNull: false
       },
       value: {
         type: DataTypes.BIGINT
       },
-      lock_chainx_relay: {
-        type: DataTypes.STRING
-      },
       accountid: {
         type: DataTypes.STRING
       },
-      lock_time: {
-        type: DataTypes.BIGINT
-      },
-      unlock_hash: {
-        type: DataTypes.STRING
-      },
-      input_index: {
-        type: DataTypes.BIGINT
-      },
-      unlock_chainx_relay: {
-        type: DataTypes.STRING
-      },
-      unlock_time: {
-        type: DataTypes.BIGINT
-      },
       channel: {
         type: DataTypes.STRING
+      },
+      relay_hash: {
+        // 中继交易哈希
+        type: DataTypes.STRING
+      },
+      pre_hash: {
+        // 上一笔关联的交易哈希
+        type: DataTypes.BIGINT
+      },
+      pre_index: {
+        // 上一笔关联交易的index
+        type: DataTypes.BIGINT
+      },
+      height: {
+        type: DataTypes.BIGINT,
+        allowNull: false
+      },
+      type: {
+        // 0=Lock, 1=Unlock
+        type: DataTypes.BIGINT,
+        allowNull: false
       }
     },
     {
@@ -50,7 +57,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  BtcLockUp.associate = function(models) {};
+  BtcLockUp.associate = function(models) {
+    BtcLockUp.belongsTo(models.Block, { foreignKey: "height", targetKey: "number", as: "block" });
+  };
 
   return BtcLockUp;
 };
