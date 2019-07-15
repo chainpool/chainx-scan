@@ -63,19 +63,19 @@ $navbar-tab-active-border-bottom-color: $primary;
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-.icon-left{
-  &::before{
-    content: "\e94e"
+.icon-left {
+  &::before {
+    content: "\e94e";
   }
 }
-.icon-right{
-  &::before{
-    content: "\e94d"
+.icon-right {
+  &::before {
+    content: "\e94d";
   }
 }
-.icon-search{
-  &::before{
-    content: "\e61f"
+.icon-search {
+  &::before {
+    content: "\e61f";
   }
 }
 html {
@@ -1003,4 +1003,13 @@ a:focus {
 
 .limit-memo {
   max-width: 150px;
+}
+
+.asset-title {
+  margin-top: 24px;
+  margin-left: 8px;
+  margin-right: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #dbdbdb;
+  color: #000000;
 }

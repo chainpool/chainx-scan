@@ -83,6 +83,36 @@ class AccountController {
       total
     };
   }
+
+  async logos(ctx) {
+    const keys = [
+      "bihodl",
+      "bitcat",
+      "buildlinks",
+      "cha.in",
+      "exinpool",
+      "hashquark",
+      "hlt",
+      "keepnode",
+      "liebipool",
+      "mathwallet",
+      "nodeasy",
+      "sssnodes",
+      "laocius",
+      "bitportal",
+      "novanode",
+      "polkaworld",
+      "realgar",
+      "dapppub",
+      "nodeasy.com"
+    ];
+
+    ctx.body = keys.map(key => {
+      return {
+        [key]: `https://chainx-validators-logo.oss-cn-hangzhou.aliyuncs.com/${key}.png`
+      };
+    });
+  }
 }
 
 module.exports = new AccountController();

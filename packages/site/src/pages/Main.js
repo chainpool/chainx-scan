@@ -8,6 +8,7 @@ import Events from "./Events";
 import Accounts from "./Accounts";
 import Validator from "./Validator";
 import CrossBlock from "./CrossBlock";
+import Error from "./Error";
 import Dapp from "./Dapp";
 import { BlockChainNav, ScrollTop } from "../components";
 
@@ -33,6 +34,7 @@ export default function Main() {
           <Route path="/validators/:filter?/:node?" component={Validator} />
           <Route path="/crossblocks" component={CrossBlock} />
           <Route path="/dapp" component={Dapp} />
+          <Route path="/error" component={Error} />
           <Redirect to="/" />
         </Switch>
       </section>

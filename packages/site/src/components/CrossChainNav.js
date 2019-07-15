@@ -28,6 +28,11 @@ export default function BlockChain(props) {
             <FormattedMessage id="DEPOSITELIST" />
           </NavLink>
         </li>
+        <li className={classnames({ "is-active": activeKey === "locklist" })}>
+          <NavLink to="/crossblocks/bitcoin/locklist">
+            <FormattedMessage id="LOCK_LIST" />
+          </NavLink>
+        </li>
         <li className={classnames({ "is-active": activeKey === "withdrawals" })}>
           <NavLink to="/crossblocks/bitcoin/withdrawals">
             <FormattedMessage id="WITHDRAWALS" />

@@ -44,6 +44,7 @@ export const BITCOIN = {
   COLDADDRESS: "Cold Address",
   DEPOSITETRANSACTIONCOUNT: "Deposit Txs",
   WIDTHDRAWALTRANSACTIONCOUNT: "Withdrawal Txs",
+  LOCKACTIONCOUNT: "Lock Txs",
   CROSSBINDADDRESSCOUNT: "Binded Addresses",
   BLOCKHASH: " Block Hash",
   BLOCKTIME: " Block Time",
@@ -74,7 +75,8 @@ export const BLOCKCHAIN = {
   EXTRINSICROOT: "Extrinsic Root",
   VERSION: "Version",
   DEPOSITADDRESS: "Deposit Address",
-  ASSETNAME: "Asset Name",
+  ASSETNAME: "Asset",
+  CHAINNAME: "Origin Chain",
   INTENSIONNAME: "Intention Name",
   UPDATEWEIGHT: "Last Vote Weight Update",
   WEIGHT: "Last Total Vote Weight",
@@ -145,6 +147,8 @@ export const ACCOUNT = {
   TIME: "Time",
   ASSETS: "Assets",
   CROSSCHAINASSETS: "Cross-chain Assets",
+  CHAINX_ASSET: "ChainX Assets",
+  CROSS_ASSET: "Cross-chain Assets",
   TRANSFERS: "Transfers",
   NOMINATIONS: "Nominations",
   OPENORDERS: "Open Orders",
@@ -185,7 +189,8 @@ export const CROSSBLOCK = {
   BTCBRIDGE: "Bitcoin Bridge",
   DEPOSITSMINING: "Crosschain Mining",
   WITHDRAWALLIST: "Withdrawal List",
-  DEPOSITELIST: "Deposits"
+  DEPOSITELIST: "Deposits",
+  LOCK_LIST: "LOCK LIST"
 };
 export const DAPP = {
   ACCUMULATIVEDEPTH: "Sum",
@@ -222,6 +227,7 @@ export const moduleNameMap = {
   Timestamp: "Timestamp",
   XAssets: "Asset",
   XBridgeOfSDOT: "SDOT Bridge",
+  XBridgeOfBTCLockup: "Lock BTC",
   finality_tracker: "Finality Trackerr",
   XFeeManager: "Fee Manager",
   GrandpaFinality: "Grandpa Finality",
@@ -231,11 +237,12 @@ export const moduleNameMap = {
   XMultiSig: "Multisig",
   "xbridge-features": "Bridge Features",
   Session: "Session",
-  XBridgeFeatures: "Bridge Features"
+  XBridgeFeatures: "Bridge Features",
+  XBridgeCommon: "Bridge Common"
 };
 
 export const callNameMap = {
-  DepositorReward: "Depositor Reward",
+  DepositorReward: "Cross Chain Reward",
   BitcoinBinding: "Bitcoin Binding",
   unnominate: "Unnominate",
   sudo: "Sudo",
@@ -255,6 +262,7 @@ export const callNameMap = {
   put_order: "Place Orde",
   unfreeze: "Unfreeze",
   push_transaction: "Submit BTC Tx",
+  put_transaction: "Submit BTC Tx",
   transfer: "Transfer",
   refresh: "Update Intention Info",
   Claimed: "Claim SDOT",
@@ -314,7 +322,11 @@ export const callNameMap = {
   set_trustee_info_config: "Set Trustee Info",
   SignWithdrawalProposal: "Sign Withdrawal Proposal",
   DropWithdrawalProposal: "Drop Withdrawal Proposal",
-  revoke_withdraw: "cancel withdraw"
+  revoke_withdraw: "cancel withdraw",
+  Lock: "Lock LBTC",
+  Unlock: "Unlock LBTC",
+  UnlockedFromRoot: "Council Unlock LBTC",
+  ChannelBinding: "Channel Binding"
 };
 
 export const txType = {
@@ -362,6 +374,26 @@ export const transfer = {
   TRANSFER_BALANCE: "Balance"
 };
 
+export const btclocklist = {
+  txhash: "Bitcoin Tx",
+  outputindex: "Index",
+  index: "Index",
+  baddr: "Bitcoin Addr",
+  amount: "Amount",
+  locktxhashrelay: "ChainX Relay Tx",
+  chainxaddr: "ChainX Addr",
+  locktime: "Time",
+  unlocktime: "Unlock Time",
+  unlocktxhash: "Bitcoin Unlock Tx",
+  unlockrelayhash: "Unlock ChainX Relay Tx",
+  locktxhash: "Lock Bitcoin Tx",
+  btclockList: "Lock List",
+  chain: "chain",
+  address: "address",
+  nodename: "channel name",
+  lockbtcstatusbalance: "Lock Balance"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -377,6 +409,7 @@ export default {
   ...DAPP,
   ...PROCESSTXSTATE,
   ...transfer,
+  ...btclocklist,
   moduleNameMap,
   callNameMap,
   txType,

@@ -7,6 +7,7 @@ const accountTransferControlelr = require("./account.transfer.controller");
 const router = new Router();
 router.get("/intentions", accountController.intentions);
 router.get("/psedu_intentions", intentionController.pseduIntentions);
+router.get("/intention_logos", intentionController.logos);
 router.get("/intention_missed_blocks", intentionController.intentionMissedBlocks);
 router.get("/intention/:accountId", intentionController.intention);
 router.get("/intention/:accountId/nominations", nominationController.byNominee);
