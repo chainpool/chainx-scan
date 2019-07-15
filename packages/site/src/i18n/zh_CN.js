@@ -321,7 +321,9 @@ export const txType = {
   Bind: "绑定",
   BindAndDeposit: "绑定并充值",
   HotAndCold: "热冷互转",
-  TrusteeTransition: "信托换届"
+  TrusteeTransition: "信托换届",
+  Unlock: "解锁",
+  Lock: "锁仓"
 };
 
 export const Status = {
