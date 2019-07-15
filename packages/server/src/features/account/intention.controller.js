@@ -103,7 +103,8 @@ class AccountController {
       "novanode",
       "polkaworld",
       "realgar",
-      "dapppub"
+      "dapppub",
+      "nodeasy.com"
     ];
 
     ctx.body = keys.map(key => {
