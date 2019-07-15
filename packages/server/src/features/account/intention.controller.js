@@ -102,7 +102,8 @@ class AccountController {
       "bitportal",
       "novanode",
       "polkaworld",
-      "realgar"
+      "realgar",
+      "dapppub"
     ];
 
     ctx.body = keys.map(key => {
