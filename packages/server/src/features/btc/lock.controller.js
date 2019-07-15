@@ -1,4 +1,6 @@
 const { extractPage } = require("../utils");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 class BtcLockUpController {
   async allRecords(ctx) {
@@ -52,7 +54,9 @@ class BtcLockUpController {
   async accountLockStats(ctx) {
     const { accountId: accountid } = ctx.params;
     const records = await ctx.db.AccountLockBtcBalances.findAll({
-      where: { accountid },
+      where: {
+        [Op.and]: [{ accountid }, { unlock: { $lt: ctx.db.sequelize.col("lock") } }]
+      },
       attributes: { exclude: ["accountid"] },
       order: [["height", "DESC"]],
       raw: true
