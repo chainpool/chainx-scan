@@ -104,7 +104,8 @@ class AccountController {
       "polkaworld",
       "realgar",
       "dapppub",
-      "nodeasy.com"
+      "nodeasy.com",
+      "wetez"
     ];
 
     ctx.body = keys.map(key => {
