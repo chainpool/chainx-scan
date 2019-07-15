@@ -129,7 +129,7 @@ export const VALIDATOR = {
   NOMINATORS: "投票用户列表",
   MISSEDBLOCKSTATISTIC: "漏块统计",
   SHAREERA: "分红届数",
-  CHANELNAME: "渠道节点名称"
+  CHANELNAME: "渠道节点名"
 };
 export const ACCOUNT = {
   STAKINGRESERVED: "投票冻结",
