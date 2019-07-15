@@ -101,7 +101,8 @@ class AccountController {
       "laocius",
       "bitportal",
       "novanode",
-      "polkaworld"
+      "polkaworld",
+      "realgar"
     ];
 
     ctx.body = keys.map(key => {
