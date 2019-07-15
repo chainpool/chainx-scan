@@ -42,8 +42,9 @@ export const BITCOIN = {
   MULTISIGTRUSTEECOLDBALANCE: "多签冷地址余额(BTC)",
   HOTADDRESS: "热地址",
   COLDADDRESS: "冷地址",
-  DEPOSITETRANSACTIONCOUNT: "充值交易总数",
-  WIDTHDRAWALTRANSACTIONCOUNT: "提现交易总数",
+  DEPOSITETRANSACTIONCOUNT: "充值交易数",
+  WIDTHDRAWALTRANSACTIONCOUNT: "提现交易数",
+  LOCKACTIONCOUNT: "锁仓交易数",
   CROSSBINDADDRESSCOUNT: "跨链绑定地址数",
   BLOCKHASH: "区块哈希",
   BLOCKTIME: "出块时间",
@@ -74,7 +75,8 @@ export const BLOCKCHAIN = {
   EXTRINSICROOT: "交易根",
   VERSION: "版本",
   DEPOSITADDRESS: "充值地址",
-  ASSETNAME: "资产名称",
+  ASSETNAME: "资产",
+  CHAINNAME: "原链",
   INTENSIONNAME: "节点名",
   UPDATEWEIGHT: "票龄更新高度",
   WEIGHT: "历史总票龄",
@@ -145,6 +147,8 @@ export const ACCOUNT = {
   TIME: "时间",
   ASSETS: "资产列表",
   CROSSCHAINASSETS: "跨链资产列表",
+  CHAINX_ASSET: "ChainX资产",
+  CROSS_ASSET: "跨链资产",
   TRANSFERS: "转账列表",
   NOMINATIONS: "投票列表",
   OPENORDERS: "当前委托列表",
@@ -184,7 +188,8 @@ export const CROSSBLOCK = {
   BTCBRIDGE: "Bitcoin转接桥",
   DEPOSITSMINING: "跨链挖矿",
   WITHDRAWALLIST: "提现列表",
-  DEPOSITELIST: "充值列表"
+  DEPOSITELIST: "充值列表",
+  LOCK_LIST: "锁仓列表"
 };
 export const DAPP = {
   ACCUMULATIVEDEPTH: "累计深度",
@@ -221,6 +226,7 @@ export const moduleNameMap = {
   Timestamp: "时间戳",
   XAssets: "资产",
   XBridgeOfSDOT: "SDOT桥",
+  XBridgeOfBTCLockup: "锁仓BTC",
   finality_tracker: "确认高度",
   XFeeManager: "手续费管理",
   GrandpaFinality: "共识确认",
@@ -229,11 +235,12 @@ export const moduleNameMap = {
   XMultiSig: "多签",
   "xbridge-features": "桥特性集",
   Session: "会话",
-  XBridgeFeatures: "桥特性集"
+  XBridgeFeatures: "桥特性集",
+  XBridgeCommon: "桥基础"
 };
 
 export const callNameMap = {
-  DepositorReward: "充值奖励",
+  DepositorReward: "跨链奖励",
   BitcoinBinding: "比特币绑定",
   unnominate: "撤销投票",
   sudo: "设置",
@@ -253,6 +260,7 @@ export const callNameMap = {
   put_order: "挂单",
   unfreeze: "解冻",
   push_transaction: "提交交易",
+  put_transaction: "提交交易",
   transfer: "转账",
   refresh: "更新节点",
   Claimed: "领取SDOT",
@@ -312,7 +320,11 @@ export const callNameMap = {
   set_trustee_info_config: "设置信托配置",
   SignWithdrawalProposal: "签署提现提议",
   DropWithdrawalProposal: "删除提现提议",
-  revoke_withdraw: "撤销提现"
+  revoke_withdraw: "撤销提现",
+  Lock: "锁仓LBTC",
+  Unlock: "解锁LBTC",
+  UnlockedFromRoot: "议会解锁LBTC",
+  ChannelBinding: "渠道绑定"
 };
 
 export const txType = {
@@ -356,6 +368,27 @@ export const transfer = {
   TRANSFER_BALANCE: "金额"
 };
 
+export const btclocklist = {
+  txhash: "Bitcoin交易哈希",
+  outputindex: "Output Index",
+  index: "Index",
+  baddr: "Bitcoin地址",
+  amount: "金额",
+  locktxhashrelay: "ChainX中继交易",
+  chainxaddr: "ChainX地址",
+  locktime: "时间",
+  unlocktime: "解锁时间",
+  unlocktxhash: "解锁Bitcoin交易哈希",
+  inputindex: "Input Index",
+  unlockrelayhash: "解锁ChainX中继交易",
+  locktxhash: "锁仓Bitcoin交易哈希",
+  btclockList: "锁仓列表",
+  chain: "链",
+  address: "地址",
+  nodename: "渠道的节点名称",
+  lockbtcstatusbalance: "锁仓金额(BTC)"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -371,6 +404,7 @@ export default {
   ...DAPP,
   ...PROCESSTXSTATE,
   ...transfer,
+  ...btclocklist,
   moduleNameMap,
   callNameMap,
   txType,

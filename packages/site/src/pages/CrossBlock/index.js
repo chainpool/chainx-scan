@@ -11,6 +11,7 @@ import CrossTxs from "./CrossTxs";
 import CrossBind from "./CrossBind";
 import CrossHost from "./CrossHost";
 import CrossDeposits from "./CrossDeposits";
+import LockList from "./LockList";
 import CrossWithdrawals from "./CrossWithdrawals";
 import CrossClaim from "./CrossClaim";
 import EtherumBind from "./EtherumBind";
@@ -68,6 +69,7 @@ export default function CrossBlock(props) {
                     {list === "crossbind" && <CrossBind {...props} />}
                     {list === "crosshost" && <CrossHost {...props} />}
                     {list === "deposits" && <CrossDeposits {...props} />}
+                    {list === "locklist" && <LockList {...props} />}
                     {list === "withdrawals" && <CrossWithdrawals {...props} />}
                     {list === "claim" && <CrossClaim {...props} />}
                   </div>

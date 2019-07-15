@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { Table, Amount } from "../../components";
+import { Table, Amount, TokenName } from "../../components";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { FormattedMessage } from "react-intl";
@@ -21,6 +21,7 @@ export default function DepositsMine() {
 
 export function RenderDepositsMine({ dataSource, loading }) {
   const [{ tokens }] = useAppContext();
+
   return (
     <div className="box">
       <Table
@@ -29,13 +30,14 @@ export function RenderDepositsMine({ dataSource, loading }) {
         dataSource={dataSource.map(data => {
           return {
             key: data.id,
-            id: data.id,
+            id: <TokenName value={data.id} />,
             circulation: <Amount value={data.circulation} symbol={data.id} hideSymbol />,
             power: <Amount value={data.power} hideSymbol />,
             vote: (
               <Amount
                 value={
-                  (data.power * data.circulation) / Math.pow(10, tokens.find(item => item.token === data.id).precision)
+                  (data.power * data.circulation) /
+                  Math.pow(10, tokens.find(item => item.token === data.id || item.token_name === data.id).precision)
                 }
                 hideSymbol
               />

@@ -63,7 +63,9 @@ export default memo(function Amount(props) {
   let tokenPrecision = precision;
   if (tokenPrecision === undefined) {
     if (!tokens.length) return null;
-    const findToken = tokens.find(token => token.token === symbol.toUpperCase());
+    const findToken = tokens.find(
+      token => token.token === symbol.toUpperCase() || token.token_name === symbol.toUpperCase()
+    );
     if (findToken) {
       tokenPrecision = findToken.precision;
     }

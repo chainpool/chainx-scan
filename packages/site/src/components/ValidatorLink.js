@@ -16,6 +16,7 @@ export default function VilidatorLink({
   filter = "detail"
 }) {
   const hexValue = hexAddPrefix(value);
+
   if (name === null) {
     name = "";
   } else if (!name) {
@@ -23,6 +24,7 @@ export default function VilidatorLink({
     const intention = intentions.find(({ accountid }) => accountid === hexValue) || { name: "" };
     name = intention.name;
   }
+
   return (
     <span className="nowrap">
       <NavLink to={`/validators/${filter}/${hexValue}`} style={style} className={classnames("nav-link", className)}>

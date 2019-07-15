@@ -52,12 +52,6 @@ export default function BtcStatus() {
       <div className="columns btc_block">
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="TRUSTEEVOTESESSION" />
-          </div>
-          <div className="btc_content">{status.trustee_session}</div>
-        </div>
-        <div className="column btc_status">
-          <div className="btc_title">
             <FormattedMessage id="MULTISIGTRUSTEEHOTBALANCE" />
           </div>
           <div className="btc_content">
@@ -82,25 +76,30 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="DEPOSITETRANSACTIONCOUNT" />
+            <FormattedMessage id="lockbtcstatusbalance" />
           </div>
           <div className="btc_content">
-            <NavLink to="/crossblocks/bitcoin/deposits">{status.deposit_count}</NavLink>
+            <NavLink to="/crossblocks/bitcoin/locklist">
+              <Amount value={status.lockup_balance} symbol="BTC" hideSymbol />
+            </NavLink>
           </div>
         </div>
         <div className="column btc_status">
           <div className="btc_title">
+            <FormattedMessage id="DEPOSITETRANSACTIONCOUNT" /> / {""}
             <FormattedMessage id="WIDTHDRAWALTRANSACTIONCOUNT" />
           </div>
           <div className="btc_content">
+            <NavLink to="/crossblocks/bitcoin/deposits">{status.deposit_count}</NavLink> / {""}
             <NavLink to="/crossblocks/bitcoin/withdrawals">{status.withdraw_count}</NavLink>
           </div>
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="CROSSBINDADDRESSCOUNT" />
+            <FormattedMessage id="LOCKACTIONCOUNT" /> / <FormattedMessage id="CROSSBINDADDRESSCOUNT" />
           </div>
           <div className="btc_content">
+            <NavLink to="/crossblocks/bitcoin/locklist">{status.lockup_count}</NavLink> /{" "}
             <NavLink to="/crossblocks/bitcoin/crossbind">{status.bind_count}</NavLink>
           </div>
         </div>
