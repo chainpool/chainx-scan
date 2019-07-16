@@ -105,7 +105,14 @@ class AccountController {
       "realgar",
       "dapppub",
       "nodeasy.com",
-      "wetez"
+      "wetez",
+      "bemular",
+      "chainxtools",
+      "cybexdex",
+      "gfnetwork",
+      "hotbit",
+      "pos.dog",
+      "pox.cool"
     ];
 
     ctx.body = keys.map(key => {
