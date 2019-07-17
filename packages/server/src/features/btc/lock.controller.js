@@ -44,7 +44,10 @@ class BtcLockUpController {
     const { rows: items, count: total } = await ctx.db.BtcLockUp.findAndCountAll(options);
 
     ctx.body = {
-      items,
+      items: items.map(item => ({
+        ...item,
+        lock_time: item["block.time"]
+      })),
       page,
       pageSize,
       total
