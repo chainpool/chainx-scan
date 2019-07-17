@@ -73,6 +73,40 @@ class BtcLockUpController {
       value: parseInt(record.lock - record.unlock)
     }));
   }
+
+  async txState(ctx) {
+    const { txid, index } = ctx.request.body;
+
+    const cnt = await ctx.db.BtcLockUp.count({
+      where: { hash: txid, index, type: 0 },
+      raw: true
+    });
+
+    ctx.body = {
+      state: cnt > 0 ? "Lock" : "Irrelevant"
+    };
+  }
+
+  async txStates(ctx) {
+    const txs = ctx.request.body;
+
+    const result = [];
+    for (let tx of txs) {
+      const { txid, index } = tx;
+
+      const cnt = await ctx.db.BtcLockUp.count({
+        where: { hash: txid, index },
+        raw: true
+      });
+
+      result.push({
+        txid,
+        state: cnt > 1 ? "LockAndUnlock" : cnt > 0 ? "Lock" : "Irrelevant"
+      });
+    }
+
+    ctx.body = result;
+  }
 }
 
 module.exports = new BtcLockUpController();

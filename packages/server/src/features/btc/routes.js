@@ -16,4 +16,7 @@ router.get("/btc/lock/records", lockUpController.allRecords);
 router.get("/account/:accountId/btc/lock/records", lockUpController.accountRecords);
 router.get("/account/:accountId/btc/lock/balances", lockUpController.accountLockStats);
 
+router.post("/btc/lock/tx_state", lockUpController.txState);
+router.post("/btc/lock/tx_states", lockUpController.txStates);
+
 module.exports = router;
