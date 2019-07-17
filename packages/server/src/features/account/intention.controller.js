@@ -112,7 +112,9 @@ class AccountController {
       "gfnetwork",
       "hotbit",
       "pos.dog",
-      "pox.cool"
+      "pox.cool",
+      "xchainx",
+      "jinma"
     ];
 
     ctx.body = keys.map(key => {
