@@ -57,6 +57,28 @@ class BtcLockUpController {
     };
   }
 
+  async addressLockStats(ctx) {
+    const { address } = ctx.params;
+    const record = await ctx.db.AccountLockBtcBalances.findOne({
+      where: {
+        [Op.and]: [{ address }, { unlock: { $lt: ctx.db.sequelize.col("lock") } }]
+      },
+      attributes: { exclude: ["address"] },
+      order: [["height", "DESC"]],
+      raw: true
+    });
+
+    if (!record) {
+      ctx.body = {};
+      return;
+    }
+
+    ctx.body = {
+      ...record,
+      value: parseInt(record.lock - record.unlock)
+    };
+  }
+
   async accountLockStats(ctx) {
     const { accountId: accountid } = ctx.params;
     const records = await ctx.db.AccountLockBtcBalances.findAll({
