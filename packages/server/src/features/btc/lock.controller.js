@@ -101,6 +101,7 @@ class BtcLockUpController {
 
       result.push({
         txid,
+        index,
         state: cnt > 1 ? "LockAndUnlock" : cnt > 0 ? "Lock" : "Irrelevant"
       });
     }
