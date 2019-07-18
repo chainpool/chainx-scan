@@ -90,23 +90,34 @@ class BtcLockUpController {
   async txStates(ctx) {
     const txs = ctx.request.body;
 
-    const result = [];
+    let hasLockRecord;
     for (let tx of txs) {
       const { txid, index } = tx;
 
-      const cnt = await ctx.db.BtcLockUp.count({
-        where: { hash: txid, index },
+      const record = await ctx.db.BtcLockUp.findOne({
+        where: {
+          $or: [{ hash: txid, index, type: 0 }, { pre_hash: txid, pre_index: index, type: 1 }]
+        },
         raw: true
       });
 
-      result.push({
-        txid,
-        index,
-        state: cnt > 1 ? "LockAndUnlock" : cnt > 0 ? "Lock" : "Irrelevant"
-      });
+      if (!record) {
+        continue;
+      }
+
+      if (record.type > 0) {
+        ctx.body = {
+          state: "LockAndUnlock"
+        };
+        return;
+      }
+
+      hasLockRecord = true;
     }
 
-    ctx.body = result;
+    ctx.body = {
+      state: hasLockRecord ? "Lock" : "Irrelevant"
+    };
   }
 }
 
