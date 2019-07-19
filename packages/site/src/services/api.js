@@ -293,7 +293,7 @@ class Api {
    * 获取比特币详情
    */
   fetchHTTPBtcStatus$ = () => {
-    return this.createObservable("LATEST_BTC_STATUS_ROOM", "latestBtcStatus");
+    return this.fetch$(`/btc/status`);
   };
 
   /**
