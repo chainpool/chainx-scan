@@ -293,7 +293,7 @@ class Api {
    * 获取比特币详情
    */
   fetchHTTPBtcStatus$ = () => {
-    return this.fetch$(`/btc/status`);
+    return this.createObservable("LATEST_BTC_STATUS_ROOM", "latestBtcStatus");
   };
 
   /**
@@ -370,7 +370,7 @@ class Api {
    * 某一用户的锁仓列表
    */
   fetchAccountBtcLock$ = (params, { accountId }) => {
-    return this.fetch$(`/btc/lock/records`, { accountid: hexStripPrefix(accountId) });
+    return this.fetch$(`/btc/lock/records`, { accountid: hexStripPrefix(accountId), ...params });
   };
 
   /**
