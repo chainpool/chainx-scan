@@ -7,7 +7,6 @@ import { ReactComponent as Right } from "../../assets/right-1.svg";
 import { ReactComponent as Delete } from "../../assets/delete-1.svg";
 
 import { CopyToClipboard } from "react-copy-to-clipboard";
-import { FormattedMessage } from "react-intl";
 
 function ReferendumList({ value, title }) {
   return (
