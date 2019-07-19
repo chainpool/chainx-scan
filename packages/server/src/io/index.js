@@ -1,4 +1,5 @@
 const { feedLatestKline } = require("./kline-feeder");
+const { feedBtcStatus } = require("./btc");
 const { FEED_INTERVAL } = require("./setting");
 
 const latestBlocksRoom = "LATEST_BLOCKS_ROOM";
@@ -50,6 +51,14 @@ module.exports = (io, db) => {
     })
     .catch(() => {
       console.error("fail to feed latest kline");
+    });
+
+  feedBtcStatus(io, db)
+    .then(() => {
+      console.log("begin to feed latest btc status");
+    })
+    .catch(() => {
+      console.error("fail to feed latest btc status");
     });
 };
 
