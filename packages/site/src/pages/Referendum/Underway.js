@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from "react";
+import React, { useEffect } from "react";
 
 import { AddressLink, Amount, NumberFormat } from "../../components";
 import { useRedux, encodeAddress } from "../../shared";
