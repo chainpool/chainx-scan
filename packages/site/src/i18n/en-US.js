@@ -52,7 +52,12 @@ export const BITCOIN = {
   CROSSTRANSACTION: "Cross-chain Tx",
   TRUNKTRANSACTIONHASH: " Relay Tx Hash",
   TRUNKTRANSACTIONER: " Relayer",
-  TRUNKTRANSACTIONTIME: " Relay Time"
+  TRUNKTRANSACTIONTIME: " Relay Time",
+  BITCOIN_DEPOSIT: "Deposit",
+  BITCOIN_WITHDRAWAL: "Withdrawal",
+  BITCOIN_LOCK: "Lock",
+  BITCOIN_TX_COUNT: " Txs",
+  BITCOIN_CROSS_CHAIN_ADDR: "Deposit / Lock Addrs"
 };
 export const BLOCKCHAIN = {
   BLOCKS: "Blocks",

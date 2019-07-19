@@ -52,7 +52,12 @@ export const BITCOIN = {
   CROSSTRANSACTION: "跨链交易数",
   TRUNKTRANSACTIONHASH: "中继交易哈希",
   TRUNKTRANSACTIONER: "中继人",
-  TRUNKTRANSACTIONTIME: "中继时间"
+  TRUNKTRANSACTIONTIME: "中继时间",
+  BITCOIN_DEPOSIT: "充值",
+  BITCOIN_WITHDRAWAL: "提现",
+  BITCOIN_LOCK: "锁仓",
+  BITCOIN_TX_COUNT: "交易数",
+  BITCOIN_CROSS_CHAIN_ADDR: "跨链充值 / 锁仓地址数"
 };
 export const BLOCKCHAIN = {
   BLOCKS: "区块列表",

@@ -86,20 +86,23 @@ export default function BtcStatus() {
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="DEPOSITETRANSACTIONCOUNT" /> / {""}
-            <FormattedMessage id="WIDTHDRAWALTRANSACTIONCOUNT" />
+            <FormattedMessage id="BITCOIN_DEPOSIT" /> / {""}
+            <FormattedMessage id="BITCOIN_WITHDRAWAL" /> / {""}
+            <FormattedMessage id="BITCOIN_LOCK" />
+            <FormattedMessage id="BITCOIN_TX_COUNT" />
           </div>
           <div className="btc_content">
             <NavLink to="/crossblocks/bitcoin/deposits">{status.deposit_count}</NavLink> / {""}
-            <NavLink to="/crossblocks/bitcoin/withdrawals">{status.withdraw_count}</NavLink>
+            <NavLink to="/crossblocks/bitcoin/withdrawals">{status.withdraw_count}</NavLink> / {""}
+            <NavLink to="/crossblocks/bitcoin/locklist">{status.lockup_count}</NavLink>
           </div>
         </div>
         <div className="column btc_status">
           <div className="btc_title">
-            <FormattedMessage id="LOCKACTIONCOUNT" /> / <FormattedMessage id="CROSSBINDADDRESSCOUNT" />
+            <FormattedMessage id="BITCOIN_CROSS_CHAIN_ADDR" />
           </div>
           <div className="btc_content">
-            <NavLink to="/crossblocks/bitcoin/locklist">{status.lockup_count}</NavLink> /{" "}
+            <NavLink to="/crossblocks/bitcoin/locklist">{status.lockup_address_count}</NavLink> /{" "}
             <NavLink to="/crossblocks/bitcoin/crossbind">{status.bind_count}</NavLink>
           </div>
         </div>
