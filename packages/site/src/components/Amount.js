@@ -29,6 +29,7 @@ function numberToAmount(
   if (!unsetDigits) {
     if (minDigits !== undefined) {
       options.minimumFractionDigits = minDigits;
+      options.maximumFractionDigits = minDigits;
     } else {
       options.minimumFractionDigits = precision;
     }

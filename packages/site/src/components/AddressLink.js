@@ -6,7 +6,7 @@ import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 import { encodeAddress } from "../shared";
 
 export default memo(function AddressLink(props) {
-  const { value, className, style } = props;
+  const { value, className, style, render = x => x } = props;
   const hexValue = hexAddPrefix(value);
   let showValue = "";
 
@@ -16,7 +16,7 @@ export default memo(function AddressLink(props) {
 
   return (
     <NavLink to={`/accounts/${hexValue}`} style={style} className={classnames("nav-link", className)}>
-      {showValue}
+      {render(showValue)}
     </NavLink>
   );
 });

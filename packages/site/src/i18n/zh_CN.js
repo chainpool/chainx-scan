@@ -4,6 +4,7 @@ export const MENU = {
   VALIDTORS: "验证节点",
   CROSSBLOCKS: "跨链轻节点",
   DAPP: "币币交易",
+  Referendum: "全民公投",
   SEARCH: "搜索",
   HASH: "哈希"
 };
@@ -391,6 +392,11 @@ export const btclocklist = {
   lockbtcstatusbalance: "锁仓金额(BTC)"
 };
 
+export const referendumNav = {
+  underwaytab: "进行中的公投",
+  finishedtab: "已结束的公投"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -407,6 +413,7 @@ export default {
   ...PROCESSTXSTATE,
   ...transfer,
   ...btclocklist,
+  ...referendumNav,
   moduleNameMap,
   callNameMap,
   txType,

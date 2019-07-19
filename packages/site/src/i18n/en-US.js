@@ -4,6 +4,7 @@ export const MENU = {
   VALIDTORS: "Validators",
   CROSSBLOCKS: "Light Client",
   DAPP: "DEX",
+  Referendum: "Referendum",
   SEARCH: "search",
   HASH: "Hash"
 };
@@ -394,6 +395,8 @@ export const btclocklist = {
   lockbtcstatusbalance: "Lock Balance"
 };
 
+export const referendumNav = {};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -410,6 +413,7 @@ export default {
   ...PROCESSTXSTATE,
   ...transfer,
   ...btclocklist,
+  ...referendumNav,
   moduleNameMap,
   callNameMap,
   txType,

@@ -1013,3 +1013,102 @@ a:focus {
   border-bottom: 1px solid #dbdbdb;
   color: #000000;
 }
+
+/**
+ * 全民公投
+ */
+
+.referendum-header {
+  border: 1px solid #dbdbdb;
+  margin-bottom: 16px;
+}
+
+.referendum-title {
+  padding: 0.6em 1.25em;
+  background: #f5f5f5;
+  margin-left: -1px;
+  border-left: 3px solid #f6c94a;
+  color: #000;
+  display: flex;
+  align-items: center;
+  .referendum-title-content {
+    flex: 1;
+  }
+}
+
+.referendum-content {
+  padding: 0.6em 1.25em;
+}
+
+.referendum-address {
+  padding: 0 1.25em 0.6em;
+}
+
+.referendum-address-item {
+  height: 32px;
+  display: flex;
+  align-items: center;
+  .button {
+    margin-left: 4px;
+  }
+}
+
+.referendum-list {
+  display: flex;
+  justify-content: space-between;
+  .referendum-list-item {
+    flex: 0.5;
+    .panel-block {
+      overflow: auto;
+      height: 280px;
+      display: block;
+    }
+  }
+}
+
+.referendum-progress {
+  height: 28px;
+  margin-bottom: 16px;
+  display: flex;
+  .referendum-progress-left {
+    border-top-left-radius: 28px;
+    border-bottom-left-radius: 28px;
+    background: #34c69a;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    color: #fff;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+  .referendum-progress-right {
+    background: #ea754b;
+    border-top-right-radius: 28px;
+    border-bottom-right-radius: 28px;
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+    padding-right: 16px;
+    color: #fff;
+  }
+}
+
+.referendum-detail {
+  font-size: 14px;
+  color: rgba(0, 0, 0, 0.6);
+  p {
+    margin-top: 16px;
+    margin-bottom: 8px;
+  }
+  ol {
+    margin-left: 24px;
+    display: flex;
+  }
+  .red {
+    color: rgb(197, 67, 21);
+  }
+  .r-title {
+    font-size: 16px;
+    color: #000;
+  }
+}

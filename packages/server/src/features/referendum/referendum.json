@@ -1,0 +1,14 @@
+[
+  {
+    "id": "1",
+    "yes": "0xb7cb582d33be7f9762625da56f3c7846e3a3558bdcaa76f92ead27bfc5120fa7",
+    "no": "0xb7cac65033f3149c3ac947f8f0f9af57964242b5fb8bda16e58c6466c942049b",
+    "status": "1"
+  },
+  {
+    "id": "2",
+    "yes": "0xb7ceb4137bfd9aa701359fdd544ac4403db36c14544989f1c8264742b99f3382",
+    "no": "0xb7ce1e3f9a4c0b2093dabd3869741bcc97bc86197b6fa86d2d9cb65d2c32659a",
+    "status": "1"
+  }
+]

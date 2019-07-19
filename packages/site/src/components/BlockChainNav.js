@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import classnames from "classnames";
 import { FormattedMessage } from "react-intl";
 
-export default function BlockChain(props) {
+export default function BlockChainNav(props) {
   const { activeKey, className, style } = props;
   return (
     <div className={classnames("tabs", className)} style={style}>

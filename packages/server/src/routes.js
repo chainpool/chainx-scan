@@ -7,6 +7,7 @@ const assetRouter = require("./features/asset/routes");
 const btcRouter = require("./features/btc/routes");
 const ethRouter = require("./features/eth/routes");
 const chainRouter = require("./features/chain/routes");
+const ReferendumRouter = require("./features/referendum/routes");
 
 module.exports = app => {
   app
@@ -27,5 +28,7 @@ module.exports = app => {
     .use(chainRouter.routes())
     .use(chainRouter.allowedMethods({ throw: true }))
     .use(eventRouter.routes())
-    .use(eventRouter.allowedMethods({ throw: true }));
+    .use(eventRouter.allowedMethods({ throw: true }))
+    .use(ReferendumRouter.routes())
+    .use(ReferendumRouter.allowedMethods({ throw: true }));
 };
