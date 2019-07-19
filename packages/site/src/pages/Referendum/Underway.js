@@ -17,7 +17,7 @@ function ReferendumList({ value, title }) {
           <thead>
             <tr>
               <th>投票地址</th>
-              <th>PCX总余额</th>
+              <th class="has-text-right">PCX总余额</th>
               <th>备注</th>
             </tr>
           </thead>
@@ -26,10 +26,10 @@ function ReferendumList({ value, title }) {
               .sort((a, b) => b.value - a.value)
               .map(({ signed, value, memo }) => (
                 <tr key={signed}>
-                  <td>
+                  <td style={{ width: 108 }}>
                     <AddressLink style={{ width: 88 }} className="text-truncate" value={signed} />
                   </td>
-                  <td style={{ whiteSpace: "nowrap" }}>
+                  <td style={{ whiteSpace: "nowrap", width: 137 }} class="has-text-right">
                     <Amount value={value} hideSymbol />
                   </td>
                   <td>
