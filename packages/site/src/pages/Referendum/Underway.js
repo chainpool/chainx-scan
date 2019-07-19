@@ -34,7 +34,12 @@ function ReferendumList({ value, title }) {
                   </td>
                   <td>
                     {memo && (
-                      <span aria-label={memo} data-balloon-pos="up" data-balloon-length="fit">
+                      <span
+                        style={{ textAlign: "left" }}
+                        aria-label={memo}
+                        data-balloon-pos="up"
+                        data-balloon-length="fit"
+                      >
                         <span style={{ maxWidth: 320, display: "inline-block" }} className="text-truncate">
                           {memo}
                         </span>
