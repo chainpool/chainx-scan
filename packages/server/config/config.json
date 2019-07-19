@@ -2,7 +2,13 @@
   "development": {
     "database": "chainx",
     "dialect": "postgres",
-    "logging": true
+    "logging": false,
+    "pool": {
+      "max": 5,
+      "min": 2,
+      "idle": 30000,
+      "acquire": 60000
+    }
   },
   "test": {
     "username": "root",
