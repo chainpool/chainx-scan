@@ -13,6 +13,10 @@ export default withRouter(function Header(props) {
 
   const isMatchBlocks = ["/txs", "/events", "/accounts"].some(path => !!matchPath(location.pathname, { path }));
 
+  const isMatchReferendum = ["/referendum/finished", "/referendum/underway"].some(
+    path => !!matchPath(location.pathname, { path })
+  );
+
   const isMatchCross = ["/crossblocks", "/crosstxs", "/crossbind"].some(
     path => !!matchPath(location.pathname, { path })
   );
@@ -41,6 +45,13 @@ export default withRouter(function Header(props) {
       </NavLink>
       <NavLink className="navbar-item is-tab" activeClassName="is-active" to="/dapp">
         <FormattedMessage id="DAPP" />
+      </NavLink>
+      <NavLink
+        className={classnames("navbar-item is-tab", { "is-active": isMatchReferendum })}
+        activeClassName="is-active"
+        to="/referendum/underway"
+      >
+        <FormattedMessage id="Referendum" />
       </NavLink>
     </div>
   );

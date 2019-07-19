@@ -444,6 +444,27 @@ class Api {
   };
 
   /**
+   * 获取公投详情
+   */
+  fetchReferendumDetail$ = (id, params) => {
+    return this.fetch$(`/referendum/detail/${id}`, params);
+  };
+
+  /**
+   * 获取公投列表
+   */
+  fetchReferendumList$ = (id, params) => {
+    return this.fetch$(`/referendum/lists/${id}`, params);
+  };
+
+  /**
+   * 获取公投结果
+   */
+  fetchReferendumTotal$ = (id, params) => {
+    return this.fetch$(`/referendum/total/${id}`, params);
+  };
+
+  /**
    * 搜索，返回一个对象
    */
   search = async (input = "") => {

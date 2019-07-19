@@ -10,6 +10,7 @@ import Validator from "./Validator";
 import CrossBlock from "./CrossBlock";
 import Error from "./Error";
 import Dapp from "./Dapp";
+import Referendum from "./Referendum";
 import { BlockChainNav, ScrollTop } from "../components";
 
 export default function Main() {
@@ -33,6 +34,8 @@ export default function Main() {
           <Route path="/accounts" component={Accounts} />
           <Route path="/validators/:filter?/:node?" component={Validator} />
           <Route path="/crossblocks" component={CrossBlock} />
+          <Route path="/referendum/underway" component={Referendum} />
+          <Route path="/referendum/finished" component={Referendum} />
           <Route path="/dapp" component={Dapp} />
           <Route path="/error" component={Error} />
           <Redirect to="/" />
