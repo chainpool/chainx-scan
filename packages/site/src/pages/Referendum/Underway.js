@@ -21,16 +21,18 @@ function ReferendumList({ value, title }) {
             </tr>
           </thead>
           <tbody>
-            {value.map(({ signed, value }) => (
-              <tr key={signed}>
-                <td>
-                  <AddressLink value={signed} />
-                </td>
-                <td>
-                  <Amount value={value} />
-                </td>
-              </tr>
-            ))}
+            {value
+              .sort((a, b) => b.value - a.value)
+              .map(({ signed, value }) => (
+                <tr key={signed}>
+                  <td>
+                    <AddressLink value={signed} />
+                  </td>
+                  <td>
+                    <Amount value={value} />
+                  </td>
+                </tr>
+              ))}
           </tbody>
         </table>
       </div>
