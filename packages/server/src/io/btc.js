@@ -10,7 +10,7 @@ async function feedBtcStatus(io, db) {
       raw: true
     });
 
-    io.to(latestBtcStatusRoom).emit("latestBtcStatus", rows);
+    io.to(latestBtcStatusRoom).emit("latestBtcStatus", rows[0] || null);
 
     setTimeout(feedBtcStatus.bind(null, io, db), FEED_INTERVAL);
   } catch (e) {
