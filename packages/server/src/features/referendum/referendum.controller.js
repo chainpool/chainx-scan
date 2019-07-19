@@ -43,14 +43,15 @@ async function updateList(listId) {
       $or: [{ payee: remove0x(yesAddress) }, { payee: remove0x(noAddress) }],
       call: "transfer"
     },
-    attributes: ["number", "signed", "payee", "hash"],
+    attributes: ["number", "signed", "payee", "hash", "args"],
     raw: true,
     order
-  }).map(({ number, signed, payee, hash }) => ({
+  }).map(({ number, signed, payee, hash, args }) => ({
     height: number,
     signed: `0x${signed}`,
     payee: `0x${payee}`,
-    hash: `0x${hash}`
+    hash: `0x${hash}`,
+    memo: JSON.parse(args).find(({ name }) => name === "memo").data || ""
   }));
 
   const [yesList, noList] = Object.values(

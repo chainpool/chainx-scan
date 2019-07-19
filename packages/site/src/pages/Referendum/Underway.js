@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
+import { CopyToClipboard } from "react-copy-to-clipboard";
 
 import { AddressLink, Amount, NumberFormat } from "../../components";
 import { useRedux, encodeAddress } from "../../shared";
 import api from "../../services/api";
 import { ReactComponent as Right } from "../../assets/right-1.svg";
 import { ReactComponent as Delete } from "../../assets/delete-1.svg";
-
-import { CopyToClipboard } from "react-copy-to-clipboard";
+import "../../balloon.css";
 
 function ReferendumList({ value, title }) {
   return (
@@ -17,19 +17,29 @@ function ReferendumList({ value, title }) {
           <thead>
             <tr>
               <th>投票地址</th>
-              <th>PCX 总余额</th>
+              <th>PCX总余额</th>
+              <th>备注</th>
             </tr>
           </thead>
           <tbody>
             {value
               .sort((a, b) => b.value - a.value)
-              .map(({ signed, value }) => (
+              .map(({ signed, value, memo }) => (
                 <tr key={signed}>
                   <td>
-                    <AddressLink value={signed} />
+                    <AddressLink style={{ width: 88 }} className="text-truncate" value={signed} />
+                  </td>
+                  <td style={{ whiteSpace: "nowrap" }}>
+                    <Amount value={value} hideSymbol />
                   </td>
                   <td>
-                    <Amount value={value} />
+                    {memo && (
+                      <span aria-label={memo} data-balloon-pos="up" data-balloon-length="fit">
+                        <span style={{ maxWidth: 320, display: "inline-block" }} className="text-truncate">
+                          {memo}
+                        </span>
+                      </span>
+                    )}
                   </td>
                 </tr>
               ))}
