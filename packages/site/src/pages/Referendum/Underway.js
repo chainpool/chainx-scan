@@ -26,13 +26,19 @@ function ReferendumList({ value, title }) {
               .sort((a, b) => b.value - a.value)
               .map(({ signed, value, memo }) => (
                 <tr key={signed}>
-                  <td style={{ width: 108 }}>
+                  <td>
+                    <AddressLink value={signed} />
+                  </td>
+                  <td class="has-text-right">
+                    <Amount value={value} hideSymbol />
+                  </td>
+                  {/* <td style={{ width: 108 }}>
                     <AddressLink style={{ width: 88 }} className="text-truncate" value={signed} />
                   </td>
                   <td style={{ whiteSpace: "nowrap", width: 137 }} class="has-text-right">
                     <Amount value={value} hideSymbol />
-                  </td>
-                  <td>
+                  </td> */}
+                  {/* <td>
                     {memo && (
                       <span
                         style={{ textAlign: "left" }}
@@ -45,7 +51,7 @@ function ReferendumList({ value, title }) {
                         </span>
                       </span>
                     )}
-                  </td>
+                  </td> */}
                 </tr>
               ))}
           </tbody>
