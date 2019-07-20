@@ -69,6 +69,31 @@ export default function Referendum() {
                 </div>
               }
             />
+            <hr />
+            <Underway
+              {...props}
+              id="3"
+              title="03号提案：支出议会基金上币MXC抹茶交易所"
+              desc={
+                <div
+                  className="referendum-detail"
+                  style={{ fontSize: 14, color: "rgba(0, 0, 0, 0.6)", lineHeight: 1.8 }}
+                >
+                  <p className="r-title">
+                    节点Nodeasy.com发起提案：议会基金支出2000个PCX，用于MXC抹茶交易所上币，目前议会基金总量为3000个PCX左右。其中1000PCX为技术对接服务费，另外1000PCX为活动奖励经费。同时需要在48小时内，超过2000个账户完成在抹茶交易所的PCX充值操作，可以从ChainX链发起向抹茶系统充值，或抹茶账户之间转账。
+                    如果议案通过后，双方会进行技术对接，并商定具体的充值上币时间段，具体交易开放时间，具体活动奖励细则。
+                  </p>
+                  <p>
+                    <span className="r-title">公投规则：</span>{" "}
+                    1、用户投票效力以投票账户的PCX总余额计数；2、公投过程中用户可随时更改投票意见，以最后一次投票为有效票；3、截至投票结束时，赞成票数大于反对票数即为提案通过，反之则提案未通过。
+                    <span className="r-title">参与方式：</span>用户向以下指定地址
+                    <span className="red">转账 0 PCX</span>表达对本提案持赞成或反对意见。
+                    <span className="r-title">公投结束时间：</span>块高
+                    <span className="red">2520000</span>(预计时间 2019-07-23 17:56:51 )。
+                  </p>
+                </div>
+              }
+            />
           </div>
         )}
       />
