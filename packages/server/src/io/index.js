@@ -104,6 +104,7 @@ async function feedChainStatus(io, db) {
 
     status.btc_power = powers.find(({ id }) => id === "BTC").power;
     status.sdot_power = powers.find(({ id }) => id === "SDOT").power;
+    status.lbtc_power = powers.find(({ id }) => id === "L-BTC").power;
     status.last_price = last_price;
 
     if (status && (preStatusHeight === null || status.best > preStatusHeight)) {
