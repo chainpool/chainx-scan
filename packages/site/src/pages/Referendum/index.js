@@ -70,7 +70,7 @@ export default function Referendum() {
               }
             />
             <hr />
-            <Underway
+            {/* <Underway
               {...props}
               id="3"
               title="03号提案：支出议会基金上币MXC抹茶交易所"
@@ -93,7 +93,7 @@ export default function Referendum() {
                   </p>
                 </div>
               }
-            />
+            /> */}
           </div>
         )}
       />
