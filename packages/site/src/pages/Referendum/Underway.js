@@ -18,7 +18,7 @@ function ReferendumList({ value, title }) {
             <tr>
               <th>投票地址</th>
               <th class="has-text-right">PCX总余额</th>
-              <th>备注</th>
+              {/* <th>备注</th> */}
             </tr>
           </thead>
           <tbody>
