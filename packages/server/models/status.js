@@ -42,6 +42,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       account_count: {
         type: DataTypes.BIGINT
+      },
+      btc_power: {
+        type: DataTypes.BIGINT
+      },
+      sdot_power: {
+        type: DataTypes.BIGINT
       }
     },
     {

@@ -97,13 +97,6 @@ async function feedChainStatus(io, db) {
       attributes: ["last_price"]
     });
 
-    const powers = await db.PseduIntention.findAll({
-      raw: true,
-      attributes: ["id", "power"]
-    });
-
-    status.btc_power = powers.find(({ id }) => id === "BTC").power;
-    status.sdot_power = powers.find(({ id }) => id === "SDOT").power;
     status.last_price = last_price;
 
     if (status && (preStatusHeight === null || status.best > preStatusHeight)) {
