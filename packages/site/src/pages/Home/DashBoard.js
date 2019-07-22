@@ -95,7 +95,7 @@ export default function DashBoard() {
       ),
       data: (
         <div>
-          <Amount value={data.btc_power} hideSymbol /> / <Amount value={data.sdot_power} hideSymbol minDigits={1} />
+          <Amount value={data.btc_power} hideSymbol /> / <Amount value={data.sdot_power} hideSymbol />
         </div>
       )
     }
