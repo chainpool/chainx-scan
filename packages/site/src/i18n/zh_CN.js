@@ -4,7 +4,7 @@ export const MENU = {
   VALIDTORS: "验证节点",
   CROSSBLOCKS: "跨链轻节点",
   DAPP: "币币交易",
-  Referendum: "全民公投",
+  Referendum: "社区公投",
   SEARCH: "搜索",
   HASH: "哈希"
 };
