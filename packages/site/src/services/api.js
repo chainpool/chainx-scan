@@ -422,6 +422,10 @@ class Api {
     return this.fetch$("/trade/pairs", params);
   };
 
+  fetchPowerPercent$ = () => {
+    return this.fetch$("/power_percent");
+  };
+
   /**
    * 获取挂单列表
    */
