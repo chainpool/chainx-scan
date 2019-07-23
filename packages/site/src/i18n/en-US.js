@@ -22,7 +22,8 @@ export const DASHBOARD = {
   ELECTIONRATE: "Turnout",
   TRADEPRICE: "Price",
   BTCMINING: "BTC Power",
-  SDOTMINING: "SDOT Power"
+  SDOTMINING: "SDOT Power",
+  POWER_DISTRIBUTION: "Power Distribution"
 };
 export const NEWESTBLOCK = {
   NEWESTBLOCK: "Latest Block",

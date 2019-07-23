@@ -22,7 +22,8 @@ export const DASHBOARD = {
   ELECTIONRATE: "投票率",
   TRADEPRICE: "价格(PCX/BTC)",
   BTCMINING: "BTC算力",
-  SDOTMINING: "SDOT算力"
+  SDOTMINING: "SDOT算力",
+  POWER_DISTRIBUTION: "全链算力占比"
 };
 export const NEWESTBLOCK = {
   NEWESTBLOCK: "最新块高",
