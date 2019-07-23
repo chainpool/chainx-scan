@@ -33,15 +33,14 @@ export default function PowerPie() {
   const cols = {
     percent: {
       formatter: val => {
-        val = (val * 100).toFixed(2) + "%";
-        return val;
+        return val * 100 + "%";
       }
     }
   };
 
   return (
     <div style={{ width: "30%", height: "265px" }}>
-      <Chart height={265} data={dv} scale={cols} padding={[20, 10, 0, 10]} forceFit>
+      <Chart height={265} data={dv} scale={cols} padding={[40, 0, 0, 20]} forceFit>
         <Coord type={"theta"} radius={0.75} innerRadius={0.8} />
         <Axis name="percent" />
         <Guide>
