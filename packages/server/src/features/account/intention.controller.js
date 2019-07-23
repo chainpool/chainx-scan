@@ -114,7 +114,11 @@ class AccountController {
       "pos.dog",
       "pox.cool",
       "xchainx",
-      "jinma"
+      "jinma",
+      "2100.io",
+      "dhg",
+      "skittles",
+      "tower"
     ];
 
     ctx.body = keys.map(key => {
