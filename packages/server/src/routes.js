@@ -8,6 +8,7 @@ const btcRouter = require("./features/btc/routes");
 const ethRouter = require("./features/eth/routes");
 const chainRouter = require("./features/chain/routes");
 const ReferendumRouter = require("./features/referendum/routes");
+const powRouter = require("./features/power");
 
 module.exports = app => {
   app
@@ -29,6 +30,8 @@ module.exports = app => {
     .use(chainRouter.allowedMethods({ throw: true }))
     .use(eventRouter.routes())
     .use(eventRouter.allowedMethods({ throw: true }))
+    .use(powRouter.routes())
+    .use(powRouter.allowedMethods({ throw: true }))
     .use(ReferendumRouter.routes())
     .use(ReferendumRouter.allowedMethods({ throw: true }));
 };

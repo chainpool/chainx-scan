@@ -1,58 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Chart, Geom, Axis, Coord, Label, Guide } from "bizcharts";
 import DataSet from "@antv/data-set";
+import api from "../../services/api";
+import { useRedux } from "../../shared";
 
 export default function PowerPie() {
+  const [{ data }, setState] = useRedux("powerPercent", { data: [] });
+
+  useEffect(() => {
+    const subscription = api.fetchPowerPercent$().subscribe(result => {
+      setState({
+        data: result.map(item => ({
+          ...item,
+          item: item.token
+        }))
+      });
+    });
+    return () => subscription.unsubscribe();
+  }, [api]);
+
   const { DataView } = DataSet;
   const { Html } = Guide;
-  const data = [
-    {
-      item: "PCX",
-      count: 50
-    },
-    {
-      item: "LBTC",
-      count: 42.87
-    },
-    {
-      item: "X-BTC",
-      count: 5.13
-    },
-    {
-      item: "S-DOT",
-      count: 2
-    }
-  ];
   const dv = new DataView();
   dv.source(data).transform({
     type: "percent",
-    field: "count",
-    dimension: "item",
+    field: "power",
+    dimension: "token",
     as: "percent"
   });
   const cols = {
     percent: {
       formatter: val => {
-        val = (val * 100).toFixed(2) + "%";
-        return val;
+        return (val * 100).toFixed(1) + "%";
       }
     }
   };
 
   return (
     <div style={{ width: "30%", height: "265px" }}>
-      <Chart height={265} data={dv} scale={cols} padding={[20, 10, 0, 10]} forceFit>
-        <Coord type={"theta"} radius={0.75} innerRadius={0.8} />
+      <Chart height={265} data={dv} scale={cols} padding={[30, 0, 0, 0]} forceFit>
+        <Coord type={"theta"} radius={0.75} innerRadius={0.7} />
         <Axis name="percent" />
         <Guide>
           <Html
             position={["50%", "50%"]}
-            html='<div style="color:#8c8c8c;font-size:16px;text-align: center;width: 10em;">全链算力占比</div>'
+            html='<div style="color:#000;font-size:16px;text-align: center;width: 10em;">全链算力占比</div>'
             alignX="middle"
             alignY="middle"
           />
         </Guide>
-        <Geom type="intervalStack" position="percent" color={["item", ["#F6C94A", "#46AEE2", "#34C69A", "#EA754B"]]}>
+        <Geom type="intervalStack" position="percent" color={["token", ["#F6C94A", "#46AEE2", "#34C69A", "#EA754B"]]}>
           <Label
             content="percent"
             formatter={(val, item) => {
