@@ -69,8 +69,15 @@ export default function Referendum() {
                 </div>
               }
             />
-            <hr />
-            <Underway
+          </div>
+        )}
+      />
+      <Route
+        path="/referendum/finished"
+        render={props => (
+          <div className="box">
+            <ReferendumNav activeKey="finished" />
+            <Finished
               {...props}
               id="3"
               title="03号提案：支出议会基金上币MXC抹茶交易所"
@@ -94,15 +101,6 @@ export default function Referendum() {
                 </div>
               }
             />
-          </div>
-        )}
-      />
-      <Route
-        path="/referendum/finished"
-        render={props => (
-          <div className="box">
-            <ReferendumNav activeKey="finished" />
-            <Finished {...props} />
           </div>
         )}
       />

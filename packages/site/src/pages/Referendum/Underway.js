@@ -17,7 +17,7 @@ function ReferendumList({ value, title }) {
           <thead>
             <tr>
               <th>投票地址</th>
-              <th class="has-text-right">PCX总余额</th>
+              <th className="has-text-right">PCX总余额</th>
               {/* <th>备注</th> */}
             </tr>
           </thead>
@@ -29,7 +29,7 @@ function ReferendumList({ value, title }) {
                   <td>
                     <AddressLink value={signed} />
                   </td>
-                  <td class="has-text-right">
+                  <td className="has-text-right">
                     <Amount value={value} hideSymbol />
                   </td>
                   {/* <td style={{ width: 108 }}>
