@@ -7,8 +7,7 @@ import { useRedux } from "../../shared";
 import api from "../../services/api";
 import { Amount, NumberFormat, AntSpinner as Spinner } from "../../components";
 import PCX from "../../assets/tokens/pcx.png";
-// import Transaction from "./Transaction";
-import PowerPie from "./PowerPie";
+import Transaction from "./Transaction";
 
 export default function DashBoard() {
   const [{ data }, setState] = useRedux("dashBoard", { data: {} });
@@ -114,8 +113,9 @@ export default function DashBoard() {
         <img src={PCX} alt="pcx" className="panel-heading-icon" />
         <FormattedMessage id="CHAINSTATUS" />
       </div>
-      <div className="panel-block align-start" style={{ padding: 0 }}>
-        <div className="columns is-multiline is-gapless" style={{ width: "70%", marginBottom: "0" }}>
+      <div className="panel-block flex-reverse align-start" style={{ padding: 0 }}>
+        <Transaction style={{ width: "40%", height: "265px" }} />
+        <div className="columns is-multiline is-gapless" style={{ width: "60%" }}>
           {dataSource && data && data.best
             ? dataSource.map((item, index) => (
                 <div key={index} className="column is-4 dashboard-cell">
@@ -125,8 +125,6 @@ export default function DashBoard() {
               ))
             : loading}
         </div>
-        {/*<Transaction style={{ width: "40%", height: "265px" }} />*/}
-        <PowerPie />
       </div>
     </section>
   );
