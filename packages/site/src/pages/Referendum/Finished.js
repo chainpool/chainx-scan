@@ -96,11 +96,11 @@ export default function Underway({ id, title, desc }) {
             <div style={{ display: "flex" }}>
               <div style={{ display: "flex", alignItems: "center", marginRight: 56 }}>
                 <Right style={{ marginRight: 8 }} /> <span style={{ fontSize: 14, color: "#03AC79" }}>赞成：</span>
-                <Amount value={total.yes} hideSymbol /> 票
+                <Amount value={23515474805811} hideSymbol /> 票
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <Delete style={{ marginRight: 8 }} /> <span style={{ fontSize: 14, color: "#C54315" }}>反对：</span>
-                <Amount value={total.no} hideSymbol /> 票
+                <Amount value={320539408246} hideSymbol /> 票
               </div>
             </div>
           </div>
