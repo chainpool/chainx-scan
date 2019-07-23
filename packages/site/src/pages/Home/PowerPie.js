@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, memo } from "react";
 import { Chart, Geom, Axis, Coord, Label, Guide } from "bizcharts";
 import DataSet from "@antv/data-set";
 import api from "../../services/api";
 import { useRedux } from "../../shared";
+import { injectIntl } from "react-intl";
 
-export default function PowerPie() {
+const powerPie = function({ intl }) {
   const [{ data }, setState] = useRedux("powerPercent", { data: [] });
 
   useEffect(() => {
@@ -36,18 +37,17 @@ export default function PowerPie() {
     }
   };
 
+  const html = `
+  <div style="color:#000;font-size:16px;text-align: center;width: 10em;">${intl.messages.POWER_DISTRIBUTION}</div>
+  `;
+
   return (
     <div style={{ width: "30%", height: "265px" }}>
       <Chart height={265} data={dv} scale={cols} padding={[30, 0, 0, 0]} forceFit>
         <Coord type={"theta"} radius={0.75} innerRadius={0.7} />
         <Axis name="percent" />
         <Guide>
-          <Html
-            position={["50%", "50%"]}
-            html='<div style="color:#000;font-size:16px;text-align: center;width: 10em;">全链算力占比</div>'
-            alignX="middle"
-            alignY="middle"
-          />
+          <Html position={["50%", "50%"]} html={html} alignX="middle" alignY="middle" />
         </Guide>
         <Geom type="intervalStack" position="percent" color={["token", ["#F6C94A", "#46AEE2", "#34C69A", "#EA754B"]]}>
           <Label
@@ -60,4 +60,6 @@ export default function PowerPie() {
       </Chart>
     </div>
   );
-}
+};
+
+export default injectIntl(memo(powerPie));
