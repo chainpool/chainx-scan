@@ -1,6 +1,7 @@
 const config = require("./referendum.json");
 const { remove0x } = require("../utils");
 const db = require("../../../models");
+const dayjs = require("dayjs");
 
 let balances = null;
 let referendumList = {};
@@ -34,14 +35,17 @@ async function updateBalance() {
 }
 
 async function updateList(listId) {
-  const { yes: yesAddress, no: noAddress } = config.find(({ id }) => id === listId);
+  const { yes: yesAddress, no: noAddress, deadBlock } = config.find(({ id }) => id === listId);
 
   const order = [["number", "DESC"], ["index", "DESC"]];
 
   const result = await db.Transaction.findAll({
     where: {
       $or: [{ payee: remove0x(yesAddress) }, { payee: remove0x(noAddress) }],
-      call: "transfer"
+      call: "transfer",
+      number: {
+        $lte: deadBlock
+      }
     },
     attributes: ["number", "signed", "payee", "hash", "args"],
     raw: true,
@@ -141,6 +145,23 @@ class ReferendumController {
     const { listId } = ctx.params;
 
     ctx.body = config.find(({ id }) => id === listId);
+  }
+
+  async details(ctx) {
+    const blockInfo = await db.Block.findOne({
+      order: [["number", "DESC"]],
+      raw: true,
+      attributes: ["number", "time"]
+    });
+    const currentTime = dayjs(blockInfo.time);
+    const currentBlock = blockInfo.number;
+
+    ctx.body = config.map(item => {
+      return {
+        ...item,
+        deadTime: currentTime.add((+item.deadBlock - currentBlock) * 2, "s").format("YYYY-MM-DD HH:mm:ss")
+      };
+    });
   }
 }
 

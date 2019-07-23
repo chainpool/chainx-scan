@@ -451,6 +451,13 @@ class Api {
   };
 
   /**
+   * 获取公投详情列表
+   */
+  fetchReferendumDetails$ = () => {
+    return this.fetch$(`/referendum/details`);
+  };
+
+  /**
    * 获取公投列表
    */
   fetchReferendumList$ = (id, params) => {
