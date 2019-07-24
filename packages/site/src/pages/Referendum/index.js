@@ -28,6 +28,7 @@ export default function Referendum() {
           <div className="box">
             <ReferendumNav activeKey="underway" />
             {details
+              .reserve()
               .filter(({ status }) => status === "1")
               .map(item => {
                 return (
@@ -72,6 +73,7 @@ export default function Referendum() {
           <div className="box">
             <ReferendumNav activeKey="finished" />
             {details
+              .reserve()
               .filter(({ status }) => status === "2")
               .map(item => {
                 return (
