@@ -117,9 +117,7 @@ class BtcLockUpController {
       const { txid, index } = tx;
 
       const record = await ctx.db.BtcLockUp.findOne({
-        where: {
-          $or: [{ hash: txid, index, type: 0 }, { pre_hash: txid, pre_index: index, type: 1 }]
-        },
+        where: { hash: txid, index },
         raw: true
       });
 
