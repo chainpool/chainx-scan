@@ -102,8 +102,8 @@ export default function BtcStatus() {
             <FormattedMessage id="BITCOIN_CROSS_CHAIN_ADDR" />
           </div>
           <div className="btc_content">
-            <NavLink to="/crossblocks/bitcoin/locklist">{status.bind_count}</NavLink> /{" "}
-            <NavLink to="/crossblocks/bitcoin/crossbind">{status.lockup_address_count}</NavLink>
+            <NavLink to="/crossblocks/bitcoin/crossbind">{status.bind_count}</NavLink> /{" "}
+            <NavLink to="/crossblocks/bitcoin/locklist">{status.lockup_address_count}</NavLink>
           </div>
         </div>
       </div>
