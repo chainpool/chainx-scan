@@ -23,7 +23,18 @@ router.get("/power_percent", async ctx => {
 
   const allAssetsPower = pseduPower.concat({ token: "PCX", power: 50 });
 
-  ctx.body = allAssetsPower.sort((a, b) => b.power - a.power);
+  ctx.body = allAssetsPower
+    .map(p => {
+      if (p.token !== "BTC") {
+        return p;
+      }
+
+      return {
+        ...p,
+        token: "X-BTC"
+      };
+    })
+    .sort((a, b) => b.power - a.power);
 });
 
 module.exports = router;
