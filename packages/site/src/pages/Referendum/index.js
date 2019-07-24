@@ -4,8 +4,7 @@ import { Route, Switch } from "react-router";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import Underway from "./Underway";
-import Finished from "./Finished";
-import { ReferendumNav, DateShow } from "../../components";
+import { ReferendumNav } from "../../components";
 
 export default function Referendum() {
   const [{ details }, setState] = useRedux(`referndum-detailss`, {
