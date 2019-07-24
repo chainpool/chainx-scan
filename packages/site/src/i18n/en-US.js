@@ -171,7 +171,7 @@ export const CROSSBLOCK = {
   BALANCE: "Balance",
   MEMO: "Memo",
   EXTRINSICSTYPE: "Extrinsics Type",
-  BINDEDADDRESSES: "Binded Addresses",
+  BINDEDADDRESSES: "Deposit Binded Addresses",
   TRUSTEEADDRESSES: "Trustee Addresses",
   UNCLAIMEDDEPOSITS: "Unclaimed Deposits",
   CHANNELNAME: "Channel Name",

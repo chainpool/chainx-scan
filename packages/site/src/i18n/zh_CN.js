@@ -171,7 +171,7 @@ export const CROSSBLOCK = {
   BALANCE: "金额",
   MEMO: "备注",
   EXTRINSICSTYPE: "交易类型",
-  BINDEDADDRESSES: "地址绑定列表",
+  BINDEDADDRESSES: "充值地址列表",
   TRUSTEEADDRESSES: "托管地址列表",
   UNCLAIMEDDEPOSITS: "充值未认领列表",
   CHANNELNAME: "渠道的节点名称",
