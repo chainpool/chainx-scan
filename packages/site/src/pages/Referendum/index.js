@@ -33,8 +33,6 @@ function Referendum({ intl: { locale }, intl }) {
     });
   }, [api, referendum]);
 
-  console.log(details);
-
   return (
     <Switch>
       <Route
