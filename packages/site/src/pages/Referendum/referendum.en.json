@@ -35,7 +35,7 @@
     "id": "4",
     "yes": "0xb7d573c2e6b1597f75cd6eabfa36815892d5b04fd121910231a24339e6555da5",
     "no": "0xb7d4d8ef9a0221c54be082b7a39cae20a7635f7d33b92470af60cbbe232449d3",
-    "status": "1",
+    "status": "2",
     "title": "Proposal 04: Funding 1000 PCX to BigONE for the promotion and development of the ChainX ecosystem ",
     "desc": "Node Jinma initiated a proposal: the parliamentary fund invest 1000 PCX for the promotion and development of the ChainX ecosystem by BigONE whose trading platform is already technically integrated with ChainX, and all the 1000PCX will be used for activity rewards, rewarding users who participate in the BigONE community voting this Friday. If the proposal is approved, BigONE will set up a new budget for the following marketing campaigns. For more information on activity rewards, please wait for BigONE official announcement.",
     "rule": "1. Users’ voting power is quantified by the number PCX in the voting account; 2. Users can change their votes at any time during the referendum, and the last one is valid; 3. After the referendum, if the number of votes in favor of the proposal is more than that against it, the proposal will pass, otherwise the proposal will not pass. ",
