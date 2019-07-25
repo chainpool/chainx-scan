@@ -116,23 +116,23 @@ class BtcLockUpController {
     for (let tx of txs) {
       const { txid, index } = tx;
 
-      const record = await ctx.db.BtcLockUp.findOne({
-        where: { hash: txid, index },
+      const records = await ctx.db.BtcLockUp.findAll({
+        where: {
+          $or: [{ hash: txid, index, type: 0 }, { pre_hash: txid, pre_index: index, type: 1 }]
+        },
         raw: true
       });
 
-      if (!record) {
-        continue;
-      }
-
-      if (record.type > 0) {
+      if (records.length === 2 && records[0].type + records[1].type === 1) {
         ctx.body = {
           state: "LockAndUnlock"
         };
         return;
       }
 
-      hasLockRecord = true;
+      if (records.length === 1 && records[0].type === 0) {
+        hasLockRecord = true;
+      }
     }
 
     ctx.body = {
