@@ -5,33 +5,22 @@ import { useRedux } from "../../shared";
 import api from "../../services/api";
 import Underway from "./Underway";
 import { ReferendumNav } from "../../components";
-import zhReferendum from "./referendum.zh.json";
-import enReferendum from "./referendum.en";
-import dayjs from "dayjs";
 import { injectIntl } from "react-intl";
 
 function Referendum({ intl: { locale }, intl }) {
-  const referendum = locale.startsWith("en") ? enReferendum : zhReferendum;
-  referendum.sort((a, b) => b.id - a.id);
+  const lang = locale.startsWith("en") ? "en" : "zh";
 
   const [{ details }, setState] = useRedux(`referndum-detailss`, {
-    details: referendum || []
+    details: []
   });
 
   useEffect(() => {
-    api.fetchLatestBlock$().subscribe(block => {
-      const currentTime = dayjs(block.time);
-
-      const details = (referendum || []).map(detail => ({
-        ...detail,
-        deadTime: currentTime.add((+detail.deadBlock - block.number) * 2, "s").format("YYYY-MM-DD HH:mm:ss")
-      }));
-
+    api.fetchReferendumDetails$().subscribe(data => {
       setState({
-        details
+        details: data
       });
     });
-  }, [api, referendum]);
+  }, [api]);
 
   return (
     <Switch>
@@ -41,29 +30,31 @@ function Referendum({ intl: { locale }, intl }) {
           <div className="box">
             <ReferendumNav activeKey="underway" />
             {details
+              .reverse()
               .filter(({ status }) => status === "1")
               .map(item => {
+                console.log(item);
                 return (
-                  <div key={item.title}>
+                  <div key={item.title[lang]}>
                     <Underway
                       {...props}
                       id={item.id}
-                      title={item.title}
+                      title={item.title[lang]}
                       desc={
                         <div
                           className="referendum-detail"
                           style={{ fontSize: 14, color: "rgba(0, 0, 0, 0.6)", lineHeight: 1.8 }}
                         >
-                          <p className="r-title">{item.desc}</p>
+                          <p className="r-title">{item.desc[lang]}</p>
                           {item.reason && (
                             <p>
                               <span className="r-title">{intl.messages.REFERENDUM_PURPOSE}：</span>
-                              {item.reason}
+                              {item.reason[lang]}
                             </p>
                           )}
                           <p>
                             <span className="r-title">{intl.messages.REFERENDUM_RULE}：</span>
-                            {item.rule || intl.messages.REFERENDUM_COMMON_RULE}
+                            {(item.rule && item.rule[lang]) || intl.messages.REFERENDUM_COMMON_RULE}
                             <span className="r-title">{intl.messages.REFERENDUM_PARTICIPATION}：</span>
                             {intl.messages.REFERENDUM_USER_TRANSFER}
                             <span className="red">{intl.messages.REFERENDUM_ZERO_PCX}</span>
@@ -93,26 +84,26 @@ function Referendum({ intl: { locale }, intl }) {
               .filter(({ status }) => status === "2")
               .map(item => {
                 return (
-                  <div key={item.title}>
+                  <div key={item.title[lang]}>
                     <Underway
                       {...props}
                       id={item.id}
-                      title={item.title}
+                      title={item.title[lang]}
                       desc={
                         <div
                           className="referendum-detail"
                           style={{ fontSize: 14, color: "rgba(0, 0, 0, 0.6)", lineHeight: 1.8 }}
                         >
-                          <p className="r-title">{item.desc}</p>
+                          <p className="r-title">{item.desc[lang]}</p>
                           {item.reason && (
                             <p>
                               <span className="r-title">{intl.messages.REFERENDUM_PURPOSE}：</span>
-                              {item.reason}
+                              {item.reason[lang]}
                             </p>
                           )}
                           <p>
                             <span className="r-title">{intl.messages.REFERENDUM_RULE}：</span>
-                            {item.rule || intl.messages.REFERENDUM_COMMON_RULE}
+                            {(item.rule && item.rule[lang]) || intl.messages.REFERENDUM_COMMON_RULE}
                             <span className="r-title">{intl.messages.REFERENDUM_PARTICIPATION}：</span>
                             {intl.messages.REFERENDUM_USER_TRANSFER}
                             <span className="red">{intl.messages.REFERENDUM_ZERO_PCX}</span>
