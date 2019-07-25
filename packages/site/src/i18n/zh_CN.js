@@ -411,7 +411,7 @@ export const referendum = {
   REFERENDUM_PURPOSE: "提案目的",
   REFERENDUM_RULE: "提案规则",
   REFERENDUM_COMMON_RULE:
-    "1、用户投票效力以投票账户的PCX总余额计数；2、公投过程中用户可随时更改投票意见，以最后一次投票为有效票；3、截至投票结束时，赞成票数大于等于2/3即提案通过，反之则提案未通过。",
+    "1、用户投票效力以投票账户的PCX总余额计数；2、公投过程中用户可随时更改投票意见，以最后一次投票为有效票；3、截至投票结束时，赞成票数大于2/3即提案通过，反之则提案未通过。",
   REFERENDUM_PARTICIPATION: "参与方式",
   REFERENDUM_USER_TRANSFER: "用户向以下指定地址",
   REFERENDUM_ZERO_PCX: "转账 0 PCX",

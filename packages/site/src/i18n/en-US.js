@@ -414,7 +414,7 @@ export const referendum = {
   REFERENDUM_PURPOSE: "Purpose",
   REFERENDUM_RULE: "Rule",
   REFERENDUM_COMMON_RULE:
-    "1. Users’ voting power is quantified by the number PCX in the voting account; 2. Users can change their votes at any time during the referendum, and the last one is valid; 3. After the preliminary vote comes the referendum. The proposal needs to receive more than or equal to 2/3 of all the votes(more than or equal to 66.67%) to pass, and then the Core development team will implement it.",
+    "1. Users’ voting power is quantified by the number PCX in the voting account; 2. Users can change their votes at any time during the referendum, and the last one is valid; 3. After the preliminary vote comes the referendum. The proposal needs to receive more than 2/3 of all the votes(more than or equal to 66.67%) to pass, and then the Core development team will implement it.",
   REFERENDUM_PARTICIPATION: "Participation",
   REFERENDUM_USER_TRANSFER: "Users transfer",
   REFERENDUM_ZERO_PCX: " 0 PCX",
