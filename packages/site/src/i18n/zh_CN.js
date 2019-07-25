@@ -403,6 +403,30 @@ export const referendumNav = {
   finishedtab: "已结束的公投"
 };
 
+export const referendum = {
+  REFERENDUM_FOR: "赞成",
+  REFERENDUM_AGAINST: "反对",
+  REFERENDUM_UNIT: "票",
+  REFERENDUM_COPY: "复制",
+  REFERENDUM_PURPOSE: "提案目的",
+  REFERENDUM_RULE: "提案规则",
+  REFERENDUM_COMMON_RULE:
+    "1、用户投票效力以投票账户的PCX总余额计数；2、公投过程中用户可随时更改投票意见，以最后一次投票为有效票；3、截至投票结束时，赞成票数大于2/3即提案通过，反之则提案未通过。",
+  REFERENDUM_PARTICIPATION: "参与方式",
+  REFERENDUM_USER_TRANSFER: "用户向以下指定地址",
+  REFERENDUM_ZERO_PCX: "转账 0 PCX",
+  REFERENDUM_SHOW_AGAINST: "表达对本提案持赞成或反对意见。",
+  REFERENDUM_FINISHED_TIME: "公投结束时间",
+  REFERENDUM_BLOCK_HEIGHT: "块高",
+  REFERENDUM_ESTIMATED_TIME: "预计时间",
+  REFERENDUM_FOR_ADDRESS: "赞成地址",
+  REFERENDUM_AGAINST_ADDRESS: "反对地址",
+  REFERENDUM_FOR_LIST: "赞成列表",
+  REFERENDUM_AGAINST_LIST: "反对列表",
+  REFERENDUM_VOTE_ADDRESS: "投票地址",
+  REFERENDUM_PCX_BALANCE: "PCX总余额"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -420,6 +444,7 @@ export default {
   ...transfer,
   ...btclocklist,
   ...referendumNav,
+  ...referendum,
   moduleNameMap,
   callNameMap,
   txType,

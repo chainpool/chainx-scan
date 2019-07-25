@@ -113,6 +113,10 @@ class Api {
     });
   };
 
+  fetchLatestBlock$ = () => {
+    return this.fetch$(`/chain/latest`);
+  };
+
   /**
    * 获取账户详情
    */

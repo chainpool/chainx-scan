@@ -401,7 +401,34 @@ export const btclocklist = {
   lockbtcstatusbalance: "Lock Balance"
 };
 
-export const referendumNav = {};
+export const referendumNav = {
+  underwaytab: "Underway",
+  finishedtab: "Finished"
+};
+
+export const referendum = {
+  REFERENDUM_FOR: "FOR",
+  REFERENDUM_AGAINST: "AGAINST",
+  REFERENDUM_UNIT: "Votes",
+  REFERENDUM_COPY: "Copy",
+  REFERENDUM_PURPOSE: "Purpose",
+  REFERENDUM_RULE: "Rule",
+  REFERENDUM_COMMON_RULE:
+    "1. Users’ voting power is quantified by the number PCX in the voting account; 2. Users can change their votes at any time during the referendum, and the last one is valid; 3. After the preliminary vote comes the referendum. The proposal needs to receive more than 2/3 of all the votes(more than or equal to 66.67%) to pass, and then the Core development team will implement it.",
+  REFERENDUM_PARTICIPATION: "Participation",
+  REFERENDUM_USER_TRANSFER: "Users transfer",
+  REFERENDUM_ZERO_PCX: " 0 PCX",
+  REFERENDUM_SHOW_AGAINST: " to the following addresses to vote for or against this proposal.",
+  REFERENDUM_FINISHED_TIME: "End time",
+  REFERENDUM_BLOCK_HEIGHT: "Block ",
+  REFERENDUM_ESTIMATED_TIME: "Estimated",
+  REFERENDUM_FOR_ADDRESS: "For Address",
+  REFERENDUM_AGAINST_ADDRESS: "Against Address",
+  REFERENDUM_FOR_LIST: "For List",
+  REFERENDUM_AGAINST_LIST: "Against List",
+  REFERENDUM_VOTE_ADDRESS: "Vote Address",
+  REFERENDUM_PCX_BALANCE: "PCX Balance"
+};
 
 export default {
   ...MENU,
@@ -420,6 +447,7 @@ export default {
   ...transfer,
   ...btclocklist,
   ...referendumNav,
+  ...referendum,
   moduleNameMap,
   callNameMap,
   txType,

@@ -7,8 +7,9 @@ import api from "../../services/api";
 import { ReactComponent as Right } from "../../assets/right-1.svg";
 import { ReactComponent as Delete } from "../../assets/delete-1.svg";
 import "../../balloon.css";
+import { injectIntl } from "react-intl";
 
-function ReferendumList({ value, title }) {
+function ReferendumList({ value, title, intl }) {
   return (
     <section className="panel">
       <div className="panel-heading">{title}</div>
@@ -16,8 +17,8 @@ function ReferendumList({ value, title }) {
         <table className="table is-striped is-fullwidth data-table">
           <thead>
             <tr>
-              <th>投票地址</th>
-              <th className="has-text-right">PCX总余额</th>
+              <th>{intl.messages.REFERENDUM_VOTE_ADDRESS}</th>
+              <th className="has-text-right">{intl.messages.REFERENDUM_PCX_BALANCE}</th>
               {/* <th>备注</th> */}
             </tr>
           </thead>
@@ -60,7 +61,7 @@ function ReferendumList({ value, title }) {
     </section>
   );
 }
-export default function Underway({ id, title, desc }) {
+function Underway({ id, title, desc, intl }) {
   const [{ detail, list, total }, setState] = useRedux(`referndum-underway-${id}`, {
     detail: {},
     list: { yes: [], no: [] },
@@ -95,19 +96,21 @@ export default function Underway({ id, title, desc }) {
             <div className="referendum-title-content">{title}</div>
             <div style={{ display: "flex" }}>
               <div style={{ display: "flex", alignItems: "center", marginRight: 56 }}>
-                <Right style={{ marginRight: 8 }} /> <span style={{ fontSize: 14, color: "#03AC79" }}>赞成：</span>
-                <Amount value={total.yes} hideSymbol /> 票
+                <Right style={{ marginRight: 8 }} />{" "}
+                <span style={{ fontSize: 14, color: "#03AC79" }}>{intl.messages.REFERENDUM_FOR}：</span>
+                <Amount value={total.yes} hideSymbol /> {intl.messages.REFERENDUM_UNIT}
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
-                <Delete style={{ marginRight: 8 }} /> <span style={{ fontSize: 14, color: "#C54315" }}>反对：</span>
-                <Amount value={total.no} hideSymbol /> 票
+                <Delete style={{ marginRight: 8 }} />{" "}
+                <span style={{ fontSize: 14, color: "#C54315" }}>{intl.messages.REFERENDUM_AGAINST}：</span>
+                <Amount value={total.no} hideSymbol /> {intl.messages.REFERENDUM_UNIT}
               </div>
             </div>
           </div>
           <div className="referendum-content">{desc}</div>
           <div className="referendum-address">
             <div className="referendum-address-item">
-              赞成地址：
+              {intl.messages.REFERENDUM_FOR_ADDRESS}：
               <AddressLink
                 value={detail.yes}
                 render={address => (
@@ -119,11 +122,11 @@ export default function Underway({ id, title, desc }) {
                 )}
               />
               <CopyToClipboard text={encodeAddress(detail.yes)}>
-                <a className="button is-small is-text">复制</a>
+                <a className="button is-small is-text">{intl.messages.REFERENDUM_COPY}</a>
               </CopyToClipboard>
             </div>
             <div className="referendum-address-item">
-              反对地址：
+              {intl.messages.REFERENDUM_AGAINST_ADDRESS}：
               <AddressLink
                 value={detail.no}
                 render={address => (
@@ -135,7 +138,7 @@ export default function Underway({ id, title, desc }) {
                 )}
               />
               <CopyToClipboard text={encodeAddress(detail.no)}>
-                <a className="button is-small is-text">复制</a>
+                <a className="button is-small is-text">{intl.messages.REFERENDUM_COPY}</a>
               </CopyToClipboard>
             </div>
           </div>
@@ -156,13 +159,15 @@ export default function Underway({ id, title, desc }) {
         </div>
         <div className="referendum-list">
           <div className="referendum-list-item" style={{ paddingRight: 16 }}>
-            <ReferendumList value={yesList} title="赞成列表" />
+            <ReferendumList value={yesList} title={intl.messages.REFERENDUM_FOR_LIST} intl={intl} />
           </div>
           <div className="referendum-list-item">
-            <ReferendumList value={noList} title="反对列表" />
+            <ReferendumList value={noList} title={intl.messages.REFERENDUM_AGAINST_LIST} intl={intl} />
           </div>
         </div>
       </div>
     </div>
   );
 }
+
+export default injectIntl(Underway);

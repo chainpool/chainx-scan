@@ -6,5 +6,6 @@ router.get("/chain", chainController.status);
 router.get("/chain/status", chainController.chainStatus);
 router.get("/chain/height", chainController.height);
 router.get("/chain/daily_transactions", chainController.dailyTransactions);
+router.get("/chain/latest", chainController.latest);
 
 module.exports = router;

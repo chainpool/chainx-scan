@@ -20,6 +20,15 @@ class ChainController {
     ctx.body = { height };
   }
 
+  async latest(ctx) {
+    const block = await ctx.db.Block.findOne({
+      order: [["number", "DESC"]],
+      raw: true
+    });
+
+    ctx.body = block;
+  }
+
   async dailyTransactions(ctx) {
     const txs = await ctx.db.DailyTransactions.findAll({
       attributes: { exclude: ["height"] },

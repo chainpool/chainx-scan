@@ -5,19 +5,35 @@ import { useRedux } from "../../shared";
 import api from "../../services/api";
 import Underway from "./Underway";
 import { ReferendumNav } from "../../components";
+import zhReferendum from "./referendum.zh.json";
+import enReferendum from "./referendum.en";
+import dayjs from "dayjs";
+import { injectIntl } from "react-intl";
 
-export default function Referendum() {
+function Referendum({ intl: { locale }, intl }) {
+  const referendum = locale.startsWith("en") ? enReferendum : zhReferendum;
+  referendum.sort((a, b) => b.id - a.id);
+
   const [{ details }, setState] = useRedux(`referndum-detailss`, {
-    details: []
+    details: referendum || []
   });
 
   useEffect(() => {
-    api.fetchReferendumDetails$().subscribe(data => {
+    api.fetchLatestBlock$().subscribe(block => {
+      const currentTime = dayjs(block.time);
+
+      const details = (referendum || []).map(detail => ({
+        ...detail,
+        deadTime: currentTime.add((+detail.deadBlock - block.number) * 2, "s").format("YYYY-MM-DD HH:mm:ss")
+      }));
+
       setState({
-        details: data
+        details
       });
     });
-  }, [api]);
+  }, [api, referendum]);
+
+  console.log(details);
 
   return (
     <Switch>
@@ -27,7 +43,6 @@ export default function Referendum() {
           <div className="box">
             <ReferendumNav activeKey="underway" />
             {details
-              .reverse()
               .filter(({ status }) => status === "1")
               .map(item => {
                 return (
@@ -44,18 +59,21 @@ export default function Referendum() {
                           <p className="r-title">{item.desc}</p>
                           {item.reason && (
                             <p>
-                              <span className="r-title">提案目的：</span>
+                              <span className="r-title">{intl.messages.REFERENDUM_PURPOSE}：</span>
                               {item.reason}
                             </p>
                           )}
                           <p>
-                            <span className="r-title">公投规则：</span>
-                            {item.rule ||
-                              "1、用户投票效力以投票账户的PCX总余额计数；2、公投过程中用户可随时更改投票意见，以最后一次投票为有效票；3、截至投票结束时，赞成票数大于2/3即提案通过，反之则提案未通过。"}
-                            <span className="r-title">参与方式：</span>用户向以下指定地址
-                            <span className="red">转账 0 PCX</span>表达对本提案持赞成或反对意见。
-                            <span className="r-title">公投结束时间：</span>块高
-                            <span className="red">{item.deadBlock}</span>(预计时间 {item.deadTime})。
+                            <span className="r-title">{intl.messages.REFERENDUM_RULE}：</span>
+                            {item.rule || intl.messages.REFERENDUM_COMMON_RULE}
+                            <span className="r-title">{intl.messages.REFERENDUM_PARTICIPATION}：</span>
+                            {intl.messages.REFERENDUM_USER_TRANSFER}
+                            <span className="red">{intl.messages.REFERENDUM_ZERO_PCX}</span>
+                            {intl.messages.REFERENDUM_SHOW_AGAINST}
+                            <span className="r-title">{intl.messages.REFERENDUM_FINISHED_TIME}：</span>
+                            {intl.messages.REFERENDUM_BLOCK_HEIGHT}
+                            <span className="red">{item.deadBlock}</span>({intl.messages.REFERENDUM_ESTIMATED_TIME}{" "}
+                            {item.deadTime})。
                           </p>
                         </div>
                       }
@@ -90,18 +108,21 @@ export default function Referendum() {
                           <p className="r-title">{item.desc}</p>
                           {item.reason && (
                             <p>
-                              <span className="r-title">提案目的：</span>
+                              <span className="r-title">{intl.messages.REFERENDUM_PURPOSE}：</span>
                               {item.reason}
                             </p>
                           )}
                           <p>
-                            <span className="r-title">公投规则：</span>
-                            {item.rule ||
-                              "1、用户投票效力以投票账户的PCX总余额计数；2、公投过程中用户可随时更改投票意见，以最后一次投票为有效票；3、截至投票结束时，赞成票数大于2/3即提案通过，反之则提案未通过。"}
-                            <span className="r-title">参与方式：</span>用户向以下指定地址
-                            <span className="red">转账 0 PCX</span>表达对本提案持赞成或反对意见。
-                            <span className="r-title">公投结束时间：</span>块高
-                            <span className="red">{item.deadBlock}</span>(预计时间 {item.deadTime})。
+                            <span className="r-title">{intl.messages.REFERENDUM_RULE}：</span>
+                            {item.rule || intl.messages.REFERENDUM_COMMON_RULE}
+                            <span className="r-title">{intl.messages.REFERENDUM_PARTICIPATION}：</span>
+                            {intl.messages.REFERENDUM_USER_TRANSFER}
+                            <span className="red">{intl.messages.REFERENDUM_ZERO_PCX}</span>
+                            {intl.messages.REFERENDUM_SHOW_AGAINST}
+                            <span className="r-title">{intl.messages.REFERENDUM_FINISHED_TIME}：</span>
+                            {intl.messages.REFERENDUM_BLOCK_HEIGHT}
+                            <span className="red">{item.deadBlock}</span>({intl.messages.REFERENDUM_ESTIMATED_TIME}{" "}
+                            {item.deadTime})。
                           </p>
                         </div>
                       }
@@ -116,3 +137,5 @@ export default function Referendum() {
     </Switch>
   );
 }
+
+export default injectIntl(Referendum);
