@@ -118,7 +118,9 @@ class AccountController {
       "2100.io",
       "dhg",
       "skittles",
-      "tower"
+      "tower",
+      "scans",
+      "spacexpool"
     ];
 
     ctx.body = keys.map(key => {
