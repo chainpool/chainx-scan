@@ -407,6 +407,7 @@ export const referendum = {
   REFERENDUM_FOR: "赞成",
   REFERENDUM_AGAINST: "反对",
   REFERENDUM_UNIT: "票",
+  REFERENDUM_STATISTICAL: "统计中",
   REFERENDUM_COPY: "复制",
   REFERENDUM_PURPOSE: "提案目的",
   REFERENDUM_RULE: "提案规则",

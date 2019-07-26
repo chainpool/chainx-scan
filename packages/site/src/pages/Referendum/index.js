@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
 import Underway from "./Underway";
+import Finished from "./Finished";
 import { ReferendumNav } from "../../components";
 import { injectIntl } from "react-intl";
 
@@ -83,7 +84,7 @@ function Referendum({ intl: { locale }, intl }) {
               .map(item => {
                 return (
                   <div key={item.title[lang]}>
-                    <Underway
+                    <Finished
                       {...props}
                       id={item.id}
                       title={item.title[lang]}
