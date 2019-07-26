@@ -85,7 +85,12 @@ function Finished({ id, title, desc, intl }) {
 
   useEffect(() => {
     api.fetchReferendumTotal$(id).subscribe(data => {
-      setState({ total: data });
+      setState({
+        total: {
+          finished: true,
+          ...data
+        }
+      });
     });
   }, [api, id]);
 
@@ -95,7 +100,7 @@ function Finished({ id, title, desc, intl }) {
         <div className="referendum-header">
           <div className="referendum-title">
             <div className="referendum-title-content">{title}</div>
-            {!total.yes && !total.no ? (
+            {total.finished && !total.yes && !total.no ? (
               <div>{intl.messages.REFERENDUM_STATISTICAL}......</div>
             ) : (
               <div style={{ display: "flex" }}>
