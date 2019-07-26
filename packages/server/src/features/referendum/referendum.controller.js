@@ -124,7 +124,7 @@ async function getList(listId) {
 }
 
 async function syncBalanceByNumber(deadBlock, listId) {
-  const redisBalances = await redisGet(`balances:${deadBlock}`);
+  const redisBalances = await redisGet(`balances:${listId}-${deadBlock}`);
   if (redisBalances) return JSON.parse(redisBalances);
 
   if (syncingList[deadBlock]) return {};
@@ -139,14 +139,14 @@ async function syncBalanceByNumber(deadBlock, listId) {
       raw: true,
       attributes: ["number", "time", "hash"]
     }),
-    getList(listId)
+    updateList(listId)
   ])
     .then(([{ hash }, list]) => {
       return calcTotal(hash, list.yes.concat(list.no).map(({ signed }) => signed));
     })
     .then(balance => {
       console.log(`${deadBlock} 余额查询成功`);
-      return redisSet(`balances:${deadBlock}`, JSON.stringify(balance));
+      return redisSet(`balances:${listId}-${deadBlock}`, JSON.stringify(balance));
     })
     .then(() => {
       delete syncingList[deadBlock];
