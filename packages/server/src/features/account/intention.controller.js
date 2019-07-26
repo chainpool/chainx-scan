@@ -120,7 +120,9 @@ class AccountController {
       "skittles",
       "tower",
       "scans",
-      "spacexpool"
+      "spacexpool",
+      "ducapital",
+      "web3"
     ];
 
     ctx.body = keys.map(key => {
