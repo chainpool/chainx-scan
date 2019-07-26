@@ -1,13 +1,14 @@
 const fetch = require("node-fetch");
+const Sequelize = require("sequelize");
 const { Observable, timer, merge } = require("rxjs");
-const { timeout, retryWhen, delayWhen, reduce, take } = require("rxjs/operators");
+const { timeout, retryWhen, switchMap, delayWhen, reduce, take } = require("rxjs/operators");
+const db = require("../../../models");
 
-const concurrent = 100; // 并发数量
+const concurrent = 20; // 并发数量
 
 const log = console;
 
 const rpcUrl = "https://w1.chainx.org.cn/rpc";
-const assetsToken = ["PCX", "BTC", "SDOT"];
 
 function timeoutAndRetry(time = 10000, retryTime = 10000, msg) {
   return source$ =>
@@ -44,6 +45,7 @@ function queryAccountAssets(hash, accountid) {
       } = await res.json();
 
       const asstesData = data
+        .filter(o => o.name === "PCX")
         .map(({ details, name }) => {
           return [
             name,
@@ -58,11 +60,6 @@ function queryAccountAssets(hash, accountid) {
         })
         .reduce((result, [name, value]) => {
           if (isNaN(value)) {
-            const msg = `${accountid} 资产总额相加错误`;
-            log.error(msg);
-            throw new Error(msg);
-          }
-          if (!assetsToken.includes(name)) {
             const msg = `${accountid} 资产总额相加错误`;
             log.error(msg);
             throw new Error(msg);
@@ -82,17 +79,38 @@ function queryAccountAssets(hash, accountid) {
   }).pipe(timeoutAndRetry(10000, 10000, `${accountid} 查询超时重试`));
 }
 
+function queryAllAccounts() {
+  return new Observable(async subscriber => {
+    try {
+      const allAccounts = Array.from(
+        await db.Balance.findAll({
+          attributes: [[Sequelize.fn("DISTINCT", Sequelize.col("accountid")), "accountid"]]
+        }),
+        ({ accountid }) => accountid
+      );
+      subscriber.next(allAccounts);
+      subscriber.complete();
+    } catch (error) {
+      log.error(`查询帐号错误`, error);
+      subscriber.error();
+    }
+  }).pipe(timeoutAndRetry());
+}
+
 module.exports = function calcTotal(hash, allAccounts) {
-  log.info("开始执行任务");
+  log.info("开始查询余额");
+
   return merge(
     ...allAccounts.map(accountId => {
       return queryAccountAssets(hash, accountId);
     }),
     concurrent
-  ).pipe(
-    reduce((acc, [accountid, data]) => {
-      acc[accountid] = data["PCX"];
-      return acc;
-    }, {})
-  );
+  )
+    .pipe(
+      reduce((acc, [accountid, data]) => {
+        acc[accountid] = data["PCX"];
+        return acc;
+      }, {})
+    )
+    .toPromise();
 };

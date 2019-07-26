@@ -3,7 +3,7 @@
     "id": "1",
     "yes": "0xb7cb582d33be7f9762625da56f3c7846e3a3558bdcaa76f92ead27bfc5120fa7",
     "no": "0xb7cac65033f3149c3ac947f8f0f9af57964242b5fb8bda16e58c6466c942049b",
-    "status": "1",
+    "isActive": "1",
     "title": {
       "zh": "01号提案: 加强节点自抵押限制",
       "en": "Proposal No. 1: Strengthening restrictions on self-collateralized nodes"
@@ -26,7 +26,7 @@
     "id": "2",
     "yes": "0xb7ceb4137bfd9aa701359fdd544ac4403db36c14544989f1c8264742b99f3382",
     "no": "0xb7ce1e3f9a4c0b2093dabd3869741bcc97bc86197b6fa86d2d9cb65d2c32659a",
-    "status": "1",
+    "isActive": "1",
     "title": {
       "zh": "02号提案：限制用户频繁切换投票",
       "en": "Proposal No.2: Restricting users from frequently switching votes"
@@ -49,7 +49,7 @@
     "id": "3",
     "yes": "0xb7d216877e3e15eb9db05b0058dadacf273f190ac78bdc3f936aea4d1eb7662e",
     "no": "0xb7d1819708013b0246720652f4ab0d45d57b345d9162a1821fd20eade95691cc",
-    "status": "2",
+    "isActive": "1",
     "title": {
       "zh": "03号提案：支出议会基金上币MXC抹茶交易所",
       "en": "Proposal No.3: Funding the listing on MXC exchange through Parliamentary Fund "
@@ -68,7 +68,7 @@
     "id": "4",
     "yes": "0xb7d573c2e6b1597f75cd6eabfa36815892d5b04fd121910231a24339e6555da5",
     "no": "0xb7d4d8ef9a0221c54be082b7a39cae20a7635f7d33b92470af60cbbe232449d3",
-    "status": "2",
+    "isActive": "1",
     "title": {
       "zh": "04号提案：支出议会基金支持BigONE推动ChainX生态发展",
       "en": "Proposal 04: Funding 1000 PCX to BigONE for the promotion and development of the ChainX ecosystem "
@@ -87,7 +87,7 @@
     "id": "5",
     "yes": "0xb7d8cc4d93b87dc336fd5aec3e62bf9b82ae193c64c05b6dec2b9d958f5b9c71",
     "no": "0xb7d8402eefce2524f2f49ac2eac97f433e235a24ffcfc70b9161ede8c37d4b83",
-    "status": "1",
+    "isActive": "1",
     "title": {
       "zh": "05号提案：推动社区议会去中心化治理",
       "en": "Proposal 05 ：Promote self-government of the community parliament "

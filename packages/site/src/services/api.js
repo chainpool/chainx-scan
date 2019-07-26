@@ -462,7 +462,7 @@ class Api {
    * 获取公投详情列表
    */
   fetchReferendumDetails$ = () => {
-    return this.fetch$(`/referendum/details`);
+    return this.fetch$(`/referendum/details`).pipe(map(data => data.reverse()));
   };
 
   /**

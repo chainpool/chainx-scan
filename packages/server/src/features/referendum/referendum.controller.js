@@ -2,9 +2,18 @@ const config = require("./referendum.json");
 const { remove0x } = require("../utils");
 const db = require("../../../models");
 const dayjs = require("dayjs");
+const calcTotal = require("./calcTotal");
+const redis = require("redis");
+const { promisify } = require("util");
 
-let balances = null;
+const redisClient = redis.createClient();
+const redisGet = promisify(redisClient.get).bind(redisClient);
+const redisSet = promisify(redisClient.set).bind(redisClient);
+
+// 避免同时请求数据库
+let updatingBalancePromise = null;
 let referendumList = {};
+let syncingList = {};
 
 async function updateBalance() {
   const accountBalanceList = await db.Balance.findAll({
@@ -114,15 +123,82 @@ async function getList(listId) {
   return referendumList[listId];
 }
 
-async function getBalance() {
-  return updateBalance();
+async function syncBalanceByNumber(deadBlock, listId) {
+  const redisBalances = await redisGet(`balances:${deadBlock}`);
+  if (redisBalances) return JSON.parse(redisBalances);
+
+  if (syncingList[deadBlock]) return {};
+  syncingList[deadBlock] = true;
+
+  Promise.all([
+    db.Block.findOne({
+      order: [["number", "DESC"]],
+      where: {
+        number: deadBlock
+      },
+      raw: true,
+      attributes: ["number", "time", "hash"]
+    }),
+    getList(listId)
+  ])
+    .then(([{ hash }, list]) => {
+      return calcTotal(hash, list.yes.concat(list.no).map(({ signed }) => signed));
+    })
+    .then(balance => {
+      console.log(`${deadBlock} 余额查询成功`);
+      return redisSet(`balances:${deadBlock}`, JSON.stringify(balance));
+    })
+    .then(() => {
+      delete syncingList[deadBlock];
+    });
+
+  return {};
+}
+
+async function getBalance(listId) {
+  const { isFinished, deadBlock } = await getDetail(listId);
+  if (isFinished) {
+    return syncBalanceByNumber(deadBlock, listId);
+  } else {
+    if (updatingBalancePromise) return updatingBalancePromise;
+
+    updatingBalancePromise = updateBalance().then(result => {
+      updatingBalancePromise = null;
+      return result;
+    });
+
+    return updatingBalancePromise;
+  }
+}
+
+async function getDetails() {
+  const blockInfo = await db.Block.findOne({
+    order: [["number", "DESC"]],
+    raw: true,
+    attributes: ["number", "time", "hash"]
+  });
+
+  const currentTime = dayjs(blockInfo.time);
+  const currentBlock = blockInfo.number;
+
+  return config.map(item => {
+    return {
+      ...item,
+      isFinished: currentBlock - +item.deadBlock > 0 ? true : false,
+      deadTime: currentTime.add((+item.deadBlock - currentBlock) * 2, "s").format("YYYY-MM-DD HH:mm:ss")
+    };
+  });
+}
+
+async function getDetail(listId) {
+  return (await getDetails()).find(({ id }) => id === listId);
 }
 
 class ReferendumController {
   async list(ctx) {
     const { listId } = ctx.params;
 
-    const [{ yes, no }, balances] = await Promise.all([getList(listId), getBalance()]);
+    const [{ yes, no }, balances] = await Promise.all([getList(listId), getBalance(listId)]);
 
     ctx.body = {
       yes: yes.map(o => ({ ...o, value: balances[o.signed] })),
@@ -133,7 +209,7 @@ class ReferendumController {
   async total(ctx) {
     const { listId } = ctx.params;
 
-    const [{ yes, no }, balances] = await Promise.all([getList(listId), getBalance()]);
+    const [{ yes, no }, balances] = await Promise.all([getList(listId), getBalance(listId)]);
 
     ctx.body = {
       yes: yes.reduce((r, o) => r + balances[o.signed], 0),
@@ -144,24 +220,11 @@ class ReferendumController {
   async detail(ctx) {
     const { listId } = ctx.params;
 
-    ctx.body = config.find(({ id }) => id === listId);
+    ctx.body = await getDetail(listId);
   }
 
   async details(ctx) {
-    const blockInfo = await db.Block.findOne({
-      order: [["number", "DESC"]],
-      raw: true,
-      attributes: ["number", "time"]
-    });
-    const currentTime = dayjs(blockInfo.time);
-    const currentBlock = blockInfo.number;
-
-    ctx.body = config.map(item => {
-      return {
-        ...item,
-        deadTime: currentTime.add((+item.deadBlock - currentBlock) * 2, "s").format("YYYY-MM-DD HH:mm:ss")
-      };
-    });
+    ctx.body = await getDetails();
   }
 }
 

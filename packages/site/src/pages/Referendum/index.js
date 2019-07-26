@@ -30,8 +30,7 @@ function Referendum({ intl: { locale }, intl }) {
           <div className="box">
             <ReferendumNav activeKey="underway" />
             {details
-              .reverse()
-              .filter(({ status }) => status === "1")
+              .filter(({ isFinished }) => !isFinished)
               .map(item => {
                 console.log(item);
                 return (
@@ -80,8 +79,7 @@ function Referendum({ intl: { locale }, intl }) {
           <div className="box">
             <ReferendumNav activeKey="finished" />
             {details
-              .reverse()
-              .filter(({ status }) => status === "2")
+              .filter(({ isFinished }) => isFinished)
               .map(item => {
                 return (
                   <div key={item.title[lang]}>
