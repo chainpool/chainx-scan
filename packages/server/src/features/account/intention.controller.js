@@ -127,7 +127,11 @@ class AccountController {
       "overlook",
       "polkaitaly",
       "polkanordic",
-      "twopizza"
+      "twopizza",
+      "chainy",
+      "snzholding",
+      "stella",
+      "xpool"
     ];
 
     ctx.body = keys.map(key => {
