@@ -9,7 +9,7 @@ import { FormattedMessage } from "react-intl";
 export default memo(
   function Events({ tableProps, block }) {
     const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
-    const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData, { block }), []);
+    const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData, { block }), [block]);
 
     useEffect(() => {
       const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
