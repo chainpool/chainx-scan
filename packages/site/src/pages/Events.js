@@ -8,7 +8,7 @@ import { FormattedMessage } from "react-intl";
 
 export default memo(
   function Events({ tableProps, block }) {
-    const [{ tableData }, setState] = useRedux("events", { tableData: { ...tableProps } });
+    const [{ tableData }, setState] = useRedux(`events-${block}`, { tableData: { ...tableProps } });
     const tableService = useMemo(() => new TableService(api.fetchEvents$, tableData, { block }), [block]);
 
     useEffect(() => {
