@@ -73,7 +73,7 @@ export default function AccountsList() {
           title: (
             <>
               <FormattedMessage id="BLOCKTOTALBALANCE" />
-              （SDOT）
+              （S-DOT）
             </>
           ),
           dataIndex: "sdot",

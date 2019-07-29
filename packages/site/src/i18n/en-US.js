@@ -22,7 +22,7 @@ export const DASHBOARD = {
   ELECTIONRATE: "Turnout",
   TRADEPRICE: "Price",
   BTCMINING: "BTC Power",
-  SDOTMINING: "SDOT Power",
+  SDOTMINING: "S-DOT Power",
   POWER_DISTRIBUTION: "Power Distribution"
 };
 export const NEWESTBLOCK = {
@@ -233,7 +233,7 @@ export const moduleNameMap = {
   XBridgeOfBTC: "Bitcoin Bridge",
   Timestamp: "Timestamp",
   XAssets: "Asset",
-  XBridgeOfSDOT: "SDOT Bridge",
+  XBridgeOfSDOT: "S-DOT Bridge",
   XBridgeOfBTCLockup: "Lock BTC",
   finality_tracker: "Finality Trackerr",
   XFeeManager: "Fee Manager",
@@ -272,7 +272,7 @@ export const callNameMap = {
   put_transaction: "Submit BTC Tx",
   transfer: "Transfer",
   refresh: "Update Intention Info",
-  Claimed: "Claim SDOT",
+  Claimed: "Claim S-DOT",
   Sudid: "Sudid",
   Deposit: "Deposit",
   WithdrawalFinish: "Finish Withdrawal",
