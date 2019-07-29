@@ -9,6 +9,7 @@ const ethRouter = require("./features/eth/routes");
 const chainRouter = require("./features/chain/routes");
 const ReferendumRouter = require("./features/referendum/routes");
 const powRouter = require("./features/power");
+const congressRouter = require("./features/congress/routes");
 
 module.exports = app => {
   app
@@ -32,6 +33,8 @@ module.exports = app => {
     .use(eventRouter.allowedMethods({ throw: true }))
     .use(powRouter.routes())
     .use(powRouter.allowedMethods({ throw: true }))
+    .use(congressRouter.routes())
+    .use(congressRouter.allowedMethods({ throw: true }))
     .use(ReferendumRouter.routes())
     .use(ReferendumRouter.allowedMethods({ throw: true }));
 };
