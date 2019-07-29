@@ -139,6 +139,23 @@ class BtcLockUpController {
       state: hasLockRecord ? "Lock" : "Irrelevant"
     };
   }
+
+  async addresses(ctx) {
+    const { page, pageSize } = extractPage(ctx);
+
+    const addresses = await ctx.db.LbtcAddresses.findAll({
+      include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
+      order: [["height", "DESC"]],
+      limit: pageSize,
+      offset: page * pageSize,
+      raw: true
+    });
+
+    ctx.body = addresses.map(address => ({
+      ...address,
+      addresses: JSON.parse(address.addresses)
+    }));
+  }
 }
 
 module.exports = new BtcLockUpController();
