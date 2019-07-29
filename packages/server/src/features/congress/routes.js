@@ -4,16 +4,16 @@ const router = new Router();
 
 router.get("/congress/members", async ctx => {
   ctx.body = [
-    "buildlinks",
-    "HashQuark",
-    "PolkaWorld",
-    "Scans",
-    "huolanshan",
-    "Polkanordic",
-    "realgar",
-    "BiHODL",
-    "SSSnodes",
-    "tower"
+    // "buildlinks",
+    // "HashQuark",
+    // "PolkaWorld",
+    // "Scans",
+    // "huolanshan",
+    // "Polkanordic",
+    // "realgar",
+    // "BiHODL",
+    // "SSSnodes",
+    // "tower"
   ];
 });
 
