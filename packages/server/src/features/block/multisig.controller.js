@@ -18,7 +18,7 @@ class MultisigController {
 
     ctx.body = records.map(record => ({
       ...record,
-      args: JSON.parse(record.args)
+      args: record.call === "release_lock" ? [] : JSON.parse(record.args)
     }));
   }
 }
