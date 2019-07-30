@@ -97,5 +97,20 @@
       "en": "The nodes  proposal together with the community:\n1. Expand the community parliament to include nodes that are matured. One seat is reserved for the PolkaX team  for the role it plays in developing and upgrading the system. Another 10 seats will be added.\n2. The 10 new seats will be held by credible nodes with intention to run for the parliament, that have secured the top 10 spots in terms of votes. Nodes that intent on bribing their way through the election will be disqualified.\n3. Given the fact that the total number of votes a node receives changes all the time, but the parliament seats should be held by a fixed group for a certain period of time, so each parliament term only lasts one month. After one month, elections will be held to select new nodes with high ratings and credibility.\nThis proposal is approved by the preliminary electoral group consisting of seven nodes cha.in, hashquak, wetez, nodeeasy, buildlinks, polkaworld, sssnodes and the PolkaX team as well as two community representatives, with no one voting against it. Now a referendum will be held in the community. If passed, it will be implemented."
     },
     "deadBlock": 2691000
+  },
+  {
+    "id": "6",
+    "yes": "0xb7dc3152be4acca8c483810d08a913f2430d5bfb0dad864fd8f013e128c1564d",
+    "no": "0xb7db9fa66976fa3da58dac351dfac308ae2d2e7bb4a146731c9414f00e90b697",
+    "isActive": "1",
+    "title": {
+      "zh": "06号提案：提高跨链挖矿用户的提息门槛",
+      "en": "06号提案：提高跨链挖矿用户的提息门槛"
+    },
+    "desc": {
+      "zh": "目前的跨链挖矿用户包括：X-BTC充值挖矿，L-BTC锁仓挖矿，S-DOT映射挖矿。这三类资产的提息是无门槛的，造成了比较大的流通压力。经过第1届议会的初审，现提起如下议案：1：ChainX用户对单个跨链资产的提息间隔需要大于7天，否则失败；2：ChainX用户对所有跨链资产提息时，其PCX总投票冻结必须大于待领利息的10倍，否则失败。议会节点10票赞成：buildlinks, BiHODL, SSSnodes, HashQuark, PolkaWorld, SNZHolding, Polkanordic, huolanshan, Scans, PolkaX，1票未出席：realgar.",
+      "en": "目前的跨链挖矿用户包括：X-BTC充值挖矿，L-BTC锁仓挖矿，S-DOT映射挖矿。这三类资产的提息是无门槛的，造成了比较大的流通压力。经过第1届议会的初审，现提起如下议案：1：ChainX用户对单个跨链资产的提息间隔需要大于7天，否则失败；2：ChainX用户对所有跨链资产提息时，其PCX总投票冻结必须大于待领利息的10倍，否则失败。议会节点10票赞成：buildlinks, BiHODL, SSSnodes, HashQuark, PolkaWorld, SNZHolding, Polkanordic, huolanshan, Scans, PolkaX，1票未出席：realgar."
+    },
+    "deadBlock": 2900000
   }
 ]
