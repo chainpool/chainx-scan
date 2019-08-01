@@ -1,7 +1,9 @@
+const BigNumber = require("bignumber.js");
+
 class ChainController {
   async status(ctx) {
     ctx.body = {
-      type: "testnet"
+      type: "mainnet"
     };
   }
 
@@ -38,6 +40,21 @@ class ChainController {
     });
 
     ctx.body = txs;
+  }
+
+  async circulation(ctx) {
+    const status = await ctx.db.Status.findOne({
+      order: [["best", "DESC"]],
+      limit: 1,
+      raw: true
+    });
+
+    const issuance = new BigNumber(status ? status.pcx_issuance : 0);
+
+    ctx.body = issuance
+      .dividedBy(Math.pow(10, 8))
+      .toNumber()
+      .toFixed(8);
   }
 }
 

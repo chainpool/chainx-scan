@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "@koa/cors": "2",
+    "bignumber.js": "^9.0.0",
     "binstring": "^0.2.1",
     "bitcoinjs-lib": "^5.0.2",
     "btc-address": "^0.4.0",
