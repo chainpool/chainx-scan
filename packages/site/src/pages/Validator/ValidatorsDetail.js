@@ -173,18 +173,6 @@ export default function ValidatorsDetail(props) {
             data: <Amount value={data.jackpot} />
           },
           {
-            label: <FormattedMessage id="MISSEDBLOCKSHISTORY" />,
-            data: (
-              <span>
-                <NumberFormat value={data.missedBlocks} />/<NumberFormat value={data.blocks} />
-                <span className="table-tag-nagtive">{`(${(isNaN(data.missedBlocks / data.blocks)
-                  ? 0
-                  : (data.missedBlocks / data.blocks) * 100
-                ).toFixed(2)}%)`}</span>
-              </span>
-            )
-          },
-          {
             label: <FormattedMessage id="RECENTMISSEDBLOCKS" />,
             data: (
               <span>
