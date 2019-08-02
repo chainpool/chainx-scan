@@ -131,7 +131,11 @@ class AccountController {
       "chainy",
       "snzholding",
       "stella",
-      "xpool"
+      "xpool",
+      "bepal",
+      "bigone",
+      "blockeden",
+      "rabbit"
     ];
 
     ctx.body = keys.map(key => {
