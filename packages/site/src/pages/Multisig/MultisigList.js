@@ -27,43 +27,40 @@ export default function AccountsList() {
             key: index,
             time: <DateShow value={data["block.time"]} />,
             txid: <TxLink style={{ width: 136 }} className="text-truncate" value={data.txid} />,
-            addr: <AddressLink style={{ maxWidth: 136 }} className="text-truncate" value={data.addr} />,
+            addr: (
+              <AddressLink
+                style={{ maxWidth: 136 }}
+                className="text-truncate"
+                value={data.addr}
+                render={x => {
+                  if (data.addr === "67df26a755e0c31ac81e2ed530d147d7f2b9a3f5a570619048c562b1ed00dfdd") {
+                    return <FormattedMessage id="council" />;
+                  } else if (data.addr === "6193a00c655f836f9d8a62ed407096381f02f8272ea3ea0df0fd66c08c53af81") {
+                    return <FormattedMessage id="team" />;
+                  }
+                  return x;
+                }}
+              />
+            ),
             accountid: <AddressLink style={{ maxWidth: 136 }} className="text-truncate" value={data.accountid} />,
             multisigid: (
               <div style={{ maxWidth: 136 }} className="text-truncate">
                 {data.multisigid}
               </div>
             ),
-            action: <TxAction module={data.module} call={data.call} />,
+            action:
+              data.call === "set_code" ? (
+                <FormattedMessage id="setcode" />
+              ) : (
+                <TxAction module={data.module} call={data.call} />
+              ),
             status: data.yet_needed === 0 ? <FormattedMessage id="pass" /> : <FormattedMessage id="yetneded" />,
-            council:
-              data.addr === "67df26a755e0c31ac81e2ed530d147d7f2b9a3f5a570619048c562b1ed00dfdd" ? (
-                <FormattedMessage id="council" />
-              ) : (
-                ""
-              ),
-            team:
-              data.addr === "6193a00c655f836f9d8a62ed407096381f02f8272ea3ea0df0fd66c08c53af81" ? (
-                <FormattedMessage id="team" />
-              ) : (
-                ""
-              ),
-            setcode: data.call === "set_code" ? <FormattedMessage id="setcode" /> : "",
             args: JSON.stringify(data.args)
           };
         })
       }
       expandedRowRender={data => {
-        return (
-          <div>
-            <div>
-              <span style={{ marginLeft: 8 }}>{data.council ? data.council : ""}</span>
-              <span style={{ marginLeft: 8 }}>{data.team ? data.team : ""}</span>
-              <span style={{ marginLeft: 8 }}>{data.setcode ? data.setcode : ""}</span>
-            </div>
-            <span>{data.args}</span>
-          </div>
-        );
+        return <div>{data.args}</div>;
       }}
       columns={[
         {
