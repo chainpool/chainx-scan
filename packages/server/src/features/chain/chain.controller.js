@@ -43,15 +43,14 @@ class ChainController {
   }
 
   async circulation(ctx) {
-    const status = await ctx.db.Status.findOne({
-      order: [["best", "DESC"]],
-      limit: 1,
+    const sum = await ctx.db.Balance.sum("Free", {
+      where: { token: "PCX" },
       raw: true
     });
 
-    const issuance = new BigNumber(status ? status.pcx_issuance : 0);
+    const free = new BigNumber(sum);
 
-    ctx.body = issuance
+    ctx.body = free
       .dividedBy(Math.pow(10, 8))
       .toNumber()
       .toFixed(8);
