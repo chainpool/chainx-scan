@@ -119,7 +119,7 @@ class BtcLockUpController {
 
       const reversed = chunk(txid, 2)
         .reverse()
-        .reduce((result, item) => result + item.join(""), 2);
+        .reduce((result, item) => result + item.join(""), "");
 
       const records = await ctx.db.BtcLockUp.findAll({
         where: {
