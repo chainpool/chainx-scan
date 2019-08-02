@@ -90,7 +90,18 @@ export const BLOCKCHAIN = {
   BONDED: "Bonded",
   ORDERNUMBER: " ID",
   CREATEAT: "AT",
-  LASTUPDATE: "Last Update"
+  LASTUPDATE: "Last Update",
+  multisig: "Multisig Record",
+  multisigaddress: "Multisig Address",
+  proposer: "Proposer",
+  proposalId: "Proposal ID",
+  proposalContent: "Proposal Content",
+  status: "Status",
+  pass: "pass",
+  yetneded: "yet needed",
+  council: "council",
+  team: "development team",
+  setcode: "chain upgrade"
 };
 export const FOOTER = {
   WALLET: "Wallet"

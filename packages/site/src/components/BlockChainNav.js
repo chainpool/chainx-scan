@@ -28,6 +28,11 @@ export default function BlockChainNav(props) {
             <FormattedMessage id="ACCOUNTS" />
           </NavLink>
         </li>
+        <li className={classnames({ "is-active": activeKey === "multisig" })}>
+          <NavLink to="/multisig">
+            <FormattedMessage id="multisig" />
+          </NavLink>
+        </li>
       </ul>
     </div>
   );

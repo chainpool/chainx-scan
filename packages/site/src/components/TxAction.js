@@ -25,8 +25,8 @@ export default injectIntl(function TxAction(props) {
   });
 
   return (
-    <div className={classnames(className)} style={style}>{`${messages.moduleNameMap[module]}${
-      call ? "(" + messages.callNameMap[call] + ")" : ""
+    <div className={classnames(className)} style={style}>{`${messages.moduleNameMap[module] || module}${
+      call ? "(" + (messages.callNameMap[call] || call) + ")" : ""
     }`}</div>
   );
 });

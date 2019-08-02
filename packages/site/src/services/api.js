@@ -343,6 +343,13 @@ class Api {
   };
 
   /**
+   * 获取多签记录
+   */
+  fetchMultisigRecords$ = params => {
+    return this.fetch$(`/multisig/records`, params);
+  };
+
+  /**
    * 获取账户绑定地址列表
    */
   fetchAccountBindAddresses$ = (accountId, params) => {

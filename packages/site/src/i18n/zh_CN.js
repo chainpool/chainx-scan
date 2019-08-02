@@ -90,7 +90,18 @@ export const BLOCKCHAIN = {
   BONDED: "投票金额",
   ORDERNUMBER: "委托编号",
   CREATEAT: "创建时间",
-  LASTUPDATE: "最后更新时间"
+  LASTUPDATE: "最后更新时间",
+  multisig: "多签记录",
+  multisigaddress: "多签地址",
+  proposer: "提议人",
+  proposalId: "提议ID",
+  proposalContent: "提议内容",
+  status: "状态",
+  pass: "通过",
+  yetneded: "签名中",
+  council: "议会",
+  team: "团队",
+  setcode: "链上升级"
 };
 export const FOOTER = {
   WALLET: "钱包"
