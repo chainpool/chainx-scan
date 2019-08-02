@@ -8,7 +8,7 @@ class MultisigController {
       return;
     }
 
-    const records = await ctx.db.EventMultiSig.findAll({
+    const { rows, count: total } = await ctx.db.EventMultiSig.findAndCountAll({
       include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
@@ -16,10 +16,17 @@ class MultisigController {
       raw: true
     });
 
-    ctx.body = records.map(record => ({
+    const items = rows.map(record => ({
       ...record,
       args: record.call === "release_lock" ? [] : JSON.parse(record.args)
     }));
+
+    ctx.body = {
+      items,
+      page,
+      pageSize,
+      total
+    };
   }
 }
 
