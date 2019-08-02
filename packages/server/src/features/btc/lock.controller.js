@@ -1,6 +1,7 @@
 const { extractPage } = require("../utils");
 const Sequelize = require("sequelize");
 const Op = Sequelize.Op;
+const chunk = require("lodash.chunk");
 
 class BtcLockUpController {
   async allRecords(ctx) {
@@ -116,9 +117,18 @@ class BtcLockUpController {
     for (let tx of txs) {
       const { txid, index } = tx;
 
+      const reversed = chunk(txid, 2)
+        .reverse()
+        .reduce((result, item) => result + item.join(""), 2);
+
       const records = await ctx.db.BtcLockUp.findAll({
         where: {
-          $or: [{ hash: txid, index, type: 0 }, { pre_hash: txid, pre_index: index, type: 1 }]
+          $or: [
+            { hash: txid, index, type: 0 },
+            { pre_hash: txid, pre_index: index, type: 1 },
+            { hash: reversed, index, type: 0 },
+            { pre_hash: reversed, pre_index: index, type: 1 }
+          ]
         },
         raw: true
       });
