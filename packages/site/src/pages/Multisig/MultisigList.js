@@ -54,7 +54,14 @@ export default function AccountsList() {
               ) : (
                 <TxAction module={data.module} call={data.call} />
               ),
-            status: data.yet_needed === 0 ? <FormattedMessage id="pass" /> : <FormattedMessage id="yetneded" />,
+            status:
+              data.yet_needed === 0 ? (
+                <FormattedMessage id="pass" />
+              ) : (
+                <div>
+                  <FormattedMessage id="yetneded" />({data.yet_needed})
+                </div>
+              ),
             args: JSON.stringify(data.args)
           };
         })
