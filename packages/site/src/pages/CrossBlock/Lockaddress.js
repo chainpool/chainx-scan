@@ -26,10 +26,8 @@ export default function Lockaddress() {
           tableData.dataSource.map((data, index) => {
             return {
               key: index,
-              baddr: (
-                <ExternalLink style={{ width: 136 }} type="btcAddress" className="text-truncate" value={data.address} />
-              ),
-              chainxaddr: <AddressLink style={{ width: 136 }} className="text-truncate" value={data.accountid} />,
+              baddr: <ExternalLink type="btcAddress" className="text-truncate" value={data.address} />,
+              chainxaddr: <AddressLink className="text-truncate" value={data.accountid} />,
               nodename: <ValidatorLink value={data.channel} />
             };
           })
