@@ -26,7 +26,7 @@ export default function Lockaddress() {
           tableData.dataSource.map((data, index) => {
             return {
               key: index,
-              baddr: data.addresses.map(address => (
+              baddr: [...new Set(data.addresses)].map(address => (
                 <div style={{ marginBottom: 4 }}>
                   <ExternalLink type="btcAddress" className="text-truncate" value={address} />
                 </div>
