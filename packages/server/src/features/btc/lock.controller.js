@@ -152,14 +152,21 @@ class BtcLockUpController {
 
   async addresses(ctx) {
     const { page, pageSize } = extractPage(ctx);
+    const { accountid } = ctx.query;
 
-    const { rows: addresses, count: total } = await ctx.db.LbtcAddresses.findAndCountAll({
+    const options = {
       include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
       raw: true
-    });
+    };
+
+    if (accountid) {
+      Object.assign(options, { where: { accountid } });
+    }
+
+    const { rows: addresses, count: total } = await ctx.db.LbtcAddresses.findAndCountAll(options);
 
     ctx.body = {
       items: addresses.map(address => ({
