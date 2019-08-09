@@ -23,6 +23,11 @@ export default function BlockChain(props) {
             <FormattedMessage id="BINDEDADDRESSES" />
           </NavLink>
         </li>
+        <li className={classnames({ "is-active": activeKey === "lockaddress" })}>
+          <NavLink to="/crossblocks/bitcoin/lockaddress">
+            <FormattedMessage id="LOCKADDRESS" />
+          </NavLink>
+        </li>
         <li className={classnames({ "is-active": activeKey === "deposits" })}>
           <NavLink to="/crossblocks/bitcoin/deposits">
             <FormattedMessage id="DEPOSITELIST" />

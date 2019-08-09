@@ -378,6 +378,13 @@ class Api {
   };
 
   /**
+   * BTC 锁仓地址列表
+   */
+  fetchBtcAddress$ = params => {
+    return this.fetch$(`/btc/lock/addresses`, params);
+  };
+
+  /**
    * 某一用户的锁仓列表
    */
   fetchAccountBtcLock$ = (params, { accountId }) => {

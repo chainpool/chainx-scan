@@ -207,6 +207,7 @@ export const CROSSBLOCK = {
   DEPOSITSMINING: "跨链挖矿",
   WITHDRAWALLIST: "提现列表",
   DEPOSITELIST: "充值列表",
+  LOCKADDRESS: "锁仓地址列表",
   LOCK_LIST: "锁仓列表"
 };
 export const DAPP = {

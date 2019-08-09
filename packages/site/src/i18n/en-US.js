@@ -208,6 +208,7 @@ export const CROSSBLOCK = {
   DEPOSITSMINING: "Crosschain Mining",
   WITHDRAWALLIST: "Withdrawal List",
   DEPOSITELIST: "Deposits",
+  LOCKADDRESS: "Lock Addresses",
   LOCK_LIST: "LOCK LIST"
 };
 export const DAPP = {
