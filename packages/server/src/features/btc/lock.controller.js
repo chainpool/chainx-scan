@@ -153,7 +153,7 @@ class BtcLockUpController {
   async addresses(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const addresses = await ctx.db.LbtcAddresses.findAll({
+    const { rows: addresses, count: total } = await ctx.db.LbtcAddresses.findAndCountAll({
       include: [{ model: ctx.db.Intention, as: "intention", attributes: ["name"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
@@ -161,10 +161,15 @@ class BtcLockUpController {
       raw: true
     });
 
-    ctx.body = addresses.map(address => ({
-      ...address,
-      addresses: JSON.parse(address.addresses)
-    }));
+    ctx.body = {
+      items: addresses.map(address => ({
+        ...address,
+        addresses: JSON.parse(address.addresses)
+      })),
+      pageSize,
+      page,
+      total
+    };
   }
 }
 
