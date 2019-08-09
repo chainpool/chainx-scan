@@ -27,7 +27,7 @@ export default function Lockaddress() {
             return {
               key: index,
               baddr: data.addresses.map(address => (
-                <div>
+                <div style={{ marginBottom: 4 }}>
                   <ExternalLink type="btcAddress" className="text-truncate" value={address} />
                 </div>
               )),
