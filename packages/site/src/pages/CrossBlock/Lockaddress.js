@@ -8,7 +8,7 @@ import { FormattedMessage } from "react-intl";
 
 export default function Lockaddress() {
   const [{ tableData }, setState] = useRedux("Lockaddress", { tableData: {} });
-  const tableService = useMemo(() => new TableService(api.fetchBtcBind$, tableData), []);
+  const tableService = useMemo(() => new TableService(api.fetchBtcAddress$, tableData), []);
 
   useEffect(() => {
     const subscription = tableService.fetchTable$().subscribe(data => setState({ tableData: data }));
@@ -26,7 +26,11 @@ export default function Lockaddress() {
           tableData.dataSource.map((data, index) => {
             return {
               key: index,
-              baddr: <ExternalLink type="btcAddress" className="text-truncate" value={data.address} />,
+              baddr: data.addresses.map(address => (
+                <div>
+                  <ExternalLink type="btcAddress" className="text-truncate" value={address} />
+                </div>
+              )),
               chainxaddr: <AddressLink className="text-truncate" value={data.accountid} />,
               nodename: <ValidatorLink value={data.channel} />
             };
