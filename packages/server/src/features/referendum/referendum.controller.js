@@ -184,7 +184,7 @@ async function getDetails() {
   return config.map(item => {
     return {
       ...item,
-      status: currentBlock - +item.deadBlock > 0 ? true : false,
+      isFinished: currentBlock - +item.deadBlock > 0 ? true : false,
       deadTime: currentTime.add((+item.deadBlock - currentBlock) * 2, "s").format("YYYY-MM-DD HH:mm:ss")
     };
   });
