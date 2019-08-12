@@ -33,7 +33,6 @@ function Referendum({ intl: { locale }, intl }) {
             {details
               .filter(({ isFinished }) => !isFinished)
               .map(item => {
-                console.log(item);
                 return (
                   <div key={item.title[lang]}>
                     <Underway

@@ -33,26 +33,6 @@ function ReferendumList({ value, title, intl }) {
                   <td className="has-text-right">
                     <Amount value={value} hideSymbol />
                   </td>
-                  {/* <td style={{ width: 108 }}>
-                    <AddressLink style={{ width: 88 }} className="text-truncate" value={signed} />
-                  </td>
-                  <td style={{ whiteSpace: "nowrap", width: 137 }} class="has-text-right">
-                    <Amount value={value} hideSymbol />
-                  </td> */}
-                  {/* <td>
-                    {memo && (
-                      <span
-                        style={{ textAlign: "left" }}
-                        aria-label={memo}
-                        data-balloon-pos="up"
-                        data-balloon-length="fit"
-                      >
-                        <span style={{ maxWidth: 320, display: "inline-block" }} className="text-truncate">
-                          {memo}
-                        </span>
-                      </span>
-                    )}
-                  </td> */}
                 </tr>
               ))}
           </tbody>
@@ -63,10 +43,11 @@ function ReferendumList({ value, title, intl }) {
 }
 
 function Finished({ id, title, desc, intl }) {
-  const [{ detail, list, total }, setState] = useRedux(`referndum-underway-${id}`, {
+  const [{ detail, list, total, show }, setState] = useRedux(`referndum-finished-${id}`, {
     detail: {},
     list: { yes: [], no: [] },
-    total: {}
+    total: {},
+    show: false
   });
 
   const { yes: yesList, no: noList } = list;
@@ -94,12 +75,35 @@ function Finished({ id, title, desc, intl }) {
     });
   }, [api, id]);
 
+  const getStatus = () => {
+    const baseStyle = {
+      borderRadius: 12,
+      color: "#ffffff",
+      fontSize: 14,
+      padding: "2px 8px",
+      marginLeft: 8
+    };
+
+    if (total.finished && !total.yes && !total.no) {
+      return <span style={{ ...baseStyle, background: "#959595" }}>{intl.messages.REFERENDUM_STATISTICAL}</span>;
+    } else if (total.no > total.yes) {
+      return <span style={{ ...baseStyle, background: "#EA754B" }}>{intl.messages.REFERENDUM_FAIL}</span>;
+    } else if (total.isPublish) {
+      return <span style={{ ...baseStyle, background: "#959595" }}>{intl.messages.REFERENDUM_ISPUBLISH}</span>;
+    } else {
+      return <span style={{ ...baseStyle, background: "#34C69A" }}>{intl.messages.REFERENDUM_DEVELOPING}</span>;
+    }
+  };
+
   return (
     <div>
       <div className="referendum">
         <div className="referendum-header">
-          <div className="referendum-title">
-            <div className="referendum-title-content">{title}</div>
+          <div className="referendum-title" onClick={() => setState({ show: !show })}>
+            <div className="referendum-title-content">
+              {title}
+              {getStatus()}
+            </div>
             {total.finished && !total.yes && !total.no ? (
               <div>{intl.messages.REFERENDUM_STATISTICAL}......</div>
             ) : (
@@ -117,64 +121,70 @@ function Finished({ id, title, desc, intl }) {
               </div>
             )}
           </div>
-          <div className="referendum-content">{desc}</div>
-          <div className="referendum-address">
-            <div className="referendum-address-item">
-              {intl.messages.REFERENDUM_FOR_ADDRESS}：
-              <AddressLink
-                value={detail.yes}
-                render={address => (
-                  <div>
-                    {address.substr(0, 2)}
-                    <span style={{ color: "#C54315" }}>{address.substr(2, 3)}</span>
-                    {address.substr(5)}
-                  </div>
-                )}
-              />
-              <CopyToClipboard text={encodeAddress(detail.yes)}>
-                <a className="button is-small is-text">{intl.messages.REFERENDUM_COPY}</a>
-              </CopyToClipboard>
+          {show && <div className="referendum-content">{desc}</div>}
+          {show && (
+            <div className="referendum-address">
+              <div className="referendum-address-item">
+                {intl.messages.REFERENDUM_FOR_ADDRESS}：
+                <AddressLink
+                  value={detail.yes}
+                  render={address => (
+                    <div>
+                      {address.substr(0, 2)}
+                      <span style={{ color: "#C54315" }}>{address.substr(2, 3)}</span>
+                      {address.substr(5)}
+                    </div>
+                  )}
+                />
+                <CopyToClipboard text={encodeAddress(detail.yes)}>
+                  <a className="button is-small is-text">{intl.messages.REFERENDUM_COPY}</a>
+                </CopyToClipboard>
+              </div>
+              <div className="referendum-address-item">
+                {intl.messages.REFERENDUM_AGAINST_ADDRESS}：
+                <AddressLink
+                  value={detail.no}
+                  render={address => (
+                    <div>
+                      {address.substr(0, 2)}
+                      <span style={{ color: "#C54315" }}>{address.substr(2, 3)}</span>
+                      {address.substr(5)}
+                    </div>
+                  )}
+                />
+                <CopyToClipboard text={encodeAddress(detail.no)}>
+                  <a className="button is-small is-text">{intl.messages.REFERENDUM_COPY}</a>
+                </CopyToClipboard>
+              </div>
             </div>
-            <div className="referendum-address-item">
-              {intl.messages.REFERENDUM_AGAINST_ADDRESS}：
-              <AddressLink
-                value={detail.no}
-                render={address => (
-                  <div>
-                    {address.substr(0, 2)}
-                    <span style={{ color: "#C54315" }}>{address.substr(2, 3)}</span>
-                    {address.substr(5)}
-                  </div>
-                )}
+          )}
+        </div>
+        {show && (
+          <div className="referendum-progress">
+            <div className="referendum-progress-left" style={{ flex: total.yes || 1 }}>
+              <NumberFormat
+                value={total.yes / (total.yes + total.no)}
+                options={{ style: "percent", minimumFractionDigits: 2 }}
               />
-              <CopyToClipboard text={encodeAddress(detail.no)}>
-                <a className="button is-small is-text">{intl.messages.REFERENDUM_COPY}</a>
-              </CopyToClipboard>
+            </div>
+            <div className="referendum-progress-right" style={{ flex: total.no || 1 }}>
+              <NumberFormat
+                value={total.no / (total.yes + total.no)}
+                options={{ style: "percent", minimumFractionDigits: 2 }}
+              />
             </div>
           </div>
-        </div>
-        <div className="referendum-progress">
-          <div className="referendum-progress-left" style={{ flex: total.yes || 1 }}>
-            <NumberFormat
-              value={total.yes / (total.yes + total.no)}
-              options={{ style: "percent", minimumFractionDigits: 2 }}
-            />
+        )}
+        {show && (
+          <div className="referendum-list">
+            <div className="referendum-list-item" style={{ paddingRight: 16 }}>
+              <ReferendumList value={yesList} title={intl.messages.REFERENDUM_FOR_LIST} intl={intl} />
+            </div>
+            <div className="referendum-list-item">
+              <ReferendumList value={noList} title={intl.messages.REFERENDUM_AGAINST_LIST} intl={intl} />
+            </div>
           </div>
-          <div className="referendum-progress-right" style={{ flex: total.no || 1 }}>
-            <NumberFormat
-              value={total.no / (total.yes + total.no)}
-              options={{ style: "percent", minimumFractionDigits: 2 }}
-            />
-          </div>
-        </div>
-        <div className="referendum-list">
-          <div className="referendum-list-item" style={{ paddingRight: 16 }}>
-            <ReferendumList value={yesList} title={intl.messages.REFERENDUM_FOR_LIST} intl={intl} />
-          </div>
-          <div className="referendum-list-item">
-            <ReferendumList value={noList} title={intl.messages.REFERENDUM_AGAINST_LIST} intl={intl} />
-          </div>
-        </div>
+        )}
       </div>
     </div>
   );
