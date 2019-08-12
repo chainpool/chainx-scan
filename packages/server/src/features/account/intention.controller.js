@@ -135,7 +135,10 @@ class AccountController {
       "bepal",
       "bigone",
       "blockeden",
-      "rabbit"
+      "rabbit",
+      "nova staking",
+      "hash",
+      "xiamipool"
     ];
 
     ctx.body = keys.map(key => {
