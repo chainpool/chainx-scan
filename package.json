@@ -5,6 +5,9 @@
   "workspaces": [
     "packages/*"
   ],
+  "scripts": {
+    "frontend": "cd packages/site && yarn start"
+  },
   "devDependencies": {
     "husky": "^1.3.1",
     "lint-staged": "^8.1.4",
