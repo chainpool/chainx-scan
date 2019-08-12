@@ -88,7 +88,7 @@ function Finished({ id, title, desc, intl }) {
       return <span style={{ ...baseStyle, background: "#959595" }}>{intl.messages.REFERENDUM_STATISTICAL}</span>;
     } else if (total.no > total.yes) {
       return <span style={{ ...baseStyle, background: "#EA754B" }}>{intl.messages.REFERENDUM_FAIL}</span>;
-    } else if (total.isPublish) {
+    } else if (detail.isPublish) {
       return <span style={{ ...baseStyle, background: "#959595" }}>{intl.messages.REFERENDUM_ISPUBLISH}</span>;
     } else {
       return <span style={{ ...baseStyle, background: "#34C69A" }}>{intl.messages.REFERENDUM_DEVELOPING}</span>;
