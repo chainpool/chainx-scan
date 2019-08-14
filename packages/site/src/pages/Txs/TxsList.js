@@ -1,10 +1,13 @@
 import React, { useEffect, useMemo } from "react";
 
+import { FormattedMessage } from "react-intl";
+
 import { AddressLink, BlockLink, DateShow, NumberFormat, Table, TxAction, TxLink } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
-import { FormattedMessage } from "react-intl";
+import { ReactComponent as Success } from "../../assets/success.svg";
+import { ReactComponent as Error } from "../../assets/error.svg";
 
 export default function TxsList() {
   const [{ tableData }, setState] = useRedux("txsList", { tableData: {} });
@@ -85,13 +88,13 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           signed: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />,
           status: {
             ExtrinsicSuccess: (
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                 <Success style={{ marginRight: 4, height: "1.2em" }} />
                 <FormattedMessage id="ExtrinsicSuccess" />
               </div>
             ),
             ExtrinsicFailed: (
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
                 <Error style={{ marginRight: 4, height: "1.2em" }} />
                 <FormattedMessage id="ExtrinsicFailed" />
               </div>
