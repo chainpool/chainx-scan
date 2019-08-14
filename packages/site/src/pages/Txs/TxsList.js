@@ -54,6 +54,10 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
     {
       title: <FormattedMessage id="ACTION" />,
       dataIndex: "action"
+    },
+    {
+      title: <FormattedMessage id="RESULT" />,
+      dataIndex: "status"
     }
   ];
   return (
@@ -78,7 +82,21 @@ export function RenderTxsList({ tableProps, tableData, handleChange }) {
           time: <DateShow value={data.time} />,
           action: <TxAction module={data.module} call={data.call} />,
           args: JSON.stringify(data.args.reduce((result, c) => Object.assign(result, { [c.name]: c.data }), {})),
-          signed: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />
+          signed: <AddressLink style={{ width: 180 }} className="text-truncate" value={data.signed} />,
+          status: {
+            ExtrinsicSuccess: (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Success style={{ marginRight: 4, height: "1.2em" }} />
+                <FormattedMessage id="ExtrinsicSuccess" />
+              </div>
+            ),
+            ExtrinsicFailed: (
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <Error style={{ marginRight: 4, height: "1.2em" }} />
+                <FormattedMessage id="ExtrinsicFailed" />
+              </div>
+            )
+          }[data.status]
         };
       })}
       columns={columns}
