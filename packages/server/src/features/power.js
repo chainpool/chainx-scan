@@ -16,12 +16,22 @@ router.get("/power_percent", async ctx => {
   });
 
   const allPseduPower = pseduPower.reduce((result, p) => result + p.power, 0);
+  let pcxPower = await ctx.db.Balance.sum("ReservedStaking", {
+    where: { token: "PCX" },
+    raw: true
+  });
+
+  if (allPseduPower > pcxPower) {
+    pcxPower = allPseduPower;
+  }
+
+  const totalPower = pcxPower + allPseduPower;
   pseduPower = pseduPower.map(p => ({
     ...p,
-    power: (p.power / allPseduPower) * 50
+    power: p.power / totalPower
   }));
 
-  const allAssetsPower = pseduPower.concat({ token: "PCX", power: 50 });
+  const allAssetsPower = pseduPower.concat({ token: "PCX", power: pcxPower / totalPower });
 
   ctx.body = allAssetsPower
     .map(p => {
