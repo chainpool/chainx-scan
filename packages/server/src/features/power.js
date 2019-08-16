@@ -21,9 +21,9 @@ router.get("/power_percent", async ctx => {
     raw: true
   });
 
-  if (allPseduPower > pcxPower) {
-    pcxPower = allPseduPower;
-  }
+  // if (allPseduPower > pcxPower) {
+  pcxPower = allPseduPower;
+  // }
 
   const totalPower = pcxPower + allPseduPower;
   pseduPower = pseduPower.map(p => ({
