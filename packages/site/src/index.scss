@@ -662,34 +662,23 @@ a:focus {
     }
   }
   .btc_block {
-    margin: 0;
-    padding: 12px;
-    border: 1px solid $nagtive-light;
-    border-top: none;
-    border-bottom: none;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 269px;
+    justify-content: space-between;
     .btc_status {
-      height: 88px;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      margin: 5px 10px;
-      border: 1px solid $nagtive-light;
-      box-shadow: 0 0 10px $nagtive-light;
-      &:first-child() {
-        margin-left: 0;
-      }
-      &:last-child() {
-        margin-right: 0;
-      }
+      justify-content: space-between;
       .btc_title {
+        font-size: 13px;
+        color: #959595;
         white-space: nowrap;
-        margin-bottom: 10px;
-        font-size: 14px;
       }
       .btc_content {
         font-size: 15px;
-        font-weight: bold;
         color: $nagtive;
       }
     }

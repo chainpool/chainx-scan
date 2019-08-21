@@ -58,7 +58,10 @@ export const BITCOIN = {
   BITCOIN_WITHDRAWAL: "提现",
   BITCOIN_LOCK: "锁仓",
   BITCOIN_TX_COUNT: "交易数",
-  BITCOIN_CROSS_CHAIN_ADDR: "跨链充值 / 锁仓地址数"
+  BITCOIN_CROSS_CHAIN_ADDR: "跨链充值 / 锁仓地址数",
+  跨链充值地址数: "跨链充值地址数",
+  跨链锁仓地址数: "跨链锁仓地址数",
+  转接桥最新区块: "转接桥最新区块"
 };
 export const BLOCKCHAIN = {
   BLOCKS: "区块列表",

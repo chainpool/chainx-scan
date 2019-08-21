@@ -58,8 +58,12 @@ export const BITCOIN = {
   BITCOIN_WITHDRAWAL: "Withdrawal",
   BITCOIN_LOCK: "Lock",
   BITCOIN_TX_COUNT: " Txs",
-  BITCOIN_CROSS_CHAIN_ADDR: "Deposit / Lock Addrs"
+  BITCOIN_CROSS_CHAIN_ADDR: "Deposit / Lock Addrs",
+  跨链充值地址数: "Deposit Binded Addresses",
+  跨链锁仓地址数: "Lock Addresses",
+  转接桥最新区块: "Bitcoin Bridge New Blocks"
 };
+
 export const BLOCKCHAIN = {
   BLOCKS: "Blocks",
   EVENTS: "Events",
