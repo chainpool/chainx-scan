@@ -30,46 +30,50 @@ function Referendum({ intl: { locale }, intl }) {
         render={props => (
           <div className="box">
             <ReferendumNav activeKey="underway" />
-            {details
-              .filter(({ isFinished }) => !isFinished)
-              .map(item => {
-                return (
-                  <div key={item.title[lang]}>
-                    <Underway
-                      {...props}
-                      id={item.id}
-                      title={item.title[lang]}
-                      desc={
-                        <div
-                          className="referendum-detail"
-                          style={{ fontSize: 14, color: "rgba(0, 0, 0, 0.6)", lineHeight: 1.8 }}
-                        >
-                          <p className="r-title">{item.desc[lang]}</p>
-                          {item.reason && (
+            {details && details.filter(({ isFinished }) => !isFinished).length ? (
+              details
+                .filter(({ isFinished }) => !isFinished)
+                .map(item => {
+                  return (
+                    <div key={item.title[lang]}>
+                      <Underway
+                        {...props}
+                        id={item.id}
+                        title={item.title[lang]}
+                        desc={
+                          <div
+                            className="referendum-detail"
+                            style={{ fontSize: 14, color: "rgba(0, 0, 0, 0.6)", lineHeight: 1.8 }}
+                          >
+                            <p className="r-title">{item.desc[lang]}</p>
+                            {item.reason && (
+                              <p>
+                                <span className="r-title">{intl.messages.REFERENDUM_PURPOSE}：</span>
+                                {item.reason[lang]}
+                              </p>
+                            )}
                             <p>
-                              <span className="r-title">{intl.messages.REFERENDUM_PURPOSE}：</span>
-                              {item.reason[lang]}
+                              <span className="r-title">{intl.messages.REFERENDUM_RULE}：</span>
+                              {(item.rule && item.rule[lang]) || intl.messages.REFERENDUM_COMMON_RULE}
+                              <span className="r-title">{intl.messages.REFERENDUM_PARTICIPATION}：</span>
+                              {intl.messages.REFERENDUM_USER_TRANSFER}
+                              <span className="red">{intl.messages.REFERENDUM_ZERO_PCX}</span>
+                              {intl.messages.REFERENDUM_SHOW_AGAINST}
+                              <span className="r-title">{intl.messages.REFERENDUM_FINISHED_TIME}：</span>
+                              {intl.messages.REFERENDUM_BLOCK_HEIGHT}
+                              <span className="red">{item.deadBlock}</span>({intl.messages.REFERENDUM_ESTIMATED_TIME}{" "}
+                              {item.deadTime})。
                             </p>
-                          )}
-                          <p>
-                            <span className="r-title">{intl.messages.REFERENDUM_RULE}：</span>
-                            {(item.rule && item.rule[lang]) || intl.messages.REFERENDUM_COMMON_RULE}
-                            <span className="r-title">{intl.messages.REFERENDUM_PARTICIPATION}：</span>
-                            {intl.messages.REFERENDUM_USER_TRANSFER}
-                            <span className="red">{intl.messages.REFERENDUM_ZERO_PCX}</span>
-                            {intl.messages.REFERENDUM_SHOW_AGAINST}
-                            <span className="r-title">{intl.messages.REFERENDUM_FINISHED_TIME}：</span>
-                            {intl.messages.REFERENDUM_BLOCK_HEIGHT}
-                            <span className="red">{item.deadBlock}</span>({intl.messages.REFERENDUM_ESTIMATED_TIME}{" "}
-                            {item.deadTime})。
-                          </p>
-                        </div>
-                      }
-                    />
-                    <hr />
-                  </div>
-                );
-              })}
+                          </div>
+                        }
+                      />
+                      <hr />
+                    </div>
+                  );
+                })
+            ) : (
+              <div>{intl.messages["没有在进行中的公投"]}</div>
+            )}
           </div>
         )}
       />

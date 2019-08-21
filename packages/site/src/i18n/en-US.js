@@ -447,7 +447,9 @@ export const referendum = {
   REFERENDUM_FOR_LIST: "For List",
   REFERENDUM_AGAINST_LIST: "Against List",
   REFERENDUM_VOTE_ADDRESS: "Vote Address",
-  REFERENDUM_PCX_BALANCE: "PCX Balance"
+  REFERENDUM_PCX_BALANCE: "PCX Balance",
+  公投列表: "Referendum",
+  没有在进行中的公投: "Empty"
 };
 
 export default {

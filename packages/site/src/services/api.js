@@ -1,6 +1,6 @@
 import io from "socket.io-client";
-import { from, throwError, Observable } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { from, throwError, Observable, combineLatest } from "rxjs";
+import { catchError, map, switchMap, tap } from "rxjs/operators";
 import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 
@@ -491,6 +491,28 @@ class Api {
    */
   fetchReferendumTotal$ = (id, params) => {
     return this.fetch$(`/referendum/total/${id}`, params);
+  };
+
+  /**
+   * 获取公投详情列表
+   */
+  fetchReferendumDetailsAndTotal$ = () => {
+    return this.fetch$(`/referendum/details`).pipe(
+      map(data => data.reverse()),
+      switchMap(data => {
+        return combineLatest(
+          data.map(item =>
+            this.fetchReferendumTotal$(item.id).pipe(
+              map(r => ({
+                ...item,
+                ...r
+              }))
+            )
+          )
+        );
+      }),
+      tap(x => console.log(x))
+    );
   };
 
   /**

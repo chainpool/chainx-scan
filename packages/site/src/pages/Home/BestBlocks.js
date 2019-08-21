@@ -16,7 +16,7 @@ export default function BestBlocks() {
   }, [api]);
 
   const loading = (
-    <tr style={{ height: 370, background: "#fff" }}>
+    <tr style={{ height: 222, background: "#fff" }}>
       <td colSpan="3" style={{ verticalAlign: "middle" }}>
         <Spinner />
       </td>
@@ -45,7 +45,7 @@ export default function BestBlocks() {
           </thead>
           <tbody>
             {blocks && blocks.length
-              ? blocks.map(({ number, producer, extrinsics }) => (
+              ? blocks.slice(0, 6).map(({ number, producer, extrinsics }) => (
                   <tr key={number}>
                     <td>
                       <BlockLink value={number} />

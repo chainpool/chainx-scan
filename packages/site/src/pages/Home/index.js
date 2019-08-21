@@ -17,9 +17,9 @@ export default function Home() {
         <div className="column">
           <BestTransactions />
         </div>
-        {/* <div className="column">
+        <div className="column">
           <ReferendumResult />
-        </div> */}
+        </div>
       </div>
       <BtcStatus />
     </section>

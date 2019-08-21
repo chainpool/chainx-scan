@@ -45,7 +45,7 @@ export default function BtcStatus() {
 
   return (
     <div style={{ display: "flex" }}>
-      <div className="panel" style={{ width: 400, marginRight: 16, marginBottom: 0, padding: 0 }}>
+      <div className="panel" style={{ width: 417, marginRight: 16, marginBottom: 0, padding: 0 }}>
         <div className="panel-heading">
           <img src={Bitcoin} alt="Bitcoin" className="panel-heading-icon" />
           <FormattedMessage id="BTCBRIDGE" />

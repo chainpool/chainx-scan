@@ -16,7 +16,7 @@ export default function BestTransactions() {
   }, [api]);
 
   const loading = (
-    <tr style={{ height: 370, background: "#fff" }}>
+    <tr style={{ height: 222, background: "#fff" }}>
       <td colSpan="3" style={{ verticalAlign: "middle" }}>
         <Spinner />
       </td>
@@ -45,16 +45,18 @@ export default function BestTransactions() {
           </thead>
           <tbody>
             {txs && txs.length
-              ? txs.map(tx => (
+              ? txs.slice(0, 6).map(tx => (
                   <tr key={tx.hash}>
                     <td>
-                      <TxLink style={{ width: 136 }} className="text-truncate" value={tx.hash} />
+                      <TxLink style={{ width: 80 }} className="text-truncate" value={tx.hash} />
                     </td>
                     <td>
-                      <AddressLink style={{ width: 180 }} className="text-truncate" value={tx.signed} />
+                      <AddressLink style={{ width: 80 }} className="text-truncate" value={tx.signed} />
                     </td>
                     <td className="has-text-right">
-                      <TxAction module={tx.module} call={tx.call} />
+                      <div style={{ maxWidth: 180 }} className="text-truncate">
+                        <TxAction module={tx.module} call={tx.call} />
+                      </div>
                     </td>
                   </tr>
                 ))

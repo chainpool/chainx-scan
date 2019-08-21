@@ -132,7 +132,7 @@ export default function DashBoard() {
           {/*<Transaction style={{ width: "40%", height: "265px" }} />*/}
         </div>
       </section>
-      <div className="panel" style={{ width: 400, marginBottom: "1.25rem" }}>
+      <div className="panel" style={{ width: 417, marginBottom: "1.25rem" }}>
         <div className="panel-heading">
           <FormattedMessage id="POWER_DISTRIBUTION" />
         </div>
