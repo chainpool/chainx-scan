@@ -109,25 +109,37 @@ export default function DashBoard() {
   );
 
   return (
-    <section className="panel">
-      <div className="panel-heading">
-        <img src={PCX} alt="pcx" className="panel-heading-icon" />
-        <FormattedMessage id="CHAINSTATUS" />
-      </div>
-      <div className="panel-block align-start" style={{ padding: 0 }}>
-        <div className="columns is-multiline is-gapless" style={{ width: "70%", marginBottom: "0" }}>
-          {dataSource && data && data.best
-            ? dataSource.map((item, index) => (
-                <div key={index} className="column is-4 dashboard-cell">
-                  <div className="dashboard-cell__title">{item.label}</div>
-                  <div className="dashboard-cell__content">{item.data}</div>
-                </div>
-              ))
-            : loading}
+    <div style={{ display: "flex" }}>
+      <section className="panel" style={{ flex: 1, marginRight: 16 }}>
+        <div className="panel-heading">
+          <img src={PCX} alt="pcx" className="panel-heading-icon" />
+          <FormattedMessage id="CHAINSTATUS" />
         </div>
-        {/*<Transaction style={{ width: "40%", height: "265px" }} />*/}
-        <PowerPie />
+        <div
+          className="panel-block align-start"
+          style={{ padding: 0, borderRight: dataSource && data && data.best ? 0 : "1px solid #dbdbdb", minHeight: 265 }}
+        >
+          <div className="columns is-multiline is-gapless" style={{ marginBottom: "0", margin: "auto" }}>
+            {dataSource && data && data.best
+              ? dataSource.map((item, index) => (
+                  <div key={index} className="column is-4 dashboard-cell">
+                    <div className="dashboard-cell__title">{item.label}</div>
+                    <div className="dashboard-cell__content">{item.data}</div>
+                  </div>
+                ))
+              : loading}
+          </div>
+          {/*<Transaction style={{ width: "40%", height: "265px" }} />*/}
+        </div>
+      </section>
+      <div className="panel" style={{ width: 400, marginBottom: "1.25rem" }}>
+        <div className="panel-heading">
+          <FormattedMessage id="POWER_DISTRIBUTION" />
+        </div>
+        <div className="panel-block align-start">
+          <PowerPie />
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

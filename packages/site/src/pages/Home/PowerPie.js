@@ -38,12 +38,12 @@ const powerPie = function({ intl }) {
   };
 
   const html = `
-  <div style="color:#000;font-size:16px;text-align: center;width: 10em;">${intl.messages.POWER_DISTRIBUTION}</div>
+  <div style="color:#000;font-size:16px;text-align: center;width: 400px;">${intl.messages.POWER_DISTRIBUTION}</div>
   `;
 
   return (
-    <div style={{ width: "30%", height: "265px" }}>
-      <Chart height={265} data={dv} scale={cols} padding={[30, 0, 0, 0]} forceFit>
+    <div>
+      <Chart height={241} width={374} data={dv} scale={cols} padding={[30, 0, 0, 0]} forceFit>
         <Coord type={"theta"} radius={0.75} innerRadius={0.7} />
         <Axis name="percent" />
         <Guide>
