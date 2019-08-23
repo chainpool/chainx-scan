@@ -138,7 +138,10 @@ class AccountController {
       "rabbit",
       "nova staking",
       "hash",
-      "xiamipool"
+      "xiamipool",
+      "fish",
+      "ipse",
+      "pcxpool"
     ];
 
     ctx.body = keys.map(key => {
