@@ -111,11 +111,11 @@
     "isPublish": true,
     "title": {
       "zh": "06号提案：提高跨链挖矿用户的提息门槛",
-      "en": "06号提案：提高跨链挖矿用户的提息门槛"
+      "en": "Proposal 06: Improving the threshold of Interest claim of inter-chain mining for users"
     },
     "desc": {
       "zh": "目前的跨链挖矿用户包括：X-BTC充值挖矿，L-BTC锁仓挖矿，S-DOT映射挖矿。这三类资产的提息是无门槛的，造成了比较大的流通压力。经过第1届议会的初审，现提起如下议案：1：ChainX用户对单个跨链资产的提息间隔需要大于7天，否则失败；2：ChainX用户对所有跨链资产提息时，其PCX总投票冻结必须大于总利息的10倍，否则失败。议会节点10票赞成：buildlinks, BiHODL, SSSnodes, HashQuark, PolkaWorld, SNZHolding, Polkanordic, huolanshan, Scans, PolkaX，1票未出席：realgar.",
-      "en": "目前的跨链挖矿用户包括：X-BTC充值挖矿，L-BTC锁仓挖矿，S-DOT映射挖矿。这三类资产的提息是无门槛的，造成了比较大的流通压力。经过第1届议会的初审，现提起如下议案：1：ChainX用户对单个跨链资产的提息间隔需要大于7天，否则失败；2：ChainX用户对所有跨链资产提息时，其PCX总投票冻结必须大于总利息的10倍，否则失败。议会节点10票赞成：buildlinks, BiHODL, SSSnodes, HashQuark, PolkaWorld, SNZHolding, Polkanordic, huolanshan, Scans, PolkaX，1票未出席：realgar."
+      "en": "Currently the inter-chain mining includes X-BTC deposit mining, L-BTC lock-up mining and S-DOT mapping mining. There is no threshold for users claiming interests on these assets, resulting in relatively large circulation pressure. After the first trial of Parliament, the following proposals was Initiated: 1. ChainX users can claim interest of one type of interchain  asset with intervals of more than 7 days, otherwise they will fail; 2. When ChainX users claim interest of any interchain assets, their locked PCX must be 10 times greater than pending interest , otherwise they will fail. 10 votes of Parliamentary members are for the proposal: buildlinks, BiHODL, SSSnodes, HashQuark, PolkaWorld, SNZHolding, Polkanordic, huolanshan, Scans, PolkaX, 1 vote absent: realgar."
     },
     "deadBlock": 2900000
   }

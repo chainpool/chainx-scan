@@ -63,6 +63,7 @@ class Api {
     for (const key of Object.keys(params)) {
       url.searchParams.set(paramsKeyConvert(key), params[key]);
     }
+
     return new Promise(async (resolve, reject) => {
       const resp = await window.fetch(url, options);
       if (resp.status !== 200) {
