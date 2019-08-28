@@ -31,10 +31,6 @@ export default function BtcStatus() {
     return () => subscription.unsubscribe();
   }, [api]);
 
-  const getTxNumber = txid => {
-    return JSON.parse(txid).length;
-  };
-
   const loading = (
     <tr style={{ height: 239, background: "#fff" }}>
       <td colSpan="8" style={{ verticalAlign: "middle" }}>

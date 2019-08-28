@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
-import { TxLink, AddressLink, TxAction, AntSpinner as Spinner } from "../../components";
+import { AntSpinner as Spinner } from "../../components";
 import { ReactComponent as Right } from "../../assets/right.svg";
 import api from "../../services/api";
 import { useRedux } from "../../shared";
