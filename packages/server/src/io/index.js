@@ -141,6 +141,7 @@ async function feedLatestTxs(io, db) {
   const page = 0;
   const order = [["number", "DESC"], ["index", "DESC"]];
   const options = {
+    where: { signed: { $not: "" } },
     attributes: ["hash", "signed", "module", "call"],
     order,
     limit: pageSize,
