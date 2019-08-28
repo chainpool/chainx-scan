@@ -16,14 +16,10 @@ router.get("/power_percent", async ctx => {
   });
 
   const allPseduPower = pseduPower.reduce((result, p) => result + p.power, 0);
-  let pcxPower = await ctx.db.Balance.sum("ReservedStaking", {
-    where: { token: "PCX" },
+  let pcxPower = await ctx.db.Intention.sum("totalNomination", {
+    where: { isActive: "true" },
     raw: true
   });
-
-  // if (allPseduPower > pcxPower) {
-  pcxPower = allPseduPower;
-  // }
 
   const totalPower = pcxPower + allPseduPower;
   pseduPower = pseduPower.map(p => ({
