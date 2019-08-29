@@ -154,14 +154,20 @@ class BtcController {
   async withdrawals(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const { rows, count } = await ctx.db.Withdraw.findAndCountAll({
+    const { account_id } = ctx.query;
+
+    const queryOption = {
       where: { chain: "1" }, // '1' 代表btc chain
       include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
       raw: true
-    });
+    };
+
+    if (account_id) queryOption.where.accountid = account_id;
+
+    const { rows, count } = await ctx.db.Withdraw.findAndCountAll(queryOption);
 
     ctx.body = {
       items: rows.map(row => {

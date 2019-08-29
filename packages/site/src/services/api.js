@@ -395,8 +395,8 @@ class Api {
   /**
    * 跨链提现列表
    */
-  fetchBtcWithdrawals$ = params => {
-    return this.fetch$(`/btc/withdrawals`, params);
+  fetchBtcWithdrawals$ = (params, { accountId }) => {
+    return this.fetch$(`/btc/withdrawals`, { accountId: hexStripPrefix(accountId), ...params });
   };
 
   /**

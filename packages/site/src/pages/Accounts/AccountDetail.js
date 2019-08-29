@@ -20,6 +20,7 @@ import FillOrderList from "./FillOrderList";
 import AccountTransfer from "./AccountTransfer";
 import AccountBtcLock from "./AccountBtcLock";
 import AccountCrossDeposit from "./AccountCrossDeposit";
+import AccountCrossWithdrawals from "./AccountCrossWithdrawals";
 import { FormattedMessage } from "react-intl";
 
 export default function Account(props) {
@@ -165,6 +166,14 @@ export default function Account(props) {
                 <FormattedMessage id="btclockList" />
               </a>
             </li>
+            <li
+              onClick={() => setActiveKey("accountCrossWithdrawals")}
+              className={classnames({ "is-active": activeKey === "accountCrossWithdrawals" })}
+            >
+              <a>
+                <FormattedMessage id="WITHDRAWALS" />
+              </a>
+            </li>
           </ul>
         </div>
         {detail && detail.accountId && activeKey === "assets" && <AccountAsset accountId={detail.accountId} />}
@@ -180,6 +189,9 @@ export default function Account(props) {
           <AccountCrossDeposit accountId={detail.accountId} />
         )}
         {detail && detail.accountId && activeKey === "btcLockAddr" && <AccountBtcLock accountId={detail.accountId} />}
+        {detail && detail.accountId && activeKey === "accountCrossWithdrawals" && (
+          <AccountCrossWithdrawals accountId={detail.accountId} />
+        )}
       </div>
     </>
   );
