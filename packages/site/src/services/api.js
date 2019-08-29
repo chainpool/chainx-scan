@@ -367,8 +367,8 @@ class Api {
   /**
    * 跨链充值列表
    */
-  fetchBtcDeposits$ = params => {
-    return this.fetch$(`/btc/deposits`, params);
+  fetchBtcDeposits$ = (params, { accountId }) => {
+    return this.fetch$(`/btc/deposits`, { accountId: hexStripPrefix(accountId), ...params });
   };
 
   /**

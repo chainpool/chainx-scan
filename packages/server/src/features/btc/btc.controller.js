@@ -129,13 +129,19 @@ class BtcController {
   async deposits(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const { rows, count } = await ctx.db.Deposit.findAndCountAll({
+    const { account_id } = ctx.query;
+
+    const queryOption = {
       include: [{ model: ctx.db.Block, as: "block", attributes: ["time"] }],
       order: [["height", "DESC"]],
       limit: pageSize,
       offset: page * pageSize,
       raw: true
-    });
+    };
+
+    if (account_id) queryOption.where = { accountid: account_id };
+
+    const { rows, count } = await ctx.db.Deposit.findAndCountAll(queryOption);
 
     ctx.body = {
       items: rows,
