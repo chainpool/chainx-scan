@@ -511,8 +511,7 @@ class Api {
             )
           )
         );
-      }),
-      tap(x => console.log(x))
+      })
     );
   };
 
