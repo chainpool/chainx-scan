@@ -6,15 +6,17 @@ router.get("/congress/members", async ctx => {
   ctx.body = [
     "buildlinks",
     "BiHODL",
-    "SSSnodes",
-    "HashQuark",
-    "PolkaWorld",
-    "SNZHolding",
-    "Polkanordic",
     "huolanshan",
+    "SSSnodes",
+    "Jinma",
+    "HashQuark",
+    "HLT",
+    "tower",
     "realgar",
-    "Scans"
-    // "tower"
+    "PolkaWorld"
+    // "SNZHolding",
+    // "Polkanordic",
+    // "Scans",
   ];
 });
 
