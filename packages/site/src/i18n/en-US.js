@@ -186,8 +186,8 @@ export const CROSSBLOCK = {
   BALANCE: "Balance",
   MEMO: "Memo",
   EXTRINSICSTYPE: "Extrinsics Type",
-  BINDEDADDRESSES: "Deposit Binded Addresses",
-  TRUSTEEADDRESSES: "Trustee Addresses",
+  BINDEDADDRESSES: "Deposit Binded",
+  TRUSTEEADDRESSES: "Trustee",
   UNCLAIMEDDEPOSITS: "Unclaimed Deposits",
   CHANNELNAME: "Channel Name",
   BITCOINADDRESS: " Address",
@@ -213,7 +213,7 @@ export const CROSSBLOCK = {
   WITHDRAWALLIST: "Withdrawal List",
   DEPOSITELIST: "Deposits",
   LOCKADDRESS: "Lock Addresses",
-  LOCK_LIST: "LOCK LIST"
+  LOCK_LIST: "Locks"
 };
 export const DAPP = {
   ACCUMULATIVEDEPTH: "Sum",
@@ -410,7 +410,7 @@ export const btclocklist = {
   unlocktxhash: "Bitcoin Unlock Tx",
   unlockrelayhash: "Unlock ChainX Relay Tx",
   locktxhash: "Lock Bitcoin Tx",
-  btclockList: "Lock List",
+  btclockList: "Locks",
   chain: "chain",
   address: "address",
   nodename: "channel name",
@@ -452,6 +452,10 @@ export const referendum = {
   没有在进行中的公投: "Empty"
 };
 
+export const accountDetail = {
+  ACCOUNT_DETAIL_EXTRINSIC: "Txs"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -470,6 +474,7 @@ export default {
   ...btclocklist,
   ...referendumNav,
   ...referendum,
+  ...accountDetail,
   moduleNameMap,
   callNameMap,
   txType,

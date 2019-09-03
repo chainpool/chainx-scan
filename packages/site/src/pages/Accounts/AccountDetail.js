@@ -139,7 +139,7 @@ export default function Account(props) {
               className={classnames({ "is-active": activeKey === "accountTrade" })}
             >
               <a>
-                <FormattedMessage id="EXTRINSICS" />
+                <FormattedMessage id="ACCOUNT_DETAIL_EXTRINSIC" />
               </a>
             </li>
             <li
