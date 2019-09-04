@@ -448,6 +448,10 @@ export const referendum = {
   没有在进行中的公投: "没有在进行中的公投"
 };
 
+export const accountDetail = {
+  ACCOUNT_DETAIL_EXTRINSIC: "交易列表"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -466,6 +470,7 @@ export default {
   ...btclocklist,
   ...referendumNav,
   ...referendum,
+  ...accountDetail,
   moduleNameMap,
   callNameMap,
   txType,
