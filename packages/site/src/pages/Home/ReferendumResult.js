@@ -27,7 +27,7 @@ export default injectIntl(function ReferendumResult({ intl }) {
       marginLeft: 4
     };
 
-    if (total.finished && !total.yes && !total.no) {
+    if (!total.isFinished) {
       return <span style={{ ...baseStyle, background: "#959595" }}>{intl.messages.REFERENDUM_STATISTICAL}</span>;
     } else if (total.no > total.yes) {
       return <span style={{ ...baseStyle, background: "#EA754B" }}>{intl.messages.REFERENDUM_FAIL}</span>;
