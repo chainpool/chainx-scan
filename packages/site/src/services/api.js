@@ -1,6 +1,6 @@
 import io from "socket.io-client";
-import { from, throwError, Observable, combineLatest } from "rxjs";
-import { catchError, map, switchMap, tap } from "rxjs/operators";
+import { combineLatest, from, Observable, throwError } from "rxjs";
+import { catchError, map, switchMap } from "rxjs/operators";
 import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 

@@ -118,5 +118,21 @@
       "en": "Currently the inter-chain mining includes X-BTC deposit mining, L-BTC lock-up mining and S-DOT mapping mining. There is no threshold for users claiming interests on these assets, resulting in relatively large circulation pressure. After the first trial of Parliament, the following proposals was Initiated: 1. ChainX users can claim interest of one type of interchain  asset with intervals of more than 7 days, otherwise they will fail; 2. When ChainX users claim interest of any interchain assets, their locked PCX must be 10 times greater than pending interest , otherwise they will fail. 10 votes of Parliamentary members are for the proposal: buildlinks, BiHODL, SSSnodes, HashQuark, PolkaWorld, SNZHolding, Polkanordic, huolanshan, Scans, PolkaX, 1 vote absent: realgar."
     },
     "deadBlock": 2900000
+  },
+  {
+    "id": "7",
+    "yes": "0xb7df8c4a3669e1dd7fd66921b22727c89de965a0eb4c34bd0d23dbcb0519a57e",
+    "no": "0xb7def9f380ca6d54389e9d8e045c99a55d4ab3a9d297847b2467ff3d3d037a51",
+    "isActive": "0",
+    "isPublish": false,
+    "title": {
+      "zh": "07号提案：调整资产挖矿算力",
+      "en": "Proposal 07: Adjustment of assets mining power"
+    },
+    "desc": {
+      "zh": "考虑到L-BTC锁仓挖矿对链实质性功能的作用远低于X-BTC产生的效应，以及维护PCX挖矿用户的权益，增强PCX持币用户的信心，现发起以下提案：\n\n1：将L-BTC用户锁仓挖矿的算力降低到X-BTC的一半，即L-BTC算力：X-BTC算力=1：2。\n2：先调整PCX的算力至全链挖矿算力的3/4，其它资产挖矿总和占比1/4；一个月后，再将PCX的算力调整至全链挖矿算力的2/3，其它资产挖矿总和占比1/3。",
+      "en": "Considering that the effect of L-BTC lock-up mining on the substantive function of the chain is far less than that of X-BTC, as well as ensuring the rights and interests of PCX mining users, and enhancing the confidence of PCX  holders, the following proposals are launched: \n\n 1: Reduce the mining power of L-BTC to half of that of X-BTC, that is, L-BTC: X-BTC = 1:2. \n 2: First adjust the mining power of PCX to 3/4 of the total mining power of the whole chain and the total mining power of other assets to 1/4 ; after one month, adjust the mining power of PCX to 2/3 of the total mining power of the whole chain and the total mining power of other assets to 1/3."
+    },
+    "deadBlock": 4588000
   }
 ]
