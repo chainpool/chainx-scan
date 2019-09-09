@@ -57,8 +57,9 @@ export default injectIntl(function ReferendumResult({ intl }) {
             }}
           >
             {list.map((item, index) => (
-              <div
+              <a
                 key={item.id}
+                href={`referendum/${item.isFinished ? "finished" : "underway"}`}
                 style={{
                   paddingLeft: 16,
                   paddingRight: 16,
@@ -66,12 +67,13 @@ export default injectIntl(function ReferendumResult({ intl }) {
                   alignItems: "center",
                   justifyContent: "space-between",
                   flex: 1,
-                  borderBottom: index === list.length - 1 ? "0" : "1px solid #DEDEDE"
+                  borderBottom: index === list.length - 1 ? "0" : "1px solid #DEDEDE",
+                  color: "#000"
                 }}
               >
                 <div style={{ fontSize: 12 }}>{item.title[lang]}</div>
                 {getStatus(item)}
-              </div>
+              </a>
             ))}
           </div>
         ) : (
