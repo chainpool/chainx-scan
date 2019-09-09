@@ -28,7 +28,9 @@ export default injectIntl(function ReferendumResult({ intl }) {
     };
 
     if (!total.isFinished) {
-      return <span style={{ ...baseStyle, background: "#959595" }}>{intl.messages.REFERENDUM_STATISTICAL}</span>;
+      return (
+        <span style={{ ...baseStyle, background: "#F6C94A", color: "#000000" }}>{intl.messages.REFERENDUM_VOTE}</span>
+      );
     } else if (total.no > total.yes) {
       return <span style={{ ...baseStyle, background: "#EA754B" }}>{intl.messages.REFERENDUM_FAIL}</span>;
     } else if (total.isPublish) {

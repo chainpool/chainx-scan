@@ -422,6 +422,7 @@ export const referendum = {
   REFERENDUM_FOR: "赞成",
   REFERENDUM_AGAINST: "反对",
   REFERENDUM_UNIT: "票",
+  REFERENDUM_VOTE: "投票中",
   REFERENDUM_STATISTICAL: "统计中",
   REFERENDUM_ISPUBLISH: "已上线",
   REFERENDUM_DEVELOPING: "开发中",

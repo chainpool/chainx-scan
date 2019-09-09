@@ -426,6 +426,7 @@ export const referendum = {
   REFERENDUM_FOR: "FOR",
   REFERENDUM_AGAINST: "AGAINST",
   REFERENDUM_UNIT: "Votes",
+  REFERENDUM_VOTE: "Voting",
   REFERENDUM_STATISTICAL: "In Statistical Work",
   REFERENDUM_ISPUBLISH: "Published",
   REFERENDUM_DEVELOPING: "Developing",
