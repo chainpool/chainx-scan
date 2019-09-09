@@ -123,8 +123,8 @@
     "id": "7",
     "yes": "0xb7df8c4a3669e1dd7fd66921b22727c89de965a0eb4c34bd0d23dbcb0519a57e",
     "no": "0xb7def9f380ca6d54389e9d8e045c99a55d4ab3a9d297847b2467ff3d3d037a51",
-    "isActive": "0",
-    "isPublish": false,
+    "isActive": "1",
+    "isPublish": true,
     "title": {
       "zh": "07号提案：调整资产挖矿算力",
       "en": "Proposal 07: Adjustment of assets mining power"
