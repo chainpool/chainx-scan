@@ -141,7 +141,9 @@ class AccountController {
       "xiamipool",
       "fish",
       "ipse",
-      "pcxpool"
+      "pcxpool",
+      "azimut",
+      "redpenguin"
     ];
 
     ctx.body = keys.map(key => {
