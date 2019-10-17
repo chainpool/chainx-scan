@@ -16,10 +16,18 @@ router.get("/power_percent", async ctx => {
   });
 
   const allPseduPower = pseduPower.reduce((result, p) => result + p.power, 0);
-  let pcxPower = await ctx.db.Intention.sum("totalNomination", {
+  const intentions = await ctx.db.Intention.findAll({
+    attributes: ["accountid", "totalNomination"],
     where: { isActive: "true" },
     raw: true
   });
+  const ids = intentions.map(intention => intention.accountid);
+  const set = new Set(ids);
+
+  const pcxPower = [...set].reduce((result, id) => {
+    const intention = intentions.find(intention => intention.accountid === id);
+    return result + parseInt(intention.totalNomination);
+  }, 0);
 
   const totalPower = pcxPower + allPseduPower;
   pseduPower = pseduPower.map(p => ({

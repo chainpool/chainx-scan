@@ -9,10 +9,10 @@ const config = require(__dirname + "/../config/config.json")[env];
 
 // TODO: 可在适当位置对这些环境变量做检查，没有设置或不符合要求提示信息
 Object.assign(config, {
-  host: "pgm-bp15ge027b8034f1eo.pg.rds.aliyuncs.com",
-  port: "3432",
-  username: "chainx",
-  password: "ChainXorg123"
+  host: process.env.DB_HOST,
+  port: process.env.DB_PORT,
+  username: process.env.DB_USER,
+  password: process.env.DB_PASS
 });
 const db = {};
 

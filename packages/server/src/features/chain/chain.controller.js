@@ -55,6 +55,20 @@ class ChainController {
       .toNumber()
       .toFixed(8);
   }
+
+  async issuance(ctx) {
+    const status = await ctx.db.Status.findOne({
+      order: [["best", "DESC"]],
+      raw: true
+    });
+
+    const issuance = new BigNumber(status["pcx_issuance"]);
+
+    ctx.body = issuance
+      .dividedBy(Math.pow(10, 8))
+      .toNumber()
+      .toFixed(8);
+  }
 }
 
 module.exports = new ChainController();
