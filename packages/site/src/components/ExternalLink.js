@@ -15,16 +15,16 @@ export default function ExternalLink({ value, render, type, className, style }) 
       } catch {}
       break;
     case "btcHash":
-      href = `https://live.blockcypher.com/btc/block/${value}/`;
+      href = `https://live.blockcypher.com/btc-testnet/block/${value}/`;
       break;
     case "btcTxid":
-      href = `https://live.blockcypher.com/btc/tx/${value}/`;
+      href = `https://live.blockcypher.com/btc-testnet/tx/${value}/`;
       break;
     case "btcAddress":
-      href = `https://live.blockcypher.com/btc/address/${value}`;
+      href = `https://live.blockcypher.com/btc-testnet/address/${value}`;
       break;
     case "ethAddress":
-      href = `https://etherscan.io/address/${value}`;
+      href = `https://ropsten.etherscan.io/address/${value}`;
       break;
     default:
       break;
