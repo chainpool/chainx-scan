@@ -8,7 +8,7 @@ class AccountTransferController {
     const { page, pageSize } = extractPage(ctx);
     const order = [["number", "DESC"], ["index", "DESC"]];
     const { rows: items, count } = await ctx.db.Transaction.findAndCountAll({
-      where: { $or: [{ signed: accountId }, { payee: accountId }], call: "transfer" },
+      where: { $or: [{ signed: accountId }, { payee: accountId }], call: "transfer", status: "ExtrinsicSuccess" },
       attributes: ["number", "index", "signed", "payee", "args", "hash", "time"],
       order,
       limit: pageSize,
