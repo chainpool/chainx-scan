@@ -28,6 +28,23 @@ class ContractController {
     const option = { raw: true, where: { contract: address } };
     ctx.body = await ctx.db.Contract.findOne(option);
   }
+
+  async getContractTxs(ctx) {
+    const { address } = ctx.params;
+
+    const txs = await ctx.db.sequelize.query(
+      `
+      select t.*, b.time from "contracts_transation" as ct
+      inner join transaction as t on t.hash = ct.tx
+      inner join block as b on b.number=t.number where ct.contract='${address}';
+    `,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    ctx.body = txs.map(normalizeTransaction);
+  }
 }
 
 module.exports = new ContractController();
