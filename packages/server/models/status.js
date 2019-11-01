@@ -48,6 +48,12 @@ module.exports = (sequelize, DataTypes) => {
       },
       sdot_power: {
         type: DataTypes.BIGINT
+      },
+      contract_count: {
+        type: DataTypes.BIGINT
+      },
+      contract_call_count: {
+        type: DataTypes.BIGINT
       }
     },
     {
