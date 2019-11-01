@@ -21,6 +21,13 @@ class ContractController {
       total: parseInt(cnt)
     };
   }
+
+  async getContract(ctx) {
+    const { address } = ctx.params;
+
+    const option = { raw: true, where: { contract: address } };
+    ctx.body = await ctx.db.Contract.findOne(option);
+  }
 }
 
 module.exports = new ContractController();
