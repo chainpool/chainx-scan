@@ -2,7 +2,7 @@ import React from "react";
 import { Route, Switch } from "react-router";
 
 import ContractsList from "./ContractsList";
-import ContractDetail from "./ContractDetailil";
+import ContractDetail from "./ContractDetail";
 import { BlockChainNav } from "../../components";
 
 export default function Blocks() {
