@@ -28,3 +28,4 @@ export { default as ScrollTop } from "./ScrollTop";
 export { default as Address } from "./Address";
 export { default as TokenChain } from "./TokenChain";
 export { default as ReferendumNav } from "./ReferendumNav";
+export { default as ContractLink } from "./ContractLink";

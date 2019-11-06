@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, TxLink, TxAction, BlockLink, Table } from "../../components";
+import { AddressLink, TxLink, ContractLink, BlockLink, Table } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
@@ -26,7 +26,7 @@ export default function AccountsList() {
           return {
             key: index,
             height: <BlockLink value={data.height} />,
-            contract: <AddressLink style={{ maxWidth: 180 }} className="text-truncate" value={`0x${data.contract}`} />,
+            contract: <ContractLink style={{ maxWidth: 180 }} className="text-truncate" value={`0x${data.contract}`} />,
             codeHash: `0x${data.code_hash}`,
             account: <AddressLink style={{ maxWidth: 180 }} className="text-truncate" value={`0x${data.account}`} />
           };
