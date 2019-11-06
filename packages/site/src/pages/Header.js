@@ -11,7 +11,7 @@ export default withRouter(function Header(props) {
   const { location } = props;
   const [showMenu, setShowMenu] = useState(false);
 
-  const isMatchBlocks = ["/txs", "/events", "/accounts", "/multisig"].some(
+  const isMatchBlocks = ["/txs", "/events", "/accounts", "/multisig", "/contracts"].some(
     path => !!matchPath(location.pathname, { path })
   );
 

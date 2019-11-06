@@ -351,6 +351,13 @@ class Api {
   };
 
   /**
+   * 获取智能合约
+   */
+  fetchContracts$ = params => {
+    return this.fetch$(`/contracts`, params);
+  };
+
+  /**
    * 获取账户绑定地址列表
    */
   fetchAccountBindAddresses$ = (accountId, params) => {

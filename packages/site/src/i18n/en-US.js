@@ -96,6 +96,7 @@ export const BLOCKCHAIN = {
   CREATEAT: "AT",
   LASTUPDATE: "Last Update",
   multisig: "Multisig Record",
+  contracts: "Contracts",
   multisigaddress: "Multisig Address",
   proposer: "Proposer",
   proposalId: "Proposal ID",
@@ -457,6 +458,13 @@ export const accountDetail = {
   ACCOUNT_DETAIL_EXTRINSIC: "Txs"
 };
 
+export const contracts = {
+  合约地址: "Contracts Address",
+  代码哈希: "Code Hash",
+  区块高度: "Block Height",
+  部署账户: "Deploy Account"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -476,6 +484,7 @@ export default {
   ...referendumNav,
   ...referendum,
   ...accountDetail,
+  ...contracts,
   moduleNameMap,
   callNameMap,
   txType,

@@ -95,6 +95,7 @@ export const BLOCKCHAIN = {
   CREATEAT: "创建时间",
   LASTUPDATE: "最后更新时间",
   multisig: "多签记录",
+  contracts: "智能合约",
   multisigaddress: "多签地址",
   proposer: "提议人",
   proposalId: "提议ID",
@@ -453,6 +454,13 @@ export const accountDetail = {
   ACCOUNT_DETAIL_EXTRINSIC: "交易列表"
 };
 
+export const contracts = {
+  合约地址: "合约地址",
+  代码哈希: "代码哈希",
+  区块高度: "区块高度",
+  部署账户: "部署账户"
+};
+
 export default {
   ...MENU,
   ...DASHBOARD,
@@ -472,6 +480,7 @@ export default {
   ...referendumNav,
   ...referendum,
   ...accountDetail,
+  ...contracts,
   moduleNameMap,
   callNameMap,
   txType,
