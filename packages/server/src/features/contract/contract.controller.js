@@ -30,20 +30,36 @@ class ContractController {
   }
 
   async getContractTxs(ctx) {
+    const { page, pageSize } = extractPage(ctx);
     const { address } = ctx.params;
 
     const txs = await ctx.db.sequelize.query(
       `
       select t.*, b.time from "contracts_transation" as ct
       inner join transaction as t on t.hash = ct.tx
-      inner join block as b on b.number=t.number where ct.contract='${address}';
+      inner join block as b on b.number=t.number where ct.contract='${address}'
+      order by b.time desc offset ${page * pageSize} limit ${pageSize}
     `,
       {
         type: ctx.db.sequelize.QueryTypes.SELECT
       }
     );
 
-    ctx.body = txs.map(normalizeTransaction);
+    const rows = await ctx.db.sequelize.query(
+      `SELECT COUNT(*) FROM "contracts_transation" where contract='${address}'`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+    const total = rows[0].count;
+
+    const items = txs.map(normalizeTransaction);
+    ctx.body = {
+      items,
+      pageSize,
+      page,
+      total
+    };
   }
 }
 
