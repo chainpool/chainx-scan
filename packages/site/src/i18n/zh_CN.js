@@ -259,7 +259,8 @@ export const moduleNameMap = {
   "xbridge-features": "桥特性集",
   Session: "会话",
   XBridgeFeatures: "桥特性集",
-  XBridgeCommon: "桥基础"
+  XBridgeCommon: "桥基础",
+  XContracts: "合约"
 };
 
 export const callNameMap = {

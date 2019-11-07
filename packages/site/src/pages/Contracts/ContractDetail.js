@@ -6,11 +6,13 @@ import {
   AddressLink,
   Breadcrumb,
   ExternalLink,
-  NumberFormat,
+  BlockLink,
   PanelList,
   AntSpinner as Spinner,
   NoData
 } from "../../components";
+import { encodeAddress } from "../../shared";
+import ContractTx from "./ContractTx";
 import { FormattedMessage } from "react-intl";
 
 export default function ContractDetail(props) {
@@ -20,22 +22,24 @@ export default function ContractDetail(props) {
   } = match;
 
   const [detail, setDetail] = useState({});
-  const [activeKey, setActiveKey] = useState("assets");
 
   useEffect(() => {
-    const subscription = api.fetchAccountDetail$(accountId).subscribe(data => setDetail(data), data => setDetail(data));
+    const subscription = api
+      .fetchContractDetail$(accountId)
+      .subscribe(data => setDetail(data), data => setDetail(data));
     return () => subscription.unsubscribe();
   }, [accountId]);
 
   const breadcrumb = (
     <Breadcrumb
       dataSource={[
-        { to: "/accounts", label: <FormattedMessage id="智能合约列表" /> },
+        { to: "/contracts", label: <FormattedMessage id="智能合约列表" /> },
         { label: <FormattedMessage id="智能合约详情" /> }
       ]}
     />
   );
-  if (!detail.code && !detail.accountId) {
+
+  if (!detail.account) {
     return (
       <>
         {breadcrumb}
@@ -44,128 +48,37 @@ export default function ContractDetail(props) {
         </div>
       </>
     );
-  } else if (!!detail.code) {
-    return <NoData id={accountId} />;
   }
+
   return (
     <>
       {breadcrumb}
       <PanelList
         dataSource={[
           {
-            label: <FormattedMessage id="ACCOUNTADDRESS" />,
-            data: <AddressLink value={detail.accountId} />
+            label: <FormattedMessage id="合约地址" />,
+            data: encodeAddress(`0x${detail.contract}`)
           },
           {
-            label: <FormattedMessage id="PUBLICKEY" />,
-            data: detail.accountId
+            label: <FormattedMessage id="代码哈希" />,
+            data: `0x${detail.code_hash}`
           },
           {
-            label: <FormattedMessage id="TRANSACTIONCOUNT" />,
-            data: <NumberFormat value={detail.txCount} />
+            label: <FormattedMessage id="区块高度" />,
+            data: <BlockLink value={detail.height} />
           },
           {
-            label: (
-              <>
-                BTC
-                <FormattedMessage id="DEPOSITADDRESS" />
-              </>
-            ),
-            data: (
-              <>
-                {detail.btcAddresses &&
-                  detail.btcAddresses.map((address, index) => (
-                    <div key={index}>
-                      <ExternalLink type="btcAddress" value={address} />
-                    </div>
-                  ))}
-              </>
-            )
+            label: <FormattedMessage id="部署账户" />,
+            data: <AddressLink value={detail.account} />
+          },
+          {
+            label: <FormattedMessage id="ABI" />,
+            data: detail.abi
           }
         ]}
       />
       <div className="box">
-        <div className="tabs">
-          <ul>
-            <li onClick={() => setActiveKey("assets")} className={classnames({ "is-active": activeKey === "assets" })}>
-              <a>
-                <FormattedMessage id="ASSETS" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("transfer")}
-              className={classnames({ "is-active": activeKey === "transfer" })}
-            >
-              <a>
-                <FormattedMessage id="TRANSFERS" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("nomination")}
-              className={classnames({ "is-active": activeKey === "nomination" })}
-            >
-              <a>
-                <FormattedMessage id="NOMINATIONS" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("orderList")}
-              className={classnames({ "is-active": activeKey === "orderList" })}
-            >
-              <a>
-                <FormattedMessage id="OPENORDERS" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("fillOrderList")}
-              className={classnames({ "is-active": activeKey === "fillOrderList" })}
-            >
-              <a>
-                <FormattedMessage id="ORDERHISTORY" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("accountTrade")}
-              className={classnames({ "is-active": activeKey === "accountTrade" })}
-            >
-              <a>
-                <FormattedMessage id="ACCOUNT_DETAIL_EXTRINSIC" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("bindAddresses")}
-              className={classnames({ "is-active": activeKey === "bindAddresses" })}
-            >
-              <a>
-                <FormattedMessage id="BINDEDADDRESSES" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("accountCrossDeposit")}
-              className={classnames({ "is-active": activeKey === "accountCrossDeposit" })}
-            >
-              <a>
-                <FormattedMessage id="DEPOSITELIST" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("btcLockAddr")}
-              className={classnames({ "is-active": activeKey === "btcLockAddr" })}
-            >
-              <a>
-                <FormattedMessage id="btclockList" />
-              </a>
-            </li>
-            <li
-              onClick={() => setActiveKey("accountCrossWithdrawals")}
-              className={classnames({ "is-active": activeKey === "accountCrossWithdrawals" })}
-            >
-              <a>
-                <FormattedMessage id="WITHDRAWALS" />
-              </a>
-            </li>
-          </ul>
-        </div>
+        <ContractTx accountId={accountId} />
       </div>
     </>
   );

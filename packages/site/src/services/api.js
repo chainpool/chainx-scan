@@ -358,6 +358,29 @@ class Api {
   };
 
   /**
+   * 获取智能合约详情
+   */
+  fetchContractDetail$ = accountId => {
+    return this.fetch$(`/contract/${hexStripPrefix(accountId)}`);
+  };
+
+  /**
+   * 获取智能合约交易详情
+   */
+  fetchContractTx$ = (params, { accountId }) => {
+    return this.fetch$(`/contract/${hexStripPrefix(accountId)}/txs`).pipe(
+      map(data => {
+        return {
+          items: data,
+          pageSize: 200,
+          page: 0,
+          total: 41
+        };
+      })
+    );
+  };
+
+  /**
    * 获取账户绑定地址列表
    */
   fetchAccountBindAddresses$ = (accountId, params) => {

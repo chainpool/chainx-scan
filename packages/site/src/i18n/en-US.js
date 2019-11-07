@@ -262,7 +262,8 @@ export const moduleNameMap = {
   "xbridge-features": "Bridge Features",
   Session: "Session",
   XBridgeFeatures: "Bridge Features",
-  XBridgeCommon: "Bridge Common"
+  XBridgeCommon: "Bridge Common",
+  XContracts: "contracts"
 };
 
 export const callNameMap = {
