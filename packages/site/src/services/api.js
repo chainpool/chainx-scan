@@ -369,16 +369,6 @@ class Api {
    */
   fetchContractTx$ = (params, { accountId }) => {
     return this.fetch$(`/contract/${hexStripPrefix(accountId)}/txs`);
-    // .pipe(
-    //   map(data => {
-    //     return {
-    //       items: data,
-    //       pageSize: 200,
-    //       page: 0,
-    //       total: 41
-    //     };
-    //   })
-    // );
   };
 
   /**

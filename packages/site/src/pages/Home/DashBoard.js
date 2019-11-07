@@ -35,14 +35,29 @@ export default function DashBoard() {
       label: (
         <>
           ChainX
-          <FormattedMessage id="TRANSACTIONCOUNT" />
+          <FormattedMessage id="TRANSACTIONCOUNT" /> / <FormattedMessage id="ACCOUNTCOUNT" />
         </>
       ),
-      data: <NumberFormat value={data.transactions} />
+      data: (
+        <>
+          <NumberFormat value={data.transactions} /> / <NumberFormat value={data.account_count} />
+        </>
+      )
     },
     {
-      label: <FormattedMessage id="ACCOUNTCOUNT" />,
-      data: <NumberFormat value={data.account_count} />
+      label: (
+        <>
+          <FormattedMessage id="智能合约数" /> / <FormattedMessage id="调用数" />
+        </>
+      ),
+      data: (
+        <div>
+          <NavLink to={`/contracts`} className="nav-link">
+            <NumberFormat value={data.contract_count} />
+          </NavLink>{" "}
+          / <NumberFormat value={data.contract_call_count} />
+        </div>
+      )
     },
     {
       label: (
