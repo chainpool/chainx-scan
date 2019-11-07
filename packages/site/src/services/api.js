@@ -368,16 +368,17 @@ class Api {
    * 获取智能合约交易详情
    */
   fetchContractTx$ = (params, { accountId }) => {
-    return this.fetch$(`/contract/${hexStripPrefix(accountId)}/txs`).pipe(
-      map(data => {
-        return {
-          items: data,
-          pageSize: 200,
-          page: 0,
-          total: 41
-        };
-      })
-    );
+    return this.fetch$(`/contract/${hexStripPrefix(accountId)}/txs`);
+    // .pipe(
+    //   map(data => {
+    //     return {
+    //       items: data,
+    //       pageSize: 200,
+    //       page: 0,
+    //       total: 41
+    //     };
+    //   })
+    // );
   };
 
   /**
