@@ -1,16 +1,7 @@
 import React, { useEffect, useState } from "react";
-import classnames from "classnames";
 
 import api from "../../services/api";
-import {
-  AddressLink,
-  Breadcrumb,
-  ExternalLink,
-  BlockLink,
-  PanelList,
-  AntSpinner as Spinner,
-  NoData
-} from "../../components";
+import { AddressLink, Breadcrumb, BlockLink, PanelList, AntSpinner as Spinner } from "../../components";
 import { encodeAddress } from "../../shared";
 import ContractTx from "./ContractTx";
 import { FormattedMessage } from "react-intl";

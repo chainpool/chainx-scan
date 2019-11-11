@@ -463,7 +463,13 @@ export const contracts = {
   合约地址: "Contracts Address",
   代码哈希: "Code Hash",
   区块高度: "Block Height",
-  部署账户: "Deploy Account"
+  部署账户: "Deploy Account",
+  时间: "Time",
+  交易哈希: "Extrinsic Hash",
+  操作: "Action",
+  结果: "Result",
+  智能合约详情: "Contracts Detail",
+  智能合约列表: "Contracts List"
 };
 
 export default {

@@ -1,20 +1,13 @@
 import React, { useMemo, useEffect } from "react";
 
-import {
-  Table,
-  DateShow,
-  Hash,
-  BlockLink,
-  ExternalLink,
-  TxAction,
-  AddressLink,
-  TxLink,
-  Amount
-} from "../../components";
+import { FormattedMessage } from "react-intl";
+
+import { Table, DateShow, BlockLink, TxAction, TxLink } from "../../components";
 import { useRedux } from "../../shared";
 import TableService from "../../services/tableService";
 import api from "../../services/api";
-import { FormattedMessage } from "react-intl";
+import { ReactComponent as Success } from "../../assets/success.svg";
+import { ReactComponent as Error } from "../../assets/error.svg";
 
 export default function ContractTx({ accountId }) {
   const [{ tableData }, setState] = useRedux(`contractTx-${accountId}`, { tableData: {} });
@@ -43,7 +36,21 @@ export function ContractTxList({ tableProps, tableData, handleChange }) {
           height: <BlockLink value={data.number} />,
           time: <DateShow value={data.time} />,
           txhash: <TxLink style={{ width: 136 }} className="text-truncate" value={`0x${data.hash}`} />,
-          action: <TxAction module={data.module} call={data.call} />
+          action: <TxAction module={data.module} call={data.call} />,
+          result: {
+            ExtrinsicSuccess: (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                <Success style={{ marginRight: 4, height: "1.2em" }} />
+                <FormattedMessage id="ExtrinsicSuccess" />
+              </div>
+            ),
+            ExtrinsicFailed: (
+              <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+                <Error style={{ marginRight: 4, height: "1.2em" }} />
+                <FormattedMessage id="ExtrinsicFailed" />
+              </div>
+            )
+          }[data.status]
         };
       })}
       columns={[
@@ -65,7 +72,7 @@ export function ContractTxList({ tableProps, tableData, handleChange }) {
         },
         {
           title: <FormattedMessage id="结果" />,
-          dataIndex: "balance"
+          dataIndex: "result"
         }
       ]}
       {...tableProps}

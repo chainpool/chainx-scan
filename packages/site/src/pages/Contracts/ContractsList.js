@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo } from "react";
 
-import { AddressLink, TxLink, ContractLink, BlockLink, Table } from "../../components";
+import { AddressLink, ContractLink, BlockLink, Table } from "../../components";
 import TableService from "../../services/tableService";
 import { useRedux } from "../../shared";
 import api from "../../services/api";
