@@ -102,6 +102,7 @@ export const BLOCKCHAIN = {
   proposalContent: "提议内容",
   status: "状态",
   pass: "通过",
+  cancel: "撤销",
   yetneded: "签名中",
   council: "议会",
   team: "团队",

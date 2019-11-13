@@ -103,6 +103,7 @@ export const BLOCKCHAIN = {
   proposalContent: "Proposal Content",
   status: "Status",
   pass: "pass",
+  cancel: "cancel",
   yetneded: "yet needed",
   council: "council",
   team: "development team",
