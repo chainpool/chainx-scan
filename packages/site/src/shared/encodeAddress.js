@@ -2,7 +2,7 @@ import encodeAddress from "@polkadot/keyring/address/encode";
 import setAddressPrefix from "@polkadot/keyring/address/setPrefix";
 import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 
-setAddressPrefix(44);
+setAddressPrefix(process.env.REACT_APP_SERVER);
 
 export default function _encodeAddress(publicKey) {
   if (!publicKey) return publicKey;
