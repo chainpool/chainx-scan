@@ -265,6 +265,17 @@ export const moduleNameMap = {
 };
 
 export const callNameMap = {
+  update_schedule: "更新费用表",
+  put_code: "部署合约",
+  call: "调用合约",
+  Transfer: "转账",
+  Instantiated: "实例化",
+  CodeStored: "代码存储",
+  ScheduleUpdated: "费用表更新",
+  Dispatched: "分发调用",
+  Contract: "合约运行日志",
+  Change: "变更",
+  instantiate: "实例合约",
   DepositorReward: "跨链奖励",
   BitcoinBinding: "比特币绑定",
   unnominate: "撤销投票",
