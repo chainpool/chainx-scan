@@ -57,7 +57,7 @@ export default function AccountsList() {
             status:
               data.yet_needed === 0 ? (
                 <FormattedMessage id="pass" />
-              ) : yet_needed > 100 ? (
+              ) : data.yet_needed > 100 ? (
                 <FormattedMessage id="cancel" />
               ) : (
                 <div>
