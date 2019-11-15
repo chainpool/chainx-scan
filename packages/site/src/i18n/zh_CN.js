@@ -265,6 +265,7 @@ export const moduleNameMap = {
 };
 
 export const callNameMap = {
+  convert_to_xrc20: "划转XRC20-BTC",
   update_schedule: "更新费用表",
   put_code: "部署合约",
   call: "调用合约",

@@ -268,6 +268,7 @@ export const moduleNameMap = {
 };
 
 export const callNameMap = {
+  convert_to_xrc20: "convert to xrc20",
   update_schedule: "update schedule",
   put_code: "put code",
   call: "call",
