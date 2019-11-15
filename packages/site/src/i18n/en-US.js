@@ -482,7 +482,9 @@ export const contracts = {
   操作: "Action",
   结果: "Result",
   智能合约详情: "Contracts Detail",
-  智能合约列表: "Contracts List"
+  智能合约列表: "Contracts List",
+  智能合约数: "Contracts Count",
+  调用数: "Call Count"
 };
 
 export default {
