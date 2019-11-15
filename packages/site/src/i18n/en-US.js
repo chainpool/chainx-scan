@@ -266,6 +266,17 @@ export const moduleNameMap = {
 };
 
 export const callNameMap = {
+  update_schedule: "update schedule",
+  put_code: "put code",
+  call: "call",
+  Transfer: "transfer",
+  Instantiated: "instantiated",
+  CodeStored: "codeStored",
+  ScheduleUpdated: "schedule updated",
+  Dispatched: "dispatched",
+  Contract: "contract log",
+  Change: "change",
+  instantiate: "instantiate contract",
   DepositorReward: "Cross Chain Reward",
   BitcoinBinding: "Bitcoin Binding",
   unnominate: "Unnominate",
