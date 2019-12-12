@@ -145,7 +145,8 @@ class AccountController {
       "azimut",
       "redpenguin",
       "angel",
-      "chainx"
+      "chainx",
+      "luckyve"
     ];
 
     ctx.body = keys.map(key => {
