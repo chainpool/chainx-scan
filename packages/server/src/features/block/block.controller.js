@@ -74,6 +74,21 @@ class BlockController {
 
     ctx.body = normalizeBlock(block);
   }
+
+  async getBlocksInfo(ctx) {
+    const { ids = [] } = ctx.request.body;
+
+    const blocks = await ctx.db.Block.findAll({
+      where: {
+        number: {
+          $in: ids
+        }
+      },
+      raw: true
+    });
+
+    ctx.body = blocks.map(normalizeBlock);
+  }
 }
 
 module.exports = new BlockController();
