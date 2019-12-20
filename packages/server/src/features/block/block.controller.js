@@ -30,10 +30,10 @@ class BlockController {
       }
     );
 
-    const rows = await ctx.db.sequelize.query(`SELECT COUNT(*) FROM block`, {
+    const rows = await ctx.db.sequelize.query(`select max(best) from  "status_chain";`, {
       type: ctx.db.sequelize.QueryTypes.SELECT
     });
-    const total = rows[0].count;
+    const total = rows[0].max;
 
     const items = blocks.map(normalizeBlock);
 
@@ -73,6 +73,21 @@ class BlockController {
     }
 
     ctx.body = normalizeBlock(block);
+  }
+
+  async getBlocksInfo(ctx) {
+    const { ids = [] } = ctx.request.body;
+
+    const blocks = await ctx.db.Block.findAll({
+      where: {
+        number: {
+          $in: ids
+        }
+      },
+      raw: true
+    });
+
+    ctx.body = blocks.map(normalizeBlock);
   }
 }
 
