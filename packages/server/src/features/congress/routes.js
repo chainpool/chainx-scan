@@ -11,7 +11,7 @@ router.get("/congress/members", async ctx => {
     "Jinma",
     "HashQuark",
     "HLT",
-    "realgar",
+    // "realgar",
     "PolkaWorld",
     "bemular"
     // "tower",
