@@ -38,9 +38,7 @@ async function updateBalance() {
     {}
   );
 
-  balances = accountBalanceList;
-
-  return balances;
+  return accountBalanceList;
 }
 
 async function updateList(listId) {
