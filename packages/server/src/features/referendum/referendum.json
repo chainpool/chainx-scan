@@ -143,12 +143,12 @@
     "isPublish": false,
     "title": {
       "zh": "08号提案：支出议会基金上线挖矿平台",
-      "en": "08号提案：支出议会基金上线挖矿平台"
+      "en": "Proposal 08: Funding the listing on Staking Rewards platform"
     },
     "desc": {
-      "zh": "为了更便利的在海外社区对 ChainX 进行营销宣传，议会预计支出议会基金 1500 PCX 用于 Stakingrewards.com 的上币费用。该网站是研究 POS/DPOS 挖矿收益的专业性网站，受到众多专业区块链记者关注。如果议案通过后，双方会进行技术对接，并商定具体的上线时间。",
+      "zh": "为了更便利的在海外社区对 ChainX 进行营销宣传，议会预计支出议会基金 1500 PCX 用于 Stakingrewards.com 的上币费用。该网站是研究 POS/DPOS 挖矿收益的专业性网站，受到众多专业区块链记者关注。如果提案通过后，双方会进行技术对接，并商定具体的上线时间。",
       "en": "In order of a marketing action and to make the project known as much as possible The Parliamentary Fund spends 1500 PCXs on stakingrewards.com for the listing. This site specializes in passive income and is read by many journalists who write reports about staking in cryptoworld. If the proposal is passed, the two parties will begin working on technical integration and listing time."
     },
-    "deadBlock": 11821000
+    "deadBlock": 11822000
   }
 ]
