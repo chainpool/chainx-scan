@@ -45,7 +45,8 @@ function Referendum({ intl: { locale }, intl }) {
                             className="referendum-detail"
                             style={{ fontSize: 14, color: "rgba(0, 0, 0, 0.6)", lineHeight: 1.8 }}
                           >
-                            <p className="r-title">{item.desc[lang]}</p>
+                            {/*<p className="r-title">{item.desc[lang]}</p>*/}
+                            <p className="r-title" dangerouslySetInnerHTML={{ __html: item.desc[lang] }} />
                             {item.reason && (
                               <p>
                                 <span className="r-title">{intl.messages.REFERENDUM_PURPOSE}：</span>
