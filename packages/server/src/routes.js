@@ -10,6 +10,7 @@ const chainRouter = require("./features/chain/routes");
 const ReferendumRouter = require("./features/referendum/routes");
 const powRouter = require("./features/power");
 const congressRouter = require("./features/congress/routes");
+const stakeRouter = require("./features/stake/routes");
 
 module.exports = app => {
   app
@@ -35,6 +36,8 @@ module.exports = app => {
     .use(powRouter.allowedMethods({ throw: true }))
     .use(congressRouter.routes())
     .use(congressRouter.allowedMethods({ throw: true }))
+    .use(stakeRouter.routes())
+    .use(stakeRouter.allowedMethods({ throw: true }))
     .use(ReferendumRouter.routes())
     .use(ReferendumRouter.allowedMethods({ throw: true }));
 };
