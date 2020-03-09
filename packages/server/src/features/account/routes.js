@@ -5,6 +5,7 @@ const intentionController = require("./intention.controller");
 const accountTransferControlelr = require("./account.transfer.controller");
 
 const router = new Router();
+router.get("/validators", intentionController.validators);
 router.get("/intentions", accountController.intentions);
 router.get("/psedu_intentions", intentionController.pseduIntentions);
 router.get("/intention_logos", intentionController.logos);
