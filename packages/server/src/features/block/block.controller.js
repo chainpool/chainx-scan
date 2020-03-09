@@ -1,4 +1,6 @@
+const BigNumber = require("bignumber.js");
 const { extractPage, normalizeBlock } = require("../utils");
+const MILLI_SECONDS_24H = 1000 * 3600 * 24;
 
 class BlockController {
   async getBlocks(ctx) {
@@ -88,6 +90,36 @@ class BlockController {
     });
 
     ctx.body = blocks.map(normalizeBlock);
+  }
+
+  async avg24HBlockTime(ctx) {
+    const time = new Date().getTime() - MILLI_SECONDS_24H;
+
+    const minRows = await ctx.db.sequelize.query(
+      `
+    select number, time from block where time > ${time} order by time limit 1;
+    `,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const minNumber = parseInt(minRows[0].number);
+    const minTime = parseInt(minRows[0].time);
+
+    const maxRows = await ctx.db.sequelize.query(
+      `
+    select number, time from block order by time desc limit 1
+    `,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const maxNumber = parseInt(maxRows[0].number);
+    const maxTime = parseInt(maxRows[0].time);
+
+    ctx.body = new BigNumber((maxTime - minTime) / (maxNumber - minNumber)).toFixed(0);
   }
 }
 
