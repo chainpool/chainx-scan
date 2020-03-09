@@ -1,4 +1,5 @@
-const { extractPage, normalizeTransaction } = require("../utils");
+const { extractPage, normalizeTransaction, normalizePCX } = require("../utils");
+const MILLI_SECONDS_24H = 1000 * 3600 * 24;
 
 class TransactionController {
   async getTransactions(ctx) {
@@ -54,6 +55,33 @@ class TransactionController {
     }
 
     ctx.body = normalizeTransaction(transaction);
+  }
+
+  async txFee24H(ctx) {
+    const time = new Date().getTime() - MILLI_SECONDS_24H;
+    const rows = await ctx.db.sequelize.query(
+      `select sum(fee) from transaction where signed != '' and time > ${time};`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const totalFee = parseInt(rows[0].sum);
+
+    const cntRows = await ctx.db.sequelize.query(
+      `select count(1) from transaction where signed != '' and time > ${time};`,
+      {
+        type: ctx.db.sequelize.QueryTypes.SELECT
+      }
+    );
+
+    const cnt = parseInt(cntRows[0].count);
+    const avgFee = parseInt(totalFee / cnt);
+
+    ctx.body = {
+      total: normalizePCX(totalFee),
+      avg: normalizePCX(avgFee)
+    };
   }
 }
 
