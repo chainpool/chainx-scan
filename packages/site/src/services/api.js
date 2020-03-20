@@ -445,6 +445,10 @@ class Api {
     return this.fetch$("/power_percent");
   };
 
+  fetchPowerPercentV2$ = () => {
+    return this.fetch$("/power_percent_v2");
+  };
+
   /**
    * 获取挂单列表
    */

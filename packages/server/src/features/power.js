@@ -33,6 +33,7 @@ router.get("/power_percent_v2", async ctx => {
   const xBtcEquivalentNomination = parseInt(xBtcIntention.circulation) * xBtcToPcxRation;
   const pcxNomination = await getPcxPower(ctx);
 
+  const sortFunc = (a, b) => b.power - a.power;
   // 9号提案: 设置跨链硬顶 XR=10%
   if (xBtcEquivalentNomination * 9 > pcxNomination) {
     return (ctx.body = [
@@ -45,7 +46,7 @@ router.get("/power_percent_v2", async ctx => {
         power: 0.576
       },
       ...solidPowers
-    ]);
+    ].sort(sortFunc));
   }
 
   // 9号提案: 可分配挖矿收益 AMO
@@ -61,7 +62,7 @@ router.get("/power_percent_v2", async ctx => {
       power: (pcxNomination / totalNomination) * totalAmoPower
     },
     ...solidPowers
-  ]);
+  ].sort(sortFunc));
 });
 
 router.get("/power_percent", async ctx => {

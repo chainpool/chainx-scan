@@ -8,12 +8,15 @@ import { injectIntl } from "react-intl";
 const powerPie = function({ intl }) {
   const [{ data }, setState] = useRedux("powerPercent", { data: [] });
 
+  console.log("data", data);
+
   useEffect(() => {
-    const subscription = api.fetchPowerPercent$().subscribe(result => {
+    const subscription = api.fetchPowerPercentV2$().subscribe(result => {
       setState({
         data: result.map(item => ({
           ...item,
-          item: item.token
+          token: item.name,
+          item: item.name
         }))
       });
     });
@@ -49,7 +52,11 @@ const powerPie = function({ intl }) {
         <Guide>
           <Html position={["50%", "50%"]} html={html} alignX="middle" alignY="middle" />
         </Guide>
-        <Geom type="intervalStack" position="percent" color={["token", ["#F6C94A", "#46AEE2", "#34C69A", "#EA754B"]]}>
+        <Geom
+          type="intervalStack"
+          position="percent"
+          color={["token", ["#F6C94A", "#C2C2C2", "#46AEE2", "#34C69A", "#D64CAB", "#F7931B"]]}
+        >
           <Label
             content="percent"
             formatter={(val, item) => {
