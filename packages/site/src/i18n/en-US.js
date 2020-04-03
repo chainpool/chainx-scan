@@ -23,7 +23,7 @@ export const DASHBOARD = {
   TRADEPRICE: "Price",
   BTCMINING: "BTC Power",
   SDOTMINING: "S-DOT Power",
-  POWER_DISTRIBUTION: "Power Distribution"
+  POWER_DISTRIBUTION: "Mining Distribution"
 };
 export const NEWESTBLOCK = {
   NEWESTBLOCK: "Latest Block",

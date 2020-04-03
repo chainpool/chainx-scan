@@ -23,7 +23,7 @@ export const DASHBOARD = {
   TRADEPRICE: "价格(PCX/BTC)",
   BTCMINING: "BTC算力",
   SDOTMINING: "SDOT算力",
-  POWER_DISTRIBUTION: "全链算力占比"
+  POWER_DISTRIBUTION: "挖矿收益分配比例"
 };
 export const NEWESTBLOCK = {
   NEWESTBLOCK: "最新块高",
