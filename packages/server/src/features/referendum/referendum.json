@@ -140,7 +140,7 @@
     "yes": "0xb7e2e7e8b44151bdbf038277b565a4b56f46c0b8f643b30fa2303ce897512f8e",
     "no": "0xb7e25a6a570f3f5293781773c83f094fa0723f759d4197bb775842116b8177fb",
     "isActive": "1",
-    "isPublish": false,
+    "isPublish": true,
     "title": {
       "zh": "08号提案：支出议会基金上线挖矿平台",
       "en": "Proposal 08: Funding the listing on Staking Rewards platform"
