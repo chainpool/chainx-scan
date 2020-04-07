@@ -156,7 +156,7 @@
     "yes": "0xb7e649e9d228cec1c38413aab8e255407d95d05ccf8c4ab9cbfbec609d51a444",
     "no": "0xb7e5b37a0ee01f4eac6933c126091e407552e316f782e7a8a0967fa02ca3476c",
     "isActive": "1",
-    "isPublish": false,
+    "isPublish": true,
     "title": {
       "zh": "09号提案：关于 ChainX 挖矿收益分配的调整",
       "en": "Proposal 09: The adjustment of mining rule on ChainX"
