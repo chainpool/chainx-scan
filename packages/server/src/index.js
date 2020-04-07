@@ -7,6 +7,7 @@ const http = require("http");
 const db = require(__dirname + "/../models");
 const cors = require("@koa/cors");
 const Socket = require("socket.io");
+const { updateTxFeeForever } = require("./features/store");
 
 const app = new Koa();
 
@@ -25,6 +26,7 @@ require("./io")(io, db);
 
 db.sequelize.authenticate().then(() => {
   app.context.db = db;
+  updateTxFeeForever(db);
 
   const port = process.env.SERVER_PORT || 3001;
   server.listen(port, () => console.log(`✅  The server is running at http://localhost:${port}/`));

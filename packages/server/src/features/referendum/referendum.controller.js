@@ -38,15 +38,16 @@ async function updateBalance() {
     {}
   );
 
-  balances = accountBalanceList;
-
-  return balances;
+  return accountBalanceList;
 }
 
 async function updateList(listId) {
   const { yes: yesAddress, no: noAddress, deadBlock } = config.find(({ id }) => id === listId);
 
-  const order = [["number", "DESC"], ["index", "DESC"]];
+  const order = [
+    ["number", "DESC"],
+    ["index", "DESC"]
+  ];
 
   const result = await db.Transaction.findAll({
     where: {
@@ -105,7 +106,10 @@ async function getList(listId) {
 
   const currentLastTxHeight = referendumList[listId].lastTxHeight;
 
-  const order = [["number", "DESC"], ["index", "DESC"]];
+  const order = [
+    ["number", "DESC"],
+    ["index", "DESC"]
+  ];
 
   const query = await db.Transaction.findOne({
     where: { $or: [{ payee: remove0x(yesAddress) }, { payee: remove0x(noAddress) }], call: "transfer" },
@@ -142,7 +146,10 @@ async function syncBalanceByNumber(deadBlock, listId) {
     updateList(listId)
   ])
     .then(([{ hash }, list]) => {
-      return calcTotal(hash, list.yes.concat(list.no).map(({ signed }) => signed));
+      return calcTotal(
+        hash,
+        list.yes.concat(list.no).map(({ signed }) => signed)
+      );
     })
     .then(balance => {
       console.log(`${deadBlock} 余额查询成功`);

@@ -3,6 +3,26 @@ const { extractPage } = require("../utils");
 const session = 150;
 
 class AccountController {
+  async validators(ctx) {
+    const intentions = await ctx.db.Intention.findAll({
+      attributes: ["accountid", "name", "about", "selfVote", "totalNomination"],
+      where: { isActive: "true", isValidator: "true" },
+      raw: true
+    });
+
+    const set = new Set(intentions.map(i => i.accountid));
+
+    const result = [];
+    for (const id of set) {
+      const target = intentions.find(i => id === i.accountid);
+      result.push(target);
+    }
+
+    result.sort((a, b) => b.selfVote - a.selfVote);
+
+    ctx.body = result;
+  }
+
   async intention(ctx) {
     const { accountId } = ctx.params;
 
@@ -146,7 +166,10 @@ class AccountController {
       "redpenguin",
       "angel",
       "chainx",
-      "luckyve"
+      "luckyve",
+      "luckyve2",
+      "readmylife",
+      "ctpool.org"
     ];
 
     ctx.body = keys.map(key => {

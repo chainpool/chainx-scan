@@ -1,3 +1,5 @@
+const BigNumber = require("bignumber.js");
+
 function extractPage(ctx) {
   const { page_size: queryPageSize, page: queryPage } = ctx.query;
 
@@ -61,10 +63,18 @@ function remove0x(str) {
   return str;
 }
 
+function normalizePCX(num) {
+  return new BigNumber(num)
+    .dividedBy(Math.pow(10, 8))
+    .toNumber()
+    .toFixed(8);
+}
+
 module.exports = {
   extractPage,
   trimFields,
   normalizeBlock,
   normalizeTransaction,
-  remove0x
+  remove0x,
+  normalizePCX
 };
