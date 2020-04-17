@@ -150,6 +150,42 @@ class BtcLockUpController {
     };
   }
 
+  async txStatesV2(ctx) {
+    const txs = ctx.request.body || [];
+
+    const result = [];
+    for (const { txid, index } of txs) {
+      const reversed = chunk(txid, 2)
+        .reverse()
+        .reduce((result, item) => result + item.join(""), "");
+
+      const records = await ctx.db.BtcLockUp.findAll({
+        where: {
+          $or: [
+            { hash: txid, index, type: 0 },
+            { pre_hash: txid, pre_index: index, type: 1 },
+            { hash: reversed, index, type: 0 },
+            { pre_hash: reversed, pre_index: index, type: 1 }
+          ]
+        },
+        raw: true
+      });
+
+      let state = "Irrelevant";
+      if (records.length === 2 && records[0].type + records[1].type === 1) {
+        state = "LockAndUnlock";
+      } else if (records.length === 1 && records[0].type === 0) {
+        state = "Lock";
+      } else if (records.length === 1 && records[0].type === 1) {
+        state = "Unlock";
+      }
+
+      result.push({ txid, index, state });
+    }
+
+    ctx.body = result;
+  }
+
   async addresses(ctx) {
     const { page, pageSize } = extractPage(ctx);
     const { accountid } = ctx.query;
