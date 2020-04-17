@@ -173,7 +173,7 @@ class BtcLockUpController {
 
       let state = "Irrelevant";
       if (records.length === 2 && records[0].type + records[1].type === 1) {
-        state = "LockAndUnlock";
+        state = "UnlockAndLock";
       } else if (records.length === 1 && records[0].type === 0) {
         state = "Lock";
       } else if (records.length === 1 && records[0].type === 1) {
