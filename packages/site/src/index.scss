@@ -198,6 +198,61 @@ a:focus {
   }
 }
 
+/** API切换器 **/
+.api-selector {
+  position: relative;
+  margin-right: 32px;
+  display: inline-block;
+
+  .show-lang {
+    width: 220px;
+    height: 30px;
+    padding: 5px 10px;
+    border: 1px solid $nagtive-light;
+    border-radius: 1px;
+  }
+
+  .select-arrow {
+    float: right;
+    margin-top: 5px;
+    color: $nagtive-shallow;
+    transition: all 0.4s;
+    transform: rotate(180deg);
+    &.active {
+      transform: rotate(0deg);
+    }
+  }
+
+  .selector {
+    position: absolute;
+    display: none;
+    bottom: 30px;
+    right: 0;
+    width: 220px;
+    background-color: #fff;
+    border: 1px solid $nagtive-light;
+    border-radius: 5px;
+    padding: 5px 0;
+    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.16);
+    &.active {
+      display: block;
+    }
+    .select-item {
+      width: 100%;
+      line-height: 30px;
+      text-align: left;
+      text-indent: 23px;
+      color: #555;
+      &.active {
+        background-color: $primary;
+      }
+      &:hover {
+        background-color: $primary;
+      }
+    }
+  }
+}
+
 /** 语言切换器 **/
 .lang-selector {
   position: relative;

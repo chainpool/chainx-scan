@@ -14,6 +14,7 @@ import { addLocaleData, IntlProvider } from "react-intl";
 import en from "react-intl/locale-data/en";
 import zh from "react-intl/locale-data/zh";
 import { useRedux } from "../shared";
+import { getDefaultApi } from "../services/utils";
 
 const locale = localStorage.getItem("locale");
 
@@ -26,6 +27,7 @@ addLocaleData([...en, ...zh]); // 引入多语言环境的数据
 
 export default function App() {
   const [{ local }] = useRedux("locale", { local: locale || navigator.language });
+  useRedux("api", { api: getDefaultApi() });
 
   return (
     <IntlProvider locale={local} messages={i18n[local.split("-")[0]]}>

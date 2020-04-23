@@ -5,20 +5,23 @@ import hexAddPrefix from "@polkadot/util/hex/addPrefix";
 import hexStripPrefix from "@polkadot/util/hex/stripPrefix";
 
 import { decodeAddress } from "../shared";
+import { getDefaultApi } from "./utils";
 
 class Socket {
   socket = null;
   subscribeNames = [];
   eventNames = [];
   handler = {};
+
   constructor() {
-    this.socket = io(process.env.REACT_APP_SERVER);
+    this.socket = io(getDefaultApi());
     this.socket.connect();
     this.socket.on("connect", data => this.connectHandler());
     this.socket.on("connect_error", data => this.reconnect(data));
     this.socket.on("disconnect", data => this.reconnect(data));
     this.socket.on("error", data => this.reconnect(data));
   }
+
   connectHandler(subscribeName = "") {
     if (!subscribeName) {
       for (let _name of this.subscribeNames) {
@@ -31,6 +34,7 @@ class Socket {
       this.socket.emit("subscribe", subscribeName);
     }
   }
+
   closeHandler(subscribeName = "") {
     if (!subscribeName) {
       for (let _name of this.subscribeNames) {
@@ -40,6 +44,7 @@ class Socket {
       this.socket.emit("unsubscribe", subscribeName);
     }
   }
+
   reconnect(e) {
     this.socket.close();
     setTimeout(() => {
@@ -54,6 +59,10 @@ class Api {
   subscribeName = [];
 
   constructor(endpoint) {
+    this.endpoint = endpoint;
+  }
+
+  setEndpoint(endpoint) {
     this.endpoint = endpoint;
   }
 
@@ -598,4 +607,4 @@ class Api {
   };
 }
 
-export default new Api(process.env.REACT_APP_SERVER);
+export default new Api(getDefaultApi());

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
-import weixin from "../assets/weixin.jpg";
+import weixin from "../../assets/weixin.jpg";
 import classnames from "classnames";
 import { FormattedMessage } from "react-intl";
-import { useRedux } from "../shared";
-import { ReactComponent as Up } from "../assets/open.svg";
+import { useRedux } from "../../shared";
+import { ReactComponent as Up } from "../../assets/open.svg";
+import ApiSelector from "./ApiSelector";
 
 export const LangChanger = function() {
   const languages = ["中文", "English"];
@@ -102,6 +103,7 @@ export default function Footer() {
           </li>
         </ul>
         <div className="footer-end">
+          <ApiSelector />
           <LangChanger />
           Copyright © 2019 ChainX
         </div>

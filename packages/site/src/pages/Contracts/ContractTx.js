@@ -24,7 +24,6 @@ export default function ContractTx({ accountId }) {
 
 export function ContractTxList({ tableProps, tableData, handleChange }) {
   const { pagination, dataSource = [], loading } = tableData;
-  console.log(dataSource);
   return (
     <Table
       loading={loading}
