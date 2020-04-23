@@ -8,8 +8,6 @@ import { injectIntl } from "react-intl";
 const powerPie = function({ intl }) {
   const [{ data }, setState] = useRedux("powerPercent", { data: [] });
 
-  console.log("data", data);
-
   useEffect(() => {
     const subscription = api.fetchPowerPercentV2$().subscribe(result => {
       setState({
