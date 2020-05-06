@@ -26,7 +26,7 @@ export default function TokenName(props) {
       {findIcon ? (
         <img src={findIcon} style={{ marginTop: -9, marginRight: 8, marginBottom: -8, height: 16 }} alt="token" />
       ) : null}
-      {token.token_name}({token.token})
+      {token.token_name}({token.token === "BTC" ? "X-BTC" : token.token})
     </div>
   );
 }
