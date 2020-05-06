@@ -45,7 +45,10 @@ export default function BlockDetail(props) {
 
   useEffect(() => {
     if (!!txid) {
-      const subscription = api.fetchTxDetail$(txid).subscribe(data => setData(data), data => setData(data));
+      const subscription = api.fetchTxDetail$(txid).subscribe(
+        data => setData(data),
+        data => setData(data)
+      );
       return () => subscription.unsubscribe();
     }
   }, [txid]);
@@ -107,6 +110,10 @@ export default function BlockDetail(props) {
           {
             label: <FormattedMessage id="SENDER" />,
             data: <AddressLink value={data.signed} />
+          },
+          {
+            label: "Nonce",
+            data: data.account_index
           },
           {
             label: <FormattedMessage id="ACTION" />,
