@@ -12,6 +12,7 @@ const powRouter = require("./features/power");
 const congressRouter = require("./features/congress/routes");
 const contractRouter = require("./features/contract/routes");
 const stakeRouter = require("./features/stake/routes");
+const councilRouter = require("./features/council/routes");
 
 module.exports = app => {
   app
@@ -41,6 +42,8 @@ module.exports = app => {
     .use(contractRouter.allowedMethods({ throw: true }))
     .use(stakeRouter.routes())
     .use(stakeRouter.allowedMethods({ throw: true }))
+    .use(councilRouter.routes())
+    .use(councilRouter.allowedMethods({ throw: true }))
     .use(ReferendumRouter.routes())
     .use(ReferendumRouter.allowedMethods({ throw: true }));
 };
