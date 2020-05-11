@@ -360,6 +360,13 @@ class Api {
   };
 
   /**
+   * 获取议会转账记录
+   */
+  fetchCouncilTransfers$ = params => {
+    return this.fetch$(`/council/transfers`, params);
+  };
+
+  /**
    * 获取智能合约
    */
   fetchContracts$ = params => {

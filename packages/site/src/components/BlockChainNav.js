@@ -33,6 +33,11 @@ export default function BlockChainNav(props) {
             <FormattedMessage id="multisig" />
           </NavLink>
         </li>
+        <li className={classnames({ "is-active": activeKey === "council_transfers" })}>
+          <NavLink to="/council_transfers">
+            <FormattedMessage id="council_transfers" />
+          </NavLink>
+        </li>
         <li className={classnames({ "is-active": activeKey === "contracts" })}>
           <NavLink to="/contracts">
             <FormattedMessage id="contracts" />

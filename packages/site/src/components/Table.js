@@ -1,6 +1,6 @@
 import React from "react";
 import AntdTable from "antd/lib/table";
-import { LocaleProvider } from "antd";
+import { ConfigProvider } from "antd";
 import zh_CN from "antd/lib/locale-provider/zh_CN";
 import en_US from "antd/lib/locale-provider/en_US";
 import useRedux from "../shared/useRedux";
@@ -40,13 +40,13 @@ export default injectIntl(function Table({ intl: { messages }, ..._props }) {
       }
     : false;
   return (
-    <LocaleProvider locale={local === "zh-CN" ? zh_CN : en_US}>
+    <ConfigProvider locale={local === "zh-CN" ? zh_CN : en_US}>
       <AntdTable
         {...props}
         bordered={false}
         rowClassName={(record, index) => (index % 2 === 0 ? "smoke" : "")}
         pagination={pagination}
       />
-    </LocaleProvider>
+    </ConfigProvider>
   );
 });

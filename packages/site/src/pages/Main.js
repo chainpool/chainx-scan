@@ -7,6 +7,7 @@ import Txs from "./Txs";
 import Events from "./Events";
 import Accounts from "./Accounts";
 import Multisig from "./Multisig";
+import CouncilTransfers from "./CouncilTransfers";
 import Contracts from "./Contracts";
 import Validator from "./Validator";
 import CrossBlock from "./CrossBlock";
@@ -35,6 +36,7 @@ export default function Main() {
           />
           <Route path="/accounts" component={Accounts} />
           <Route path="/multisig" component={Multisig} />
+          <Route path="/council_transfers" component={CouncilTransfers} />
           <Route path="/contracts" component={Contracts} />
           <Route path="/validators/:filter?/:node?" component={Validator} />
           <Route path="/crossblocks" component={CrossBlock} />

@@ -96,6 +96,8 @@ export const BLOCKCHAIN = {
   CREATEAT: "AT",
   LASTUPDATE: "Last Update",
   multisig: "Multisig Record",
+  council_transfers: "Council transfers",
+  dest_address: "Dest Address",
   contracts: "Contracts",
   multisigaddress: "Multisig Address",
   proposer: "Proposer",

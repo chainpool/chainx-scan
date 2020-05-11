@@ -95,6 +95,8 @@ export const BLOCKCHAIN = {
   CREATEAT: "创建时间",
   LASTUPDATE: "最后更新时间",
   multisig: "多签记录",
+  council_transfers: "议会转出记录",
+  dest_address: "目标地址",
   contracts: "智能合约",
   multisigaddress: "多签地址",
   proposer: "提议人",
