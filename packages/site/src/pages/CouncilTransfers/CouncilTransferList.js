@@ -25,6 +25,7 @@ export default function() {
         tableData.dataSource &&
         tableData.dataSource.map((data, index) => {
           return {
+            ...data,
             key: index,
             time: <DateShow value={data["block.time"]} />,
             addr: <AddressLink style={{ maxWidth: 136 }} className="text-truncate" value={data.dest} />,
