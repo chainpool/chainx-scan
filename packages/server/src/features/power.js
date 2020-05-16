@@ -9,18 +9,19 @@ router.get("/power_percent_v2", async ctx => {
       power: 0.2
     },
     {
-      name: "TR",
-      power: 0.096
-    },
-    {
       name: "L-BTC",
       power: 0.032
     },
     {
       name: "SDOT",
       power: 0.032
+    },
+    {
+      name: "PCX",
+      power: 0.576
     }
   ];
+  let tr = 0.096;
 
   const xBtcIntention = await ctx.db.PseduIntention.findOne({
     where: { id: "BTC" },
@@ -42,8 +43,8 @@ router.get("/power_percent_v2", async ctx => {
         power: 0.064
       },
       {
-        name: "PCX",
-        power: 0.576
+        name: "TR",
+        power: tr
       },
       ...solidPowers
     ].sort(sortFunc));
@@ -52,14 +53,16 @@ router.get("/power_percent_v2", async ctx => {
   // 9号提案: 可分配挖矿收益 AMO
   const totalNomination = xBtcEquivalentNomination + pcxNomination;
   const totalAmoPower = 0.64;
+  const xbtcPower = (xBtcEquivalentNomination / totalNomination) * totalAmoPower;
+  tr += 0.064 - xbtcPower;
   return (ctx.body = [
     {
       name: "X-BTC",
-      power: (xBtcEquivalentNomination / totalNomination) * totalAmoPower
+      power: xbtcPower
     },
     {
-      name: "PCX",
-      power: (pcxNomination / totalNomination) * totalAmoPower
+      name: "TR",
+      power: tr
     },
     ...solidPowers
   ].sort(sortFunc));
