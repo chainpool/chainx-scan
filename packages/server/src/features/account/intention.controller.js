@@ -171,7 +171,8 @@ class AccountController {
       "readmylife",
       "ctpool.org",
       "CryptOptimus",
-      "cryptoptimus"
+      "cryptoptimus",
+      "168node"
     ];
 
     ctx.body = keys.map(key => {
