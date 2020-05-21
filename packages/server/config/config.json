@@ -4,10 +4,10 @@
     "dialect": "postgres",
     "logging": false,
     "pool": {
-      "max": 5,
-      "min": 2,
+      "max": 10,
+      "min": 4,
       "idle": 30000,
-      "acquire": 60000
+      "acquire": 600000
     }
   },
   "test": {
@@ -22,10 +22,10 @@
     "dialect": "postgres",
     "logging": false,
     "pool": {
-      "max": 5,
-      "min": 2,
+      "max": 10,
+      "min": 4,
       "idle": 30000,
-      "acquire": 60000
+      "acquire": 600000
     }
   }
 }
