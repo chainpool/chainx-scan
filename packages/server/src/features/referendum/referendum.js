@@ -240,7 +240,7 @@ module.exports = [
       
       <h3>支持内容</h3>
       <p>对这些节点在当期提供以下支持：</p>
-      <h4>无息 PCX 自抵押借贷（适用于 X，Y 类节点）</h4>
+      <h4>1. 无息 PCX 自抵押借贷（适用于 X，Y 类节点）</h4>
       <p>由议会出借一定额度的 PCX 给目标节点，用作其自抵押（额度为其自身自抵押量的 N 倍）。每期 90 天。其中：</p>
       <ul>
         <li>X 类节点，可获得 N=1 的借贷权，最大额度 10,000 枚 PCX，在当期无利息，可延长 1 期，延长期内按理论投票收益收取利息，超期后由议会赎回；</li>
@@ -248,7 +248,7 @@ module.exports = [
       </ul>
       <p>当目标节点有不当行为或自身自抵押量变动导致不符合比例关系时，议会有权提前收回贷款。</p>
       
-      <h4>议会投票支持（适用于 A，B，X，Y 类节点）</h4>
+      <h4>2. 议会投票支持（适用于 A，B，X，Y 类节点）</h4>
       <p>议会向目标节点直接投票，投票量为其自抵押的 M 倍。其中：</p>
       <ul>
         <li>A，X 类节点，可获得 M=2 的投票量，最大额度 15,000 枚 PCX，超期后由议会赎回；</li>
@@ -256,7 +256,7 @@ module.exports = [
       </ul>
       <p>当目标节点有不当行为或自身自抵押量变动导致不符合比例关系时，议会有权提前收回投票。</p>
       
-      <h4>漏块惩罚优惠 (适用于 A，B 类节点）</h4>
+      <h4>3. 漏块惩罚优惠 (适用于 A，B 类节点）</h4>
       <p>在保持网络整体漏块惩罚机制不变的情况下，对目标节点启动漏块罚金部分返还。由议会拨出专项资金，通过技术手段跟踪目标节点的漏块情况。在网络收取漏块罚金后，按照罚金的 L 倍对其奖池自动进行充值。其中：</p>
       <ul>
         <li>A 类节点，可获得 L=0.75 的罚金返还；</li>
@@ -267,7 +267,7 @@ module.exports = [
       en: `
         <p>In order to promote decentralization of ChainX network, and at the same time help the expansion of node distribution outside China, it is necessary to provide a certain degree of support to small and medium-sized nodes and overseas nodes. Encourage them to create and maintain communities around their nodes as to expand the whole ChainX community.</p>
         <h3>Target Nodes</h3>
-        <h4>Outlying Nodes</h4>
+        <h4>1. Outlying Nodes</h4>
         <ul>
             <li>those nodes that far away from the most validators on the Chain</li>
             <li>active in the community</li>
@@ -279,7 +279,7 @@ module.exports = [
             <li><b>0 - 2 nodes as category B</b></li>
         </ul>
         
-        <h4>Small Nodes</h4>
+        <h4>2. Small Nodes</h4>
         <ul>
             <li>small and medium-sized nodes</li>
             <li>active in the community</li>
@@ -293,7 +293,7 @@ module.exports = [
         
         <h3>During that Period, these nodes can take following programs:</h3>
         
-        <h4>Interest-free PCX loan for self-delegation (available for X, Y)</h4>
+        <h4>1. Interest-free PCX loan for self-delegation (available for X, Y)</h4>
         <p>The parliament lent a certain amount of PCX to the target node as its self-collateralization (the loan amount is N times as their own self-collateralization):</p>
         <ul>
             <li>Node in Categroy A，N=1 (Maximum 10,000PCX)，NO interest at first period, can expand to second period, but will charge interest on theoretical voting income during the second period, Redemption by Parliament after expiry;</li>
@@ -301,7 +301,7 @@ module.exports = [
         </ul>
         <p>When the target node has misconduct or the self-collateralization amount changes lead to non-compliance, the parliament has the right to recover the loan in advance.</p>
         
-        <h4>Voting Support (available for A, B, X, Y)</h4>
+        <h4>2. Voting Support (available for A, B, X, Y)</h4>
         <p>The parliament votes a certain amount of PCX to the target node directly, and the amount is M times as their self-collateralization：</p>
         <ul>
             <li>Node in Categroy A，M=2 (Maximum 15,000PCX), Redemption by Parliament after expiry;</li>
@@ -309,7 +309,7 @@ module.exports = [
         </ul>
         <p>When the target node has misconduct or the self-collateralization amount changes lead to non-compliance, the parliament has the right to unstake the votes in advance.</p>
         
-        <h4>Discount for missing-blocks (available for A, B)</h4>
+        <h4>3. Discount for missing-blocks (available for A, B)</h4>
         <p>Keeping the overall network protocol untouched, the partial penalty for missing blocks can be returned to the target node. Parliament would keep tracking the leakage of target nodes using technical ways and special funds are reserved. once penalties for missing blocks are detected, a curtain amount of PCX would be automatically transfered to their jackpots. The amount is L times as the penalty：</p>
         <ul>
             <li>Node in Categroy A，L=0.75;</li>
