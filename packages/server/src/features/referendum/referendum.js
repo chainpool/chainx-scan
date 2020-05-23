@@ -318,6 +318,6 @@ module.exports = [
         <p>When the target node has misconduct, the parliament has the right to shutdown this discount in advance.</p>
       `
     },
-    deadBlock: 118220000
+    deadBlock: 15622000
   }
 ];
