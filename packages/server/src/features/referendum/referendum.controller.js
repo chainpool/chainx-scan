@@ -1,4 +1,4 @@
-const config = require("./referendum.json");
+const config = require("./referendum.js");
 const { remove0x } = require("../utils");
 const db = require("../../../models");
 const dayjs = require("dayjs");
