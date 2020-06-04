@@ -172,7 +172,8 @@ class AccountController {
       "ctpool.org",
       "CryptOptimus",
       "cryptoptimus",
-      "168node"
+      "168node",
+      "exxibox"
     ];
 
     ctx.body = keys.map(key => {
