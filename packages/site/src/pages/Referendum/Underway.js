@@ -61,6 +61,7 @@ function ReferendumList({ value, title, intl }) {
     </section>
   );
 }
+
 function Underway({ id, title, desc, intl }) {
   const [{ detail, list, total }, setState] = useRedux(`referndum-underway-${id}`, {
     detail: {},
@@ -110,7 +111,7 @@ function Underway({ id, title, desc, intl }) {
           <div className="referendum-content">{desc}</div>
           <div className="referendum-address">
             <div className="referendum-address-item">
-              {intl.messages.REFERENDUM_FOR_ADDRESS}：
+              {detail.id === "11" ? intl.messages.REFERENDUM_FOR1_ADDRESS : intl.messages.REFERENDUM_FOR_ADDRESS}：
               <AddressLink
                 value={detail.yes}
                 render={address => (
@@ -126,7 +127,7 @@ function Underway({ id, title, desc, intl }) {
               </CopyToClipboard>
             </div>
             <div className="referendum-address-item">
-              {intl.messages.REFERENDUM_AGAINST_ADDRESS}：
+              {detail.id === "11" ? intl.messages.REFERENDUM_FOR2_ADDRESS : intl.messages.REFERENDUM_AGAINST_ADDRESS}：
               <AddressLink
                 value={detail.no}
                 render={address => (
@@ -159,10 +160,18 @@ function Underway({ id, title, desc, intl }) {
         </div>
         <div className="referendum-list">
           <div className="referendum-list-item" style={{ paddingRight: 16 }}>
-            <ReferendumList value={yesList} title={intl.messages.REFERENDUM_FOR_LIST} intl={intl} />
+            <ReferendumList
+              value={yesList}
+              title={detail.id === "11" ? intl.messages.REFERENDUM_FOR1_LIST : intl.messages.REFERENDUM_FOR_LIST}
+              intl={intl}
+            />
           </div>
           <div className="referendum-list-item">
-            <ReferendumList value={noList} title={intl.messages.REFERENDUM_AGAINST_LIST} intl={intl} />
+            <ReferendumList
+              value={noList}
+              title={detail.id === "11" ? intl.messages.REFERENDUM_FOR2_LIST : intl.messages.REFERENDUM_AGAINST_LIST}
+              intl={intl}
+            />
           </div>
         </div>
       </div>
