@@ -441,6 +441,8 @@ export const referendumNav = {
 
 export const referendum = {
   REFERENDUM_FOR: "FOR",
+  REFERENDUM_FOR_1: "赞成1",
+  REFERENDUM_FOR_2: "赞成2",
   REFERENDUM_AGAINST: "AGAINST",
   REFERENDUM_UNIT: "Votes",
   REFERENDUM_VOTE: "Voting",
