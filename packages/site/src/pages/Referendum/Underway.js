@@ -98,12 +98,16 @@ function Underway({ id, title, desc, intl }) {
             <div style={{ display: "flex" }}>
               <div style={{ display: "flex", alignItems: "center", marginRight: 56 }}>
                 <Right style={{ marginRight: 8 }} />{" "}
-                <span style={{ fontSize: 14, color: "#03AC79" }}>{intl.messages.REFERENDUM_FOR}：</span>
+                <span style={{ fontSize: 14, color: "#03AC79" }}>
+                  {id === "11" ? intl.messages.REFERENDUM_FOR_1 : intl.messages.REFERENDUM_FOR}：
+                </span>
                 <Amount value={total.yes} hideSymbol /> {intl.messages.REFERENDUM_UNIT}
               </div>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <Delete style={{ marginRight: 8 }} />{" "}
-                <span style={{ fontSize: 14, color: "#C54315" }}>{intl.messages.REFERENDUM_AGAINST}：</span>
+                <span style={{ fontSize: 14, color: "#C54315" }}>
+                  {id === "11" ? intl.messages.REFERENDUM_FOR_2 : intl.messages.REFERENDUM_AGAINST}：
+                </span>
                 <Amount value={total.no} hideSymbol /> {intl.messages.REFERENDUM_UNIT}
               </div>
             </div>
