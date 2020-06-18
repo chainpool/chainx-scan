@@ -1,3 +1,5 @@
+const proposal11 = require("./proposal11");
+
 module.exports = [
   {
     id: "1",
@@ -320,4 +322,4 @@ module.exports = [
     },
     deadBlock: 15622000
   }
-];
+].concat([proposal11]);
