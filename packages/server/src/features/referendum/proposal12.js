@@ -6,7 +6,7 @@ module.exports = {
   isPublish: false,
   title: {
     zh: "12号提案：是否保留 L-BTC 挖矿功能",
-    en: "Proposal 11: Whether to retain the L-BTC mining function"
+    en: "Proposal 12: Whether to retain the L-BTC mining function"
   },
   desc: {
     zh: `
