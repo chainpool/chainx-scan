@@ -1,5 +1,6 @@
 const proposal11 = require("./proposal11");
 const proposal12 = require("./proposal12");
+const proposal12Fix = require("./proposal12-fix");
 
 module.exports = [
   {
@@ -323,4 +324,4 @@ module.exports = [
     },
     deadBlock: 15622000
   }
-].concat([proposal11, proposal12]);
+].concat([proposal11, proposal12, proposal12Fix]);

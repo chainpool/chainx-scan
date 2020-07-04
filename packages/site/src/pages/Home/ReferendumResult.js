@@ -10,6 +10,7 @@ import { injectIntl } from "react-intl";
 
 export default injectIntl(function ReferendumResult({ intl }) {
   const [{ list }, setState] = useRedux("referendumResult", { list: [] });
+  const selectedList = list.slice(0, 6);
 
   const lang = intl.locale.startsWith("en") ? "en" : "zh";
 
@@ -46,7 +47,7 @@ export default injectIntl(function ReferendumResult({ intl }) {
         <FormattedMessage id="公投列表" />
       </div>
       <div className="panel-block" style={{ height: 276, padding: 0 }}>
-        {list && list.length ? (
+        {selectedList && selectedList.length ? (
           <div
             style={{
               display: "flex",
@@ -56,7 +57,7 @@ export default injectIntl(function ReferendumResult({ intl }) {
               width: "100%"
             }}
           >
-            {list.map((item, index) => (
+            {selectedList.map((item, index) => (
               <a
                 key={item.id}
                 href={`referendum/${item.isFinished ? "finished" : "underway"}`}
