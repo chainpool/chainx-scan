@@ -1157,9 +1157,11 @@ a:focus {
   }
 
   li {
-    list-style: disc;
     position: relative;
     left: 25px;
+    li {
+      list-style: disc;
+    }
   }
 
   h3 {
