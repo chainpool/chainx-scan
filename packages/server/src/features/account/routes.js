@@ -3,6 +3,7 @@ const accountController = require("./account.controller");
 const nominationController = require("./nomination.controller");
 const intentionController = require("./intention.controller");
 const accountTransferControlelr = require("./account.transfer.controller");
+const pcxController = require("./pcx.controller");
 
 const router = new Router();
 router.get("/validators", intentionController.validators);
@@ -15,6 +16,7 @@ router.get("/intention/:accountId/nominations", nominationController.byNominee);
 router.get("/intention/:accountId/settings", intentionController.setting);
 router.get("/intention/:accountId/missed_blocks", intentionController.missedBlocks);
 router.get("/accounts", accountController.accounts);
+router.get("/pcx_accounts", pcxController.pcxAccounts);
 router.get("/account/:accountId/nominations", nominationController.accountNominations);
 router.get("/account/:accountId/detail", accountController.accountDetail);
 router.get("/account/:accountId/txs", accountController.txs);
