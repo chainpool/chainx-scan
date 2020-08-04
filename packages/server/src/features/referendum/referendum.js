@@ -206,7 +206,7 @@ module.exports = [
     yes: "0x9550e520b708b721df1a91569bf50654316545cb8e8d9bdec763959b8e1bd6b2",
     no: "0x6914128b08393cc911e80d0979c99762b25be6d0c9de90a8e9b4485ae391fc4f",
     isActive: "1",
-    isPublish: false,
+    isPublish: true,
     title: {
       zh: "10 号提案：节点帮扶计划",
       en: "Proposal 10. Support Program for Small and/or Oversea Nodes"
