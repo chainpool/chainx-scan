@@ -2,6 +2,64 @@ const Router = require("koa-router");
 
 const router = new Router();
 
+router.get("/power_percent_v3", async ctx => {
+  const solidPowers = [
+    {
+      name: "PolkaX",
+      power: 0.2
+    },
+    {
+      name: "PCX",
+      power: 0.576
+    }
+  ];
+
+  let tr = 0.16;
+  const xBtcIntention = await ctx.db.PseduIntention.findOne({
+    where: { id: "BTC" },
+    attributes: ["circulation"],
+    raw: true
+  });
+
+  // 9号提案规定暂时使用固定比例
+  const xBtcToPcxRation = 400;
+  const xBtcEquivalentNomination = parseInt(xBtcIntention.circulation) * xBtcToPcxRation;
+  const pcxNomination = await getPcxPower(ctx);
+
+  const sortFunc = (a, b) => b.power - a.power;
+  // 9号提案: 设置跨链硬顶 XR=10%
+  if (xBtcEquivalentNomination * 9 > pcxNomination) {
+    return (ctx.body = [
+      {
+        name: "X-BTC",
+        power: 0.064
+      },
+      {
+        name: "TR",
+        power: tr
+      },
+      ...solidPowers
+    ].sort(sortFunc));
+  }
+
+  // XR，跨链硬顶，10%
+  const xr = 0.064;
+  const xrPower = pcxNomination / 9;
+  const xbtcPower = (xBtcEquivalentNomination / xrPower) * xr;
+  tr += xr - xbtcPower;
+  return (ctx.body = [
+    {
+      name: "X-BTC",
+      power: xbtcPower
+    },
+    {
+      name: "TR",
+      power: tr
+    },
+    ...solidPowers
+  ].sort(sortFunc));
+});
+
 router.get("/power_percent_v2", async ctx => {
   const solidPowers = [
     {
@@ -50,11 +108,11 @@ router.get("/power_percent_v2", async ctx => {
     ].sort(sortFunc));
   }
 
-  // 9号提案: 可分配挖矿收益 AMO
-  const totalNomination = xBtcEquivalentNomination + pcxNomination;
-  const totalAmoPower = 0.64;
-  const xbtcPower = (xBtcEquivalentNomination / totalNomination) * totalAmoPower;
-  tr += 0.064 - xbtcPower;
+  // XR，跨链硬顶，10%
+  const xr = 0.064;
+  const xrPower = pcxNomination / 9;
+  const xbtcPower = (xBtcEquivalentNomination / xrPower) * xr;
+  tr += xr - xbtcPower;
   return (ctx.body = [
     {
       name: "X-BTC",
