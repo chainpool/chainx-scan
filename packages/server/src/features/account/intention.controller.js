@@ -174,7 +174,8 @@ class AccountController {
       "cryptoptimus",
       "168node",
       "exxibox",
-      "ma_ipfs_dot"
+      "ma_ipfs_dot",
+      "olympuspool"
     ];
 
     ctx.body = keys.map(key => {
