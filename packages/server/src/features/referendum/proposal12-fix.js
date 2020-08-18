@@ -3,7 +3,7 @@ module.exports = {
   yes: "0x3c40ef2e444174aeaa5eed89cffbc8298416935b335398c33b4f10a87cb33ed6",
   no: "0x687c969cf0f3c699711488dffebbdc18401597c1674dee75253e013d0c7ec423",
   isActive: "1",
-  isPublish: false,
+  isPublish: true,
   title: {
     zh: "12号提案修正案",
     en: "Amendment to ChainX Proposal 12"

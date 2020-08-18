@@ -3,7 +3,7 @@ module.exports = {
   yes: "0x0fff8dd6fe0328b5de2a6d3b405cffb04d117b60a1ba24ca678b0dcce829055e",
   no: "0xc0f0891392e3e9ff058f24eb46f0db18356298c35f2bdaab6245b3c44c165bf7",
   isActive: "1",
-  isPublish: false,
+  isPublish: true,
   title: {
     zh: "11号提案：是否保留 S-DOT 挖矿功能",
     en: "Proposal 11: Whether to retain the S-DOT mining function"

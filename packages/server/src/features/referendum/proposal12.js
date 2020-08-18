@@ -3,7 +3,7 @@ module.exports = {
   yes: "0x1004b24fd77ed8c998f915f8216a09fb47228ecbfe6363005b33b9411e60a4c8",
   no: "0xc0f515b60799caeaa18d62c3bfc618cde5cbcaf1355afb3c56fe7a544479c676",
   isActive: "1",
-  isPublish: false,
+  isPublish: true,
   title: {
     zh: "12号提案：是否保留 L-BTC 挖矿功能",
     en: "Proposal 12: Whether to retain the L-BTC mining function"
