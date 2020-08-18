@@ -9,7 +9,7 @@ const powerPie = function({ intl }) {
   const [{ data }, setState] = useRedux("powerPercent", { data: [] });
 
   useEffect(() => {
-    const subscription = api.fetchPowerPercentV2$().subscribe(result => {
+    const subscription = api.fetchPowerPercentV3$().subscribe(result => {
       setState({
         data: result.map(item => ({
           ...item,
