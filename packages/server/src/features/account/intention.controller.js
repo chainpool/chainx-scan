@@ -37,7 +37,7 @@ class AccountController {
 
   async pseduIntentions(ctx) {
     const intentions = await ctx.db.PseduIntention.findAll({ raw: true });
-    ctx.body = intentions;
+    ctx.body = intentions.filter(i => !["SDOT", "L-BTC"].includes(i.id));
   }
 
   async setting(ctx) {
