@@ -1,4 +1,6 @@
 const { extractPage } = require("../utils");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 const councilAddr = "67df26a755e0c31ac81e2ed530d147d7f2b9a3f5a570619048c562b1ed00dfdd";
 
@@ -6,7 +8,13 @@ class CouncilController {
   async transfers(ctx) {
     const { page, pageSize } = extractPage(ctx);
 
-    const where = { addr: councilAddr, call: "transfer" };
+    const where = {
+      addr: councilAddr,
+      call: "transfer",
+      yet_needed: {
+        [Op.lt]: 1
+      }
+    };
     const order = [["height", "DESC"]];
     const exclude = ["multisigid", "call", "module", "confirm_tx", "yet_needed", "owners_done"];
     const { rows, count } = await ctx.db.EventMultiSig.findAndCountAll({
