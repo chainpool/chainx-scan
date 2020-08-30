@@ -177,7 +177,8 @@ class AccountController {
       "ma_ipfs_dot",
       "olympuspool",
       "northcap",
-      "polkatrust"
+      "polkatrust",
+      "mxcpospool"
     ];
 
     ctx.body = keys.map(key => {
