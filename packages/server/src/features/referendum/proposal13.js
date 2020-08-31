@@ -3,7 +3,7 @@ module.exports = {
   yes: "0x94bccf7165845dcaa23c237b1a412678d7ed6c437ba308ecbc47bec8c097fd9c",
   no: "0x94bc305c7e635766e947f16d580701c0ccb3f80029f6657de49deb1242d43864",
   isActive: "1",
-  isPublish: false,
+  isPublish: true,
   title: {
     zh: "13号提案：支出议会基金上线 Gate.io 交易所",
     en: "Proposal 13:  Spending Council Fund To List On Gate.io Exchange"
