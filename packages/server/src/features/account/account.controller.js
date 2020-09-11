@@ -51,6 +51,7 @@ class AccountController {
       LEFT JOIN (SELECT accountid as id, ${totalField} FROM "XAssets_AssetBalance" WHERE token='SDOT') as sdot
       ON x.accountid=sdot.id
       LEFT JOIN "System_AccountNonce" as nonce ON x.accountid=nonce.accountid
+      ORDER BY pcx DESC
       LIMIT ${pageSize} OFFSET ${page * pageSize}`,
       {
         type: ctx.db.sequelize.QueryTypes.SELECT
@@ -113,7 +114,10 @@ class AccountController {
     }
 
     const { page, pageSize } = extractPage(ctx);
-    const order = [["number", "DESC"], ["index", "DESC"]];
+    const order = [
+      ["number", "DESC"],
+      ["index", "DESC"]
+    ];
     const { rows: items, count } = await ctx.db.Transaction.findAndCountAll({
       where,
       order,
