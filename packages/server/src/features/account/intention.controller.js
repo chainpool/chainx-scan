@@ -179,7 +179,8 @@ class AccountController {
       "northcap",
       "polkatrust",
       "mxcpospool",
-      "hybridge"
+      "hybridge",
+      "entretenidos"
     ];
 
     ctx.body = keys.map(key => {
