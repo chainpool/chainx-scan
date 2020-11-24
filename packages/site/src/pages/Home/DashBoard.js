@@ -27,7 +27,7 @@ export default function DashBoard() {
       ),
       data: (
         <div>
-          <NumberFormat value={data.best} /> / <NumberFormat value={data.finalized} />
+          <NumberFormat value={data.best} /> / <NumberFormat value={23170000} />
         </div>
       )
     },
@@ -137,11 +137,11 @@ export default function DashBoard() {
           <div className="columns is-multiline is-gapless" style={{ marginBottom: "0", margin: "auto" }}>
             {dataSource && data && data.best
               ? dataSource.map((item, index) => (
-                  <div key={index} className="column is-4 dashboard-cell">
-                    <div className="dashboard-cell__title">{item.label}</div>
-                    <div className="dashboard-cell__content">{item.data}</div>
-                  </div>
-                ))
+                <div key={index} className="column is-4 dashboard-cell">
+                  <div className="dashboard-cell__title">{item.label}</div>
+                  <div className="dashboard-cell__content">{item.data}</div>
+                </div>
+              ))
               : loading}
           </div>
           {/*<Transaction style={{ width: "40%", height: "265px" }} />*/}
