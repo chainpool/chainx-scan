@@ -40,7 +40,7 @@ export default function DashBoard() {
       ),
       data: (
         <>
-          <NumberFormat value={data.transactions} /> / <NumberFormat value={data.account_count} />
+          <NumberFormat value={data.transactions} /> / <NumberFormat value={9026} />
         </>
       )
     },
