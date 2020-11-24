@@ -5,10 +5,11 @@ import BtcStatus from "./BtcStatus";
 import BestBlocks from "./BestBlocks";
 import BestTransactions from "./BestTransactions";
 import ReferendumResult from "./ReferendumResult";
-
+import Warning from "./Warning";
 export default function Home() {
   return (
     <section className="blockTransaction">
+      <Warning />
       <DashBoard />
       <div className="columns">
         <div className="column">
