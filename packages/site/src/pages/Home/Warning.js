@@ -5,8 +5,10 @@ import "antd/dist/antd.css";
 function Warning() {
   const url = (
     <div>
-      <span>{"1.0浏览器已暂停使用，请大家转移至2.0浏览器，新浏览器入口："}</span>
-      <a href="https://scan-v2.chainx.org/">{"点这里"}</a>
+      <span>
+        ChainX主网已更新至2.0版本，请前往<a href="https://scan-v2.chainx.org/">这里</a>
+        体验2.0浏览器。1.0浏览器功能已全部停止，此网页将在12月15日后失效。因此给您带来的不便敬请谅解。
+      </span>
     </div>
   );
   return (
